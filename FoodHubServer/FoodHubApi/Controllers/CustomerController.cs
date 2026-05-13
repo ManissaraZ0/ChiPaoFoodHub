@@ -2,6 +2,7 @@
 using FoodHubLogic;
 using FoodHubLogic.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 
 namespace FoodHubApi.Controllers;
 
@@ -83,7 +84,7 @@ public class CustomerController : ControllerBase
 
     // 2. หน้า Detail ของ Customer (แสดง Profile, จำนวนตั๋วรวม, และตั๋วที่ยังไม่หมดอายุ)
     [HttpGet("profile")]
-    public CustomerProfileRsp GetCustomerProfile([FromQuery] int userId)
+    public CustomerProfileRsp GetCustomerProfile([FromQuery, Required] int userId)
     {
         var domain = new DomainLogic(MyConfig.ConnStr);
         return domain.GetCustomerProfile(userId);
@@ -101,7 +102,13 @@ public class CustomerController : ControllerBase
 // Request Models สำหรับ Customer
 public class SubmitReviewReq
 {
+    [Required(ErrorMessage = "UserId is required.")]
     public int UserId { get; set; }
+
+    [Required]
+    [Range(1, 5, ErrorMessage = "Rating must be between 1 and 5.")] // กำหนดช่วงคะแนนได้ด้วย
     public int Rating { get; set; }
+
+    [Required(AllowEmptyStrings = false, ErrorMessage = "Comment cannot be empty.")]
     public string Comment { get; set; }
 }
