@@ -1,0 +1,14 @@
+C:\FoodHub\FoodHubServer\FoodHubLogic\bin\Debug\net8.0\FoodHubLogic.deps.json
+C:\FoodHub\FoodHubServer\FoodHubLogic\bin\Debug\net8.0\FoodHubLogic.runtimeconfig.json
+C:\FoodHub\FoodHubServer\FoodHubLogic\bin\Debug\net8.0\FoodHubLogic.dll
+C:\FoodHub\FoodHubServer\FoodHubLogic\bin\Debug\net8.0\FoodHubLogic.pdb
+C:\FoodHub\FoodHubServer\FoodHubLogic\obj\Debug\net8.0\FoodHubLogic.csproj.AssemblyReference.cache
+C:\FoodHub\FoodHubServer\FoodHubLogic\obj\Debug\net8.0\FoodHubLogic.GeneratedMSBuildEditorConfig.editorconfig
+C:\FoodHub\FoodHubServer\FoodHubLogic\obj\Debug\net8.0\FoodHubLogic.AssemblyInfoInputs.cache
+C:\FoodHub\FoodHubServer\FoodHubLogic\obj\Debug\net8.0\FoodHubLogic.AssemblyInfo.cs
+C:\FoodHub\FoodHubServer\FoodHubLogic\obj\Debug\net8.0\FoodHubLogic.csproj.CoreCompileInputs.cache
+C:\FoodHub\FoodHubServer\FoodHubLogic\obj\Debug\net8.0\FoodHubLogic.dll
+C:\FoodHub\FoodHubServer\FoodHubLogic\obj\Debug\net8.0\refint\FoodHubLogic.dll
+C:\FoodHub\FoodHubServer\FoodHubLogic\obj\Debug\net8.0\FoodHubLogic.pdb
+C:\FoodHub\FoodHubServer\FoodHubLogic\obj\Debug\net8.0\FoodHubLogic.genruntimeconfig.cache
+C:\FoodHub\FoodHubServer\FoodHubLogic\obj\Debug\net8.0\ref\FoodHubLogic.dll

@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="FoodHubApi/FoodHubApi.csproj" Id="b31e2163-1c48-4a5b-ac75-d76ce96a8872" />
+  <Project Path="FoodHubLogic/FoodHubLogic.csproj" Id="ea0e8812-391f-42b8-ad12-409433339340" />
+  <Project Path="FoodHubLogicTest/FoodHubLogicTest.csproj" Id="38f06ba5-9f33-4c27-be62-4501fb7abfbf" />
+</Solution>

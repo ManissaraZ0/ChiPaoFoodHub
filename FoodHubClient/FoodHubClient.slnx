@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="FoodHubCustomerApp/FoodHubCustomerApp.csproj" />
+  <Project Path="FoodHubManagerApp/FoodHubManagerApp.csproj" Id="1afb6011-8d1d-4be4-b961-9f43e8f667be" />
+</Solution>

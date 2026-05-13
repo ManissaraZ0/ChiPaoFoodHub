@@ -1,0 +1,87 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\FoodHub\\FoodHubServer\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{B31E2163-1C48-4A5B-AC75-D76CE96A8872}|FoodHubApi\\FoodHubApi.csproj|c:\\foodhub\\foodhubserver\\foodhubapi\\customercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B31E2163-1C48-4A5B-AC75-D76CE96A8872}|FoodHubApi\\FoodHubApi.csproj|solutionrelative:foodhubapi\\customercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B31E2163-1C48-4A5B-AC75-D76CE96A8872}|FoodHubApi\\FoodHubApi.csproj|c:\\foodhub\\foodhubserver\\foodhubapi\\managercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B31E2163-1C48-4A5B-AC75-D76CE96A8872}|FoodHubApi\\FoodHubApi.csproj|solutionrelative:foodhubapi\\managercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{38F06BA5-9F33-4C27-BE62-4501FB7ABFBF}|FoodHubLogicTest\\FoodHubLogicTest.csproj|c:\\foodhub\\foodhubserver\\foodhublogictest\\unittest1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{38F06BA5-9F33-4C27-BE62-4501FB7ABFBF}|FoodHubLogicTest\\FoodHubLogicTest.csproj|solutionrelative:foodhublogictest\\unittest1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EA0E8812-391F-42B8-AD12-409433339340}|FoodHubLogic\\FoodHubLogic.csproj|c:\\foodhub\\foodhubserver\\foodhublogic\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EA0E8812-391F-42B8-AD12-409433339340}|FoodHubLogic\\FoodHubLogic.csproj|solutionrelative:foodhublogic\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ManagerController.cs",
+              "DocumentMoniker": "C:\\FoodHub\\FoodHubServer\\FoodHubApi\\ManagerController.cs",
+              "RelativeDocumentMoniker": "FoodHubApi\\ManagerController.cs",
+              "ToolTip": "C:\\FoodHub\\FoodHubServer\\FoodHubApi\\ManagerController.cs",
+              "RelativeToolTip": "FoodHubApi\\ManagerController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-13T08:56:11.932Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CustomerController.cs",
+              "DocumentMoniker": "C:\\FoodHub\\FoodHubServer\\FoodHubApi\\CustomerController.cs",
+              "RelativeDocumentMoniker": "FoodHubApi\\CustomerController.cs",
+              "ToolTip": "C:\\FoodHub\\FoodHubServer\\FoodHubApi\\CustomerController.cs",
+              "RelativeToolTip": "FoodHubApi\\CustomerController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-13T08:55:49.673Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "UnitTest1.cs",
+              "DocumentMoniker": "C:\\FoodHub\\FoodHubServer\\FoodHubLogicTest\\UnitTest1.cs",
+              "RelativeDocumentMoniker": "FoodHubLogicTest\\UnitTest1.cs",
+              "ToolTip": "C:\\FoodHub\\FoodHubServer\\FoodHubLogicTest\\UnitTest1.cs",
+              "RelativeToolTip": "FoodHubLogicTest\\UnitTest1.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-13T08:39:35.418Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Class1.cs",
+              "DocumentMoniker": "C:\\FoodHub\\FoodHubServer\\FoodHubLogic\\Class1.cs",
+              "RelativeDocumentMoniker": "FoodHubLogic\\Class1.cs",
+              "ToolTip": "C:\\FoodHub\\FoodHubServer\\FoodHubLogic\\Class1.cs",
+              "RelativeToolTip": "FoodHubLogic\\Class1.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-13T08:36:06.722Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

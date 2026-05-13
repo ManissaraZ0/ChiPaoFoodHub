@@ -1,0 +1,88 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\FoodHub\\FoodHubClient\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{1AFB6011-8D1D-4BE4-B961-9F43E8F667BE}|FoodHubManagerApp\\FoodHubManagerApp.csproj|c:\\foodhub\\foodhubclient\\foodhubmanagerapp\\service.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1AFB6011-8D1D-4BE4-B961-9F43E8F667BE}|FoodHubManagerApp\\FoodHubManagerApp.csproj|solutionrelative:foodhubmanagerapp\\service.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1AFB6011-8D1D-4BE4-B961-9F43E8F667BE}|FoodHubManagerApp\\FoodHubManagerApp.csproj|c:\\foodhub\\foodhubclient\\foodhubmanagerapp\\foodhubmanagerapp.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{1AFB6011-8D1D-4BE4-B961-9F43E8F667BE}|FoodHubManagerApp\\FoodHubManagerApp.csproj|solutionrelative:foodhubmanagerapp\\foodhubmanagerapp.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{737AE6C5-0750-0FA3-920E-2EEFFA11FA25}|FoodHubCustomerApp\\FoodHubCustomerApp.csproj|c:\\foodhub\\foodhubclient\\foodhubcustomerapp\\service.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{737AE6C5-0750-0FA3-920E-2EEFFA11FA25}|FoodHubCustomerApp\\FoodHubCustomerApp.csproj|solutionrelative:foodhubcustomerapp\\service.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{737AE6C5-0750-0FA3-920E-2EEFFA11FA25}|FoodHubCustomerApp\\FoodHubCustomerApp.csproj|c:\\foodhub\\foodhubclient\\foodhubcustomerapp\\foodhubcustomerapp.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{737AE6C5-0750-0FA3-920E-2EEFFA11FA25}|FoodHubCustomerApp\\FoodHubCustomerApp.csproj|solutionrelative:foodhubcustomerapp\\foodhubcustomerapp.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Service.cs",
+              "DocumentMoniker": "C:\\FoodHub\\FoodHubClient\\FoodHubManagerApp\\Service.cs",
+              "RelativeDocumentMoniker": "FoodHubManagerApp\\Service.cs",
+              "ToolTip": "C:\\FoodHub\\FoodHubClient\\FoodHubManagerApp\\Service.cs",
+              "RelativeToolTip": "FoodHubManagerApp\\Service.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-13T09:02:26.353Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Service.cs",
+              "DocumentMoniker": "C:\\FoodHub\\FoodHubClient\\FoodHubCustomerApp\\Service.cs",
+              "RelativeDocumentMoniker": "FoodHubCustomerApp\\Service.cs",
+              "ToolTip": "C:\\FoodHub\\FoodHubClient\\FoodHubCustomerApp\\Service.cs",
+              "RelativeToolTip": "FoodHubCustomerApp\\Service.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-13T09:01:15.091Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "FoodHubCustomerApp",
+              "DocumentMoniker": "C:\\FoodHub\\FoodHubClient\\FoodHubCustomerApp\\FoodHubCustomerApp.csproj",
+              "RelativeDocumentMoniker": "FoodHubCustomerApp\\FoodHubCustomerApp.csproj",
+              "ToolTip": "C:\\FoodHub\\FoodHubClient\\FoodHubCustomerApp\\FoodHubCustomerApp.csproj",
+              "RelativeToolTip": "FoodHubCustomerApp\\FoodHubCustomerApp.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-05-13T08:58:56.043Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "FoodHubManagerApp",
+              "DocumentMoniker": "C:\\FoodHub\\FoodHubClient\\FoodHubManagerApp\\FoodHubManagerApp.csproj",
+              "RelativeDocumentMoniker": "FoodHubManagerApp\\FoodHubManagerApp.csproj",
+              "ToolTip": "C:\\FoodHub\\FoodHubClient\\FoodHubManagerApp\\FoodHubManagerApp.csproj",
+              "RelativeToolTip": "FoodHubManagerApp\\FoodHubManagerApp.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-05-13T08:49:29.979Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
