@@ -6,184 +6,207 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FoodHubLogic
+namespace FoodHubLogic;
+
+public static class StatusConstants
 {
-    public class DomainLogic
+    public const string RoleClient = "client";
+    public const string RoleManager = "manager";
+
+    public const string TicketActive = "Active";
+    public const string TicketUsed = "Used";
+    public const string TicketExpired = "Expired";
+}
+
+public class DomainLogic
+{
+    private readonly string connectionString;
+
+    public DomainLogic(string connectionString)
     {
-        private readonly string connectionString;
+        this.connectionString = connectionString;
+    }
 
-        // 1. แก้ไขชื่อ Constructor ให้ตรงกับชื่อ Class ใหม่
-        public DomainLogic(string connectionString)
+    // ==========================================
+    // Helper Methods
+    // ==========================================
+    private void ValidateRole(User user, string expectedRole, string message)
+    {
+        if (user.Role != expectedRole)
+            throw new Exception($"{message}: User role must be '{expectedRole}'.");
+    }
+
+    // ==========================================
+    // 1. Functional Requirement for User/Client
+    // ==========================================
+
+    // 1.d Browse Promotion
+    public List<Promotion> BrowseActivePromotions(int? restaurantId = null)
+    {
+        using var context = new FoodhubContext(connectionString);
+
+        var query = context.Promotions
+            .Include(p => p.Restaurant)
+            .Where(p => p.StartDate <= DateTime.Now && p.EndDate >= DateTime.Now);
+
+        if (restaurantId.HasValue)
         {
-            this.connectionString = connectionString;
+            query = query.Where(p => p.RestaurantId == restaurantId.Value);
         }
 
-        // --- Validation Helpers ---
-        private void ValidateRole(User user, string expectedRole, string message)
+        return query.OrderByDescending(p => p.StartDate).ToList();
+    }
+
+    // 1.a Buy Promotion Ticket
+    public PromotionTicket BuyPromotionTicket(int userId, int promotionId)
+    {
+        using var context = new FoodhubContext(connectionString);
+        context.Database.BeginTransaction();
+
+        var user = context.Users.SingleOrDefault(u => u.Id == userId);
+        if (user == null) throw new Exception("User not found.");
+
+        var promotion = context.Promotions.SingleOrDefault(p => p.Id == promotionId);
+        if (promotion == null) throw new Exception("Promotion not found.");
+
+        if (promotion.EndDate < DateTime.Now)
+            throw new Exception("This promotion has expired.");
+
+        // Check Quota
+        var currentTicketsCount = context.PromotionTickets.Count(t => t.PromotionId == promotionId);
+        if (currentTicketsCount >= promotion.TotalQuota)
+            throw new Exception("Promotion quota is full.");
+
+        // Create Ticket
+        var ticket = new PromotionTicket
         {
-            if (!string.Equals(user.Role, expectedRole, StringComparison.OrdinalIgnoreCase))
-                throw new Exception($"{message}: User role must be '{expectedRole}'.");
-        }
+            UserId = userId,
+            PromotionId = promotionId,
+            Status = StatusConstants.TicketActive,
+            PurchaseDate = DateTime.Now,
+            UsedDate = null
+        };
 
-        private void ValidateTicketStatus(PromotionTicket ticket, string status, string message)
+        context.PromotionTickets.Add(ticket);
+        context.SaveChanges();
+        context.Database.CommitTransaction();
+
+        return ticket;
+    }
+
+    // 1.b Reviewer Restaurant (Write Review)
+    public Review SubmitReview(int userId, int restaurantId, int rating, string comment)
+    {
+        if (rating < 1 || rating > 5)
+            throw new ArgumentException("Rating must be between 1 and 5.");
+
+        using var context = new FoodhubContext(connectionString);
+
+        var review = new Review
         {
-            if (!string.Equals(ticket.Status, status, StringComparison.OrdinalIgnoreCase))
-                throw new Exception($"{message}: Ticket status must be '{status}'.");
-        }
+            UserId = userId,
+            RestaurantId = restaurantId,
+            Rating = rating,
+            Comment = comment,
+            CreatedAt = DateTime.Now
+        };
 
-        // --- Restaurant & Promotion Management (Manager) ---
-        public void CreatePromotion(int managerId, int restaurantId, Promotion newPromotion)
-        {
-            using var context = new FoodhubContext(connectionString);
-            context.Database.BeginTransaction();
+        context.Reviews.Add(review);
+        context.SaveChanges();
 
-            var manager = context.Users.Single(u => u.Id == managerId);
-            ValidateRole(manager, "manager", "Cannot create promotion");
+        return review;
+    }
 
-            var restaurant = context.Restaurants.Single(r => r.Id == restaurantId);
-            if (restaurant.ManagerId != managerId)
-                throw new Exception("Cannot create promotion: Manager does not own this restaurant.");
+    // 1.c Read Review
+    public List<Review> GetRestaurantReviews(int restaurantId)
+    {
+        using var context = new FoodhubContext(connectionString);
 
-            newPromotion.RestaurantId = restaurantId;
-            context.Promotions.Add(newPromotion);
+        return context.Reviews
+            .Include(r => r.User) // ดึงข้อมูลคนรีวิวมาด้วย
+            .Where(r => r.RestaurantId == restaurantId)
+            .OrderByDescending(r => r.CreatedAt)
+            .ToList();
+    }
 
-            context.SaveChanges();
-            context.Database.CommitTransaction();
-        }
+    // ==========================================
+    // 2. Functional Requirement for Restaurant Manager
+    // ==========================================
 
-        public List<Promotion> GetActivePromotions(int restaurantId)
-        {
-            using var context = new FoodhubContext(connectionString);
-            var now = DateTime.Now;
+    // 2.a Add Promotion Ticket
+    public Promotion AddPromotion(int managerId, int restaurantId, Promotion newPromotion)
+    {
+        using var context = new FoodhubContext(connectionString);
 
-            // ดึงโปรโมชันที่ยังไม่หมดเวลา
-            return context.Promotions
-                .Where(p => p.RestaurantId == restaurantId && p.StartDate <= now && p.EndDate >= now)
-                .OrderBy(p => p.EndDate)
-                .ToList();
-        }
+        var user = context.Users.SingleOrDefault(u => u.Id == managerId);
+        ValidateRole(user, StatusConstants.RoleManager, "Only managers can add promotions");
 
-        // --- Ticket Operations (Client) ---
-        public PromotionTicket PurchaseTicket(int userId, int promotionId)
-        {
-            using var context = new FoodhubContext(connectionString);
-            context.Database.BeginTransaction();
+        var restaurant = context.Restaurants.SingleOrDefault(r => r.Id == restaurantId);
+        if (restaurant == null || restaurant.ManagerId != managerId)
+            throw new Exception("You are not authorized to add promotions for this restaurant.");
 
-            var user = context.Users.Single(u => u.Id == userId);
-            ValidateRole(user, "client", "Cannot purchase ticket");
+        if (newPromotion.StartDate >= newPromotion.EndDate)
+            throw new ArgumentException("Start date must be before end date.");
 
-            var promotion = context.Promotions.Single(p => p.Id == promotionId);
-            var now = DateTime.Now;
+        // Map and Save
+        newPromotion.RestaurantId = restaurantId;
 
-            if (now < promotion.StartDate || now > promotion.EndDate)
-                throw new Exception("Cannot purchase ticket: Promotion is not active.");
+        context.Promotions.Add(newPromotion);
+        context.SaveChanges();
 
-            // เช็ค Quota
-            var currentTicketCount = context.PromotionTickets.Count(t => t.PromotionId == promotionId);
-            if (currentTicketCount >= promotion.TotalQuota)
-                throw new Exception("Cannot purchase ticket: Promotion quota has been reached.");
+        return newPromotion;
+    }
 
-            var ticket = new PromotionTicket
-            {
-                UserId = userId,
-                PromotionId = promotionId,
-                Status = "Active",
-                PurchaseDate = now
-            };
+    // 2.b Receive Promotion Tickets (Validate & Change Status)
+    public PromotionTicket ValidatePromotionTicket(int managerId, int ticketId)
+    {
+        using var context = new FoodhubContext(connectionString);
+        context.Database.BeginTransaction();
 
-            context.PromotionTickets.Add(ticket);
-            context.SaveChanges();
-            context.Database.CommitTransaction();
+        // 1. ดึงข้อมูลตั๋ว พร้อมข้อมูลโปรโมชันและร้านอาหารเพื่อเช็คสิทธิ์
+        var ticket = context.PromotionTickets
+            .Include(t => t.Promotion)
+            .ThenInclude(p => p.Restaurant)
+            .SingleOrDefault(t => t.Id == ticketId);
 
-            return ticket;
-        }
+        if (ticket == null)
+            throw new Exception("Ticket not found.");
 
-        public void UseTicket(int userId, int ticketId)
-        {
-            using var context = new FoodhubContext(connectionString);
-            context.Database.BeginTransaction();
+        // 2. ตรวจสอบว่าคนที่กดยืนยัน เป็น Manager ของร้านอาหารเจ้าของโปรโมชันนี้จริงหรือไม่
+        if (ticket.Promotion.Restaurant.ManagerId != managerId)
+            throw new Exception("Unauthorized: You do not manage the restaurant for this ticket.");
 
-            var ticket = context.PromotionTickets
-                .Include(t => t.Promotion)
-                .Single(t => t.Id == ticketId);
+        // 3. ตรวจสอบสถานะตั๋ว
+        if (ticket.Status == StatusConstants.TicketUsed)
+            throw new Exception("This ticket has already been used.");
 
-            if (ticket.UserId != userId)
-                throw new Exception("Cannot use ticket: Ticket does not belong to this user.");
+        if (ticket.Status == StatusConstants.TicketExpired || ticket.Promotion.EndDate < DateTime.Now)
+            throw new Exception("This ticket has expired.");
 
-            ValidateTicketStatus(ticket, "Active", "Cannot use ticket");
+        // 4. อัปเดตสถานะ (Change promotion ticket status)
+        ticket.Status = StatusConstants.TicketUsed;
+        ticket.UsedDate = DateTime.Now;
 
-            var now = DateTime.Now;
-            if (now > ticket.Promotion.EndDate)
-            {
-                // ถ้าหมดอายุแล้วให้เปลี่ยน Status เป็น Expired
-                ticket.Status = "Expired";
-                context.SaveChanges();
-                context.Database.CommitTransaction();
-                throw new Exception("Cannot use ticket: Promotion has expired.");
-            }
+        context.SaveChanges();
+        context.Database.CommitTransaction();
 
-            ticket.Status = "Used";
-            ticket.UsedDate = now;
+        return ticket;
+    }
 
-            context.SaveChanges();
-            context.Database.CommitTransaction();
-        }
+    // (Optional) Get tickets for a restaurant to display to the manager
+    public List<PromotionTicket> GetTicketsForRestaurant(int managerId, int restaurantId)
+    {
+        using var context = new FoodhubContext(connectionString);
 
-        public List<PromotionTicket> GetMyTickets(int userId)
-        {
-            using var context = new FoodhubContext(connectionString);
+        var restaurant = context.Restaurants.SingleOrDefault(r => r.Id == restaurantId);
+        if (restaurant == null || restaurant.ManagerId != managerId)
+            throw new Exception("Unauthorized to view these tickets.");
 
-            return context.PromotionTickets
-                .Include(t => t.Promotion)
-                .ThenInclude(p => p.Restaurant)
-                .Where(t => t.UserId == userId)
-                .OrderByDescending(t => t.PurchaseDate)
-                .ToList();
-        }
-
-        // --- Review Operations (Client) ---
-        public void AddReview(int userId, int restaurantId, int rating, string comment)
-        {
-            if (rating < 1 || rating > 5)
-                throw new Exception("Invalid rating: Rating must be between 1 and 5.");
-
-            using var context = new FoodhubContext(connectionString);
-            context.Database.BeginTransaction();
-
-            var user = context.Users.Single(u => u.Id == userId);
-            ValidateRole(user, "client", "Cannot add review");
-
-            // (Optional Business Logic): ตรวจสอบว่าเคยซื้อตั๋วร้านนี้ หรือเคยใช้บริการหรือไม่
-            var hasUsedTicketForRestaurant = context.PromotionTickets
-                .Include(t => t.Promotion)
-                .Any(t => t.UserId == userId && t.Promotion.RestaurantId == restaurantId && t.Status == "Used");
-
-            if (!hasUsedTicketForRestaurant)
-                throw new Exception("Cannot add review: You must have used a promotion ticket at this restaurant first.");
-
-            var review = new Review
-            {
-                UserId = userId,
-                RestaurantId = restaurantId,
-                Rating = rating,
-                Comment = comment,
-                CreatedAt = DateTime.Now
-            };
-
-            context.Reviews.Add(review);
-            context.SaveChanges();
-            context.Database.CommitTransaction();
-        }
-
-        public List<Review> GetRestaurantReviews(int restaurantId)
-        {
-            using var context = new FoodhubContext(connectionString);
-
-            return context.Reviews
-                .Include(r => r.User) // เพื่อเอา Username ไปแสดงผล
-                .Where(r => r.RestaurantId == restaurantId)
-                .OrderByDescending(r => r.CreatedAt)
-                .ToList();
-        }
+        return context.PromotionTickets
+            .Include(t => t.Promotion)
+            .Include(t => t.User)
+            .Where(t => t.Promotion.RestaurantId == restaurantId)
+            .OrderByDescending(t => t.PurchaseDate)
+            .ToList();
     }
 }
