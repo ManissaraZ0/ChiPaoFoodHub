@@ -209,4 +209,118 @@ public class DomainLogic
             .OrderByDescending(t => t.PurchaseDate)
             .ToList();
     }
+
+    // ==========================================
+    // Customer Logic Extensions
+    // ==========================================
+
+    public List<RestaurantRecommendationRsp> GetRecommendedRestaurants()
+    {
+        using var context = new FoodhubContext(connectionString);
+        return context.Restaurants
+            .Select(r => new RestaurantRecommendationRsp
+            {
+                RestaurantId = r.Id,
+                Name = r.Name,
+                // หาค่าเฉลี่ยเรตติ้ง ถ้ายัังไม่มีรีวิวให้เป็น 0
+                OverallRating = r.Reviews.Any() ? r.Reviews.Average(rev => rev.Rating) : 0
+            })
+            .OrderByDescending(r => r.OverallRating)
+            .ToList();
+    }
+
+    public CustomerProfileRsp GetCustomerProfile(int userId)
+    {
+        using var context = new FoodhubContext(connectionString);
+        var user = context.Users
+            .Include(u => u.PromotionTickets)
+            .ThenInclude(t => t.Promotion)
+            .SingleOrDefault(u => u.Id == userId);
+
+        if (user == null) throw new Exception("User not found.");
+
+        return new CustomerProfileRsp
+        {
+            Username = user.Username,
+            Email = user.Email,
+            TotalCollectedPromotions = user.PromotionTickets.Count,
+            // เลือกเฉพาะตั๋วที่ยัง Active และ วันที่สิ้นสุดโปรโมชันยังไม่เลยเวลาปัจจุบัน
+            ActivePromotions = user.PromotionTickets
+                .Where(t => t.Status == StatusConstants.TicketActive && t.Promotion.EndDate >= DateTime.Now)
+                .Select(t => new CustomerActivePromotionRsp
+                {
+                    Title = t.Promotion.Title,
+                    EndDate = t.Promotion.EndDate
+                }).ToList()
+        };
+    }
+
+    public RestaurantDetailRsp GetRestaurantDetail(int restaurantId)
+    {
+        using var context = new FoodhubContext(connectionString);
+        var res = context.Restaurants
+            .Include(r => r.Reviews)
+            .SingleOrDefault(r => r.Id == restaurantId);
+
+        if (res == null) throw new Exception("Restaurant not found.");
+
+        return new RestaurantDetailRsp
+        {
+            Name = res.Name,
+            Category = res.Category,
+            OverallRating = res.Reviews.Any() ? res.Reviews.Average(rev => rev.Rating) : 0
+        };
+    }
+
+    // ==========================================
+    // Manager Logic Extensions
+    // ==========================================
+
+    public List<ManagerPromotionSummaryRsp> GetManagerPromotionSummaries(int restaurantId)
+    {
+        using var context = new FoodhubContext(connectionString);
+        return context.Promotions
+            .Where(p => p.RestaurantId == restaurantId)
+            .Select(p => new ManagerPromotionSummaryRsp
+            {
+                Title = p.Title,
+                Price = p.Price,
+                Conditions = p.Conditions,
+                // คำนวณโควต้าที่เหลือ: โควต้าทั้งหมด - จำนวนตั๋วที่ถูกซื้อไปแล้ว
+                RemainingQuota = p.TotalQuota - context.PromotionTickets.Count(t => t.PromotionId == p.Id)
+            })
+            .ToList();
+    }
+
+    public List<ManagerTicketDetailRsp> GetManagerTicketDetails(int restaurantId)
+    {
+        using var context = new FoodhubContext(connectionString);
+        return context.PromotionTickets
+            .Include(t => t.Promotion)
+            .Where(t => t.Promotion.RestaurantId == restaurantId)
+            .Select(t => new ManagerTicketDetailRsp
+            {
+                TicketId = t.Id,
+                UserId = t.UserId,
+                PromotionTitle = t.Promotion.Title,
+                Conditions = t.Promotion.Conditions
+            })
+            .ToList();
+    }
+
+    public List<ManagerReviewDetailRsp> GetManagerReviewDetails(int restaurantId)
+    {
+        using var context = new FoodhubContext(connectionString);
+        return context.Reviews
+            .Include(r => r.User)
+            .Where(r => r.RestaurantId == restaurantId)
+            .Select(r => new ManagerReviewDetailRsp
+            {
+                Username = r.User.Username,
+                Comment = r.Comment,
+                Rating = r.Rating
+            })
+            .OrderByDescending(r => r.Rating) // เรียงจากคะแนนมากไปน้อย (หรือเรียงตาม CreatedAt ก็ได้)
+            .ToList();
+    }
 }

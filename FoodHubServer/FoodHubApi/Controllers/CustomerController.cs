@@ -72,6 +72,30 @@ public class CustomerController : ControllerBase
 
         return review;
     }
+
+    // 1. Recommendation Restaurant (เรียงตาม Overall Rating จากมากไปน้อย)
+    [HttpGet("restaurants/recommendations")]
+    public List<RestaurantRecommendationRsp> GetRecommendedRestaurants()
+    {
+        var domain = new DomainLogic(MyConfig.ConnStr);
+        return domain.GetRecommendedRestaurants();
+    }
+
+    // 2. หน้า Detail ของ Customer (แสดง Profile, จำนวนตั๋วรวม, และตั๋วที่ยังไม่หมดอายุ)
+    [HttpGet("profile")]
+    public CustomerProfileRsp GetCustomerProfile([FromQuery] int userId)
+    {
+        var domain = new DomainLogic(MyConfig.ConnStr);
+        return domain.GetCustomerProfile(userId);
+    }
+
+    // 3. หน้า Detail ของ Restaurant
+    [HttpGet("restaurants/{restaurantId}/details")]
+    public RestaurantDetailRsp GetRestaurantDetail(int restaurantId)
+    {
+        var domain = new DomainLogic(MyConfig.ConnStr);
+        return domain.GetRestaurantDetail(restaurantId);
+    }
 }
 
 // Request Models สำหรับ Customer
