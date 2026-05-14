@@ -1,6 +1,0 @@
-@FoodHubApi_HostAddress = http://localhost:5125
-
-GET {{FoodHubApi_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
