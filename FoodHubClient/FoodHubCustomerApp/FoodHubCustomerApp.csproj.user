@@ -10,5 +10,8 @@
     <Compile Update="NavBarControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="SectionHeaderControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
   </ItemGroup>
 </Project>

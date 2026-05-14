@@ -14,188 +14,336 @@ namespace FoodHubCustomerApp
 {
     public partial class NavBarControl : UserControl
     {
-        // --- Properties สำหรับปรับแต่งจากหน้า Design ---
+        // --- Properties ---
         private Image _logoImage;
         public Image LogoImage
         {
-            get => _logoImage;
-            set { _logoImage = value; Invalidate(); } // เปลี่ยนรูปแล้ววาดใหม่ทันที
+            get { return _logoImage; }
+            set { _logoImage = value; this.Invalidate(); } // วาดใหม่ทันทีเมื่อเปลี่ยนรูป
         }
 
-        private string _username = "Username";
-        public string Username
-        {
-            get => _username;
-            set { _username = value; Invalidate(); }
-        }
+        // --- Events & Hitbox ---
+        public event EventHandler ProfileClicked;
+        public event EventHandler LogoClicked;
+        public event EventHandler BellClicked;
+        public event EventHandler HeartClicked;
 
-        // กล่องข้อความค้นหา (TextBox จริงๆ ที่ซ่อนอยู่ในการ์ด)
-        private TextBox txtSearch;
+        private Rectangle _profileHitbox;
+        private Rectangle _logoHitbox;
+        private Rectangle _bellHitbox;
+        private Rectangle _heartHitbox;
 
+        private TextBox _txtSearch;
+
+        // --- Constructor ---
         public NavBarControl()
         {
             InitializeComponent();
 
-            // ป้องกันภาพกระพริบ และจัดการพื้นหลังโปร่งใส
+            this.Size = new Size(1200, 70);
+            this.Dock = DockStyle.Top; // ยึดติดขอบบนสุดของจอ
             this.DoubleBuffered = true;
-            this.SetStyle(ControlStyles.SupportsTransparentBackColor, true);
+            this.BackColor = Color.Transparent;
 
-            // 1. *** สร้าง TextBox ให้เสร็จก่อนเป็นอันดับแรก ***
-            txtSearch = new TextBox();
-            txtSearch.BorderStyle = BorderStyle.None;
-            txtSearch.Font = new Font("Segoe UI", 12.5f, FontStyle.Regular);
-            txtSearch.ForeColor = Color.Black;
-            txtSearch.BackColor = Color.White;
-            txtSearch.Text = "Restaurant";
+            // สร้าง TextBox แบบไร้ขอบสำหรับเป็นช่อง Search
+            _txtSearch = new TextBox();
+            _txtSearch.BorderStyle = BorderStyle.None;
+            _txtSearch.Font = new Font("Segoe UI", 11f, FontStyle.Regular);
+            
+            _txtSearch.Text = "Restaurant";
+            _txtSearch.ForeColor = Color.Gray;
+            _txtSearch.TabStop = false;
 
-            txtSearch.Enter += (s, e) => { if (txtSearch.Text == "Restaurant") txtSearch.Text = ""; };
-            txtSearch.Leave += (s, e) => { if (string.IsNullOrWhiteSpace(txtSearch.Text)) txtSearch.Text = "Restaurant"; };
+            _txtSearch.Enter += TxtSearch_Enter;
+            _txtSearch.Leave += TxtSearch_Leave;
 
-            this.Controls.Add(txtSearch);
+            _txtSearch.BackColor = Color.White;
 
-            // 2. *** ค่อยตั้งค่าขนาดและการจัดวาง (มันจะไปกระตุ้น OnResize) ***
-            this.MinimumSize = new Size(1280, 80);
-            this.Size = new Size(1280, 80);
-            this.Dock = DockStyle.Top;
+            this.Controls.Add(_txtSearch);
+            this.Resize += NavBarControl_Resize;
         }
 
-        // จัดการตำแหน่งของ Search Box เวลาที่มีการย่อ/ขยายหน้าต่าง
-        protected override void OnResize(EventArgs e)
+        // ฟังก์ชันสั่งให้วาดใหม่ (ใช้ตอนเปลี่ยนบัญชีคน Login)
+        public void RefreshUserProfile()
         {
-            base.OnResize(e);
+            this.Invalidate();
+        }
 
-            // เช็คก่อนว่า txtSearch ถูกสร้างหรือยัง (ป้องกัน Designer Error)
-            if (txtSearch != null)
-            {
-                int searchWidth = 550;
-                int searchHeight = 46;
-                int searchX = (this.Width - searchWidth) / 2;
-                int searchY = (this.Height - searchHeight) / 2;
+        // จัดตำแหน่งกล่องข้อความให้อยู่กลางจอ (Center ทั้งแนวนอนและแนวตั้ง)
+        private void NavBarControl_Resize(object sender, EventArgs e)
+        {
+            int searchBarWidth = 500;
+            int searchBarHeight = 40;
 
-                txtSearch.Location = new Point(searchX + 55, searchY + 12);
-                txtSearch.Width = searchWidth - 70;
-            }
+            // --- ดึงค่าความกว้าง Scrollbar ออกมาลบ เพื่อหา Center ที่แท้จริง ---
+            int scrollWidth = SystemInformation.VerticalScrollBarWidth;
+            int usableWidth = this.Width - scrollWidth;
+
+            int searchX = (usableWidth - searchBarWidth) / 2;
+            int searchY = (this.Height - searchBarHeight) / 2;
+
+            // คำนวณให้ TextBox อยู่ตรงกลาง (Vertical Center) ของช่อง Search พอดี
+            int txtHeight = _txtSearch.Height;
+            int txtY = searchY + ((searchBarHeight - txtHeight) / 2);
+
+            _txtSearch.Location = new Point(searchX + 50, txtY);
+            _txtSearch.Width = searchBarWidth - 60;
 
             this.Invalidate();
         }
 
+        // --- วาด UI ทั้งหมด (GDI+) ---
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
             var g = e.Graphics;
 
             g.SmoothingMode = SmoothingMode.AntiAlias;
-            g.TextRenderingHint = TextRenderingHint.ClearTypeGridFit;
+            g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+            g.PixelOffsetMode = PixelOffsetMode.HighQuality;
 
-            // --- 1. วาดพื้นหลังไล่สี (Gradient Background) ---
-            Rectangle rectBg = new Rectangle(0, 0, this.Width, this.Height);
+            Rectangle rectFull = new Rectangle(0, 0, this.Width, this.Height);
+
+            // 1. วาดพื้นหลัง Gradient
             using (LinearGradientBrush bgBrush = new LinearGradientBrush(
-                rectBg,
-                Color.FromArgb(190, 15, 20), // แดงเข้ม (ซ้าย)
-                Color.FromArgb(255, 60, 0),  // ส้มสว่าง (ขวา)
-                LinearGradientMode.Horizontal))
+                rectFull, Color.FromArgb(190, 15, 20), Color.FromArgb(255, 80, 0), LinearGradientMode.Horizontal))
             {
-                g.FillRectangle(bgBrush, rectBg);
+                g.FillRectangle(bgBrush, rectFull);
             }
 
-            // --- 2. วาด Logo (ทางซ้ายมือ) ---
-            if (_logoImage != null)
-            {
-                // กำหนดกรอบให้โลโก้ (กว้างสุด 180, สูงสุด 50) เพื่อรักษาสัดส่วน
-                int logoH = 50;
-                int logoW = (int)((float)_logoImage.Width / _logoImage.Height * logoH);
-                if (logoW > 200) { logoW = 200; logoH = (int)((float)_logoImage.Height / _logoImage.Width * logoW); }
+            // --- ชดเชยพื้นที่ Scrollbar ให้ Margin ฝั่งขวา ---
+            int scrollWidth = SystemInformation.VerticalScrollBarWidth;
+            int leftMargin = 25;
+            int rightMargin = 25 + scrollWidth; // บวกระยะ Scrollbar ให้ฝั่งขวาขยับหนีออกมา
 
-                int logoY = (this.Height - logoH) / 2;
-                g.DrawImage(_logoImage, new Rectangle(40, logoY, logoW, logoH));
+            // 2. วาดโลโก้ (รักษา Aspect Ratio และ Center แนวตั้ง)
+            if (LogoImage != null)
+            {
+                // กำหนดขนาดพื้นที่ "สูงสุด" ที่เราอนุญาตให้โลโก้แสดงได้
+                int maxLogoW = 160;
+                int maxLogoH = 60;
+
+                // คำนวณอัตราส่วน (Scale) ของความกว้างและความสูง
+                float scaleX = (float)maxLogoW / LogoImage.Width;
+                float scaleY = (float)maxLogoH / LogoImage.Height;
+
+                // เลือกอัตราส่วนที่ "น้อยที่สุด" เพื่อให้ภาพพอดีกรอบโดยไม่ล้นและไม่เสียสัดส่วน
+                float scale = Math.Min(scaleX, scaleY);
+
+                // คำนวณขนาดกว้าง-ยาวใหม่จากสัดส่วนที่ได้
+                int newWidth = (int)(LogoImage.Width * scale);
+                int newHeight = (int)(LogoImage.Height * scale);
+
+                // คำนวณแกน Y ใหม่เพื่อให้โลโก้อยู่กึ่งกลางแนวตั้งเสมอ ไม่ว่ารูปจะเตี้ยลงแค่ไหน
+                int logoY = (this.Height - newHeight) / 2;
+
+                _logoHitbox = new Rectangle(leftMargin, logoY, newWidth, newHeight);
+                g.DrawImage(LogoImage, _logoHitbox);
             }
 
-            // --- 3. วาดช่องค้นหาทรงแคปซูล (ตรงกลาง) ---
-            int searchWidth = 550;
-            int searchHeight = 46;
-            int searchX = (this.Width - searchWidth) / 2;
-            int searchY = (this.Height - searchHeight) / 2;
+            // 3. วาด Search Bar (ตรงกลางเป๊ะของ Usable Width)
+            int usableWidth = this.Width - scrollWidth;
+            int searchBarWidth = 500;
+            int searchBarHeight = 40;
+            int searchX = (usableWidth - searchBarWidth) / 2;
+            int searchY = (this.Height - searchBarHeight) / 2;
+            Rectangle rectSearch = new Rectangle(searchX, searchY, searchBarWidth, searchBarHeight);
 
-            Rectangle rectSearch = new Rectangle(searchX, searchY, searchWidth, searchHeight);
-            using (GraphicsPath pathSearch = GetRoundedPath(rectSearch, searchHeight / 2)) // ความโค้งครึ่งนึงของความสูง = ทรงแคปซูล
-            using (SolidBrush whiteBrush = new SolidBrush(Color.White))
+            using (GraphicsPath pathSearch = GetPillShape(rectSearch))
             {
-                g.FillPath(whiteBrush, pathSearch);
+                Rectangle rectShadow = new Rectangle(searchX, searchY + 2, searchBarWidth, searchBarHeight);
+                using (GraphicsPath pathShadow = GetPillShape(rectShadow))
+                using (SolidBrush shadowBrush = new SolidBrush(Color.FromArgb(50, 0, 0, 0)))
+                {
+                    g.FillPath(shadowBrush, pathShadow);
+                }
+
+                using (SolidBrush brushWhite = new SolidBrush(Color.White))
+                {
+                    g.FillPath(brushWhite, pathSearch);
+                }
             }
 
-            // วาดไอคอนแว่นขยาย (อยู่ในกรอบค้นหา)
-            using (Pen penBlack = new Pen(Color.FromArgb(30, 30, 30), 2f))
+            // ไอคอนแว่นขยาย 
+            using (Pen penSearch = new Pen(Color.Black, 2f))
             {
-                g.DrawEllipse(penBlack, searchX + 20, searchY + 12, 14, 14); // วงกลม
-                g.DrawLine(penBlack, searchX + 31, searchY + 23, searchX + 38, searchY + 30); // ด้ามจับ
+                int iconX = searchX + 20;
+                int iconY = searchY + 12;
+                g.DrawEllipse(penSearch, iconX, iconY, 12, 12);
+                g.DrawLine(penSearch, iconX + 10, iconY + 10, iconX + 16, iconY + 16);
             }
 
-            // --- 4. วาดไอคอนและข้อมูลฝั่งขวา (Right Align) ---
-            int currentRightX = this.Width - 40; // จุดเริ่มต้นขวาสุด
+            // 4. วาดไอคอนฝั่งขวา (เริ่มคำนวณจาก rightMargin ที่ขยับหนี Scrollbar แล้ว)
+            int currentX = this.Width - rightMargin;
+            int centerY = this.Height / 2;
 
-            // 4.1 วาด Username Text
-            using (Font fontUser = new Font("Segoe UI", 12f, FontStyle.Bold))
+            // --- 4.1 วาดข้อความ Username (ให้อยู่ขวาสุด) ---
+            string displayUsername = UserSession.IsLoggedIn ? UserSession.Username : "Guest";
+            using (Font fontUser = new Font("Segoe UI", 11.5f, FontStyle.Bold))
+            using (SolidBrush brushWhiteText = new SolidBrush(Color.White))
             {
-                float textWidth = g.MeasureString(_username, fontUser).Width;
-                currentRightX -= (int)textWidth; // ขยับ X มาทางซ้ายตามขนาดตัวอักษร
-                g.DrawString(_username, fontUser, Brushes.White, currentRightX, (this.Height - 22) / 2);
+                SizeF textSize = g.MeasureString(displayUsername, fontUser);
+                currentX -= (int)textSize.Width;
+                g.DrawString(displayUsername, fontUser, brushWhiteText, currentX, centerY - (textSize.Height / 2));
             }
 
-            // 4.2 วาด User Avatar (รูปคนในวงกลมขาว)
-            currentRightX -= 60; // เว้นระยะห่างและขยับมาวาด Avatar
-            int avatarY = (this.Height - 38) / 2;
-            g.FillEllipse(Brushes.White, currentRightX, avatarY, 38, 38);
+            // --- 4.2 วาดรูป Avatar วงกลม (ให้อยู่ทางซ้ายของ Username) ---
+            int gapTextToAvatar = 12; // ระยะห่างระหว่างรูปกับชื่อ
+            currentX -= gapTextToAvatar;
 
-            // วาดเงาคนสีแดงด้านใน
-            using (SolidBrush redIconBrush = new SolidBrush(Color.FromArgb(230, 40, 10)))
-            {
-                // วาดหัว
-                g.FillEllipse(redIconBrush, currentRightX + 11, avatarY + 7, 16, 16);
+            int avatarSize = 36;
+            currentX -= avatarSize; // ขยับแกน X ไปทางซ้ายเพื่อเตรียมวาดรูป
+            int avatarY = centerY - (avatarSize / 2);
 
-                // วาดตัว (ใช้การวาดวงรีแล้วตัดขอบให้อยู่ในวงกลมใหญ่)
-                GraphicsState state = g.Save();
-                GraphicsPath avatarPath = new GraphicsPath();
-                avatarPath.AddEllipse(currentRightX, avatarY, 38, 38);
-                g.SetClip(avatarPath);
-                g.FillEllipse(redIconBrush, currentRightX + 4, avatarY + 24, 30, 30); // ไหล่/ตัว
-                g.Restore(state);
-            }
+            // คำนวณพื้นที่คลิก (Hitbox) ให้ครอบคลุมตั้งแต่ Avatar ลากยาวไปจบที่ Username
+            int hitWidth = (this.Width - rightMargin) - currentX;
+            _profileHitbox = new Rectangle(currentX, avatarY, hitWidth, avatarSize);
 
-            // 4.3 วาดไอคอน กระดิ่ง (Bell)
-            currentRightX -= 55;
-            int bellY = (this.Height - 22) / 2;
             using (Pen penWhite = new Pen(Color.White, 2f))
+            using (SolidBrush brushWhite = new SolidBrush(Color.White))
             {
-                g.DrawArc(penWhite, currentRightX + 4, bellY, 14, 14, 180, 180); // โดมด้านบน
-                g.DrawLine(penWhite, currentRightX + 4, bellY + 7, currentRightX + 1, bellY + 17); // บานพับซ้าย
-                g.DrawLine(penWhite, currentRightX + 18, bellY + 7, currentRightX + 21, bellY + 17); // บานพับขวา
-                g.DrawLine(penWhite, currentRightX + 1, bellY + 17, currentRightX + 21, bellY + 17); // ฐาน
-                g.DrawArc(penWhite, currentRightX + 8, bellY + 16, 6, 6, 0, 180); // ลูกตุ้ม
+                g.DrawEllipse(penWhite, currentX, avatarY, avatarSize, avatarSize);
+
+                if (UserSession.AvatarImage != null)
+                {
+                    GraphicsState state = g.Save();
+                    GraphicsPath clipPath = new GraphicsPath();
+                    clipPath.AddEllipse(currentX, avatarY, avatarSize, avatarSize);
+                    g.SetClip(clipPath);
+                    g.DrawImage(UserSession.AvatarImage, new Rectangle(currentX, avatarY, avatarSize, avatarSize));
+                    g.Restore(state);
+                }
+                else
+                {
+                    GraphicsPath clipPath = new GraphicsPath();
+                    clipPath.AddEllipse(currentX, avatarY, avatarSize, avatarSize);
+                    g.SetClip(clipPath);
+                    g.FillEllipse(brushWhite, currentX + 10, avatarY + 6, 16, 16);
+                    g.FillEllipse(brushWhite, currentX + 4, avatarY + 24, 28, 20);
+                    g.ResetClip();
+                }
             }
 
-            // 4.4 วาดไอคอน หัวใจ (Heart Outline)
-            currentRightX -= 55;
-            int heartY = (this.Height - 20) / 2;
-            using (Pen penWhite = new Pen(Color.White, 2f))
+            // --- 4.3 วาดไอคอนกระดิ่ง Bell ---
+            currentX -= 35; // ระยะห่างถัดจาก Avatar
+            _bellHitbox = new Rectangle(currentX - 5, centerY - 15, 30, 35);
+            using (Pen penBell = new Pen(Color.White, 3f))
+            using (SolidBrush brushWhite = new SolidBrush(Color.White))
             {
-                // ใช้ Bezier Curve วาดหัวใจให้เนียน
-                g.DrawBezier(penWhite, currentRightX + 11, heartY + 5, currentRightX + 11, heartY - 5, currentRightX, heartY - 5, currentRightX, heartY + 5);
-                g.DrawBezier(penWhite, currentRightX, heartY + 5, currentRightX, heartY + 13, currentRightX + 11, heartY + 18, currentRightX + 11, heartY + 22);
+                // ตั้งค่าหัวปากกาและรอยต่อให้โค้งมนแบบเดียวกับหัวใจ
+                penBell.LineJoin = LineJoin.Round;
+                penBell.StartCap = LineCap.Round;
+                penBell.EndCap = LineCap.Round;
 
-                g.DrawBezier(penWhite, currentRightX + 11, heartY + 5, currentRightX + 11, heartY - 5, currentRightX + 22, heartY - 5, currentRightX + 22, heartY + 5);
-                g.DrawBezier(penWhite, currentRightX + 22, heartY + 5, currentRightX + 22, heartY + 13, currentRightX + 11, heartY + 18, currentRightX + 11, heartY + 22);
+                int bx = currentX;
+                int by = centerY - 9;
+
+                // 1. วาดตัวระฆัง (ลากเส้นต่อกันเพื่อให้รอยต่อสมูท ไม่หักศอก)
+                GraphicsPath bellPath = new GraphicsPath();
+                bellPath.AddLine(bx, by + 12, bx, by + 8); // ลากเส้นขึ้นด้านซ้าย
+                bellPath.AddArc(bx, by, 16, 16, 180, 180); // วาดส่วนโค้งหลังคา
+                bellPath.AddLine(bx + 16, by + 8, bx + 16, by + 12); // ลากเส้นลงด้านขวา
+
+                g.DrawPath(penBell, bellPath);
+
+                // 2. วาดเส้นขีดฐานระฆัง
+                g.DrawLine(penBell, bx - 2, by + 12, bx + 18, by + 12);
+
+                // 3. วาดลูกตุ้มด้านล่าง (ขยับแกน Y ลงมานิดนึงเพื่อให้พ้นเส้นที่หนาขึ้น)
+                g.FillEllipse(brushWhite, bx + 6, by + 15, 4, 4);
+            }
+
+            // --- 4.4 วาดไอคอนหัวใจ Heart ---
+            currentX -= 40; // ระยะห่างถัดจาก Bell
+            _heartHitbox = new Rectangle(currentX - 5, centerY - 15, 30, 35);
+            using (Pen penHeart = new Pen(Color.White, 3f))
+            {
+                // จุดเด่นของรหัสนี้คือการทำ LineJoin ให้มุมแหลมของหัวใจโค้งมนอย่างสมูท
+                penHeart.LineJoin = LineJoin.Round;
+                penHeart.StartCap = LineCap.Round;
+                penHeart.EndCap = LineCap.Round;
+
+                int hx = currentX;
+                int hy = centerY - 10;
+
+                GraphicsPath heartPath = new GraphicsPath();
+                // วงกลมซ้าย (องศาเริ่ม 135 กวาดไป 225 องศา)
+                heartPath.AddArc(hx, hy, 12, 12, 135, 225);
+                // วงกลมขวา
+                heartPath.AddArc(hx + 12, hy, 12, 12, 180, 225);
+                // ลากเส้นทะแยงลงมาจุดต่ำสุดตรงกลาง
+                heartPath.AddLine(hx + 22.24f, hy + 10.24f, hx + 12, hy + 21);
+                // ลากเส้นกลับไปหาจุดเริ่มต้นของวงกลมซ้าย
+                heartPath.AddLine(hx + 12, hy + 21, hx + 1.76f, hy + 10.24f);
+
+                heartPath.CloseFigure();
+
+                // วาดเส้นตาม Path ที่กำหนดไว้
+                g.DrawPath(penHeart, heartPath);
             }
         }
 
-        // Helper: สำหรับวาดทรงแคปซูลของช่อง Search
-        private GraphicsPath GetRoundedPath(Rectangle bounds, int radius)
+        // --- Logic การกดเมาส์ (คลิก Profile) ---
+        protected override void OnMouseMove(MouseEventArgs e)
         {
-            int d = radius * 2;
+            base.OnMouseMove(e);
+
+            // เช็คว่าเมาส์ชี้โดนปุ่มใดปุ่มหนึ่งหรือไม่
+            bool isHovering = _profileHitbox.Contains(e.Location) ||
+                             _logoHitbox.Contains(e.Location) ||
+                             _bellHitbox.Contains(e.Location) ||
+                             _heartHitbox.Contains(e.Location);
+
+            if (isHovering)
+                this.Cursor = Cursors.Hand;
+            else
+                this.Cursor = Cursors.Default;
+        }
+
+        protected override void OnMouseClick(MouseEventArgs e)
+        {
+            base.OnMouseClick(e);
+
+            // ตรวจสอบว่าคลิกโดนพื้นที่ไหน แล้วยิง Event นั้นๆ
+            if (_profileHitbox.Contains(e.Location))
+                ProfileClicked?.Invoke(this, EventArgs.Empty);
+
+            else if (_logoHitbox.Contains(e.Location))
+                LogoClicked?.Invoke(this, EventArgs.Empty);
+
+            else if (_bellHitbox.Contains(e.Location))
+                BellClicked?.Invoke(this, EventArgs.Empty);
+
+            else if (_heartHitbox.Contains(e.Location))
+                HeartClicked?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void TxtSearch_Enter(object sender, EventArgs e)
+        {
+            // เมื่อคลิกที่ช่องค้นหา ถ้ายังเป็นคำว่า Restaurant ให้เคลียร์ทิ้งและเปลี่ยนสีเป็นตัวอักษรปกติ (สีดำ)
+            if (_txtSearch.Text == "Restaurant" && _txtSearch.ForeColor == Color.Gray)
+            {
+                _txtSearch.Text = "";
+                _txtSearch.ForeColor = Color.Black;
+            }
+        }
+
+        private void TxtSearch_Leave(object sender, EventArgs e)
+        {
+            // เมื่อคลิกที่อื่น (เอาเมาส์ออก) ถ้าช่องค้นหาว่างเปล่า ให้ใส่คำว่า Restaurant สีเทากลับเข้าไป
+            if (string.IsNullOrWhiteSpace(_txtSearch.Text))
+            {
+                _txtSearch.Text = "Restaurant";
+                _txtSearch.ForeColor = Color.Gray;
+            }
+        }
+
+        private GraphicsPath GetPillShape(Rectangle bounds)
+        {
+            int radius = bounds.Height;
             GraphicsPath path = new GraphicsPath();
-            path.AddArc(bounds.X, bounds.Y, d, d, 180, 90);
-            path.AddArc(bounds.Right - d, bounds.Y, d, d, 270, 90);
-            path.AddArc(bounds.Right - d, bounds.Bottom - d, d, d, 0, 90);
-            path.AddArc(bounds.X, bounds.Bottom - d, d, d, 90, 90);
+            path.AddArc(bounds.X, bounds.Y, radius, radius, 90, 180);
+            path.AddArc(bounds.Right - radius, bounds.Y, radius, radius, -90, 180);
             path.CloseFigure();
             return path;
         }
