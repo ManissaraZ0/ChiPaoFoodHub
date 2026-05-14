@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HomePage));
             mainSplitContainer = new SplitContainer();
             navBarControl = new NavBarControl();
             contentSplitContainer = new SplitContainer();
@@ -70,7 +71,8 @@
             navBarControl.BackColor = Color.White;
             navBarControl.Dock = DockStyle.Fill;
             navBarControl.Location = new Point(0, 0);
-            navBarControl.LogoImage = null;
+            navBarControl.LogoImage = (Image)resources.GetObject("navBarControl.LogoImage");
+            navBarControl.Margin = new Padding(0);
             navBarControl.MaximumSize = new Size(0, 70);
             navBarControl.MinimumSize = new Size(0, 70);
             navBarControl.Name = "navBarControl";
@@ -106,6 +108,7 @@
             sectionHeaderControl.Dock = DockStyle.Top;
             sectionHeaderControl.HeaderText = "Recommendation Restaurants";
             sectionHeaderControl.Location = new Point(0, 0);
+            sectionHeaderControl.Margin = new Padding(0);
             sectionHeaderControl.Name = "sectionHeaderControl";
             sectionHeaderControl.Size = new Size(1280, 50);
             sectionHeaderControl.TabIndex = 0;
