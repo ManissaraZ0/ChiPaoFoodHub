@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FoodHubCustomerApp
+namespace FoodHubCustomerApp.Logics
 {
+    // Detail สำหรับแสดงผลใน Card (Restaurant)
     public class RestaurantItem
     {
         public string Name { get; set; }

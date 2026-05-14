@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FoodHubCustomerApp
+namespace FoodHubCustomerApp.Logics
 {
     public static class UserSession
     {
-        // เก็บชื่อผู้ใช้
+        // เก็บชื่อผู้ใช้งาน
         public static string Username { get; set; }
 
-        // (Optional) เก็บรูปโปรไฟล์ ถ้าในอนาคตมีรูปจริงๆ
+        // (Optional) เก็บรูปโปรไฟล์ 
         public static Image AvatarImage { get; set; }
 
         // เช็คว่ามีคน Login อยู่ไหม
