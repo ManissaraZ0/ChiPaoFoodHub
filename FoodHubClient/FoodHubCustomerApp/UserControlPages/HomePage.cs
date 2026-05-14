@@ -35,13 +35,6 @@ namespace FoodHubCustomerApp.UserControlPages
             UserSession.Username = "OscarPattJuiFilmHeng";
             navBarControl.RefreshUserProfile();
 
-            string imagePath = Path.Combine(Application.StartupPath, "Assets", "logo.png");
-            if (File.Exists(imagePath))
-                navBarControl.LogoImage = Image.FromFile(imagePath);
-            else
-                // สำหรับ Debug และดัก Error
-                MessageBox.Show($"หาไฟล์โลโก้ไม่พบ: \n{imagePath}", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
             // สร้าง Header สำหรับร้านอาหารแนะนำ
             SectionHeaderControl headRec = new SectionHeaderControl();
             headRec.HeaderText = "Recommendation Restaurants";
