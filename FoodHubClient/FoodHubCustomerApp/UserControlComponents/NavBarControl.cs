@@ -19,7 +19,7 @@ namespace FoodHubCustomerApp
         private Image _logoImage;
         public Image LogoImage
         {
-            get => _logoImage;
+            get => _logoImage ?? Properties.Resources.logo;
             set { _logoImage = value; this.Invalidate(); }
         }
 
@@ -58,7 +58,7 @@ namespace FoodHubCustomerApp
             this.MinimumSize = new Size(0, targetHeight);
             this.MaximumSize = new Size(0, targetHeight);
             this.Dock = DockStyle.Fill;
-
+            
             _txtSearch = new TextBox();
             _txtSearch.BorderStyle = BorderStyle.None;
             _txtSearch.Font = new Font("Segoe UI", 11f, FontStyle.Regular);

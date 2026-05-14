@@ -35,7 +35,6 @@ namespace FoodHubCustomerApp.UserControlPages
             UserSession.Username = "OscarPattJuiFilmHeng";
             navBarControl.RefreshUserProfile();
 
-            // โหลดรูปโลโก้
             string imagePath = Path.Combine(Application.StartupPath, "Assets", "logo.png");
             if (File.Exists(imagePath))
                 navBarControl.LogoImage = Image.FromFile(imagePath);
