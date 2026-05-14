@@ -30,7 +30,6 @@ namespace FoodHubCustomerApp
 
             // ขนาดตั้งต้น (Base Size) 
             this.Size = new Size(230, 275);
-            this.Margin = new Padding(10);
             this.Cursor = Cursors.Hand;
             this.DoubleBuffered = true;
 

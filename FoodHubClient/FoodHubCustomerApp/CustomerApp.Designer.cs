@@ -31,12 +31,14 @@
             splitContainer1 = new SplitContainer();
             navBarControl1 = new NavBarControl();
             splitContainer2 = new SplitContainer();
+            sectionHeaderControl1 = new SectionHeaderControl();
             flowLayoutPanel1 = new FlowLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
             splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer2).BeginInit();
+            splitContainer2.Panel1.SuspendLayout();
             splitContainer2.Panel2.SuspendLayout();
             splitContainer2.SuspendLayout();
             SuspendLayout();
@@ -44,6 +46,7 @@
             // splitContainer1
             // 
             splitContainer1.Dock = DockStyle.Fill;
+            splitContainer1.IsSplitterFixed = true;
             splitContainer1.Location = new Point(0, 0);
             splitContainer1.Name = "splitContainer1";
             splitContainer1.Orientation = Orientation.Horizontal;
@@ -61,6 +64,7 @@
             // 
             // navBarControl1
             // 
+            navBarControl1.BackColor = Color.Transparent;
             navBarControl1.Dock = DockStyle.Top;
             navBarControl1.Location = new Point(0, 0);
             navBarControl1.LogoImage = null;
@@ -68,14 +72,18 @@
             navBarControl1.Name = "navBarControl1";
             navBarControl1.Size = new Size(1280, 80);
             navBarControl1.TabIndex = 0;
-            navBarControl1.Username = "Username";
             // 
             // splitContainer2
             // 
             splitContainer2.Dock = DockStyle.Fill;
+            splitContainer2.IsSplitterFixed = true;
             splitContainer2.Location = new Point(0, 0);
             splitContainer2.Name = "splitContainer2";
             splitContainer2.Orientation = Orientation.Horizontal;
+            // 
+            // splitContainer2.Panel1
+            // 
+            splitContainer2.Panel1.Controls.Add(sectionHeaderControl1);
             // 
             // splitContainer2.Panel2
             // 
@@ -83,6 +91,16 @@
             splitContainer2.Size = new Size(1264, 599);
             splitContainer2.SplitterDistance = 42;
             splitContainer2.TabIndex = 0;
+            // 
+            // sectionHeaderControl1
+            // 
+            sectionHeaderControl1.BackColor = Color.Transparent;
+            sectionHeaderControl1.Dock = DockStyle.Top;
+            sectionHeaderControl1.HeaderText = "Recommendation Restaurants";
+            sectionHeaderControl1.Location = new Point(0, 0);
+            sectionHeaderControl1.Name = "sectionHeaderControl1";
+            sectionHeaderControl1.Size = new Size(1264, 50);
+            sectionHeaderControl1.TabIndex = 0;
             // 
             // flowLayoutPanel1
             // 
@@ -106,6 +124,7 @@
             splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
             splitContainer1.ResumeLayout(false);
+            splitContainer2.Panel1.ResumeLayout(false);
             splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)splitContainer2).EndInit();
             splitContainer2.ResumeLayout(false);
@@ -118,5 +137,6 @@
         private SplitContainer splitContainer2;
         private FlowLayoutPanel flowLayoutPanel1;
         private NavBarControl navBarControl1;
+        private SectionHeaderControl sectionHeaderControl1;
     }
 }

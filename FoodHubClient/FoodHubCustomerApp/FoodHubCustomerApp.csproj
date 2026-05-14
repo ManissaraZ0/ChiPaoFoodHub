@@ -28,4 +28,10 @@
     <PackageReference Include="ReaLTaiizor" Version="3.8.1.8" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Assets\logo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
