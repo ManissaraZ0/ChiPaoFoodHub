@@ -37,9 +37,11 @@
             headLeftLabel = new Label();
             subSubSplitLeftContainer = new SplitContainer();
             imageScreenControlNew = new FoodHubCustomerApp.UserControlComponents.ImageScreenControlNew();
+            subSubSubSplitLeftContainer = new SplitContainer();
             contentRightPanel = new Panel();
             subSplitRightContainer = new SplitContainer();
             rightSectionHeaderControl = new SectionHeaderControl();
+            label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)mainSplitContainer).BeginInit();
             mainSplitContainer.Panel1.SuspendLayout();
             mainSplitContainer.Panel2.SuspendLayout();
@@ -55,7 +57,11 @@
             subSplitLeftContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)subSubSplitLeftContainer).BeginInit();
             subSubSplitLeftContainer.Panel1.SuspendLayout();
+            subSubSplitLeftContainer.Panel2.SuspendLayout();
             subSubSplitLeftContainer.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)subSubSubSplitLeftContainer).BeginInit();
+            subSubSubSplitLeftContainer.Panel1.SuspendLayout();
+            subSubSubSplitLeftContainer.SuspendLayout();
             contentRightPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)subSplitRightContainer).BeginInit();
             subSplitRightContainer.Panel1.SuspendLayout();
@@ -153,7 +159,7 @@
             // headLeftLabel
             // 
             headLeftLabel.Dock = DockStyle.Fill;
-            headLeftLabel.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            headLeftLabel.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
             headLeftLabel.Location = new Point(0, 0);
             headLeftLabel.Margin = new Padding(0);
             headLeftLabel.Name = "headLeftLabel";
@@ -177,6 +183,10 @@
             // 
             subSubSplitLeftContainer.Panel1.Controls.Add(imageScreenControlNew);
             subSubSplitLeftContainer.Panel1.Padding = new Padding(45, 0, 45, 0);
+            // 
+            // subSubSplitLeftContainer.Panel2
+            // 
+            subSubSplitLeftContainer.Panel2.Controls.Add(subSubSubSplitLeftContainer);
             subSubSplitLeftContainer.Size = new Size(449, 598);
             subSubSplitLeftContainer.SplitterDistance = 249;
             subSubSplitLeftContainer.SplitterWidth = 1;
@@ -191,6 +201,23 @@
             imageScreenControlNew.Name = "imageScreenControlNew";
             imageScreenControlNew.Size = new Size(359, 249);
             imageScreenControlNew.TabIndex = 0;
+            // 
+            // subSubSubSplitLeftContainer
+            // 
+            subSubSubSplitLeftContainer.Dock = DockStyle.Fill;
+            subSubSubSplitLeftContainer.FixedPanel = FixedPanel.Panel1;
+            subSubSubSplitLeftContainer.IsSplitterFixed = true;
+            subSubSubSplitLeftContainer.Location = new Point(0, 0);
+            subSubSubSplitLeftContainer.Margin = new Padding(0);
+            subSubSubSplitLeftContainer.Name = "subSubSubSplitLeftContainer";
+            subSubSubSplitLeftContainer.Orientation = Orientation.Horizontal;
+            // 
+            // subSubSubSplitLeftContainer.Panel1
+            // 
+            subSubSubSplitLeftContainer.Panel1.Controls.Add(label1);
+            subSubSubSplitLeftContainer.Size = new Size(449, 348);
+            subSubSubSplitLeftContainer.SplitterWidth = 1;
+            subSubSubSplitLeftContainer.TabIndex = 0;
             // 
             // contentRightPanel
             // 
@@ -231,6 +258,18 @@
             rightSectionHeaderControl.Size = new Size(830, 50);
             rightSectionHeaderControl.TabIndex = 0;
             // 
+            // label1
+            // 
+            label1.Dock = DockStyle.Fill;
+            label1.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+            label1.Location = new Point(0, 0);
+            label1.Margin = new Padding(0);
+            label1.Name = "label1";
+            label1.Size = new Size(449, 50);
+            label1.TabIndex = 0;
+            label1.Text = "Film's Restaurant";
+            label1.TextAlign = ContentAlignment.MiddleCenter;
+            // 
             // AddPostPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -254,8 +293,12 @@
             ((System.ComponentModel.ISupportInitialize)subSplitLeftContainer).EndInit();
             subSplitLeftContainer.ResumeLayout(false);
             subSubSplitLeftContainer.Panel1.ResumeLayout(false);
+            subSubSplitLeftContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)subSubSplitLeftContainer).EndInit();
             subSubSplitLeftContainer.ResumeLayout(false);
+            subSubSubSplitLeftContainer.Panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)subSubSubSplitLeftContainer).EndInit();
+            subSubSubSplitLeftContainer.ResumeLayout(false);
             contentRightPanel.ResumeLayout(false);
             subSplitRightContainer.Panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)subSplitRightContainer).EndInit();
@@ -276,5 +319,7 @@
         private Label headLeftLabel;
         private SplitContainer subSubSplitLeftContainer;
         private UserControlComponents.ImageScreenControlNew imageScreenControlNew;
+        private SplitContainer subSubSubSplitLeftContainer;
+        private Label label1;
     }
 }
