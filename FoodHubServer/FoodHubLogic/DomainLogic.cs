@@ -37,6 +37,27 @@ public class DomainLogic
     }
 
     // ==========================================
+    // Admin / General User Logic
+    // ==========================================
+
+    public List<UserRsp> GetAllUsers()
+    {
+        using var context = new FoodhubContext(connectionString);
+
+        return context.Users
+            .Select(u => new UserRsp
+            {
+                Id = u.Id,
+                Username = u.Username,
+                Email = u.Email,
+                Role = u.Role,
+                CreatedAt = u.CreatedAt
+            })
+            .OrderBy(u => u.Id) // เรียงตาม ID หรือจะเปลี่ยนเป็น u.CreatedAt ก็ได้
+            .ToList();
+    }
+
+    // ==========================================
     // 1. Functional Requirement for User/Client
     // ==========================================
 
