@@ -41,7 +41,12 @@
             restaurantTitle = new Label();
             subSubSubSubSplitLeftContainer = new SplitContainer();
             lineSplitBetweenTitleContent = new Label();
-            flowLayoutPanel = new FlowLayoutPanel();
+            topSplitDescriptionContent = new SplitContainer();
+            tableLayoutPanelTopContent = new TableLayoutPanel();
+            topDescriptionLabel = new Label();
+            topSecondSplitDescriptionContent = new SplitContainer();
+            tableLayoutPanelTopSecondContent = new TableLayoutPanel();
+            topSecondDescriptionLabel = new Label();
             contentRightPanel = new Panel();
             subSplitRightContainer = new SplitContainer();
             rightSectionHeaderControl = new SectionHeaderControl();
@@ -80,6 +85,15 @@
             subSubSubSubSplitLeftContainer.Panel1.SuspendLayout();
             subSubSubSubSplitLeftContainer.Panel2.SuspendLayout();
             subSubSubSubSplitLeftContainer.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)topSplitDescriptionContent).BeginInit();
+            topSplitDescriptionContent.Panel1.SuspendLayout();
+            topSplitDescriptionContent.Panel2.SuspendLayout();
+            topSplitDescriptionContent.SuspendLayout();
+            tableLayoutPanelTopContent.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)topSecondSplitDescriptionContent).BeginInit();
+            topSecondSplitDescriptionContent.Panel1.SuspendLayout();
+            topSecondSplitDescriptionContent.SuspendLayout();
+            tableLayoutPanelTopSecondContent.SuspendLayout();
             contentRightPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)subSplitRightContainer).BeginInit();
             subSplitRightContainer.Panel1.SuspendLayout();
@@ -281,7 +295,7 @@
             // 
             // subSubSubSubSplitLeftContainer.Panel2
             // 
-            subSubSubSubSplitLeftContainer.Panel2.Controls.Add(flowLayoutPanel);
+            subSubSubSubSplitLeftContainer.Panel2.Controls.Add(topSplitDescriptionContent);
             subSubSubSubSplitLeftContainer.Size = new Size(399, 287);
             subSubSubSubSplitLeftContainer.SplitterDistance = 25;
             subSubSubSubSplitLeftContainer.SplitterWidth = 1;
@@ -299,16 +313,101 @@
             lineSplitBetweenTitleContent.TabIndex = 0;
             lineSplitBetweenTitleContent.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // flowLayoutPanel
+            // topSplitDescriptionContent
             // 
-            flowLayoutPanel.AutoScroll = true;
-            flowLayoutPanel.BackColor = Color.Transparent;
-            flowLayoutPanel.Dock = DockStyle.Fill;
-            flowLayoutPanel.Location = new Point(0, 0);
-            flowLayoutPanel.Margin = new Padding(0);
-            flowLayoutPanel.Name = "flowLayoutPanel";
-            flowLayoutPanel.Size = new Size(399, 261);
-            flowLayoutPanel.TabIndex = 0;
+            topSplitDescriptionContent.Dock = DockStyle.Fill;
+            topSplitDescriptionContent.FixedPanel = FixedPanel.Panel1;
+            topSplitDescriptionContent.IsSplitterFixed = true;
+            topSplitDescriptionContent.Location = new Point(0, 0);
+            topSplitDescriptionContent.Margin = new Padding(0);
+            topSplitDescriptionContent.Name = "topSplitDescriptionContent";
+            topSplitDescriptionContent.Orientation = Orientation.Horizontal;
+            // 
+            // topSplitDescriptionContent.Panel1
+            // 
+            topSplitDescriptionContent.Panel1.Controls.Add(tableLayoutPanelTopContent);
+            // 
+            // topSplitDescriptionContent.Panel2
+            // 
+            topSplitDescriptionContent.Panel2.Controls.Add(topSecondSplitDescriptionContent);
+            topSplitDescriptionContent.Size = new Size(399, 261);
+            topSplitDescriptionContent.SplitterDistance = 56;
+            topSplitDescriptionContent.SplitterWidth = 1;
+            topSplitDescriptionContent.TabIndex = 0;
+            // 
+            // tableLayoutPanelTopContent
+            // 
+            tableLayoutPanelTopContent.ColumnCount = 2;
+            tableLayoutPanelTopContent.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 30F));
+            tableLayoutPanelTopContent.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 70F));
+            tableLayoutPanelTopContent.Controls.Add(topDescriptionLabel, 0, 0);
+            tableLayoutPanelTopContent.Dock = DockStyle.Fill;
+            tableLayoutPanelTopContent.Location = new Point(0, 0);
+            tableLayoutPanelTopContent.Margin = new Padding(0);
+            tableLayoutPanelTopContent.Name = "tableLayoutPanelTopContent";
+            tableLayoutPanelTopContent.RowCount = 1;
+            tableLayoutPanelTopContent.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanelTopContent.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanelTopContent.Size = new Size(399, 56);
+            tableLayoutPanelTopContent.TabIndex = 0;
+            // 
+            // topDescriptionLabel
+            // 
+            topDescriptionLabel.Dock = DockStyle.Fill;
+            topDescriptionLabel.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+            topDescriptionLabel.Location = new Point(0, 0);
+            topDescriptionLabel.Margin = new Padding(0);
+            topDescriptionLabel.Name = "topDescriptionLabel";
+            topDescriptionLabel.Size = new Size(119, 56);
+            topDescriptionLabel.TabIndex = 0;
+            topDescriptionLabel.Text = "Category:";
+            topDescriptionLabel.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // topSecondSplitDescriptionContent
+            // 
+            topSecondSplitDescriptionContent.Dock = DockStyle.Fill;
+            topSecondSplitDescriptionContent.FixedPanel = FixedPanel.Panel1;
+            topSecondSplitDescriptionContent.IsSplitterFixed = true;
+            topSecondSplitDescriptionContent.Location = new Point(0, 0);
+            topSecondSplitDescriptionContent.Margin = new Padding(0);
+            topSecondSplitDescriptionContent.Name = "topSecondSplitDescriptionContent";
+            topSecondSplitDescriptionContent.Orientation = Orientation.Horizontal;
+            // 
+            // topSecondSplitDescriptionContent.Panel1
+            // 
+            topSecondSplitDescriptionContent.Panel1.Controls.Add(tableLayoutPanelTopSecondContent);
+            topSecondSplitDescriptionContent.Size = new Size(399, 204);
+            topSecondSplitDescriptionContent.SplitterDistance = 56;
+            topSecondSplitDescriptionContent.SplitterWidth = 1;
+            topSecondSplitDescriptionContent.TabIndex = 0;
+            // 
+            // tableLayoutPanelTopSecondContent
+            // 
+            tableLayoutPanelTopSecondContent.ColumnCount = 2;
+            tableLayoutPanelTopSecondContent.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 30F));
+            tableLayoutPanelTopSecondContent.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 70F));
+            tableLayoutPanelTopSecondContent.Controls.Add(topSecondDescriptionLabel, 0, 0);
+            tableLayoutPanelTopSecondContent.Dock = DockStyle.Fill;
+            tableLayoutPanelTopSecondContent.Location = new Point(0, 0);
+            tableLayoutPanelTopSecondContent.Margin = new Padding(0);
+            tableLayoutPanelTopSecondContent.Name = "tableLayoutPanelTopSecondContent";
+            tableLayoutPanelTopSecondContent.RowCount = 1;
+            tableLayoutPanelTopSecondContent.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanelTopSecondContent.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanelTopSecondContent.Size = new Size(399, 56);
+            tableLayoutPanelTopSecondContent.TabIndex = 0;
+            // 
+            // topSecondDescriptionLabel
+            // 
+            topSecondDescriptionLabel.Dock = DockStyle.Fill;
+            topSecondDescriptionLabel.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+            topSecondDescriptionLabel.Location = new Point(0, 0);
+            topSecondDescriptionLabel.Margin = new Padding(0);
+            topSecondDescriptionLabel.Name = "topSecondDescriptionLabel";
+            topSecondDescriptionLabel.Size = new Size(119, 56);
+            topSecondDescriptionLabel.TabIndex = 0;
+            topSecondDescriptionLabel.Text = "Rating:";
+            topSecondDescriptionLabel.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // contentRightPanel
             // 
@@ -543,6 +642,15 @@
             subSubSubSubSplitLeftContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)subSubSubSubSplitLeftContainer).EndInit();
             subSubSubSubSplitLeftContainer.ResumeLayout(false);
+            topSplitDescriptionContent.Panel1.ResumeLayout(false);
+            topSplitDescriptionContent.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)topSplitDescriptionContent).EndInit();
+            topSplitDescriptionContent.ResumeLayout(false);
+            tableLayoutPanelTopContent.ResumeLayout(false);
+            topSecondSplitDescriptionContent.Panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)topSecondSplitDescriptionContent).EndInit();
+            topSecondSplitDescriptionContent.ResumeLayout(false);
+            tableLayoutPanelTopSecondContent.ResumeLayout(false);
             contentRightPanel.ResumeLayout(false);
             subSplitRightContainer.Panel1.ResumeLayout(false);
             subSplitRightContainer.Panel2.ResumeLayout(false);
@@ -579,7 +687,6 @@
         private Label restaurantTitle;
         private SplitContainer subSubSubSubSplitLeftContainer;
         private Label lineSplitBetweenTitleContent;
-        private FlowLayoutPanel flowLayoutPanel;
         private SplitContainer subSubSplitRightContainer;
         private Label headRightLabel;
         private SplitContainer subSubSubSplitRightContainer;
@@ -590,5 +697,11 @@
         private UserControlComponents.ButtonControl secondaryBtn;
         private Label ratingLabel;
         private UserControlComponents.StarRatingControl starRatingControl;
+        private SplitContainer topSplitDescriptionContent;
+        private SplitContainer topSecondSplitDescriptionContent;
+        private TableLayoutPanel tableLayoutPanelTopContent;
+        private Label topDescriptionLabel;
+        private TableLayoutPanel tableLayoutPanelTopSecondContent;
+        private Label topSecondDescriptionLabel;
     }
 }
