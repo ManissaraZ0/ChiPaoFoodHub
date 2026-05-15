@@ -949,6 +949,10 @@
             "type": "string",
             "nullable": true
           },
+          "category": {
+            "type": "string",
+            "nullable": true
+          },
           "overallRating": {
             "type": "number",
             "format": "double"
