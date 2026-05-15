@@ -166,6 +166,7 @@
             // 
             // headLeftLabel
             // 
+            headLeftLabel.BackColor = Color.Transparent;
             headLeftLabel.Dock = DockStyle.Fill;
             headLeftLabel.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
             headLeftLabel.Location = new Point(0, 0);
@@ -282,7 +283,7 @@
             // flowLayoutPanel1
             // 
             flowLayoutPanel1.AutoScroll = true;
-            flowLayoutPanel1.BackColor = Color.Coral;
+            flowLayoutPanel1.BackColor = Color.Transparent;
             flowLayoutPanel1.Dock = DockStyle.Fill;
             flowLayoutPanel1.Location = new Point(45, 0);
             flowLayoutPanel1.Margin = new Padding(0);
