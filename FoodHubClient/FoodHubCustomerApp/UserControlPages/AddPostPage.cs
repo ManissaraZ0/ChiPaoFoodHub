@@ -25,6 +25,11 @@ namespace FoodHubCustomerApp.UserControlPages
             // ตั้งค่าบัญชีผู้ใช้
             UserSession.Username = "OscarPattJuiFilmHeng";
             navBarControl.RefreshUserProfile();
+
+            SectionHeaderControl headRec = new SectionHeaderControl();
+            headRec.HeaderText = "Add Your Review";
+            headRec.Dock = DockStyle.Top;
+            rightSectionHeaderControl.Controls.Add(headRec);
         }
 
         private void SetupEventHandlers()
