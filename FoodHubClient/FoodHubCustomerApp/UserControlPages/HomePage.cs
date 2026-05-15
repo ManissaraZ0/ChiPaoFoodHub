@@ -13,12 +13,12 @@ namespace FoodHubCustomerApp.UserControlPages
 {
     public partial class HomePage : UserControl
     {
-        private readonly Service _service;
+        private readonly ServiceMock _service;
 
         public HomePage()
         {
             InitializeComponent();
-            _service = new Service();
+            _service = new ServiceMock();
 
             // ตั้งค่า UI
             SetupUI();
