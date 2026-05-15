@@ -13,13 +13,17 @@ namespace FoodHubCustomerApp.UserControlPages
 {
     public partial class AddPostPage : UserControl
     {
+        CustomerApp form;
+
         private string placeholderText = "Your opinion";
         private Color placeholderColor = Color.Gray;
         private Color textColor = Color.Black;
 
-        public AddPostPage()
+        public AddPostPage(CustomerApp form)
         {
+            this.AutoSize = false;
             InitializeComponent();
+            this.form = form;
             this.DoubleBuffered = true;
             SetupUI();
             SetupEventHandlers();
@@ -48,6 +52,42 @@ namespace FoodHubCustomerApp.UserControlPages
 
             inputReviewPanel.Paint += inputReviewPanel_Paint;
             inputReviewPanel.Click += (s, e) => txtReview.Focus();
+
+            primaryBtn.Click += (s, e) => {
+                int rating = starRatingControl.SelectedRating;
+                string reviewText = txtReview.Text;
+
+                // จัดการกรณีที่ไม่ได้พิมพ์อะไรเลย (ยังเป็น Placeholder อยู่)
+                if (reviewText == placeholderText) reviewText = "";
+
+                // ตัวอย่างการตรวจสอบข้อมูลเบื้องต้น (Validation)
+                if (string.IsNullOrWhiteSpace(reviewText) && rating == 0)
+                {
+                    MessageBox.Show("กรุณาให้ดาวหรือพิมพ์รีวิวก่อนกดส่งนะจ๊ะ", "เตือนความจำ");
+                    return;
+                }
+
+                // --- จุดที่ส่งข้อมูลไปบันทึก ---
+                bool success = SaveReviewToDatabase(rating, reviewText);
+
+                if (success)
+                {
+                    MessageBox.Show($"บันทึกรีวิว {rating} ดาว เรียบร้อยแล้ว!", "สำเร็จ");
+                    // หลังจากเซฟเสร็จ อาจจะล้างหน้าจอหรือเด้งกลับหน้าแรก
+                    ClearForm();
+                }
+            };
+
+            // เมื่อกดปุ่ม Cancel
+            secondaryBtn.Click += (s, e) => {
+                var result = MessageBox.Show("คุณแน่ใจหรือไม่ว่าต้องการยกเลิกการเขียนรีวิว?",
+                                             "ยืนยัน", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    // คำสั่งกลับหน้าหลัก (ขึ้นอยู่กับการจัดการ Navigation ของคุณ)
+                    this.Hide();
+                }
+            };
         }
 
         private void SetupPlaceholder()
@@ -98,6 +138,26 @@ namespace FoodHubCustomerApp.UserControlPages
                 using (Pen pen = new Pen(borderColor, 1))
                     e.Graphics.DrawPath(pen, path);
             }
+        }
+
+        private bool SaveReviewToDatabase(int rating, string review)
+        {
+            try
+            {
+                // ตรงนี้คือส่วนที่คุณจะไปต่อยอดเขียน SQL หรือส่งไปหา List ส่วนกลาง
+                // เช่น: ReviewController.Submit(UserSession.Username, rating, review);
+                return true;
+            }
+            catch { return false; }
+        }
+
+        private void ClearForm()
+        {
+            // ล้างค่าใน Form เพื่อรอรับรีวิวใหม่
+            starRatingControl.SelectedRating = 0;
+            txtReview.Text = placeholderText;
+            txtReview.ForeColor = placeholderColor;
+            starRatingControl.Invalidate(); // ให้ดาวกลับเป็นสีว่าง
         }
 
         private System.Drawing.Drawing2D.GraphicsPath GetRoundedPath(Rectangle bounds, int radius)

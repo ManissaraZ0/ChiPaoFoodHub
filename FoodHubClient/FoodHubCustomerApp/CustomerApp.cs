@@ -15,24 +15,47 @@ namespace FoodHubCustomerApp
     {
         HomePage homePage;
         AddPostPage addPostPage;
-        UserReviewPage userReviewPage;
+        DemoLoginPage demoLoginPage;
+        UserDetailPage userDetailPage;
 
         public CustomerApp()
         {
             InitializeComponent();
-            homePage = new HomePage() { Dock = DockStyle.Fill };
-            addPostPage = new AddPostPage() { Dock = DockStyle.Fill };
-            userReviewPage = new UserReviewPage() { Dock = DockStyle.Fill };
+            homePage = new HomePage(this) { Dock = DockStyle.Fill };
+            addPostPage = new AddPostPage(this) { Dock = DockStyle.Fill };
+            demoLoginPage = new DemoLoginPage(this) { Dock = DockStyle.Fill };
+            userDetailPage = new UserDetailPage(this) { Dock = DockStyle.Fill };
             //ChangeScreen(homePage);
             //ChangeScreen(addPostPage);
-            ChangeScreen(userReviewPage);
+            //ChangeScreen(demoLoginPage);
         }
-
-        public void ChangeScreen(UserControl targetScreen)
+        private void CustomerApp_Load(object sender, EventArgs e)
         {
             this.Controls.Clear();
-            this.Controls.Add(targetScreen);
-            targetScreen.BringToFront();
+            this.Controls.Add(userDetailPage);
+        }
+
+        public void ChangeScreen(object sender, int userId, string username, int action)
+        {
+            if (sender is DemoLoginPage)
+            {
+                if (action == 0)
+                {
+                    this.Controls.Clear();
+                    homePage.UserId = userId;
+                    homePage.Username = username;
+                    this.Controls.Add(homePage);
+                }
+            }
+            if (sender is HomePage)
+            {
+                if (action == 0)
+                {
+                    this.Controls.Clear();
+                    //Detail.UserId = userId;
+                    //this.Controls.Add(demoLoginPage);
+                }
+            }
         }
     }
 }

@@ -13,11 +13,32 @@ namespace FoodHubCustomerApp.UserControlPages
 {
     public partial class HomePage : UserControl
     {
+        CustomerApp form;
+
         private readonly ServiceMock _service;
 
-        public HomePage()
+        private int userId;
+
+        public int UserId
+        {
+            get => userId;
+            set { userId = value; }
+        }
+
+        public string Username
+        {
+            get => UserSession.Username;
+            set
+            {
+                UserSession.Username = value;
+                navBarControl.RefreshUserProfile();
+            }
+        }
+
+        public HomePage(CustomerApp form)
         {
             InitializeComponent();
+            this.form = form;
             _service = new ServiceMock();
 
             // ตั้งค่า UI
@@ -31,8 +52,6 @@ namespace FoodHubCustomerApp.UserControlPages
 
         private void SetupUI()
         {
-            // ตั้งค่าบัญชีผู้ใช้
-            UserSession.Username = "OscarPattJuiFilmHeng";
             navBarControl.RefreshUserProfile();
 
             // สร้าง Header สำหรับร้านอาหารแนะนำ

@@ -74,5 +74,39 @@ namespace FoodHubCustomerApp.UserControlComponents
                 g.Restore(state);
             }
         }
+
+        public static void DrawStar(Graphics g, int x, int y, int size, bool isFilled, Color starColor)
+        {
+            g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+
+            // คำนวณจุดยอดของดาว 5 แฉก (10 จุด)
+            PointF[] points = new PointF[10];
+            double outerRadius = size / 2.0;
+            double innerRadius = outerRadius * 0.4; // ความลึกของแฉก
+            PointF center = new PointF((float)(x + outerRadius), (float)(y + outerRadius));
+
+            for (int i = 0; i < 10; i++)
+            {
+                // เริ่มวาดจากด้านบน (มุม -90 องศา)
+                double angle = Math.PI * (i * 36 - 90) / 180.0;
+                double r = (i % 2 == 0) ? outerRadius : innerRadius;
+                points[i] = new PointF(
+                    (float)(center.X + r * Math.Cos(angle)),
+                    (float)(center.Y + r * Math.Sin(angle))
+                );
+            }
+
+            if (isFilled)
+            {
+                using (SolidBrush brush = new SolidBrush(starColor))
+                    g.FillPolygon(brush, points);
+            }
+
+            // วาดเส้นขอบสีดำเสมอเพื่อให้เห็นทรงดาวชัดเจน
+            using (Pen pen = new Pen(Color.Black, 1.5f))
+            {
+                g.DrawPolygon(pen, points);
+            }
+        }
     }
 }

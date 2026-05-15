@@ -1,6 +1,6 @@
 ﻿namespace FoodHubCustomerApp.UserControlPages
 {
-    partial class AddPostPage
+    partial class UserDetailPage
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddPostPage));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserDetailPage));
             mainSplitContainer = new SplitContainer();
             navBarControl = new NavBarControl();
             contentSplitContainer = new SplitContainer();
@@ -38,7 +38,7 @@
             subSubSplitLeftContainer = new SplitContainer();
             imageScreenControlNew = new FoodHubCustomerApp.UserControlComponents.ImageScreenControlNew();
             subSubSubSplitLeftContainer = new SplitContainer();
-            restaurantTitle = new Label();
+            usernameTitle = new Label();
             subSubSubSubSplitLeftContainer = new SplitContainer();
             lineSplitBetweenTitleContent = new Label();
             topSplitDescriptionContent = new SplitContainer();
@@ -50,16 +50,7 @@
             contentRightPanel = new Panel();
             subSplitRightContainer = new SplitContainer();
             rightSectionHeaderControl = new SectionHeaderControl();
-            subSubSplitRightContainer = new SplitContainer();
-            headRightLabel = new Label();
-            subSubSubSplitRightContainer = new SplitContainer();
-            inputReviewPanel = new Panel();
-            txtReview = new TextBox();
-            tableLayoutBottom = new TableLayoutPanel();
-            primaryBtn = new FoodHubCustomerApp.UserControlComponents.ButtonControl();
-            secondaryBtn = new FoodHubCustomerApp.UserControlComponents.ButtonControl();
-            ratingLabel = new Label();
-            starRatingControl = new FoodHubCustomerApp.UserControlComponents.StarRatingControl();
+            flowLayoutPanel = new FlowLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)mainSplitContainer).BeginInit();
             mainSplitContainer.Panel1.SuspendLayout();
             mainSplitContainer.Panel2.SuspendLayout();
@@ -99,16 +90,6 @@
             subSplitRightContainer.Panel1.SuspendLayout();
             subSplitRightContainer.Panel2.SuspendLayout();
             subSplitRightContainer.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)subSubSplitRightContainer).BeginInit();
-            subSubSplitRightContainer.Panel1.SuspendLayout();
-            subSubSplitRightContainer.Panel2.SuspendLayout();
-            subSubSplitRightContainer.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)subSubSubSplitRightContainer).BeginInit();
-            subSubSubSplitRightContainer.Panel1.SuspendLayout();
-            subSubSubSplitRightContainer.Panel2.SuspendLayout();
-            subSubSubSplitRightContainer.SuspendLayout();
-            inputReviewPanel.SuspendLayout();
-            tableLayoutBottom.SuspendLayout();
             SuspendLayout();
             // 
             // mainSplitContainer
@@ -177,7 +158,7 @@
             contentLeftPanel.Name = "contentLeftPanel";
             contentLeftPanel.Padding = new Padding(25, 0, 25, 10);
             contentLeftPanel.Size = new Size(449, 649);
-            contentLeftPanel.TabIndex = 0;
+            contentLeftPanel.TabIndex = 1;
             // 
             // subSplitLeftContainer
             // 
@@ -210,7 +191,7 @@
             headLeftLabel.Name = "headLeftLabel";
             headLeftLabel.Size = new Size(399, 50);
             headLeftLabel.TabIndex = 0;
-            headLeftLabel.Text = "Detail";
+            headLeftLabel.Text = "User Information";
             headLeftLabel.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // subSubSplitLeftContainer
@@ -258,7 +239,7 @@
             // 
             // subSubSubSplitLeftContainer.Panel1
             // 
-            subSubSubSplitLeftContainer.Panel1.Controls.Add(restaurantTitle);
+            subSubSubSplitLeftContainer.Panel1.Controls.Add(usernameTitle);
             // 
             // subSubSubSplitLeftContainer.Panel2
             // 
@@ -267,17 +248,17 @@
             subSubSubSplitLeftContainer.SplitterWidth = 1;
             subSubSubSplitLeftContainer.TabIndex = 0;
             // 
-            // restaurantTitle
+            // usernameTitle
             // 
-            restaurantTitle.Dock = DockStyle.Fill;
-            restaurantTitle.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
-            restaurantTitle.Location = new Point(0, 0);
-            restaurantTitle.Margin = new Padding(0);
-            restaurantTitle.Name = "restaurantTitle";
-            restaurantTitle.Size = new Size(399, 50);
-            restaurantTitle.TabIndex = 0;
-            restaurantTitle.Text = "Film's Restaurant";
-            restaurantTitle.TextAlign = ContentAlignment.MiddleCenter;
+            usernameTitle.Dock = DockStyle.Fill;
+            usernameTitle.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+            usernameTitle.Location = new Point(0, 0);
+            usernameTitle.Margin = new Padding(0);
+            usernameTitle.Name = "usernameTitle";
+            usernameTitle.Size = new Size(399, 50);
+            usernameTitle.TabIndex = 0;
+            usernameTitle.Text = "Test User";
+            usernameTitle.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // subSubSubSubSplitLeftContainer
             // 
@@ -305,11 +286,11 @@
             // 
             lineSplitBetweenTitleContent.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             lineSplitBetweenTitleContent.BackColor = Color.Black;
-            lineSplitBetweenTitleContent.Location = new Point(0, 12);
+            lineSplitBetweenTitleContent.Location = new Point(0, -1);
             lineSplitBetweenTitleContent.Margin = new Padding(0);
             lineSplitBetweenTitleContent.MaximumSize = new Size(0, 2);
             lineSplitBetweenTitleContent.Name = "lineSplitBetweenTitleContent";
-            lineSplitBetweenTitleContent.Size = new Size(399, 2);
+            lineSplitBetweenTitleContent.Size = new Size(648, 2);
             lineSplitBetweenTitleContent.TabIndex = 0;
             lineSplitBetweenTitleContent.TextAlign = ContentAlignment.MiddleCenter;
             // 
@@ -360,7 +341,7 @@
             topDescriptionLabel.Name = "topDescriptionLabel";
             topDescriptionLabel.Size = new Size(119, 56);
             topDescriptionLabel.TabIndex = 0;
-            topDescriptionLabel.Text = "Category:";
+            topDescriptionLabel.Text = "Email:";
             topDescriptionLabel.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // topSecondSplitDescriptionContent
@@ -384,8 +365,8 @@
             // tableLayoutPanelTopSecondContent
             // 
             tableLayoutPanelTopSecondContent.ColumnCount = 2;
-            tableLayoutPanelTopSecondContent.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 30F));
-            tableLayoutPanelTopSecondContent.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 70F));
+            tableLayoutPanelTopSecondContent.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 60F));
+            tableLayoutPanelTopSecondContent.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 40F));
             tableLayoutPanelTopSecondContent.Controls.Add(topSecondDescriptionLabel, 0, 0);
             tableLayoutPanelTopSecondContent.Dock = DockStyle.Fill;
             tableLayoutPanelTopSecondContent.Location = new Point(0, 0);
@@ -393,7 +374,6 @@
             tableLayoutPanelTopSecondContent.Name = "tableLayoutPanelTopSecondContent";
             tableLayoutPanelTopSecondContent.RowCount = 1;
             tableLayoutPanelTopSecondContent.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanelTopSecondContent.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             tableLayoutPanelTopSecondContent.Size = new Size(399, 56);
             tableLayoutPanelTopSecondContent.TabIndex = 0;
             // 
@@ -404,14 +384,13 @@
             topSecondDescriptionLabel.Location = new Point(0, 0);
             topSecondDescriptionLabel.Margin = new Padding(0);
             topSecondDescriptionLabel.Name = "topSecondDescriptionLabel";
-            topSecondDescriptionLabel.Size = new Size(119, 56);
+            topSecondDescriptionLabel.Size = new Size(239, 56);
             topSecondDescriptionLabel.TabIndex = 0;
-            topSecondDescriptionLabel.Text = "Rating:";
+            topSecondDescriptionLabel.Text = "My Promotions:";
             topSecondDescriptionLabel.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // contentRightPanel
             // 
-            contentRightPanel.BackColor = Color.White;
             contentRightPanel.Controls.Add(subSplitRightContainer);
             contentRightPanel.Dock = DockStyle.Fill;
             contentRightPanel.Location = new Point(0, 0);
@@ -437,7 +416,7 @@
             // 
             // subSplitRightContainer.Panel2
             // 
-            subSplitRightContainer.Panel2.Controls.Add(subSubSplitRightContainer);
+            subSplitRightContainer.Panel2.Controls.Add(flowLayoutPanel);
             subSplitRightContainer.Panel2.Padding = new Padding(25, 0, 25, 10);
             subSplitRightContainer.Size = new Size(830, 649);
             subSplitRightContainer.SplitterWidth = 1;
@@ -454,168 +433,24 @@
             rightSectionHeaderControl.Size = new Size(805, 50);
             rightSectionHeaderControl.TabIndex = 0;
             // 
-            // subSubSplitRightContainer
+            // flowLayoutPanel
             // 
-            subSubSplitRightContainer.BackColor = Color.Transparent;
-            subSubSplitRightContainer.Dock = DockStyle.Fill;
-            subSubSplitRightContainer.FixedPanel = FixedPanel.Panel1;
-            subSubSplitRightContainer.IsSplitterFixed = true;
-            subSubSplitRightContainer.Location = new Point(25, 0);
-            subSubSplitRightContainer.Margin = new Padding(0);
-            subSubSplitRightContainer.Name = "subSubSplitRightContainer";
-            subSubSplitRightContainer.Orientation = Orientation.Horizontal;
+            flowLayoutPanel.AutoScroll = true;
+            flowLayoutPanel.Dock = DockStyle.Fill;
+            flowLayoutPanel.Location = new Point(25, 0);
+            flowLayoutPanel.Margin = new Padding(0);
+            flowLayoutPanel.Name = "flowLayoutPanel";
+            flowLayoutPanel.Size = new Size(780, 588);
+            flowLayoutPanel.TabIndex = 0;
             // 
-            // subSubSplitRightContainer.Panel1
-            // 
-            subSubSplitRightContainer.Panel1.Controls.Add(headRightLabel);
-            // 
-            // subSubSplitRightContainer.Panel2
-            // 
-            subSubSplitRightContainer.Panel2.Controls.Add(subSubSubSplitRightContainer);
-            subSubSplitRightContainer.Size = new Size(780, 588);
-            subSubSplitRightContainer.SplitterWidth = 1;
-            subSubSplitRightContainer.TabIndex = 0;
-            // 
-            // headRightLabel
-            // 
-            headRightLabel.Dock = DockStyle.Fill;
-            headRightLabel.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
-            headRightLabel.Location = new Point(0, 0);
-            headRightLabel.Margin = new Padding(0);
-            headRightLabel.Name = "headRightLabel";
-            headRightLabel.Size = new Size(780, 50);
-            headRightLabel.TabIndex = 0;
-            headRightLabel.Text = "Review Description";
-            headRightLabel.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // subSubSubSplitRightContainer
-            // 
-            subSubSubSplitRightContainer.Dock = DockStyle.Fill;
-            subSubSubSplitRightContainer.FixedPanel = FixedPanel.Panel2;
-            subSubSubSplitRightContainer.IsSplitterFixed = true;
-            subSubSubSplitRightContainer.Location = new Point(0, 0);
-            subSubSubSplitRightContainer.Margin = new Padding(0);
-            subSubSubSplitRightContainer.Name = "subSubSubSplitRightContainer";
-            subSubSubSplitRightContainer.Orientation = Orientation.Horizontal;
-            // 
-            // subSubSubSplitRightContainer.Panel1
-            // 
-            subSubSubSplitRightContainer.Panel1.Controls.Add(inputReviewPanel);
-            // 
-            // subSubSubSplitRightContainer.Panel2
-            // 
-            subSubSubSplitRightContainer.Panel2.Controls.Add(tableLayoutBottom);
-            subSubSubSplitRightContainer.Size = new Size(780, 537);
-            subSubSubSplitRightContainer.SplitterDistance = 477;
-            subSubSubSplitRightContainer.TabIndex = 0;
-            // 
-            // inputReviewPanel
-            // 
-            inputReviewPanel.AutoScroll = true;
-            inputReviewPanel.Controls.Add(txtReview);
-            inputReviewPanel.Dock = DockStyle.Fill;
-            inputReviewPanel.Location = new Point(0, 0);
-            inputReviewPanel.Margin = new Padding(0);
-            inputReviewPanel.Name = "inputReviewPanel";
-            inputReviewPanel.Padding = new Padding(10);
-            inputReviewPanel.Size = new Size(780, 477);
-            inputReviewPanel.TabIndex = 0;
-            inputReviewPanel.Paint += inputReviewPanel_Paint;
-            // 
-            // txtReview
-            // 
-            txtReview.BorderStyle = BorderStyle.None;
-            txtReview.Dock = DockStyle.Fill;
-            txtReview.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtReview.Location = new Point(10, 10);
-            txtReview.Margin = new Padding(0);
-            txtReview.Multiline = true;
-            txtReview.Name = "txtReview";
-            txtReview.Size = new Size(760, 457);
-            txtReview.TabIndex = 0;
-            // 
-            // tableLayoutBottom
-            // 
-            tableLayoutBottom.ColumnCount = 4;
-            tableLayoutBottom.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 15F));
-            tableLayoutBottom.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 35F));
-            tableLayoutBottom.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
-            tableLayoutBottom.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
-            tableLayoutBottom.Controls.Add(primaryBtn, 3, 0);
-            tableLayoutBottom.Controls.Add(secondaryBtn, 2, 0);
-            tableLayoutBottom.Controls.Add(ratingLabel, 0, 0);
-            tableLayoutBottom.Controls.Add(starRatingControl, 1, 0);
-            tableLayoutBottom.Dock = DockStyle.Fill;
-            tableLayoutBottom.Location = new Point(0, 0);
-            tableLayoutBottom.Margin = new Padding(0);
-            tableLayoutBottom.Name = "tableLayoutBottom";
-            tableLayoutBottom.RowCount = 1;
-            tableLayoutBottom.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutBottom.Size = new Size(780, 56);
-            tableLayoutBottom.TabIndex = 0;
-            // 
-            // primaryBtn
-            // 
-            primaryBtn.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            primaryBtn.BackColor = Color.Transparent;
-            primaryBtn.ButtonColor = Color.FromArgb(192, 7, 7);
-            primaryBtn.ButtonText = "Add";
-            primaryBtn.FillMode = UserControlComponents.ButtonControl.ButtonStyle.Fill;
-            primaryBtn.FontColor = Color.White;
-            primaryBtn.Location = new Point(585, 8);
-            primaryBtn.Margin = new Padding(0);
-            primaryBtn.MaximumSize = new Size(0, 40);
-            primaryBtn.MinimumSize = new Size(140, 40);
-            primaryBtn.Name = "primaryBtn";
-            primaryBtn.Size = new Size(195, 40);
-            primaryBtn.TabIndex = 0;
-            // 
-            // secondaryBtn
-            // 
-            secondaryBtn.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            secondaryBtn.BackColor = Color.Transparent;
-            secondaryBtn.ButtonColor = Color.Black;
-            secondaryBtn.ButtonText = "Cancel";
-            secondaryBtn.FillMode = UserControlComponents.ButtonControl.ButtonStyle.Outline;
-            secondaryBtn.FontColor = Color.White;
-            secondaryBtn.Location = new Point(390, 8);
-            secondaryBtn.Margin = new Padding(0);
-            secondaryBtn.MaximumSize = new Size(0, 40);
-            secondaryBtn.MinimumSize = new Size(140, 40);
-            secondaryBtn.Name = "secondaryBtn";
-            secondaryBtn.Size = new Size(195, 40);
-            secondaryBtn.TabIndex = 1;
-            // 
-            // ratingLabel
-            // 
-            ratingLabel.Dock = DockStyle.Fill;
-            ratingLabel.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
-            ratingLabel.Location = new Point(0, 0);
-            ratingLabel.Margin = new Padding(0);
-            ratingLabel.Name = "ratingLabel";
-            ratingLabel.Size = new Size(117, 56);
-            ratingLabel.TabIndex = 2;
-            ratingLabel.Text = "Rating";
-            ratingLabel.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // starRatingControl
-            // 
-            starRatingControl.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            starRatingControl.Location = new Point(117, 8);
-            starRatingControl.Margin = new Padding(0);
-            starRatingControl.Name = "starRatingControl";
-            starRatingControl.SelectedRating = 0;
-            starRatingControl.Size = new Size(273, 40);
-            starRatingControl.TabIndex = 3;
-            // 
-            // AddPostPage
+            // UserDetailPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             Controls.Add(mainSplitContainer);
             Margin = new Padding(0);
-            Name = "AddPostPage";
+            Name = "UserDetailPage";
             Size = new Size(1280, 720);
             mainSplitContainer.Panel1.ResumeLayout(false);
             mainSplitContainer.Panel2.ResumeLayout(false);
@@ -656,17 +491,6 @@
             subSplitRightContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)subSplitRightContainer).EndInit();
             subSplitRightContainer.ResumeLayout(false);
-            subSubSplitRightContainer.Panel1.ResumeLayout(false);
-            subSubSplitRightContainer.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)subSubSplitRightContainer).EndInit();
-            subSubSplitRightContainer.ResumeLayout(false);
-            subSubSubSplitRightContainer.Panel1.ResumeLayout(false);
-            subSubSubSplitRightContainer.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)subSubSubSplitRightContainer).EndInit();
-            subSubSubSplitRightContainer.ResumeLayout(false);
-            inputReviewPanel.ResumeLayout(false);
-            inputReviewPanel.PerformLayout();
-            tableLayoutBottom.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -676,32 +500,23 @@
         private NavBarControl navBarControl;
         private SplitContainer contentSplitContainer;
         private Panel contentLeftPanel;
-        private Panel contentRightPanel;
         private SplitContainer subSplitLeftContainer;
-        private SplitContainer subSplitRightContainer;
-        private SectionHeaderControl rightSectionHeaderControl;
         private Label headLeftLabel;
         private SplitContainer subSubSplitLeftContainer;
         private UserControlComponents.ImageScreenControlNew imageScreenControlNew;
         private SplitContainer subSubSubSplitLeftContainer;
-        private Label restaurantTitle;
+        private Label usernameTitle;
         private SplitContainer subSubSubSubSplitLeftContainer;
         private Label lineSplitBetweenTitleContent;
-        private SplitContainer subSubSplitRightContainer;
-        private Label headRightLabel;
-        private SplitContainer subSubSubSplitRightContainer;
-        private Panel inputReviewPanel;
-        private TextBox txtReview;
-        private TableLayoutPanel tableLayoutBottom;
-        private UserControlComponents.ButtonControl primaryBtn;
-        private UserControlComponents.ButtonControl secondaryBtn;
-        private Label ratingLabel;
-        private UserControlComponents.StarRatingControl starRatingControl;
         private SplitContainer topSplitDescriptionContent;
-        private SplitContainer topSecondSplitDescriptionContent;
         private TableLayoutPanel tableLayoutPanelTopContent;
         private Label topDescriptionLabel;
+        private SplitContainer topSecondSplitDescriptionContent;
         private TableLayoutPanel tableLayoutPanelTopSecondContent;
         private Label topSecondDescriptionLabel;
+        private Panel contentRightPanel;
+        private SplitContainer subSplitRightContainer;
+        private SectionHeaderControl rightSectionHeaderControl;
+        private FlowLayoutPanel flowLayoutPanel;
     }
 }

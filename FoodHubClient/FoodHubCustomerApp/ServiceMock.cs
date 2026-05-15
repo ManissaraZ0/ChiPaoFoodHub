@@ -11,6 +11,7 @@ namespace FoodHubCustomerApp
     {
         // สร้าง Event (Observer Pattern) 
         public event Action<List<RestaurantItem>> OnRestaurantsLoaded;
+        public event Action<List<UserItem>> OnUsersLoaded;
 
         public void FetchRestaurants()
         {
@@ -34,6 +35,27 @@ namespace FoodHubCustomerApp
                 new RestaurantItem { Name = "Starbucks", Category = "Cafe, Beverage", Rating = 4.70 },
                 new RestaurantItem { Name = "Momo Paradise", Category = "Shabu, Buffet", Rating = 4.90 }
             };
+        }
+
+        // Demo Login Page
+        public void FetchUsers()
+        {
+            List<UserItem> items = GetMockUserData();
+            OnUsersLoaded?.Invoke(items);
+        }
+
+        private List<UserItem> GetMockUserData()
+        {
+            var list = new List<UserItem>();
+            for (int i = 1; i <= 5; i++)
+            {
+                list.Add(new UserItem
+                {
+                    Username = "MANISSARA",
+                    Id = 151
+                });
+            }
+            return list;
         }
     }
 }
