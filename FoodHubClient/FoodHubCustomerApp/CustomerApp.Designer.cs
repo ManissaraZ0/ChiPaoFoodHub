@@ -38,6 +38,7 @@
             MinimumSize = new Size(1280, 720);
             Name = "CustomerApp";
             Text = "CustomerApp";
+            Load += CustomerApp_Load;
             ResumeLayout(false);
         }
 

@@ -14,11 +14,14 @@ namespace FoodHubCustomerApp.UserControlPages
 {
     public partial class DemoLoginPage : UserControl
     {
+        CustomerApp form;
+
         private readonly ServiceMock _service;
 
-        public DemoLoginPage()
+        public DemoLoginPage(CustomerApp form)
         {
             InitializeComponent();
+            this.form = form;
             _service = new ServiceMock();
 
             // ผูก Events ต่างๆ (รวมถึง Observer)
@@ -56,10 +59,11 @@ namespace FoodHubCustomerApp.UserControlPages
 
                 card.Click += (s, e) =>
                 {
-                    MessageBox.Show(
-                        $"คุณเลือก: {item.Username}",
-                        "แจ้งเตือน"
-                    );
+                    //MessageBox.Show(
+                    //    $"คุณเลือก: {item.Username}",
+                    //    "แจ้งเตือน"
+                    //);
+                    form.ChangeScreen(this, item.Id, item.Username, 0);
                 };
 
                 flowLayoutPanel1.Controls.Add(card);

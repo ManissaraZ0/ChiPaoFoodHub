@@ -13,14 +13,17 @@ namespace FoodHubCustomerApp.UserControlPages
 {
     public partial class AddPostPage : UserControl
     {
+        CustomerApp form;
+
         private string placeholderText = "Your opinion";
         private Color placeholderColor = Color.Gray;
         private Color textColor = Color.Black;
 
-        public AddPostPage()
+        public AddPostPage(CustomerApp form)
         {
             this.AutoSize = false;
             InitializeComponent();
+            this.form = form;
             this.DoubleBuffered = true;
             SetupUI();
             SetupEventHandlers();
