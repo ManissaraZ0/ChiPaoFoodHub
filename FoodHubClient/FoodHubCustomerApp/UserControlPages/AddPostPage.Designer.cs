@@ -45,6 +45,8 @@
             contentRightPanel = new Panel();
             subSplitRightContainer = new SplitContainer();
             rightSectionHeaderControl = new SectionHeaderControl();
+            subSubSplitRightContainer = new SplitContainer();
+            headRightLabel = new Label();
             ((System.ComponentModel.ISupportInitialize)mainSplitContainer).BeginInit();
             mainSplitContainer.Panel1.SuspendLayout();
             mainSplitContainer.Panel2.SuspendLayout();
@@ -73,7 +75,11 @@
             contentRightPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)subSplitRightContainer).BeginInit();
             subSplitRightContainer.Panel1.SuspendLayout();
+            subSplitRightContainer.Panel2.SuspendLayout();
             subSplitRightContainer.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)subSubSplitRightContainer).BeginInit();
+            subSubSplitRightContainer.Panel1.SuspendLayout();
+            subSubSplitRightContainer.SuspendLayout();
             SuspendLayout();
             // 
             // mainSplitContainer
@@ -315,6 +321,12 @@
             // subSplitRightContainer.Panel1
             // 
             subSplitRightContainer.Panel1.Controls.Add(rightSectionHeaderControl);
+            subSplitRightContainer.Panel1.Padding = new Padding(0, 0, 25, 0);
+            // 
+            // subSplitRightContainer.Panel2
+            // 
+            subSplitRightContainer.Panel2.Controls.Add(subSubSplitRightContainer);
+            subSplitRightContainer.Panel2.Padding = new Padding(25, 0, 25, 0);
             subSplitRightContainer.Size = new Size(830, 649);
             subSplitRightContainer.SplitterWidth = 1;
             subSplitRightContainer.TabIndex = 0;
@@ -327,8 +339,38 @@
             rightSectionHeaderControl.Location = new Point(0, 0);
             rightSectionHeaderControl.Margin = new Padding(0);
             rightSectionHeaderControl.Name = "rightSectionHeaderControl";
-            rightSectionHeaderControl.Size = new Size(830, 50);
+            rightSectionHeaderControl.Size = new Size(805, 50);
             rightSectionHeaderControl.TabIndex = 0;
+            // 
+            // subSubSplitRightContainer
+            // 
+            subSubSplitRightContainer.BackColor = Color.Transparent;
+            subSubSplitRightContainer.Dock = DockStyle.Fill;
+            subSubSplitRightContainer.FixedPanel = FixedPanel.Panel1;
+            subSubSplitRightContainer.IsSplitterFixed = true;
+            subSubSplitRightContainer.Location = new Point(25, 0);
+            subSubSplitRightContainer.Margin = new Padding(0);
+            subSubSplitRightContainer.Name = "subSubSplitRightContainer";
+            subSubSplitRightContainer.Orientation = Orientation.Horizontal;
+            // 
+            // subSubSplitRightContainer.Panel1
+            // 
+            subSubSplitRightContainer.Panel1.Controls.Add(headRightLabel);
+            subSubSplitRightContainer.Size = new Size(780, 598);
+            subSubSplitRightContainer.SplitterWidth = 1;
+            subSubSplitRightContainer.TabIndex = 0;
+            // 
+            // headRightLabel
+            // 
+            headRightLabel.Dock = DockStyle.Fill;
+            headRightLabel.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+            headRightLabel.Location = new Point(0, 0);
+            headRightLabel.Margin = new Padding(0);
+            headRightLabel.Name = "headRightLabel";
+            headRightLabel.Size = new Size(780, 50);
+            headRightLabel.TabIndex = 0;
+            headRightLabel.Text = "Review Description";
+            headRightLabel.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // AddPostPage
             // 
@@ -366,8 +408,12 @@
             subSubSubSubSplitLeftContainer.ResumeLayout(false);
             contentRightPanel.ResumeLayout(false);
             subSplitRightContainer.Panel1.ResumeLayout(false);
+            subSplitRightContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)subSplitRightContainer).EndInit();
             subSplitRightContainer.ResumeLayout(false);
+            subSubSplitRightContainer.Panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)subSubSplitRightContainer).EndInit();
+            subSubSplitRightContainer.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -389,5 +435,7 @@
         private SplitContainer subSubSubSubSplitLeftContainer;
         private Label lineSplitBetweenTitleContent;
         private FlowLayoutPanel flowLayoutPanel1;
+        private SplitContainer subSubSplitRightContainer;
+        private Label headRightLabel;
     }
 }
