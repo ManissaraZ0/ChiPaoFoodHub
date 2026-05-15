@@ -1,4 +1,5 @@
 ﻿using FoodHubCustomerApp.Logics;
+using FoodHubCustomerApp.UserControlComponents;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,6 +21,7 @@ namespace FoodHubCustomerApp.UserControlPages
             this.form = form;
             SetupUI();
             SetupEventHandlers();
+            LoadExpirePromotions();
         }
 
         private void SetupUI()
@@ -27,6 +29,11 @@ namespace FoodHubCustomerApp.UserControlPages
             // ตั้งค่าบัญชีผู้ใช้
             UserSession.Username = "OscarPattJuiFilmHeng";
             navBarControl.RefreshUserProfile();
+
+            SectionHeaderControl headRec = new SectionHeaderControl();
+            headRec.HeaderText = "My Promotions";
+            headRec.Dock = DockStyle.Top;
+            rightSectionHeaderControl.Controls.Add(headRec);
         }
 
         private void SetupEventHandlers()
@@ -36,6 +43,37 @@ namespace FoodHubCustomerApp.UserControlPages
             navBarControl.HeartClicked += (s, e) => MessageBox.Show("การกดถูกใจ");
             navBarControl.BellClicked += (s, e) => MessageBox.Show("แสดงการแจ้งเตือน");
             navBarControl.ProfileClicked += (s, e) => MessageBox.Show($"เปิดบัญชี: {UserSession.Username}");
+        }
+
+        private void LoadExpirePromotions()
+        {
+            flowLayoutPanel.Controls.Clear();
+
+            var items = GetMockExpireData();
+
+            for (int i = 0; i < items.Count; i++)
+            {
+                var listItem = new PromotionExpireListControl(items[i]);
+
+                // ให้กว้างเต็มจอเหมือนเดิม (เว้นที่ให้ Scrollbar)
+                listItem.Width = flowLayoutPanel.ClientSize.Width - 20;
+
+                flowLayoutPanel.Controls.Add(listItem);
+            }
+        }
+
+        private List<PromotionExpireItem> GetMockExpireData()
+        {
+            var list = new List<PromotionExpireItem>();
+            for (int i = 1; i <= 10; i++) // สร้างตามจำนวนแถวในรูปคือ 6 แถว
+            {
+                list.Add(new PromotionExpireItem
+                {
+                    Title = "Promotion Title", // ถ้าอยากให้เลขรันตามด้วย ก็ใส่ + i ตรงนี้ครับ
+                    ExpireDate = "99/12/2077"
+                });
+            }
+            return list;
         }
     }
 }
