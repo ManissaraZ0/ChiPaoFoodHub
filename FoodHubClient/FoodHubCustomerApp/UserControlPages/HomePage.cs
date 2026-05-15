@@ -1,5 +1,4 @@
-﻿using FoodHubCustomerApp.Logics;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using FoodHubCustomerApp.Logics;
+using FoodHubCustomerApp.Model;
 
 namespace FoodHubCustomerApp.UserControlPages
 {
@@ -39,7 +40,7 @@ namespace FoodHubCustomerApp.UserControlPages
         {
             InitializeComponent();
             this.form = form;
-            _service = new ServiceMock();
+            //_service = new ServiceMock();
 
             // ตั้งค่า UI
             SetupUI();
@@ -47,7 +48,7 @@ namespace FoodHubCustomerApp.UserControlPages
             SetupEventHandlers();
 
             // สั่งให้ Service ทำงาน
-            _service.FetchRestaurants();
+            //_service.FetchRestaurants();
         }
 
         private void SetupUI()
@@ -73,11 +74,13 @@ namespace FoodHubCustomerApp.UserControlPages
             flowContentLayoutPanel.SizeChanged += (s, e) => ResizeCards();
 
             // *** Observer: รอรับข้อมูลจาก Service เมื่อโหลดเสร็จ ***
-            _service.OnRestaurantsLoaded += UpdateRestaurantCards;
+            //_service.OnRestaurantsLoaded += UpdateRestaurantCards;
+            var restaurants = Service.GetRecommendedRestaurants();
+            UpdateRestaurantCards(restaurants);
         }
 
         // ฟังก์ชันนี้ทำงานอัตโนมัติเมื่อ Service สั่ง Invoke()
-        private void UpdateRestaurantCards(List<RestaurantItem> items)
+        private void UpdateRestaurantCards(List<RestaurantRecommendationRsp> items)
         {
             // ป้องกัน Thread ชนกัน กรณี Service ไปดึงข้อมูลแบบ Async
             if (this.InvokeRequired)

@@ -1,6 +1,4 @@
-﻿using FoodHubCustomerApp.Logics;
-using FoodHubCustomerApp.UserControlComponents;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,12 +9,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using FoodHubCustomerApp.Logics;
+using FoodHubCustomerApp.Model;
+using FoodHubCustomerApp.UserControlComponents;
 
 namespace FoodHubCustomerApp
 {
     public partial class ItemCardControl : UserControl
     {
-        private RestaurantItem _item;
+        private RestaurantRecommendationRsp _item;
         private Image _cardImage;
 
         // --- Constants ---
@@ -38,7 +39,7 @@ namespace FoodHubCustomerApp
             set { _cardImage = value; Invalidate(); }
         }
 
-        public ItemCardControl(RestaurantItem item)
+        public ItemCardControl(RestaurantRecommendationRsp item)
         {
             _item = item;
 
@@ -132,7 +133,7 @@ namespace FoodHubCustomerApp
                 g.DrawString(star, _starFont, brushStar, PadX, currentY - 2);
 
                 float starWidth = g.MeasureString(star, _starFont).Width;
-                g.DrawString($"{_item.Rating:0.00}/5.00", _ratingFont, brushGray, PadX + starWidth - 6, currentY);
+                g.DrawString($"{_item.OverallRating:0.00}/5.00", _ratingFont, brushGray, PadX + starWidth - 6, currentY);
             }
         }
 
