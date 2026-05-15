@@ -118,10 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="topNavBar.LogoImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="navBarControl.LogoImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAALoAAABaCAYAAAAPSkxzAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        EQAACxEBf2RfkQAAAA50RVh0U29mdHdhcmUARmlnbWGesZZjAAAl+klEQVR4Xu19C5xcRZU3QVdEUXwi
+        EAAACxABrSO9dQAAAA50RVh0U29mdHdhcmUARmlnbWGesZZjAAAl+klEQVR4Xu19C5xcRZU3QVdEUXwi
         +GBdcVHEfSCKuouu7rrifqKf7qLryiqKK/u5rvKJoOKDHeT7fTzyQTBPJgRCEkLIkAAJISQk7BBmMpmZ
         zHs6093T73dP99x+3O776Puo+n6nps6l+k7PMHmQhHD/v1/PdN86Vbdu1alTp06dOve00zx48ODBgwcP
         Hjx48ODBgwcPHjx48ODBgwcPHjx48ODBgwcPHjx48ODBg4cWeK3wfRH/ePBw6qGnZ98ltm23/+xnPzvT

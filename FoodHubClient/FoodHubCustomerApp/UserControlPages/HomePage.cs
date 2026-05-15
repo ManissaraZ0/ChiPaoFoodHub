@@ -18,20 +18,13 @@ namespace FoodHubCustomerApp.UserControlPages
 
         private readonly ServiceMock _service;
 
-        private int userId;
+        private UserRsp userData;
 
-        public int UserId
-        {
-            get => userId;
-            set { userId = value; }
-        }
-
-        public string Username
-        {
-            get => UserSession.Username;
-            set
-            {
-                UserSession.Username = value;
+        public UserRsp UserData {
+            get => userData;
+            set { 
+                userData = value;
+                UserSession.Username = userData.Username;
                 navBarControl.RefreshUserProfile();
             }
         }
@@ -65,10 +58,10 @@ namespace FoodHubCustomerApp.UserControlPages
         private void SetupEventHandlers()
         {
             // UI Events (ใช้ Lambda ย่อโค้ดให้สั้นลง ไม่ต้องสร้าง Method แยกให้รก)
-            navBarControl.LogoClicked += (s, e) => MessageBox.Show("กลับหน้าแรก");
+            navBarControl.LogoClicked += (s, e) => form.ChangeScreen(this, 0, userData);
             navBarControl.HeartClicked += (s, e) => MessageBox.Show("การกดถูกใจ");
             navBarControl.BellClicked += (s, e) => MessageBox.Show("แสดงการแจ้งเตือน");
-            navBarControl.ProfileClicked += (s, e) => MessageBox.Show($"เปิดบัญชี: {UserSession.Username}");
+            navBarControl.ProfileClicked += (s, e) => form.ChangeScreen(this, 3, userData);
 
             // Layout Event
             flowContentLayoutPanel.SizeChanged += (s, e) => ResizeCards();
@@ -97,7 +90,11 @@ namespace FoodHubCustomerApp.UserControlPages
             {
                 var card = new ItemCardControl(item);
                 // แนบ Event แจ้งเตือนเมื่อการ์ดถูกคลิก
-                card.Click += (s, e) => MessageBox.Show($"คุณคลิกร้าน: {item.Name}", "แจ้งเตือน");
+                card.Click += (s, e) => 
+                {
+                    //MessageBox.Show($"คุณคลิกร้าน: {item.Name}", "แจ้งเตือน");
+                    form.ChangeScreen(this, 4, userData, item);
+                };
                 flowContentLayoutPanel.Controls.Add(card);
             }
 

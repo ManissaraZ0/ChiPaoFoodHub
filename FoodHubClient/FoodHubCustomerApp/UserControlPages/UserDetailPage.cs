@@ -1,4 +1,5 @@
 ﻿using FoodHubCustomerApp.Logics;
+using FoodHubCustomerApp.Model;
 using FoodHubCustomerApp.UserControlComponents;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,20 @@ namespace FoodHubCustomerApp.UserControlPages
     public partial class UserDetailPage : UserControl
     {
         CustomerApp form;
+
+        private UserRsp userData;
+
+        public UserRsp UserData
+        {
+            get => userData;
+            set
+            {
+                userData = value;
+                UserSession.Username = userData.Username;
+                navBarControl.RefreshUserProfile();
+            }
+        }
+
         public UserDetailPage(CustomerApp form)
         {
             InitializeComponent();
@@ -27,7 +42,6 @@ namespace FoodHubCustomerApp.UserControlPages
         private void SetupUI()
         {
             // ตั้งค่าบัญชีผู้ใช้
-            UserSession.Username = "OscarPattJuiFilmHeng";
             navBarControl.RefreshUserProfile();
 
             SectionHeaderControl headRec = new SectionHeaderControl();
@@ -39,10 +53,10 @@ namespace FoodHubCustomerApp.UserControlPages
         private void SetupEventHandlers()
         {
             // UI Events (ใช้ Lambda ย่อโค้ดให้สั้นลง ไม่ต้องสร้าง Method แยกให้รก)
-            navBarControl.LogoClicked += (s, e) => MessageBox.Show("กลับหน้าแรก");
+            navBarControl.LogoClicked += (s, e) => form.ChangeScreen(this, 0, userData);
             navBarControl.HeartClicked += (s, e) => MessageBox.Show("การกดถูกใจ");
             navBarControl.BellClicked += (s, e) => MessageBox.Show("แสดงการแจ้งเตือน");
-            navBarControl.ProfileClicked += (s, e) => MessageBox.Show($"เปิดบัญชี: {UserSession.Username}");
+            navBarControl.ProfileClicked += (s, e) => form.ChangeScreen(this, 3, userData);
         }
 
         private void LoadExpirePromotions()

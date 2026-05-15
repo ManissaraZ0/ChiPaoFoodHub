@@ -67,7 +67,7 @@ namespace FoodHubCustomerApp.UserControlPages
                     //    $"คุณเลือก: {item.Username}",
                     //    "แจ้งเตือน"
                     //);
-                    form.ChangeScreen(this, item.Id, item.Username, 0);
+                    form.ChangeScreen(this, 0, item);
                 };
 
                 flowLayoutPanel1.Controls.Add(card);

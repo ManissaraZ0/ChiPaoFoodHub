@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserReviewPage));
             mainSplitContainer = new SplitContainer();
-            topNavBar = new NavBarControl();
+            navBarControl = new NavBarControl();
             contentSplitContainer = new SplitContainer();
             leftContentFlowPanel = new FlowLayoutPanel();
             restaurantImageControl = new FoodHubCustomerApp.UserControlComponents.ImageScreenControlNew();
@@ -40,9 +40,9 @@
             lblRatingScore = new Label();
             ticketFlowPanel = new FlowLayoutPanel();
             lblRestaurantDescription = new Label();
+            reviewFlowPanel = new FlowLayoutPanel();
             actionBottomPanel = new Panel();
             btnAddPost = new PictureBox();
-            reviewFlowPanel = new FlowLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)mainSplitContainer).BeginInit();
             mainSplitContainer.Panel1.SuspendLayout();
             mainSplitContainer.Panel2.SuspendLayout();
@@ -68,7 +68,7 @@
             // 
             // mainSplitContainer.Panel1
             // 
-            mainSplitContainer.Panel1.Controls.Add(topNavBar);
+            mainSplitContainer.Panel1.Controls.Add(navBarControl);
             // 
             // mainSplitContainer.Panel2
             // 
@@ -77,18 +77,18 @@
             mainSplitContainer.SplitterDistance = 70;
             mainSplitContainer.TabIndex = 0;
             // 
-            // topNavBar
+            // navBarControl
             // 
-            topNavBar.BackColor = Color.Transparent;
-            topNavBar.Dock = DockStyle.Fill;
-            topNavBar.Location = new Point(0, 0);
-            topNavBar.LogoImage = (Image)resources.GetObject("topNavBar.LogoImage");
-            topNavBar.Margin = new Padding(0);
-            topNavBar.MaximumSize = new Size(0, 70);
-            topNavBar.MinimumSize = new Size(0, 70);
-            topNavBar.Name = "topNavBar";
-            topNavBar.Size = new Size(1280, 70);
-            topNavBar.TabIndex = 0;
+            navBarControl.BackColor = Color.Transparent;
+            navBarControl.Dock = DockStyle.Fill;
+            navBarControl.Location = new Point(0, 0);
+            navBarControl.LogoImage = (Image)resources.GetObject("navBarControl.LogoImage");
+            navBarControl.Margin = new Padding(0);
+            navBarControl.MaximumSize = new Size(0, 70);
+            navBarControl.MinimumSize = new Size(0, 70);
+            navBarControl.Name = "navBarControl";
+            navBarControl.Size = new Size(1280, 70);
+            navBarControl.TabIndex = 0;
             // 
             // contentSplitContainer
             // 
@@ -196,6 +196,17 @@
             lblRestaurantDescription.TabIndex = 4;
             lblRestaurantDescription.Text = "Restaurant Description";
             // 
+            // reviewFlowPanel
+            // 
+            reviewFlowPanel.AutoScroll = true;
+            reviewFlowPanel.Dock = DockStyle.Fill;
+            reviewFlowPanel.FlowDirection = FlowDirection.TopDown;
+            reviewFlowPanel.Location = new Point(0, 0);
+            reviewFlowPanel.Name = "reviewFlowPanel";
+            reviewFlowPanel.Size = new Size(380, 546);
+            reviewFlowPanel.TabIndex = 1;
+            reviewFlowPanel.WrapContents = false;
+            // 
             // actionBottomPanel
             // 
             actionBottomPanel.Controls.Add(btnAddPost);
@@ -215,17 +226,6 @@
             btnAddPost.Size = new Size(60, 60);
             btnAddPost.TabIndex = 0;
             btnAddPost.TabStop = false;
-            // 
-            // reviewFlowPanel
-            // 
-            reviewFlowPanel.AutoScroll = true;
-            reviewFlowPanel.Dock = DockStyle.Fill;
-            reviewFlowPanel.FlowDirection = FlowDirection.TopDown;
-            reviewFlowPanel.Location = new Point(0, 0);
-            reviewFlowPanel.Name = "reviewFlowPanel";
-            reviewFlowPanel.Size = new Size(380, 546);
-            reviewFlowPanel.TabIndex = 1;
-            reviewFlowPanel.WrapContents = false;
             // 
             // UserReviewPage
             // 
@@ -255,7 +255,7 @@
 
         private SplitContainer mainSplitContainer;
         private SplitContainer contentSplitContainer;
-        private NavBarControl topNavBar;
+        private NavBarControl navBarControl;
         private FlowLayoutPanel leftContentFlowPanel;
         private UserControlComponents.ImageScreenControlNew restaurantImageControl;
         private Panel headerPanel;
