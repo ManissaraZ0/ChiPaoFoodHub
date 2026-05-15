@@ -34,6 +34,9 @@
             contentSplitContainer = new SplitContainer();
             contentLeftPanel = new Panel();
             subSplitLeftContainer = new SplitContainer();
+            headLeftLabel = new Label();
+            subSubSplitLeftContainer = new SplitContainer();
+            imageScreenControlNew = new FoodHubCustomerApp.UserControlComponents.ImageScreenControlNew();
             contentRightPanel = new Panel();
             subSplitRightContainer = new SplitContainer();
             rightSectionHeaderControl = new SectionHeaderControl();
@@ -47,7 +50,12 @@
             contentSplitContainer.SuspendLayout();
             contentLeftPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)subSplitLeftContainer).BeginInit();
+            subSplitLeftContainer.Panel1.SuspendLayout();
+            subSplitLeftContainer.Panel2.SuspendLayout();
             subSplitLeftContainer.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)subSubSplitLeftContainer).BeginInit();
+            subSubSplitLeftContainer.Panel1.SuspendLayout();
+            subSubSplitLeftContainer.SuspendLayout();
             contentRightPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)subSplitRightContainer).BeginInit();
             subSplitRightContainer.Panel1.SuspendLayout();
@@ -112,7 +120,7 @@
             // 
             // contentLeftPanel
             // 
-            contentLeftPanel.BackColor = Color.DarkGray;
+            contentLeftPanel.BackColor = Color.LightGray;
             contentLeftPanel.Controls.Add(subSplitLeftContainer);
             contentLeftPanel.Dock = DockStyle.Fill;
             contentLeftPanel.Location = new Point(0, 0);
@@ -124,14 +132,65 @@
             // subSplitLeftContainer
             // 
             subSplitLeftContainer.Dock = DockStyle.Fill;
+            subSplitLeftContainer.FixedPanel = FixedPanel.Panel1;
             subSplitLeftContainer.IsSplitterFixed = true;
             subSplitLeftContainer.Location = new Point(0, 0);
             subSplitLeftContainer.Margin = new Padding(0);
             subSplitLeftContainer.Name = "subSplitLeftContainer";
             subSplitLeftContainer.Orientation = Orientation.Horizontal;
+            // 
+            // subSplitLeftContainer.Panel1
+            // 
+            subSplitLeftContainer.Panel1.Controls.Add(headLeftLabel);
+            // 
+            // subSplitLeftContainer.Panel2
+            // 
+            subSplitLeftContainer.Panel2.Controls.Add(subSubSplitLeftContainer);
             subSplitLeftContainer.Size = new Size(449, 649);
             subSplitLeftContainer.SplitterWidth = 1;
             subSplitLeftContainer.TabIndex = 0;
+            // 
+            // headLeftLabel
+            // 
+            headLeftLabel.Dock = DockStyle.Fill;
+            headLeftLabel.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            headLeftLabel.Location = new Point(0, 0);
+            headLeftLabel.Margin = new Padding(0);
+            headLeftLabel.Name = "headLeftLabel";
+            headLeftLabel.Size = new Size(449, 50);
+            headLeftLabel.TabIndex = 0;
+            headLeftLabel.Text = "Detail";
+            headLeftLabel.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // subSubSplitLeftContainer
+            // 
+            subSubSplitLeftContainer.BackColor = Color.Transparent;
+            subSubSplitLeftContainer.Dock = DockStyle.Fill;
+            subSubSplitLeftContainer.FixedPanel = FixedPanel.Panel1;
+            subSubSplitLeftContainer.IsSplitterFixed = true;
+            subSubSplitLeftContainer.Location = new Point(0, 0);
+            subSubSplitLeftContainer.Margin = new Padding(0);
+            subSubSplitLeftContainer.Name = "subSubSplitLeftContainer";
+            subSubSplitLeftContainer.Orientation = Orientation.Horizontal;
+            // 
+            // subSubSplitLeftContainer.Panel1
+            // 
+            subSubSplitLeftContainer.Panel1.Controls.Add(imageScreenControlNew);
+            subSubSplitLeftContainer.Panel1.Padding = new Padding(45, 0, 45, 0);
+            subSubSplitLeftContainer.Size = new Size(449, 598);
+            subSubSplitLeftContainer.SplitterDistance = 249;
+            subSubSplitLeftContainer.SplitterWidth = 1;
+            subSubSplitLeftContainer.TabIndex = 0;
+            // 
+            // imageScreenControlNew
+            // 
+            imageScreenControlNew.BackColor = Color.Transparent;
+            imageScreenControlNew.DisplayImage = null;
+            imageScreenControlNew.Dock = DockStyle.Fill;
+            imageScreenControlNew.Location = new Point(45, 0);
+            imageScreenControlNew.Name = "imageScreenControlNew";
+            imageScreenControlNew.Size = new Size(359, 249);
+            imageScreenControlNew.TabIndex = 0;
             // 
             // contentRightPanel
             // 
@@ -147,6 +206,7 @@
             // subSplitRightContainer
             // 
             subSplitRightContainer.Dock = DockStyle.Fill;
+            subSplitRightContainer.FixedPanel = FixedPanel.Panel1;
             subSplitRightContainer.IsSplitterFixed = true;
             subSplitRightContainer.Location = new Point(0, 0);
             subSplitRightContainer.Margin = new Padding(0);
@@ -189,8 +249,13 @@
             ((System.ComponentModel.ISupportInitialize)contentSplitContainer).EndInit();
             contentSplitContainer.ResumeLayout(false);
             contentLeftPanel.ResumeLayout(false);
+            subSplitLeftContainer.Panel1.ResumeLayout(false);
+            subSplitLeftContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)subSplitLeftContainer).EndInit();
             subSplitLeftContainer.ResumeLayout(false);
+            subSubSplitLeftContainer.Panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)subSubSplitLeftContainer).EndInit();
+            subSubSplitLeftContainer.ResumeLayout(false);
             contentRightPanel.ResumeLayout(false);
             subSplitRightContainer.Panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)subSplitRightContainer).EndInit();
@@ -208,5 +273,8 @@
         private SplitContainer subSplitLeftContainer;
         private SplitContainer subSplitRightContainer;
         private SectionHeaderControl rightSectionHeaderControl;
+        private Label headLeftLabel;
+        private SplitContainer subSubSplitLeftContainer;
+        private UserControlComponents.ImageScreenControlNew imageScreenControlNew;
     }
 }
