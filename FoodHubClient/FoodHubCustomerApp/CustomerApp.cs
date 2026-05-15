@@ -70,10 +70,11 @@ namespace FoodHubCustomerApp
                 }
                 else if (action == 4)
                 {
-                    if (userData != null)
+                    if (userData != null && data != null)
                     {
                         this.Controls.Clear();
                         userReviewPage.UserData = userData;
+                        userReviewPage.ResPrevious = (RestaurantRecommendationRsp)data;
                         this.Controls.Add(userReviewPage);
                     }
                 }

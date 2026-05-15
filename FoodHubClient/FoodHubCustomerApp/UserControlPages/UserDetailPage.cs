@@ -27,6 +27,8 @@ namespace FoodHubCustomerApp.UserControlPages
                 userData = value;
                 UserSession.Username = userData.Username;
                 navBarControl.RefreshUserProfile();
+                usernameTitle.Text = userData.Username;
+                LoadExpirePromotions();
             }
         }
 
@@ -36,7 +38,6 @@ namespace FoodHubCustomerApp.UserControlPages
             this.form = form;
             SetupUI();
             SetupEventHandlers();
-            LoadExpirePromotions();
         }
 
         private void SetupUI()
@@ -63,7 +64,13 @@ namespace FoodHubCustomerApp.UserControlPages
         {
             flowLayoutPanel.Controls.Clear();
 
-            var items = GetMockExpireData();
+            //var items = GetMockExpireData();
+
+            var items = Service.GetCustomerProfile(userData.Id).ActivePromotions.Select(p => new PromotionExpireItem
+            {
+                Title = p.Title,
+                ExpireDate = p.EndDate.ToString("dd/MM/yyyy")
+            }).ToList();
 
             for (int i = 0; i < items.Count; i++)
             {
@@ -76,18 +83,18 @@ namespace FoodHubCustomerApp.UserControlPages
             }
         }
 
-        private List<PromotionExpireItem> GetMockExpireData()
-        {
-            var list = new List<PromotionExpireItem>();
-            for (int i = 1; i <= 10; i++) // สร้างตามจำนวนแถวในรูปคือ 6 แถว
-            {
-                list.Add(new PromotionExpireItem
-                {
-                    Title = "Promotion Title", // ถ้าอยากให้เลขรันตามด้วย ก็ใส่ + i ตรงนี้ครับ
-                    ExpireDate = "99/12/2077"
-                });
-            }
-            return list;
-        }
+        //private List<PromotionExpireItem> GetMockExpireData()
+        //{
+        //    var list = new List<PromotionExpireItem>();
+        //    for (int i = 1; i <= 10; i++) // สร้างตามจำนวนแถวในรูปคือ 6 แถว
+        //    {
+        //        list.Add(new PromotionExpireItem
+        //        {
+        //            Title = "Promotion Title", // ถ้าอยากให้เลขรันตามด้วย ก็ใส่ + i ตรงนี้ครับ
+        //            ExpireDate = "99/12/2077"
+        //        });
+        //    }
+        //    return list;
+        //}
     }
 }
