@@ -170,10 +170,12 @@
             // subSplitLeftContainer.Panel1
             // 
             subSplitLeftContainer.Panel1.Controls.Add(headLeftLabel);
+            subSplitLeftContainer.Panel1.Padding = new Padding(45, 0, 45, 0);
             // 
             // subSplitLeftContainer.Panel2
             // 
             subSplitLeftContainer.Panel2.Controls.Add(subSubSplitLeftContainer);
+            subSplitLeftContainer.Panel2.Padding = new Padding(45, 0, 45, 15);
             subSplitLeftContainer.Size = new Size(449, 649);
             subSplitLeftContainer.SplitterWidth = 1;
             subSplitLeftContainer.TabIndex = 0;
@@ -183,10 +185,10 @@
             headLeftLabel.BackColor = Color.Transparent;
             headLeftLabel.Dock = DockStyle.Fill;
             headLeftLabel.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
-            headLeftLabel.Location = new Point(0, 0);
+            headLeftLabel.Location = new Point(45, 0);
             headLeftLabel.Margin = new Padding(0);
             headLeftLabel.Name = "headLeftLabel";
-            headLeftLabel.Size = new Size(449, 50);
+            headLeftLabel.Size = new Size(359, 50);
             headLeftLabel.TabIndex = 0;
             headLeftLabel.Text = "Detail";
             headLeftLabel.TextAlign = ContentAlignment.MiddleCenter;
@@ -197,7 +199,7 @@
             subSubSplitLeftContainer.Dock = DockStyle.Fill;
             subSubSplitLeftContainer.FixedPanel = FixedPanel.Panel1;
             subSubSplitLeftContainer.IsSplitterFixed = true;
-            subSubSplitLeftContainer.Location = new Point(0, 0);
+            subSubSplitLeftContainer.Location = new Point(45, 0);
             subSubSplitLeftContainer.Margin = new Padding(0);
             subSubSplitLeftContainer.Name = "subSubSplitLeftContainer";
             subSubSplitLeftContainer.Orientation = Orientation.Horizontal;
@@ -205,12 +207,11 @@
             // subSubSplitLeftContainer.Panel1
             // 
             subSubSplitLeftContainer.Panel1.Controls.Add(imageScreenControlNew);
-            subSubSplitLeftContainer.Panel1.Padding = new Padding(45, 0, 45, 0);
             // 
             // subSubSplitLeftContainer.Panel2
             // 
             subSubSplitLeftContainer.Panel2.Controls.Add(subSubSubSplitLeftContainer);
-            subSubSplitLeftContainer.Size = new Size(449, 598);
+            subSubSplitLeftContainer.Size = new Size(359, 583);
             subSubSplitLeftContainer.SplitterDistance = 249;
             subSubSplitLeftContainer.SplitterWidth = 1;
             subSubSplitLeftContainer.TabIndex = 0;
@@ -220,7 +221,7 @@
             imageScreenControlNew.BackColor = Color.Transparent;
             imageScreenControlNew.DisplayImage = null;
             imageScreenControlNew.Dock = DockStyle.Fill;
-            imageScreenControlNew.Location = new Point(45, 0);
+            imageScreenControlNew.Location = new Point(0, 0);
             imageScreenControlNew.Name = "imageScreenControlNew";
             imageScreenControlNew.Size = new Size(359, 249);
             imageScreenControlNew.TabIndex = 0;
@@ -242,7 +243,7 @@
             // subSubSubSplitLeftContainer.Panel2
             // 
             subSubSubSplitLeftContainer.Panel2.Controls.Add(subSubSubSubSplitLeftContainer);
-            subSubSubSplitLeftContainer.Size = new Size(449, 348);
+            subSubSubSplitLeftContainer.Size = new Size(359, 333);
             subSubSubSplitLeftContainer.SplitterWidth = 1;
             subSubSubSplitLeftContainer.TabIndex = 0;
             // 
@@ -253,7 +254,7 @@
             restaurantTitle.Location = new Point(0, 0);
             restaurantTitle.Margin = new Padding(0);
             restaurantTitle.Name = "restaurantTitle";
-            restaurantTitle.Size = new Size(449, 50);
+            restaurantTitle.Size = new Size(359, 50);
             restaurantTitle.TabIndex = 0;
             restaurantTitle.Text = "Film's Restaurant";
             restaurantTitle.TextAlign = ContentAlignment.MiddleCenter;
@@ -271,13 +272,11 @@
             // subSubSubSubSplitLeftContainer.Panel1
             // 
             subSubSubSubSplitLeftContainer.Panel1.Controls.Add(lineSplitBetweenTitleContent);
-            subSubSubSubSplitLeftContainer.Panel1.Padding = new Padding(45, 0, 45, 0);
             // 
             // subSubSubSubSplitLeftContainer.Panel2
             // 
             subSubSubSubSplitLeftContainer.Panel2.Controls.Add(flowLayoutPanel1);
-            subSubSubSubSplitLeftContainer.Panel2.Padding = new Padding(45, 0, 45, 0);
-            subSubSubSubSplitLeftContainer.Size = new Size(449, 297);
+            subSubSubSubSplitLeftContainer.Size = new Size(359, 282);
             subSubSubSubSplitLeftContainer.SplitterDistance = 25;
             subSubSubSubSplitLeftContainer.SplitterWidth = 1;
             subSubSubSubSplitLeftContainer.TabIndex = 0;
@@ -286,7 +285,7 @@
             // 
             lineSplitBetweenTitleContent.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             lineSplitBetweenTitleContent.BackColor = Color.Black;
-            lineSplitBetweenTitleContent.Location = new Point(45, 12);
+            lineSplitBetweenTitleContent.Location = new Point(0, 12);
             lineSplitBetweenTitleContent.Margin = new Padding(0);
             lineSplitBetweenTitleContent.MaximumSize = new Size(0, 2);
             lineSplitBetweenTitleContent.Name = "lineSplitBetweenTitleContent";
@@ -299,10 +298,10 @@
             flowLayoutPanel1.AutoScroll = true;
             flowLayoutPanel1.BackColor = Color.Transparent;
             flowLayoutPanel1.Dock = DockStyle.Fill;
-            flowLayoutPanel1.Location = new Point(45, 0);
+            flowLayoutPanel1.Location = new Point(0, 0);
             flowLayoutPanel1.Margin = new Padding(0);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(359, 271);
+            flowLayoutPanel1.Size = new Size(359, 256);
             flowLayoutPanel1.TabIndex = 0;
             // 
             // contentRightPanel
