@@ -243,6 +243,7 @@ public class DomainLogic
             {
                 RestaurantId = r.Id,
                 Name = r.Name,
+                Category = r.Category,
                 // หาค่าเฉลี่ยเรตติ้ง ถ้ายัังไม่มีรีวิวให้เป็น 0
                 OverallRating = r.Reviews.Any() ? r.Reviews.Average(rev => rev.Rating) : 0
             })

@@ -19,6 +19,7 @@ namespace FoodHubLogic.Models
     {
         public int RestaurantId { get; set; }
         public string Name { get; set; }
+        public string Category { get; set; }
         public double OverallRating { get; set; }
     }
 
