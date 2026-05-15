@@ -19,6 +19,9 @@
     <Compile Update="UserControlComponents\SectionHeaderControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="UserControlComponents\StarRatingControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="UserControlComponents\UserListControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

@@ -41,7 +41,7 @@
             restaurantTitle = new Label();
             subSubSubSubSplitLeftContainer = new SplitContainer();
             lineSplitBetweenTitleContent = new Label();
-            flowLayoutPanel1 = new FlowLayoutPanel();
+            flowLayoutPanel = new FlowLayoutPanel();
             contentRightPanel = new Panel();
             subSplitRightContainer = new SplitContainer();
             rightSectionHeaderControl = new SectionHeaderControl();
@@ -53,6 +53,8 @@
             tableLayoutBottom = new TableLayoutPanel();
             primaryBtn = new FoodHubCustomerApp.UserControlComponents.ButtonControl();
             secondaryBtn = new FoodHubCustomerApp.UserControlComponents.ButtonControl();
+            ratingLabel = new Label();
+            starRatingControl = new FoodHubCustomerApp.UserControlComponents.StarRatingControl();
             ((System.ComponentModel.ISupportInitialize)mainSplitContainer).BeginInit();
             mainSplitContainer.Panel1.SuspendLayout();
             mainSplitContainer.Panel2.SuspendLayout();
@@ -279,7 +281,7 @@
             // 
             // subSubSubSubSplitLeftContainer.Panel2
             // 
-            subSubSubSubSplitLeftContainer.Panel2.Controls.Add(flowLayoutPanel1);
+            subSubSubSubSplitLeftContainer.Panel2.Controls.Add(flowLayoutPanel);
             subSubSubSubSplitLeftContainer.Size = new Size(399, 287);
             subSubSubSubSplitLeftContainer.SplitterDistance = 25;
             subSubSubSubSplitLeftContainer.SplitterWidth = 1;
@@ -297,16 +299,16 @@
             lineSplitBetweenTitleContent.TabIndex = 0;
             lineSplitBetweenTitleContent.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // flowLayoutPanel1
+            // flowLayoutPanel
             // 
-            flowLayoutPanel1.AutoScroll = true;
-            flowLayoutPanel1.BackColor = Color.Transparent;
-            flowLayoutPanel1.Dock = DockStyle.Fill;
-            flowLayoutPanel1.Location = new Point(0, 0);
-            flowLayoutPanel1.Margin = new Padding(0);
-            flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(399, 261);
-            flowLayoutPanel1.TabIndex = 0;
+            flowLayoutPanel.AutoScroll = true;
+            flowLayoutPanel.BackColor = Color.Transparent;
+            flowLayoutPanel.Dock = DockStyle.Fill;
+            flowLayoutPanel.Location = new Point(0, 0);
+            flowLayoutPanel.Margin = new Padding(0);
+            flowLayoutPanel.Name = "flowLayoutPanel";
+            flowLayoutPanel.Size = new Size(399, 261);
+            flowLayoutPanel.TabIndex = 0;
             // 
             // contentRightPanel
             // 
@@ -435,12 +437,15 @@
             // 
             // tableLayoutBottom
             // 
-            tableLayoutBottom.ColumnCount = 3;
-            tableLayoutBottom.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutBottom.ColumnCount = 4;
+            tableLayoutBottom.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10F));
+            tableLayoutBottom.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 40F));
             tableLayoutBottom.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
             tableLayoutBottom.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
-            tableLayoutBottom.Controls.Add(primaryBtn, 2, 0);
-            tableLayoutBottom.Controls.Add(secondaryBtn, 1, 0);
+            tableLayoutBottom.Controls.Add(primaryBtn, 3, 0);
+            tableLayoutBottom.Controls.Add(secondaryBtn, 2, 0);
+            tableLayoutBottom.Controls.Add(ratingLabel, 0, 0);
+            tableLayoutBottom.Controls.Add(starRatingControl, 1, 0);
             tableLayoutBottom.Dock = DockStyle.Fill;
             tableLayoutBottom.Location = new Point(0, 0);
             tableLayoutBottom.Name = "tableLayoutBottom";
@@ -480,6 +485,28 @@
             secondaryBtn.Name = "secondaryBtn";
             secondaryBtn.Size = new Size(195, 40);
             secondaryBtn.TabIndex = 1;
+            // 
+            // ratingLabel
+            // 
+            ratingLabel.Dock = DockStyle.Fill;
+            ratingLabel.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            ratingLabel.Location = new Point(0, 0);
+            ratingLabel.Margin = new Padding(0);
+            ratingLabel.Name = "ratingLabel";
+            ratingLabel.Size = new Size(78, 56);
+            ratingLabel.TabIndex = 2;
+            ratingLabel.Text = "Rating";
+            ratingLabel.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // starRatingControl
+            // 
+            starRatingControl.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            starRatingControl.Location = new Point(78, 8);
+            starRatingControl.Margin = new Padding(0);
+            starRatingControl.Name = "starRatingControl";
+            starRatingControl.SelectedRating = 0;
+            starRatingControl.Size = new Size(312, 40);
+            starRatingControl.TabIndex = 3;
             // 
             // AddPostPage
             // 
@@ -551,7 +578,7 @@
         private Label restaurantTitle;
         private SplitContainer subSubSubSubSplitLeftContainer;
         private Label lineSplitBetweenTitleContent;
-        private FlowLayoutPanel flowLayoutPanel1;
+        private FlowLayoutPanel flowLayoutPanel;
         private SplitContainer subSubSplitRightContainer;
         private Label headRightLabel;
         private SplitContainer subSubSubSplitRightContainer;
@@ -560,5 +587,7 @@
         private TableLayoutPanel tableLayoutBottom;
         private UserControlComponents.ButtonControl primaryBtn;
         private UserControlComponents.ButtonControl secondaryBtn;
+        private Label ratingLabel;
+        private UserControlComponents.StarRatingControl starRatingControl;
     }
 }
