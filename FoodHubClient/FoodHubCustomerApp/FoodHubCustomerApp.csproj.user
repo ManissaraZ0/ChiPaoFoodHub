@@ -4,6 +4,9 @@
     <Compile Update="CustomerApp.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="UserControlComponents\ButtonControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="UserControlComponents\ImageScreenControlNew.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -16,7 +19,13 @@
     <Compile Update="UserControlComponents\SectionHeaderControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="UserControlComponents\UserListControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="UserControlPages\AddPostPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="UserControlPages\DemoLoginPage.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="UserControlPages\HomePage.cs">

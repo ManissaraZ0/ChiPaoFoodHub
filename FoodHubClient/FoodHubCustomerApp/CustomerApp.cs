@@ -15,14 +15,17 @@ namespace FoodHubCustomerApp
     {
         HomePage homePage;
         AddPostPage addPostPage;
+        DemoLoginPage demoLoginPage;
 
         public CustomerApp()
         {
             InitializeComponent();
             homePage = new HomePage() { Dock = DockStyle.Fill };
             addPostPage = new AddPostPage() { Dock = DockStyle.Fill };
+            demoLoginPage = new DemoLoginPage() { Dock = DockStyle.Fill };
             //ChangeScreen(homePage);
             ChangeScreen(addPostPage);
+            //ChangeScreen(demoLoginPage);
         }
 
         public void ChangeScreen(UserControl targetScreen)
