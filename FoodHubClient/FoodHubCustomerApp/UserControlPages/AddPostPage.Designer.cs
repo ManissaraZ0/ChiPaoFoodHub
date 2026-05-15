@@ -438,8 +438,8 @@
             // tableLayoutBottom
             // 
             tableLayoutBottom.ColumnCount = 4;
-            tableLayoutBottom.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10F));
-            tableLayoutBottom.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 40F));
+            tableLayoutBottom.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 15F));
+            tableLayoutBottom.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 35F));
             tableLayoutBottom.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
             tableLayoutBottom.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
             tableLayoutBottom.Controls.Add(primaryBtn, 3, 0);
@@ -448,6 +448,7 @@
             tableLayoutBottom.Controls.Add(starRatingControl, 1, 0);
             tableLayoutBottom.Dock = DockStyle.Fill;
             tableLayoutBottom.Location = new Point(0, 0);
+            tableLayoutBottom.Margin = new Padding(0);
             tableLayoutBottom.Name = "tableLayoutBottom";
             tableLayoutBottom.RowCount = 1;
             tableLayoutBottom.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
@@ -489,11 +490,11 @@
             // ratingLabel
             // 
             ratingLabel.Dock = DockStyle.Fill;
-            ratingLabel.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            ratingLabel.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
             ratingLabel.Location = new Point(0, 0);
             ratingLabel.Margin = new Padding(0);
             ratingLabel.Name = "ratingLabel";
-            ratingLabel.Size = new Size(78, 56);
+            ratingLabel.Size = new Size(117, 56);
             ratingLabel.TabIndex = 2;
             ratingLabel.Text = "Rating";
             ratingLabel.TextAlign = ContentAlignment.MiddleCenter;
@@ -501,11 +502,11 @@
             // starRatingControl
             // 
             starRatingControl.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            starRatingControl.Location = new Point(78, 8);
+            starRatingControl.Location = new Point(117, 8);
             starRatingControl.Margin = new Padding(0);
             starRatingControl.Name = "starRatingControl";
             starRatingControl.SelectedRating = 0;
-            starRatingControl.Size = new Size(312, 40);
+            starRatingControl.Size = new Size(273, 40);
             starRatingControl.TabIndex = 3;
             // 
             // AddPostPage
