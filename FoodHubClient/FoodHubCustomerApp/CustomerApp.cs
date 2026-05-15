@@ -16,6 +16,7 @@ namespace FoodHubCustomerApp
         HomePage homePage;
         AddPostPage addPostPage;
         DemoLoginPage demoLoginPage;
+        UserDetailPage userDetailPage;
 
         public CustomerApp()
         {
@@ -23,6 +24,7 @@ namespace FoodHubCustomerApp
             homePage = new HomePage(this) { Dock = DockStyle.Fill };
             addPostPage = new AddPostPage(this) { Dock = DockStyle.Fill };
             demoLoginPage = new DemoLoginPage(this) { Dock = DockStyle.Fill };
+            userDetailPage = new UserDetailPage(this) { Dock = DockStyle.Fill };
             //ChangeScreen(homePage);
             //ChangeScreen(addPostPage);
             //ChangeScreen(demoLoginPage);

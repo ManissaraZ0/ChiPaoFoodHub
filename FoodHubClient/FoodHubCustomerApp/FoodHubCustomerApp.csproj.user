@@ -34,6 +34,9 @@
     <Compile Update="UserControlPages\HomePage.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="UserControlPages\UserDetailPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="UserControlPages\UserReviewPage.cs">
       <SubType>UserControl</SubType>
     </Compile>
