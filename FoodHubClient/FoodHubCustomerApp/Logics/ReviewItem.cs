@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+//namespace ReviewCard
 namespace FoodHubCustomerApp.Logics
 {
     public class ReviewItem

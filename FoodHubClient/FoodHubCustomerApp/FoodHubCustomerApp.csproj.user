@@ -13,7 +13,13 @@
     <Compile Update="UserControlComponents\NavBarControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="UserControlComponents\ReviewCardControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="UserControlComponents\SectionHeaderControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="UserControlComponents\TicketCardControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="UserControlPages\AddPostPage.cs">
