@@ -13,6 +13,9 @@
     <Compile Update="UserControlComponents\SectionHeaderControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="UserControlPages\AddPostPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="UserControlPages\HomePage.cs">
       <SubType>UserControl</SubType>
     </Compile>
