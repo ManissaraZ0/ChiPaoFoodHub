@@ -47,6 +47,9 @@
             rightSectionHeaderControl = new SectionHeaderControl();
             subSubSplitRightContainer = new SplitContainer();
             headRightLabel = new Label();
+            subSubSubSplitRightContainer = new SplitContainer();
+            inputReviewPanel = new Panel();
+            txtReview = new TextBox();
             ((System.ComponentModel.ISupportInitialize)mainSplitContainer).BeginInit();
             mainSplitContainer.Panel1.SuspendLayout();
             mainSplitContainer.Panel2.SuspendLayout();
@@ -79,7 +82,12 @@
             subSplitRightContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)subSubSplitRightContainer).BeginInit();
             subSubSplitRightContainer.Panel1.SuspendLayout();
+            subSubSplitRightContainer.Panel2.SuspendLayout();
             subSubSplitRightContainer.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)subSubSubSplitRightContainer).BeginInit();
+            subSubSubSplitRightContainer.Panel1.SuspendLayout();
+            subSubSubSplitRightContainer.SuspendLayout();
+            inputReviewPanel.SuspendLayout();
             SuspendLayout();
             // 
             // mainSplitContainer
@@ -356,6 +364,10 @@
             // subSubSplitRightContainer.Panel1
             // 
             subSubSplitRightContainer.Panel1.Controls.Add(headRightLabel);
+            // 
+            // subSubSplitRightContainer.Panel2
+            // 
+            subSubSplitRightContainer.Panel2.Controls.Add(subSubSubSplitRightContainer);
             subSubSplitRightContainer.Size = new Size(780, 598);
             subSubSplitRightContainer.SplitterWidth = 1;
             subSubSplitRightContainer.TabIndex = 0;
@@ -371,6 +383,48 @@
             headRightLabel.TabIndex = 0;
             headRightLabel.Text = "Review Description";
             headRightLabel.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // subSubSubSplitRightContainer
+            // 
+            subSubSubSplitRightContainer.Dock = DockStyle.Fill;
+            subSubSubSplitRightContainer.FixedPanel = FixedPanel.Panel2;
+            subSubSubSplitRightContainer.IsSplitterFixed = true;
+            subSubSubSplitRightContainer.Location = new Point(0, 0);
+            subSubSubSplitRightContainer.Margin = new Padding(0);
+            subSubSubSplitRightContainer.Name = "subSubSubSplitRightContainer";
+            subSubSubSplitRightContainer.Orientation = Orientation.Horizontal;
+            // 
+            // subSubSubSplitRightContainer.Panel1
+            // 
+            subSubSubSplitRightContainer.Panel1.Controls.Add(inputReviewPanel);
+            subSubSubSplitRightContainer.Size = new Size(780, 547);
+            subSubSubSplitRightContainer.SplitterDistance = 487;
+            subSubSubSplitRightContainer.TabIndex = 0;
+            // 
+            // inputReviewPanel
+            // 
+            inputReviewPanel.AutoScroll = true;
+            inputReviewPanel.Controls.Add(txtReview);
+            inputReviewPanel.Dock = DockStyle.Fill;
+            inputReviewPanel.Location = new Point(0, 0);
+            inputReviewPanel.Margin = new Padding(0);
+            inputReviewPanel.Name = "inputReviewPanel";
+            inputReviewPanel.Padding = new Padding(10);
+            inputReviewPanel.Size = new Size(780, 487);
+            inputReviewPanel.TabIndex = 0;
+            inputReviewPanel.Paint += inputReviewPanel_Paint;
+            // 
+            // txtReview
+            // 
+            txtReview.BorderStyle = BorderStyle.None;
+            txtReview.Dock = DockStyle.Fill;
+            txtReview.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtReview.Location = new Point(10, 10);
+            txtReview.Margin = new Padding(0);
+            txtReview.Multiline = true;
+            txtReview.Name = "txtReview";
+            txtReview.Size = new Size(760, 467);
+            txtReview.TabIndex = 0;
             // 
             // AddPostPage
             // 
@@ -412,8 +466,14 @@
             ((System.ComponentModel.ISupportInitialize)subSplitRightContainer).EndInit();
             subSplitRightContainer.ResumeLayout(false);
             subSubSplitRightContainer.Panel1.ResumeLayout(false);
+            subSubSplitRightContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)subSubSplitRightContainer).EndInit();
             subSubSplitRightContainer.ResumeLayout(false);
+            subSubSubSplitRightContainer.Panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)subSubSubSplitRightContainer).EndInit();
+            subSubSubSplitRightContainer.ResumeLayout(false);
+            inputReviewPanel.ResumeLayout(false);
+            inputReviewPanel.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -437,5 +497,8 @@
         private FlowLayoutPanel flowLayoutPanel1;
         private SplitContainer subSubSplitRightContainer;
         private Label headRightLabel;
+        private SplitContainer subSubSubSplitRightContainer;
+        private Panel inputReviewPanel;
+        private TextBox txtReview;
     }
 }
