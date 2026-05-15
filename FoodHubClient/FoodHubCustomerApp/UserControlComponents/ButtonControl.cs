@@ -49,29 +49,59 @@ namespace FoodHubCustomerApp.UserControlComponents
             Graphics g = e.Graphics;
             g.SmoothingMode = SmoothingMode.AntiAlias;
 
-            // คำนวณสีตอน Hover (ถ้า Hover ให้สีเข้มขึ้นหรืออ่อนลงนิดหน่อย)
-            Color drawColor = isHovered ? ControlPaint.Light(ButtonColor, 0.2f) : ButtonColor;
-
-            // วาดทรงแคปซูล (Pill Shape)
-            int radius = this.Height - 1;
-            Rectangle rect = new Rectangle(0, 0, this.Width - 1, this.Height - 1);
-            GraphicsPath path = GetRoundedPath(rect, radius);
+            Color finalBgColor;
+            Color finalTextColor;
+            Color finalBorderColor;
 
             if (FillMode == ButtonStyle.Fill)
             {
-                // โหมด Fill: ถมสีพื้นหลัง
-                using (SolidBrush brush = new SolidBrush(drawColor))
-                    g.FillPath(brush, path);
+                if (isHovered)
+                {
+                    // Inverse ของ Fill: พื้นหลังต้องเป็นสีสว่าง (FontColor) ตัวหนังสือเป็นสีเข้ม (ButtonColor)
+                    finalBgColor = FontColor;
+                    finalTextColor = ButtonColor;
+                    finalBorderColor = ButtonColor;
+                }
+                else
+                {
+                    finalBgColor = ButtonColor;
+                    finalTextColor = FontColor;
+                    finalBorderColor = Color.Transparent;
+                }
             }
-            else
+            else // Mode: Outline
             {
-                // โหมด Outline: วาดเฉพาะเส้นขอบ
-                using (Pen pen = new Pen(drawColor, 2))
+                if (isHovered)
+                {
+                    // Inverse ของ Outline: พื้นหลังต้องเป็นสีเข้ม (ButtonColor) ตัวหนังสือต้องเป็นสีสว่าง (FontColor)
+                    finalBgColor = ButtonColor;
+                    finalTextColor = FontColor; // <--- จุดนี้แหละครับ ต้องตั้ง FontColor เป็นสีขาวใน Properties
+                    finalBorderColor = ButtonColor;
+                }
+                else
+                {
+                    finalBgColor = Color.Transparent;
+                    finalTextColor = ButtonColor; // ปกติของ Outline ให้ใช้สีปุ่มเป็นสีฟอนต์จะสวยกว่า
+                    finalBorderColor = ButtonColor;
+                }
+            }
+
+            // --- ส่วนการวาด (เหมือนเดิม) ---
+            int radius = this.Height - 1;
+            Rectangle rect = new Rectangle(0, 0, this.Width - 1, this.Height - 1);
+            using (GraphicsPath path = GetRoundedPath(rect, radius))
+            {
+                if (finalBgColor != Color.Transparent)
+                {
+                    using (SolidBrush brush = new SolidBrush(finalBgColor))
+                        g.FillPath(brush, path);
+                }
+
+                using (Pen pen = new Pen(finalBorderColor, 2))
                     g.DrawPath(pen, path);
             }
 
-            // วาดตัวอักษรกึ่งกลางปุ่ม
-            TextRenderer.DrawText(g, ButtonText, this.Font, rect, FontColor,
+            TextRenderer.DrawText(g, ButtonText, this.Font, rect, finalTextColor,
                 TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter);
         }
 

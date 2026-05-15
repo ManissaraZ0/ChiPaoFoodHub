@@ -19,6 +19,7 @@ namespace FoodHubCustomerApp.UserControlPages
 
         public AddPostPage()
         {
+            this.AutoSize = false;
             InitializeComponent();
             this.DoubleBuffered = true;
             SetupUI();

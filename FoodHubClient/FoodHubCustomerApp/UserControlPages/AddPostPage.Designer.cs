@@ -50,6 +50,9 @@
             subSubSubSplitRightContainer = new SplitContainer();
             inputReviewPanel = new Panel();
             txtReview = new TextBox();
+            tableLayoutBottom = new TableLayoutPanel();
+            primaryBtn = new FoodHubCustomerApp.UserControlComponents.ButtonControl();
+            secondaryBtn = new FoodHubCustomerApp.UserControlComponents.ButtonControl();
             ((System.ComponentModel.ISupportInitialize)mainSplitContainer).BeginInit();
             mainSplitContainer.Panel1.SuspendLayout();
             mainSplitContainer.Panel2.SuspendLayout();
@@ -86,8 +89,10 @@
             subSubSplitRightContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)subSubSubSplitRightContainer).BeginInit();
             subSubSubSplitRightContainer.Panel1.SuspendLayout();
+            subSubSubSplitRightContainer.Panel2.SuspendLayout();
             subSubSubSplitRightContainer.SuspendLayout();
             inputReviewPanel.SuspendLayout();
+            tableLayoutBottom.SuspendLayout();
             SuspendLayout();
             // 
             // mainSplitContainer
@@ -395,6 +400,10 @@
             // subSubSubSplitRightContainer.Panel1
             // 
             subSubSubSplitRightContainer.Panel1.Controls.Add(inputReviewPanel);
+            // 
+            // subSubSubSplitRightContainer.Panel2
+            // 
+            subSubSubSplitRightContainer.Panel2.Controls.Add(tableLayoutBottom);
             subSubSubSplitRightContainer.Size = new Size(780, 537);
             subSubSubSplitRightContainer.SplitterDistance = 477;
             subSubSubSplitRightContainer.TabIndex = 0;
@@ -423,6 +432,54 @@
             txtReview.Name = "txtReview";
             txtReview.Size = new Size(760, 457);
             txtReview.TabIndex = 0;
+            // 
+            // tableLayoutBottom
+            // 
+            tableLayoutBottom.ColumnCount = 3;
+            tableLayoutBottom.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutBottom.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            tableLayoutBottom.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            tableLayoutBottom.Controls.Add(primaryBtn, 2, 0);
+            tableLayoutBottom.Controls.Add(secondaryBtn, 1, 0);
+            tableLayoutBottom.Dock = DockStyle.Fill;
+            tableLayoutBottom.Location = new Point(0, 0);
+            tableLayoutBottom.Name = "tableLayoutBottom";
+            tableLayoutBottom.RowCount = 1;
+            tableLayoutBottom.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutBottom.Size = new Size(780, 56);
+            tableLayoutBottom.TabIndex = 0;
+            // 
+            // primaryBtn
+            // 
+            primaryBtn.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            primaryBtn.BackColor = Color.Transparent;
+            primaryBtn.ButtonColor = Color.FromArgb(192, 7, 7);
+            primaryBtn.ButtonText = "Add";
+            primaryBtn.FillMode = UserControlComponents.ButtonControl.ButtonStyle.Fill;
+            primaryBtn.FontColor = Color.White;
+            primaryBtn.Location = new Point(585, 8);
+            primaryBtn.Margin = new Padding(0);
+            primaryBtn.MaximumSize = new Size(0, 40);
+            primaryBtn.MinimumSize = new Size(140, 40);
+            primaryBtn.Name = "primaryBtn";
+            primaryBtn.Size = new Size(195, 40);
+            primaryBtn.TabIndex = 0;
+            // 
+            // secondaryBtn
+            // 
+            secondaryBtn.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            secondaryBtn.BackColor = Color.Transparent;
+            secondaryBtn.ButtonColor = Color.Black;
+            secondaryBtn.ButtonText = "Cancel";
+            secondaryBtn.FillMode = UserControlComponents.ButtonControl.ButtonStyle.Outline;
+            secondaryBtn.FontColor = Color.White;
+            secondaryBtn.Location = new Point(390, 8);
+            secondaryBtn.Margin = new Padding(0);
+            secondaryBtn.MaximumSize = new Size(0, 40);
+            secondaryBtn.MinimumSize = new Size(140, 40);
+            secondaryBtn.Name = "secondaryBtn";
+            secondaryBtn.Size = new Size(195, 40);
+            secondaryBtn.TabIndex = 1;
             // 
             // AddPostPage
             // 
@@ -468,10 +525,12 @@
             ((System.ComponentModel.ISupportInitialize)subSubSplitRightContainer).EndInit();
             subSubSplitRightContainer.ResumeLayout(false);
             subSubSubSplitRightContainer.Panel1.ResumeLayout(false);
+            subSubSubSplitRightContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)subSubSubSplitRightContainer).EndInit();
             subSubSubSplitRightContainer.ResumeLayout(false);
             inputReviewPanel.ResumeLayout(false);
             inputReviewPanel.PerformLayout();
+            tableLayoutBottom.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -498,5 +557,8 @@
         private SplitContainer subSubSubSplitRightContainer;
         private Panel inputReviewPanel;
         private TextBox txtReview;
+        private TableLayoutPanel tableLayoutBottom;
+        private UserControlComponents.ButtonControl primaryBtn;
+        private UserControlComponents.ButtonControl secondaryBtn;
     }
 }
