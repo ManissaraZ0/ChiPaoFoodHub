@@ -154,6 +154,7 @@
             contentLeftPanel.Location = new Point(0, 0);
             contentLeftPanel.Margin = new Padding(0);
             contentLeftPanel.Name = "contentLeftPanel";
+            contentLeftPanel.Padding = new Padding(25, 0, 25, 10);
             contentLeftPanel.Size = new Size(449, 649);
             contentLeftPanel.TabIndex = 0;
             // 
@@ -162,7 +163,7 @@
             subSplitLeftContainer.Dock = DockStyle.Fill;
             subSplitLeftContainer.FixedPanel = FixedPanel.Panel1;
             subSplitLeftContainer.IsSplitterFixed = true;
-            subSplitLeftContainer.Location = new Point(0, 0);
+            subSplitLeftContainer.Location = new Point(25, 0);
             subSplitLeftContainer.Margin = new Padding(0);
             subSplitLeftContainer.Name = "subSplitLeftContainer";
             subSplitLeftContainer.Orientation = Orientation.Horizontal;
@@ -170,13 +171,11 @@
             // subSplitLeftContainer.Panel1
             // 
             subSplitLeftContainer.Panel1.Controls.Add(headLeftLabel);
-            subSplitLeftContainer.Panel1.Padding = new Padding(45, 0, 45, 0);
             // 
             // subSplitLeftContainer.Panel2
             // 
             subSplitLeftContainer.Panel2.Controls.Add(subSubSplitLeftContainer);
-            subSplitLeftContainer.Panel2.Padding = new Padding(45, 0, 45, 15);
-            subSplitLeftContainer.Size = new Size(449, 649);
+            subSplitLeftContainer.Size = new Size(399, 639);
             subSplitLeftContainer.SplitterWidth = 1;
             subSplitLeftContainer.TabIndex = 0;
             // 
@@ -185,10 +184,10 @@
             headLeftLabel.BackColor = Color.Transparent;
             headLeftLabel.Dock = DockStyle.Fill;
             headLeftLabel.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
-            headLeftLabel.Location = new Point(45, 0);
+            headLeftLabel.Location = new Point(0, 0);
             headLeftLabel.Margin = new Padding(0);
             headLeftLabel.Name = "headLeftLabel";
-            headLeftLabel.Size = new Size(359, 50);
+            headLeftLabel.Size = new Size(399, 50);
             headLeftLabel.TabIndex = 0;
             headLeftLabel.Text = "Detail";
             headLeftLabel.TextAlign = ContentAlignment.MiddleCenter;
@@ -199,7 +198,7 @@
             subSubSplitLeftContainer.Dock = DockStyle.Fill;
             subSubSplitLeftContainer.FixedPanel = FixedPanel.Panel1;
             subSubSplitLeftContainer.IsSplitterFixed = true;
-            subSubSplitLeftContainer.Location = new Point(45, 0);
+            subSubSplitLeftContainer.Location = new Point(0, 0);
             subSubSplitLeftContainer.Margin = new Padding(0);
             subSubSplitLeftContainer.Name = "subSubSplitLeftContainer";
             subSubSplitLeftContainer.Orientation = Orientation.Horizontal;
@@ -211,7 +210,7 @@
             // subSubSplitLeftContainer.Panel2
             // 
             subSubSplitLeftContainer.Panel2.Controls.Add(subSubSubSplitLeftContainer);
-            subSubSplitLeftContainer.Size = new Size(359, 583);
+            subSubSplitLeftContainer.Size = new Size(399, 588);
             subSubSplitLeftContainer.SplitterDistance = 249;
             subSubSplitLeftContainer.SplitterWidth = 1;
             subSubSplitLeftContainer.TabIndex = 0;
@@ -223,7 +222,7 @@
             imageScreenControlNew.Dock = DockStyle.Fill;
             imageScreenControlNew.Location = new Point(0, 0);
             imageScreenControlNew.Name = "imageScreenControlNew";
-            imageScreenControlNew.Size = new Size(359, 249);
+            imageScreenControlNew.Size = new Size(399, 249);
             imageScreenControlNew.TabIndex = 0;
             // 
             // subSubSubSplitLeftContainer
@@ -243,7 +242,7 @@
             // subSubSubSplitLeftContainer.Panel2
             // 
             subSubSubSplitLeftContainer.Panel2.Controls.Add(subSubSubSubSplitLeftContainer);
-            subSubSubSplitLeftContainer.Size = new Size(359, 333);
+            subSubSubSplitLeftContainer.Size = new Size(399, 338);
             subSubSubSplitLeftContainer.SplitterWidth = 1;
             subSubSubSplitLeftContainer.TabIndex = 0;
             // 
@@ -254,7 +253,7 @@
             restaurantTitle.Location = new Point(0, 0);
             restaurantTitle.Margin = new Padding(0);
             restaurantTitle.Name = "restaurantTitle";
-            restaurantTitle.Size = new Size(359, 50);
+            restaurantTitle.Size = new Size(399, 50);
             restaurantTitle.TabIndex = 0;
             restaurantTitle.Text = "Film's Restaurant";
             restaurantTitle.TextAlign = ContentAlignment.MiddleCenter;
@@ -276,7 +275,7 @@
             // subSubSubSubSplitLeftContainer.Panel2
             // 
             subSubSubSubSplitLeftContainer.Panel2.Controls.Add(flowLayoutPanel1);
-            subSubSubSubSplitLeftContainer.Size = new Size(359, 282);
+            subSubSubSubSplitLeftContainer.Size = new Size(399, 287);
             subSubSubSubSplitLeftContainer.SplitterDistance = 25;
             subSubSubSubSplitLeftContainer.SplitterWidth = 1;
             subSubSubSubSplitLeftContainer.TabIndex = 0;
@@ -289,7 +288,7 @@
             lineSplitBetweenTitleContent.Margin = new Padding(0);
             lineSplitBetweenTitleContent.MaximumSize = new Size(0, 2);
             lineSplitBetweenTitleContent.Name = "lineSplitBetweenTitleContent";
-            lineSplitBetweenTitleContent.Size = new Size(359, 2);
+            lineSplitBetweenTitleContent.Size = new Size(399, 2);
             lineSplitBetweenTitleContent.TabIndex = 0;
             lineSplitBetweenTitleContent.TextAlign = ContentAlignment.MiddleCenter;
             // 
@@ -301,7 +300,7 @@
             flowLayoutPanel1.Location = new Point(0, 0);
             flowLayoutPanel1.Margin = new Padding(0);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(359, 256);
+            flowLayoutPanel1.Size = new Size(399, 261);
             flowLayoutPanel1.TabIndex = 0;
             // 
             // contentRightPanel
@@ -333,7 +332,7 @@
             // subSplitRightContainer.Panel2
             // 
             subSplitRightContainer.Panel2.Controls.Add(subSubSplitRightContainer);
-            subSplitRightContainer.Panel2.Padding = new Padding(25, 0, 25, 0);
+            subSplitRightContainer.Panel2.Padding = new Padding(25, 0, 25, 10);
             subSplitRightContainer.Size = new Size(830, 649);
             subSplitRightContainer.SplitterWidth = 1;
             subSplitRightContainer.TabIndex = 0;
@@ -367,7 +366,7 @@
             // subSubSplitRightContainer.Panel2
             // 
             subSubSplitRightContainer.Panel2.Controls.Add(subSubSubSplitRightContainer);
-            subSubSplitRightContainer.Size = new Size(780, 598);
+            subSubSplitRightContainer.Size = new Size(780, 588);
             subSubSplitRightContainer.SplitterWidth = 1;
             subSubSplitRightContainer.TabIndex = 0;
             // 
@@ -396,8 +395,8 @@
             // subSubSubSplitRightContainer.Panel1
             // 
             subSubSubSplitRightContainer.Panel1.Controls.Add(inputReviewPanel);
-            subSubSubSplitRightContainer.Size = new Size(780, 547);
-            subSubSubSplitRightContainer.SplitterDistance = 487;
+            subSubSubSplitRightContainer.Size = new Size(780, 537);
+            subSubSubSplitRightContainer.SplitterDistance = 477;
             subSubSubSplitRightContainer.TabIndex = 0;
             // 
             // inputReviewPanel
@@ -409,7 +408,7 @@
             inputReviewPanel.Margin = new Padding(0);
             inputReviewPanel.Name = "inputReviewPanel";
             inputReviewPanel.Padding = new Padding(10);
-            inputReviewPanel.Size = new Size(780, 487);
+            inputReviewPanel.Size = new Size(780, 477);
             inputReviewPanel.TabIndex = 0;
             inputReviewPanel.Paint += inputReviewPanel_Paint;
             // 
@@ -422,7 +421,7 @@
             txtReview.Margin = new Padding(0);
             txtReview.Multiline = true;
             txtReview.Name = "txtReview";
-            txtReview.Size = new Size(760, 467);
+            txtReview.Size = new Size(760, 457);
             txtReview.TabIndex = 0;
             // 
             // AddPostPage
