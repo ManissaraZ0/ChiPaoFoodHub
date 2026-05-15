@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using FoodHubCustomerApp.Logics;
+using FoodHubCustomerApp.Model;
 using FoodHubCustomerApp.UserControlComponents;
 
 namespace FoodHubCustomerApp.UserControlPages
@@ -22,13 +23,13 @@ namespace FoodHubCustomerApp.UserControlPages
         {
             InitializeComponent();
             this.form = form;
-            _service = new ServiceMock();
+            //_service = new ServiceMock();
 
             // ผูก Events ต่างๆ (รวมถึง Observer)
             SetupEventHandlers();
 
             // สั่งให้ Service ทำงาน
-            _service.FetchUsers();
+            //_service.FetchUsers();
         }
 
         private void SetupEventHandlers()
@@ -37,11 +38,14 @@ namespace FoodHubCustomerApp.UserControlPages
             flowLayoutPanel1.SizeChanged += (s, e) => ResizeCards();
 
             // *** Observer: รอรับข้อมูลจาก Service เมื่อโหลดเสร็จ ***
-            _service.OnUsersLoaded += UpdateUserCards;
+            //_service.OnUsersLoaded += UpdateUserCards;
+            var users = Service.GetAllUsers();
+            // Select Only Customer Role
+            UpdateUserCards(users.Where(u => u.Role == "client").ToList());
         }
 
         // ฟังก์ชันนี้ทำงานอัตโนมัติเมื่อ Service สั่ง Invoke()
-        private void UpdateUserCards(List<UserItem> items)
+        private void UpdateUserCards(List<UserRsp> items)
         {
             // ป้องกัน Thread ชนกัน กรณี Service ไปดึงข้อมูลแบบ Async
             if (this.InvokeRequired)

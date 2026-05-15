@@ -9,15 +9,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using FoodHubCustomerApp.Model;
 using FoodHubCustomerApp.Logics;
 
 namespace FoodHubCustomerApp.UserControlComponents
 {
     public partial class UserListControl : UserControl
     {
-        private UserItem _item;
+        private UserRsp _item;
 
-        public UserListControl(UserItem item)
+        public UserListControl(UserRsp item)
         {
             _item = item;
 

@@ -8,6 +8,14 @@ namespace FoodHubCustomerApp
     public static class Service
     {
         // ==========================================
+        // ฝั่ง Admin (เรียกใช้ AdminController)
+        // ==========================================
+        public static List<UserRsp> GetAllUsers()
+        {
+            return RestUtil.Get<List<UserRsp>>(MyConfig.BaseUri, "admin/v1/users");
+        }
+
+        // ==========================================
         // ฝั่ง Customer (เรียกใช้ CustomerController)
         // ==========================================
 

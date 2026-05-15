@@ -5,6 +5,44 @@
     "version": "1.0"
   },
   "paths": {
+    "/admin/v1/users": {
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserRsp"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserRsp"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserRsp"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/Customer/v1/promotions": {
       "get": {
         "tags": [
@@ -1030,6 +1068,32 @@
               "$ref": "#/components/schemas/Review"
             },
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserRsp": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "username": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "role": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
           }
         },
         "additionalProperties": false

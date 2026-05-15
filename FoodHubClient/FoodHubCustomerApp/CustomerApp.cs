@@ -30,7 +30,7 @@ namespace FoodHubCustomerApp
         private void CustomerApp_Load(object sender, EventArgs e)
         {
             this.Controls.Clear();
-            this.Controls.Add(addPostPage);
+            this.Controls.Add(demoLoginPage);
         }
 
         public void ChangeScreen(UserControl targetScreen)
