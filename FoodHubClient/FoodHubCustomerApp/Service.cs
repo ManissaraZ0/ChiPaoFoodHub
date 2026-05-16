@@ -58,6 +58,10 @@ namespace FoodHubCustomerApp
             return RestUtil.Get<RestaurantRecommendationRsp>(MyConfig.BaseUri, $"Customer/v1/restaurants/{restaurantId}/details");
         }
 
+        public static List<RestaurantRecommendationRsp> GetRestaurantBySearchText(string searchText)
+        {
+            return RestUtil.Get<List<RestaurantRecommendationRsp>>(MyConfig.BaseUri, $"Customer/v1/restaurants/search?searchText={Uri.EscapeDataString(searchText)}");
+        }
 
         // ==========================================
         // ฝั่ง Manager (เรียกใช้ ManagerController)

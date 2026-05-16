@@ -26,7 +26,17 @@ namespace FoodHubCustomerApp.UserControlPages
         {
             get => searchText;
             set {
-                value.Trim();
+                searchText = value.Trim();
+                if (!string.IsNullOrEmpty(searchText))
+                {
+                    var restaurants = Service.GetRestaurantBySearchText(searchText);
+                    UpdateRestaurantCards(restaurants);
+                }
+                else
+                {
+                    var restaurants = Service.GetRecommendedRestaurants();
+                    UpdateRestaurantCards(restaurants);
+                }
             }
         }
 
@@ -79,15 +89,8 @@ namespace FoodHubCustomerApp.UserControlPages
 
             // *** Observer: รอรับข้อมูลจาก Service เมื่อโหลดเสร็จ ***
             //_service.OnRestaurantsLoaded += UpdateRestaurantCards;
-            if (searchText != null)
-            {
-                var restaurants = Service.GetRecommendedRestaurants();
-                UpdateRestaurantCards(restaurants);
-            } else
-            {
-                var restaurants = Service.GetRecommendedRestaurants();
-                UpdateRestaurantCards(restaurants); 
-            }
+            var defaultRestaurants = Service.GetRecommendedRestaurants();
+            UpdateRestaurantCards(defaultRestaurants);
         }
 
         // ฟังก์ชันนี้ทำงานอัตโนมัติเมื่อ Service สั่ง Invoke()
