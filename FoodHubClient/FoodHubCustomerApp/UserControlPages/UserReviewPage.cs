@@ -31,6 +31,8 @@ namespace FoodHubCustomerApp.UserControlPages
                     lblRestaurantName.Text = resPrevious.Name;
                     lblCategory.Text = resPrevious.Category;
                     lblRatingScore.Text = resPrevious.OverallRating.ToString("0.00") + "/5.00";
+                    var resDetail = Service.GetRestaurantDetail(ResPrevious.RestaurantId);
+                    lblRestaurantDescription.Text = resDetail.Address;
                 }
             }
         }
@@ -58,12 +60,6 @@ namespace FoodHubCustomerApp.UserControlPages
         {
             // ตั้งค่าบัญชีผู้ใช้
             navBarControl.RefreshUserProfile();
-
-            if (ResPrevious != null)
-            {
-                var resDetail = Service.GetRestaurantDetail(ResPrevious.RestaurantId);
-                //lblRestaurantDescription.Text = resDetail.Address;
-            }
         }
 
         private void SetupEventHandlers()

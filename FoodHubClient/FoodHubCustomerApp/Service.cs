@@ -53,9 +53,9 @@ namespace FoodHubCustomerApp
             return RestUtil.Get<CustomerProfileRsp>(MyConfig.BaseUri, $"Customer/v1/profile?userId={userId}");
         }
 
-        public static RestaurantDetailRsp GetRestaurantDetail(int restaurantId)
+        public static RestaurantRecommendationRsp GetRestaurantDetail(int restaurantId)
         {
-            return RestUtil.Get<RestaurantDetailRsp>(MyConfig.BaseUri, $"Customer/v1/restaurants/{restaurantId}/details");
+            return RestUtil.Get<RestaurantRecommendationRsp>(MyConfig.BaseUri, $"Customer/v1/restaurants/{restaurantId}/details");
         }
 
 
