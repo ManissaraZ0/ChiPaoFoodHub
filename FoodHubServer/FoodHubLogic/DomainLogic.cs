@@ -89,6 +89,33 @@ public class DomainLogic
     }
 
     // ==========================================
+    // Manager Logic Admin Extensions
+    // ==========================================
+
+    // ดึงรายชื่อร้านอาหารทั้งหมดที่ Manager คนนี้ดูแลอยู่
+    public List<ManagerRestaurantListRsp> GetRestaurantsByManagerId(int managerId)
+    {
+        using var context = new FoodhubContext(connectionString);
+
+        // ตรวจสอบก่อนว่า User นี้มีอยู่จริง และมี Role เป็น Manager
+        var user = context.Users.SingleOrDefault(u => u.Id == managerId);
+        if (user == null) throw new Exception("User not found.");
+        ValidateRole(user, StatusConstants.RoleManager, "Only managers can access this information.");
+
+        return context.Restaurants
+            .Where(r => r.ManagerId == managerId)
+            .Select(r => new ManagerRestaurantListRsp
+            {
+                RestaurantId = r.Id,
+                Name = r.Name,
+                Category = r.Category,
+                Address = r.Address
+            })
+            .OrderBy(r => r.Name) // เรียงตามชื่อร้านตามตัวอักษร
+            .ToList();
+    }
+
+    // ==========================================
     // 1. Functional Requirement for User/Client
     // ==========================================
 
