@@ -96,7 +96,7 @@ namespace FoodHubCustomerApp.UserControlPages
                 // ตัวอย่างการตรวจสอบข้อมูลเบื้องต้น (Validation)
                 if (string.IsNullOrWhiteSpace(reviewText) && rating == 0)
                 {
-                    MessageBox.Show("กรุณาให้ดาวหรือพิมพ์รีวิวก่อนกดส่งนะจ๊ะ", "เตือนความจำ");
+                    var result = DialogCard.Show("Please rate or review before submit.", DialogCardType.Negative, false, true);
                     return;
                 }
 
@@ -105,15 +105,14 @@ namespace FoodHubCustomerApp.UserControlPages
 
                 if (success)
                 {
-                    MessageBox.Show($"บันทึกรีวิว {rating} ดาว เรียบร้อยแล้ว!", "สำเร็จ");
-                    // หลังจากเซฟเสร็จ อาจจะล้างหน้าจอหรือเด้งกลับหน้าแรก
+                    DialogCard.Show($"Review saved successfully!", DialogCardType.Positive, false, true);
                     ClearForm();
                 }
             };
 
             // เมื่อกดปุ่ม Cancel
             secondaryBtn.Click += (s, e) => {
-                var result = DialogCard.Show("คุณแน่ใจหรือไม่ว่าต้องการยกเลิกการเขียนรีวิว?", DialogCardType.Negative);
+                var result = DialogCard.Show("Are you sure you want to cancel?", DialogCardType.Negative);
 
                 // เช็คผลลัพธ์เหมือน MessageBox ปกติ
                 if (result == DialogResult.Yes)

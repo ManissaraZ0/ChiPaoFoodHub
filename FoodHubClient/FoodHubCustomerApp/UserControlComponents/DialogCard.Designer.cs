@@ -51,9 +51,9 @@
             tableLayoutPanel1.Location = new Point(0, 0);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 3;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 42.1232872F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 16.7808228F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 40.7534256F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 42.2680435F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 16.8384857F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 40.89347F));
             tableLayoutPanel1.Size = new Size(499, 292);
             tableLayoutPanel1.TabIndex = 0;
             // 
@@ -127,7 +127,6 @@
             // 
             // nofifyLabel
             // 
-            nofifyLabel.AutoSize = true;
             nofifyLabel.Dock = DockStyle.Fill;
             nofifyLabel.Font = new Font("Segoe UI Semibold", 25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             nofifyLabel.ForeColor = Color.White;
@@ -167,7 +166,6 @@
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel2.ResumeLayout(false);
             tableLayoutPanel3.ResumeLayout(false);
-            tableLayoutPanel3.PerformLayout();
             ResumeLayout(false);
         }
 

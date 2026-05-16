@@ -15,6 +15,7 @@ namespace FoodHubCustomerApp
         public static readonly Color PrimaryOrange = Color.FromArgb(255, 68, 0);    // #FF4400
         public static readonly Color LightOrange = Color.FromArgb(255, 179, 63);    // #FFB33F
         public static readonly Color PrimaryBlue = Color.FromArgb(19, 78, 142);     // #134E8E
+        public static readonly Color PrimaryGreen = Color.FromArgb(111, 150, 12);
 
         // --- ธีม Gradient ---
         // ธีมสีส้มโบราณ Gradient
