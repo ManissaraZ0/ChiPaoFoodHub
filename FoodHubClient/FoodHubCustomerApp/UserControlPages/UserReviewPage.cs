@@ -55,6 +55,10 @@ namespace FoodHubCustomerApp.UserControlPages
             SetupUI();
             SetupEventHandlers();
         }
+        public void RefreshData()
+        {
+            //
+        }
 
         private void SetupUI()
         {

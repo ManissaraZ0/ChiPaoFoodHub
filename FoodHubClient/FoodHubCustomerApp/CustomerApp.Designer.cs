@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            timer1 = new System.Windows.Forms.Timer();
+
             SuspendLayout();
             // 
             // CustomerApp
@@ -40,8 +42,14 @@
             Text = "CustomerApp";
             Load += CustomerApp_Load;
             ResumeLayout(false);
+
+            //timer1
+            timer1.Interval = 5000; // 5 วินาที
+            timer1.Tick += timer1_Tick;
         }
 
         #endregion
+
+        private System.Windows.Forms.Timer timer1;
     }
 }

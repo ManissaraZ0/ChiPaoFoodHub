@@ -64,6 +64,11 @@ namespace FoodHubCustomerApp.UserControlPages
             // สั่งให้ Service ทำงาน
             //_service.FetchRestaurants();
         }
+        public void RefreshData()
+        {
+            var restaurants = Service.GetRecommendedRestaurants();
+            UpdateRestaurantCards(restaurants);
+        }
 
         private void SetupUI()
         {

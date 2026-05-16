@@ -34,8 +34,20 @@ namespace FoodHubCustomerApp
         }
         private void CustomerApp_Load(object sender, EventArgs e)
         {
+            timer1.Start();
             this.Controls.Clear();
             this.Controls.Add(demoLoginPage);
+        }
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (this.Controls.Contains(homePage))
+            {
+                homePage.RefreshData();
+            }
+            else if (this.Controls.Contains(userReviewPage))
+            {
+                userReviewPage.RefreshData();
+            }
         }
 
         public void ChangeScreen(object sender, int action, UserRsp userData, object data = null)
