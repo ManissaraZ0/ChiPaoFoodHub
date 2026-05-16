@@ -31,5 +31,8 @@
     <Compile Update="UserControlPages\PromotionsPage.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="UserControlPages\TicketsPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
   </ItemGroup>
 </Project>

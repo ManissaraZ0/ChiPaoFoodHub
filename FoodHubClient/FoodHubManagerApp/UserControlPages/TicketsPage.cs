@@ -2,41 +2,40 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Diagnostics;
 using System.Drawing;
-using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using FoodHubManagerApp.UserControlComponents;
 
 namespace FoodHubManagerApp.UserControlPages
 {
-    public partial class AddPromotionPage : UserControl
+    public partial class TicketsPage : UserControl
     {
         ManagerApp form;
         private int restaurantId = 1;
         public int RestaurantId
         {
             get => restaurantId;
-            //set { restaurantId = value; txtRestaurantId.Text = value.ToString();
-            internal set;
+            set { 
+                restaurantId = value; 
+                navBarControl1.SelectedIndex = 1; // เลือก Ticket tab เมื่อเปลี่ยนร้าน
+            }
         }
         private int managerId = 1;
         public int ManagerId
         {
             get => managerId;
-            //set { restaurantId = value; txtManagerId.Text = value.ToString(); }
-            internal set;
+            set
+            {
+                managerId = value;
+            }
         }
 
-        public AddPromotionPage(ManagerApp form)
+        public TicketsPage(ManagerApp form)
         {
             InitializeComponent();
             this.form = form;
-
-            navBarControl1.SelectedIndex = 0;
 
             navBarControl1.SelectedIndexChanged += NavBarControl1_SelectedIndexChanged;
         }
@@ -49,23 +48,12 @@ namespace FoodHubManagerApp.UserControlPages
                     form.ChangeScreen(this, RestaurantId, ManagerId, 1);
                     break;
                 case 1: // Ticket
-                    form.ChangeScreen(this, RestaurantId, ManagerId, 2);
+                    form.ChangeScreen(this, RestaurantId, ManagerId, 0);
                     break;
                 case 2: // Review
-                    form.ChangeScreen(this, RestaurantId, ManagerId, 3);
+                    form.ChangeScreen(this, RestaurantId, ManagerId, 2);
                     break;
             }
         }
-
-        private void buttonControl1_Load(object sender, EventArgs e)
-        {
-            form.ChangeScreen(this, RestaurantId, ManagerId, 1);
-        }
-
-        private void buttonControl2_Load(object sender, EventArgs e)
-        {
-            MessageBox.Show("Save Promotion Clicked!");
-            form.ChangeScreen(this, RestaurantId, ManagerId, 1);
-		}
     }
 }

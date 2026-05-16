@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Text;
@@ -36,12 +37,25 @@ namespace FoodHubManagerApp.UserControlComponents
             get => _selectedIndex;
             set
             {
-                _selectedIndex = value;
-                this.Invalidate();
-                SelectedIndexChanged?.Invoke(this, EventArgs.Empty);
+                if (_selectedIndex != value)
+                {
+                    _selectedIndex = value;
+
+                    Invalidate(); // บังคับ redraw
+                    Update();
+
+                    SelectedIndexChanged?.Invoke(this, EventArgs.Empty);
+                }
             }
         }
- 
+
+        public void ForceSelect(int index)
+        {
+            _selectedIndex = index;
+            Invalidate();
+            Update();
+        }
+
         public event EventHandler SelectedIndexChanged;
  
         // --- Menu Items ---
@@ -131,10 +145,10 @@ namespace FoodHubManagerApp.UserControlComponents
             {
                 var item = _menuItems[i];
                 bool selected = (i == _selectedIndex);
- 
+                
                 var rect = new Rectangle(MenuHorizPad, y, itemWidth, MenuItemHeight);
                 _menuRects.Add(rect);
- 
+
                 // วาด background ของ item ที่ selected
                 if (selected)
                 {

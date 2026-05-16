@@ -20,15 +20,16 @@ namespace FoodHubManagerApp.UserControlPages
         public int RestaurantId
         {
             get => restaurantId;
-            //set { restaurantId = value; txtRestaurantId.Text = value.ToString();
-            internal set;
+            set { 
+                restaurantId = value;
+                navBarControl1.SelectedIndex = 0;
+            }
         }
         private int managerId = 1;
         public int ManagerId
         {
             get => managerId;
-            //set { restaurantId = value; txtManagerId.Text = value.ToString(); }
-            internal set;
+            set { managerId = value; }
         }
 
         public PromotionsPage(ManagerApp form)
@@ -43,10 +44,7 @@ namespace FoodHubManagerApp.UserControlPages
                 UpdateUserCards(GetMockData());
             };
 
-            navBarControl1.SelectedIndexChanged += (s, e) =>
-            {
-                // switch หน้า ตาม navBarControl1.SelectedIndex
-            };
+            navBarControl1.SelectedIndexChanged += NavBarControl1_SelectedIndexChanged;
         }
 
         private void SetupEventHandlers()
@@ -156,11 +154,6 @@ namespace FoodHubManagerApp.UserControlPages
             );
 
             flowLayoutPanel1.ResumeLayout();
-        }
-
-        private void navBarControl1_Load(object sender, EventArgs e)
-        {
-            navBarControl1.SelectedIndexChanged += NavBarControl1_SelectedIndexChanged;
         }
 
         private void NavBarControl1_SelectedIndexChanged(object sender, EventArgs e)
