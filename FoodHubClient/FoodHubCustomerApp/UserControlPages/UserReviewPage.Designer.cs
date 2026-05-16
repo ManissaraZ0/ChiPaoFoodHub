@@ -32,17 +32,24 @@
             mainSplitContainer = new SplitContainer();
             navBarControl = new NavBarControl();
             contentSplitContainer = new SplitContainer();
-            leftContentFlowPanel = new FlowLayoutPanel();
-            restaurantImageControl = new FoodHubCustomerApp.UserControlComponents.ImageScreenControlNew();
-            headerPanel = new Panel();
-            lblCategory = new Label();
-            lblRestaurantName = new Label();
-            lblRatingScore = new Label();
-            ticketFlowPanel = new FlowLayoutPanel();
-            lblRestaurantDescription = new Label();
-            reviewFlowPanel = new FlowLayoutPanel();
-            actionBottomPanel = new Panel();
-            btnAddPost = new PictureBox();
+            subLeftContainer = new SplitContainer();
+            tableHeadLeftPanel = new TableLayoutPanel();
+            backBtn = new FoodHubCustomerApp.UserControlComponents.BackButtonControl();
+            sectionLeftHeaderControl = new SectionHeaderControl();
+            subSubLeftContainer = new SplitContainer();
+            resImageScreen = new FoodHubCustomerApp.UserControlComponents.ImageScreenControlNew();
+            subSubSubLeftContainer = new SplitContainer();
+            titleTableLayoutPanel = new TableLayoutPanel();
+            resTitle = new Label();
+            categoryTitle = new Label();
+            categoryValue = new Label();
+            subSubSubSubLeftContainer = new SplitContainer();
+            subTitleTableLayoutPanel = new TableLayoutPanel();
+            starLabel = new Label();
+            ratingLabel = new Label();
+            addrTitle = new Label();
+            addrContent = new Label();
+            testPanel = new Panel();
             ((System.ComponentModel.ISupportInitialize)mainSplitContainer).BeginInit();
             mainSplitContainer.Panel1.SuspendLayout();
             mainSplitContainer.Panel2.SuspendLayout();
@@ -51,15 +58,31 @@
             contentSplitContainer.Panel1.SuspendLayout();
             contentSplitContainer.Panel2.SuspendLayout();
             contentSplitContainer.SuspendLayout();
-            leftContentFlowPanel.SuspendLayout();
-            headerPanel.SuspendLayout();
-            actionBottomPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)btnAddPost).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)subLeftContainer).BeginInit();
+            subLeftContainer.Panel1.SuspendLayout();
+            subLeftContainer.Panel2.SuspendLayout();
+            subLeftContainer.SuspendLayout();
+            tableHeadLeftPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)subSubLeftContainer).BeginInit();
+            subSubLeftContainer.Panel1.SuspendLayout();
+            subSubLeftContainer.Panel2.SuspendLayout();
+            subSubLeftContainer.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)subSubSubLeftContainer).BeginInit();
+            subSubSubLeftContainer.Panel1.SuspendLayout();
+            subSubSubLeftContainer.Panel2.SuspendLayout();
+            subSubSubLeftContainer.SuspendLayout();
+            titleTableLayoutPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)subSubSubSubLeftContainer).BeginInit();
+            subSubSubSubLeftContainer.Panel1.SuspendLayout();
+            subSubSubSubLeftContainer.SuspendLayout();
+            subTitleTableLayoutPanel.SuspendLayout();
             SuspendLayout();
             // 
             // mainSplitContainer
             // 
+            mainSplitContainer.BackColor = Color.White;
             mainSplitContainer.Dock = DockStyle.Fill;
+            mainSplitContainer.FixedPanel = FixedPanel.Panel1;
             mainSplitContainer.IsSplitterFixed = true;
             mainSplitContainer.Location = new Point(0, 0);
             mainSplitContainer.Margin = new Padding(0);
@@ -75,6 +98,7 @@
             mainSplitContainer.Panel2.Controls.Add(contentSplitContainer);
             mainSplitContainer.Size = new Size(1280, 720);
             mainSplitContainer.SplitterDistance = 70;
+            mainSplitContainer.SplitterWidth = 1;
             mainSplitContainer.TabIndex = 0;
             // 
             // navBarControl
@@ -94,6 +118,7 @@
             // contentSplitContainer
             // 
             contentSplitContainer.Dock = DockStyle.Fill;
+            contentSplitContainer.FixedPanel = FixedPanel.Panel2;
             contentSplitContainer.IsSplitterFixed = true;
             contentSplitContainer.Location = new Point(0, 0);
             contentSplitContainer.Margin = new Padding(0);
@@ -101,138 +126,295 @@
             // 
             // contentSplitContainer.Panel1
             // 
-            contentSplitContainer.Panel1.Controls.Add(leftContentFlowPanel);
+            contentSplitContainer.Panel1.Controls.Add(subLeftContainer);
+            contentSplitContainer.Panel1.Padding = new Padding(25, 0, 12, 10);
             // 
             // contentSplitContainer.Panel2
             // 
-            contentSplitContainer.Panel2.Controls.Add(reviewFlowPanel);
-            contentSplitContainer.Panel2.Controls.Add(actionBottomPanel);
-            contentSplitContainer.Size = new Size(1280, 646);
-            contentSplitContainer.SplitterDistance = 896;
+            contentSplitContainer.Panel2.Controls.Add(testPanel);
+            contentSplitContainer.Panel2.Padding = new Padding(12, 10, 25, 10);
+            contentSplitContainer.Size = new Size(1280, 649);
+            contentSplitContainer.SplitterDistance = 910;
+            contentSplitContainer.SplitterWidth = 1;
             contentSplitContainer.TabIndex = 0;
             // 
-            // leftContentFlowPanel
+            // subLeftContainer
             // 
-            leftContentFlowPanel.AutoScroll = true;
-            leftContentFlowPanel.Controls.Add(restaurantImageControl);
-            leftContentFlowPanel.Controls.Add(headerPanel);
-            leftContentFlowPanel.Controls.Add(lblRatingScore);
-            leftContentFlowPanel.Controls.Add(ticketFlowPanel);
-            leftContentFlowPanel.Controls.Add(lblRestaurantDescription);
-            leftContentFlowPanel.Dock = DockStyle.Fill;
-            leftContentFlowPanel.FlowDirection = FlowDirection.TopDown;
-            leftContentFlowPanel.Location = new Point(0, 0);
-            leftContentFlowPanel.Margin = new Padding(0);
-            leftContentFlowPanel.Name = "leftContentFlowPanel";
-            leftContentFlowPanel.Size = new Size(896, 646);
-            leftContentFlowPanel.TabIndex = 0;
-            leftContentFlowPanel.WrapContents = false;
+            subLeftContainer.Dock = DockStyle.Fill;
+            subLeftContainer.FixedPanel = FixedPanel.Panel1;
+            subLeftContainer.Location = new Point(25, 0);
+            subLeftContainer.Margin = new Padding(0);
+            subLeftContainer.Name = "subLeftContainer";
+            subLeftContainer.Orientation = Orientation.Horizontal;
             // 
-            // restaurantImageControl
+            // subLeftContainer.Panel1
             // 
-            restaurantImageControl.BackColor = Color.Transparent;
-            restaurantImageControl.DisplayImage = null;
-            restaurantImageControl.Location = new Point(0, 0);
-            restaurantImageControl.Margin = new Padding(0, 0, 0, 10);
-            restaurantImageControl.Name = "restaurantImageControl";
-            restaurantImageControl.Size = new Size(896, 280);
-            restaurantImageControl.TabIndex = 0;
+            subLeftContainer.Panel1.Controls.Add(tableHeadLeftPanel);
             // 
-            // headerPanel
+            // subLeftContainer.Panel2
             // 
-            headerPanel.Controls.Add(lblCategory);
-            headerPanel.Controls.Add(lblRestaurantName);
-            headerPanel.Location = new Point(3, 293);
-            headerPanel.Name = "headerPanel";
-            headerPanel.Size = new Size(896, 50);
-            headerPanel.TabIndex = 1;
+            subLeftContainer.Panel2.Controls.Add(subSubLeftContainer);
+            subLeftContainer.Size = new Size(873, 639);
+            subLeftContainer.SplitterWidth = 1;
+            subLeftContainer.TabIndex = 0;
             // 
-            // lblCategory
+            // tableHeadLeftPanel
             // 
-            lblCategory.AutoSize = true;
-            lblCategory.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblCategory.ForeColor = Color.Gray;
-            lblCategory.Location = new Point(194, 16);
-            lblCategory.Name = "lblCategory";
-            lblCategory.Size = new Size(147, 25);
-            lblCategory.TabIndex = 1;
-            lblCategory.Text = "Category: Buffet";
+            tableHeadLeftPanel.ColumnCount = 3;
+            tableHeadLeftPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 6.035236F));
+            tableHeadLeftPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 87.9251F));
+            tableHeadLeftPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 6.039662F));
+            tableHeadLeftPanel.Controls.Add(backBtn, 0, 0);
+            tableHeadLeftPanel.Controls.Add(sectionLeftHeaderControl, 1, 0);
+            tableHeadLeftPanel.Dock = DockStyle.Fill;
+            tableHeadLeftPanel.Location = new Point(0, 0);
+            tableHeadLeftPanel.Margin = new Padding(0);
+            tableHeadLeftPanel.Name = "tableHeadLeftPanel";
+            tableHeadLeftPanel.RowCount = 1;
+            tableHeadLeftPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableHeadLeftPanel.Size = new Size(873, 50);
+            tableHeadLeftPanel.TabIndex = 0;
             // 
-            // lblRestaurantName
+            // backBtn
             // 
-            lblRestaurantName.AutoSize = true;
-            lblRestaurantName.Font = new Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblRestaurantName.Location = new Point(0, 0);
-            lblRestaurantName.Margin = new Padding(0);
-            lblRestaurantName.Name = "lblRestaurantName";
-            lblRestaurantName.Size = new Size(191, 45);
-            lblRestaurantName.TabIndex = 0;
-            lblRestaurantName.Text = "Suki Teenoi";
+            backBtn.Anchor = AnchorStyles.None;
+            backBtn.BackColor = Color.Transparent;
+            backBtn.Location = new Point(5, 5);
+            backBtn.Margin = new Padding(5);
+            backBtn.Name = "backBtn";
+            backBtn.OutlineColor = Color.Black;
+            backBtn.Size = new Size(41, 40);
+            backBtn.StrokeWidth = 2.5F;
+            backBtn.TabIndex = 0;
             // 
-            // lblRatingScore
+            // sectionLeftHeaderControl
             // 
-            lblRatingScore.Location = new Point(0, 346);
-            lblRatingScore.Margin = new Padding(0);
-            lblRatingScore.Name = "lblRatingScore";
-            lblRatingScore.Size = new Size(896, 30);
-            lblRatingScore.TabIndex = 2;
-            lblRatingScore.Text = "⭐ 4.85/5.00";
-            lblRatingScore.TextAlign = ContentAlignment.MiddleLeft;
+            sectionLeftHeaderControl.BackColor = Color.Transparent;
+            sectionLeftHeaderControl.Dock = DockStyle.Top;
+            sectionLeftHeaderControl.HeaderText = "";
+            sectionLeftHeaderControl.Location = new Point(52, 0);
+            sectionLeftHeaderControl.Margin = new Padding(0);
+            sectionLeftHeaderControl.Name = "sectionLeftHeaderControl";
+            sectionLeftHeaderControl.Size = new Size(767, 50);
+            sectionLeftHeaderControl.TabIndex = 1;
             // 
-            // ticketFlowPanel
+            // subSubLeftContainer
             // 
-            ticketFlowPanel.Location = new Point(0, 376);
-            ticketFlowPanel.Margin = new Padding(0);
-            ticketFlowPanel.Name = "ticketFlowPanel";
-            ticketFlowPanel.Size = new Size(896, 110);
-            ticketFlowPanel.TabIndex = 3;
+            subSubLeftContainer.Dock = DockStyle.Fill;
+            subSubLeftContainer.FixedPanel = FixedPanel.Panel1;
+            subSubLeftContainer.IsSplitterFixed = true;
+            subSubLeftContainer.Location = new Point(0, 0);
+            subSubLeftContainer.Margin = new Padding(0);
+            subSubLeftContainer.Name = "subSubLeftContainer";
+            subSubLeftContainer.Orientation = Orientation.Horizontal;
             // 
-            // lblRestaurantDescription
+            // subSubLeftContainer.Panel1
             // 
-            lblRestaurantDescription.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblRestaurantDescription.Location = new Point(0, 486);
-            lblRestaurantDescription.Margin = new Padding(0);
-            lblRestaurantDescription.Name = "lblRestaurantDescription";
-            lblRestaurantDescription.Size = new Size(896, 180);
-            lblRestaurantDescription.TabIndex = 4;
-            lblRestaurantDescription.Text = "Restaurant Description";
+            subSubLeftContainer.Panel1.Controls.Add(resImageScreen);
+            subSubLeftContainer.Panel1.Padding = new Padding(0, 10, 0, 10);
             // 
-            // reviewFlowPanel
+            // subSubLeftContainer.Panel2
             // 
-            reviewFlowPanel.AutoScroll = true;
-            reviewFlowPanel.Dock = DockStyle.Fill;
-            reviewFlowPanel.FlowDirection = FlowDirection.TopDown;
-            reviewFlowPanel.Location = new Point(0, 0);
-            reviewFlowPanel.Name = "reviewFlowPanel";
-            reviewFlowPanel.Size = new Size(380, 546);
-            reviewFlowPanel.TabIndex = 1;
-            reviewFlowPanel.WrapContents = false;
+            subSubLeftContainer.Panel2.Controls.Add(subSubSubLeftContainer);
+            subSubLeftContainer.Size = new Size(873, 588);
+            subSubLeftContainer.SplitterDistance = 278;
+            subSubLeftContainer.SplitterWidth = 1;
+            subSubLeftContainer.TabIndex = 0;
             // 
-            // actionBottomPanel
+            // resImageScreen
             // 
-            actionBottomPanel.Controls.Add(btnAddPost);
-            actionBottomPanel.Dock = DockStyle.Bottom;
-            actionBottomPanel.Location = new Point(0, 546);
-            actionBottomPanel.Margin = new Padding(0);
-            actionBottomPanel.Name = "actionBottomPanel";
-            actionBottomPanel.Size = new Size(380, 100);
-            actionBottomPanel.TabIndex = 0;
+            resImageScreen.BackColor = Color.Transparent;
+            resImageScreen.DisplayImage = null;
+            resImageScreen.Dock = DockStyle.Fill;
+            resImageScreen.Location = new Point(0, 10);
+            resImageScreen.Margin = new Padding(0);
+            resImageScreen.Name = "resImageScreen";
+            resImageScreen.Size = new Size(873, 258);
+            resImageScreen.TabIndex = 0;
             // 
-            // btnAddPost
+            // subSubSubLeftContainer
             // 
-            btnAddPost.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btnAddPost.Cursor = Cursors.Hand;
-            btnAddPost.Location = new Point(294, 35);
-            btnAddPost.Name = "btnAddPost";
-            btnAddPost.Size = new Size(40, 40);
-            btnAddPost.SizeMode = PictureBoxSizeMode.Zoom;
-            btnAddPost.TabIndex = 0;
-            btnAddPost.TabStop = false;
+            subSubSubLeftContainer.Dock = DockStyle.Fill;
+            subSubSubLeftContainer.FixedPanel = FixedPanel.Panel1;
+            subSubSubLeftContainer.IsSplitterFixed = true;
+            subSubSubLeftContainer.Location = new Point(0, 0);
+            subSubSubLeftContainer.Margin = new Padding(0);
+            subSubSubLeftContainer.Name = "subSubSubLeftContainer";
+            subSubSubLeftContainer.Orientation = Orientation.Horizontal;
+            // 
+            // subSubSubLeftContainer.Panel1
+            // 
+            subSubSubLeftContainer.Panel1.Controls.Add(titleTableLayoutPanel);
+            // 
+            // subSubSubLeftContainer.Panel2
+            // 
+            subSubSubLeftContainer.Panel2.Controls.Add(subSubSubSubLeftContainer);
+            subSubSubLeftContainer.Size = new Size(873, 309);
+            subSubSubLeftContainer.SplitterWidth = 1;
+            subSubSubLeftContainer.TabIndex = 0;
+            // 
+            // titleTableLayoutPanel
+            // 
+            titleTableLayoutPanel.ColumnCount = 3;
+            titleTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 30F));
+            titleTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 12F));
+            titleTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 58F));
+            titleTableLayoutPanel.Controls.Add(resTitle, 0, 0);
+            titleTableLayoutPanel.Controls.Add(categoryTitle, 1, 0);
+            titleTableLayoutPanel.Controls.Add(categoryValue, 2, 0);
+            titleTableLayoutPanel.Dock = DockStyle.Fill;
+            titleTableLayoutPanel.Location = new Point(0, 0);
+            titleTableLayoutPanel.Margin = new Padding(0);
+            titleTableLayoutPanel.Name = "titleTableLayoutPanel";
+            titleTableLayoutPanel.RowCount = 1;
+            titleTableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            titleTableLayoutPanel.Size = new Size(873, 50);
+            titleTableLayoutPanel.TabIndex = 0;
+            // 
+            // resTitle
+            // 
+            resTitle.AutoSize = true;
+            resTitle.Dock = DockStyle.Fill;
+            resTitle.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+            resTitle.Location = new Point(0, 0);
+            resTitle.Margin = new Padding(0);
+            resTitle.Name = "resTitle";
+            resTitle.Size = new Size(261, 50);
+            resTitle.TabIndex = 0;
+            resTitle.Text = "Film's Restaurant";
+            resTitle.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // categoryTitle
+            // 
+            categoryTitle.Dock = DockStyle.Fill;
+            categoryTitle.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
+            categoryTitle.ForeColor = Color.Gray;
+            categoryTitle.Location = new Point(261, 0);
+            categoryTitle.Margin = new Padding(0);
+            categoryTitle.Name = "categoryTitle";
+            categoryTitle.Size = new Size(104, 50);
+            categoryTitle.TabIndex = 1;
+            categoryTitle.Text = "Category:";
+            categoryTitle.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // categoryValue
+            // 
+            categoryValue.Dock = DockStyle.Fill;
+            categoryValue.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
+            categoryValue.ForeColor = Color.Gray;
+            categoryValue.Location = new Point(365, 0);
+            categoryValue.Margin = new Padding(0);
+            categoryValue.Name = "categoryValue";
+            categoryValue.Size = new Size(508, 50);
+            categoryValue.TabIndex = 2;
+            categoryValue.Text = "Japan, Eiei";
+            categoryValue.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // subSubSubSubLeftContainer
+            // 
+            subSubSubSubLeftContainer.Dock = DockStyle.Fill;
+            subSubSubSubLeftContainer.FixedPanel = FixedPanel.Panel1;
+            subSubSubSubLeftContainer.IsSplitterFixed = true;
+            subSubSubSubLeftContainer.Location = new Point(0, 0);
+            subSubSubSubLeftContainer.Margin = new Padding(0);
+            subSubSubSubLeftContainer.Name = "subSubSubSubLeftContainer";
+            subSubSubSubLeftContainer.Orientation = Orientation.Horizontal;
+            // 
+            // subSubSubSubLeftContainer.Panel1
+            // 
+            subSubSubSubLeftContainer.Panel1.Controls.Add(subTitleTableLayoutPanel);
+            subSubSubSubLeftContainer.Size = new Size(873, 258);
+            subSubSubSubLeftContainer.SplitterWidth = 1;
+            subSubSubSubLeftContainer.TabIndex = 0;
+            // 
+            // subTitleTableLayoutPanel
+            // 
+            subTitleTableLayoutPanel.ColumnCount = 4;
+            subTitleTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 6F));
+            subTitleTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14F));
+            subTitleTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 11F));
+            subTitleTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 69F));
+            subTitleTableLayoutPanel.Controls.Add(starLabel, 0, 0);
+            subTitleTableLayoutPanel.Controls.Add(ratingLabel, 1, 0);
+            subTitleTableLayoutPanel.Controls.Add(addrTitle, 2, 0);
+            subTitleTableLayoutPanel.Controls.Add(addrContent, 3, 0);
+            subTitleTableLayoutPanel.Dock = DockStyle.Fill;
+            subTitleTableLayoutPanel.Location = new Point(0, 0);
+            subTitleTableLayoutPanel.Name = "subTitleTableLayoutPanel";
+            subTitleTableLayoutPanel.RowCount = 1;
+            subTitleTableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            subTitleTableLayoutPanel.Size = new Size(873, 50);
+            subTitleTableLayoutPanel.TabIndex = 0;
+            // 
+            // starLabel
+            // 
+            starLabel.Dock = DockStyle.Fill;
+            starLabel.Enabled = false;
+            starLabel.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            starLabel.ForeColor = Color.DarkOrange;
+            starLabel.Location = new Point(0, 0);
+            starLabel.Margin = new Padding(0);
+            starLabel.Name = "starLabel";
+            starLabel.Size = new Size(52, 50);
+            starLabel.TabIndex = 0;
+            starLabel.Text = "★";
+            starLabel.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // ratingLabel
+            // 
+            ratingLabel.Dock = DockStyle.Fill;
+            ratingLabel.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
+            ratingLabel.ForeColor = Color.Gray;
+            ratingLabel.Location = new Point(52, 0);
+            ratingLabel.Margin = new Padding(0);
+            ratingLabel.Name = "ratingLabel";
+            ratingLabel.Size = new Size(122, 50);
+            ratingLabel.TabIndex = 1;
+            ratingLabel.Text = "4.99/5.00";
+            ratingLabel.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // addrTitle
+            // 
+            addrTitle.AutoSize = true;
+            addrTitle.Dock = DockStyle.Fill;
+            addrTitle.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
+            addrTitle.Location = new Point(174, 0);
+            addrTitle.Margin = new Padding(0);
+            addrTitle.Name = "addrTitle";
+            addrTitle.Size = new Size(96, 50);
+            addrTitle.TabIndex = 2;
+            addrTitle.Text = "Address:";
+            addrTitle.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // addrContent
+            // 
+            addrContent.AutoSize = true;
+            addrContent.Dock = DockStyle.Fill;
+            addrContent.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
+            addrContent.ForeColor = Color.Gray;
+            addrContent.Location = new Point(270, 0);
+            addrContent.Margin = new Padding(0);
+            addrContent.Name = "addrContent";
+            addrContent.Size = new Size(603, 50);
+            addrContent.TabIndex = 3;
+            addrContent.Text = "Thailand, 12900";
+            addrContent.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // testPanel
+            // 
+            testPanel.BackColor = Color.LightGray;
+            testPanel.Dock = DockStyle.Fill;
+            testPanel.Location = new Point(12, 10);
+            testPanel.Margin = new Padding(0);
+            testPanel.Name = "testPanel";
+            testPanel.Size = new Size(332, 629);
+            testPanel.TabIndex = 0;
             // 
             // UserReviewPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
             Controls.Add(mainSplitContainer);
             Margin = new Padding(0);
             Name = "UserReviewPage";
@@ -245,11 +427,26 @@
             contentSplitContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)contentSplitContainer).EndInit();
             contentSplitContainer.ResumeLayout(false);
-            leftContentFlowPanel.ResumeLayout(false);
-            headerPanel.ResumeLayout(false);
-            headerPanel.PerformLayout();
-            actionBottomPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)btnAddPost).EndInit();
+            subLeftContainer.Panel1.ResumeLayout(false);
+            subLeftContainer.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)subLeftContainer).EndInit();
+            subLeftContainer.ResumeLayout(false);
+            tableHeadLeftPanel.ResumeLayout(false);
+            subSubLeftContainer.Panel1.ResumeLayout(false);
+            subSubLeftContainer.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)subSubLeftContainer).EndInit();
+            subSubLeftContainer.ResumeLayout(false);
+            subSubSubLeftContainer.Panel1.ResumeLayout(false);
+            subSubSubLeftContainer.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)subSubSubLeftContainer).EndInit();
+            subSubSubLeftContainer.ResumeLayout(false);
+            titleTableLayoutPanel.ResumeLayout(false);
+            titleTableLayoutPanel.PerformLayout();
+            subSubSubSubLeftContainer.Panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)subSubSubSubLeftContainer).EndInit();
+            subSubSubSubLeftContainer.ResumeLayout(false);
+            subTitleTableLayoutPanel.ResumeLayout(false);
+            subTitleTableLayoutPanel.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -258,16 +455,23 @@
         private SplitContainer mainSplitContainer;
         private SplitContainer contentSplitContainer;
         private NavBarControl navBarControl;
-        private FlowLayoutPanel leftContentFlowPanel;
-        private UserControlComponents.ImageScreenControlNew restaurantImageControl;
-        private Panel headerPanel;
-        private Label lblCategory;
-        private Label lblRestaurantName;
-        private Label lblRatingScore;
-        private FlowLayoutPanel ticketFlowPanel;
-        private Label lblRestaurantDescription;
-        private Panel actionBottomPanel;
-        private PictureBox btnAddPost;
-        private FlowLayoutPanel reviewFlowPanel;
+        private SplitContainer subLeftContainer;
+        private TableLayoutPanel tableHeadLeftPanel;
+        private UserControlComponents.BackButtonControl backBtn;
+        private SectionHeaderControl sectionLeftHeaderControl;
+        private SplitContainer subSubLeftContainer;
+        private UserControlComponents.ImageScreenControlNew resImageScreen;
+        private Panel testPanel;
+        private SplitContainer subSubSubLeftContainer;
+        private TableLayoutPanel titleTableLayoutPanel;
+        private Label resTitle;
+        private Label categoryTitle;
+        private Label categoryValue;
+        private SplitContainer subSubSubSubLeftContainer;
+        private TableLayoutPanel subTitleTableLayoutPanel;
+        private Label starLabel;
+        private Label ratingLabel;
+        private Label addrTitle;
+        private Label addrContent;
     }
 }
