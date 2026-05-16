@@ -92,10 +92,18 @@ public class CustomerController : ControllerBase
 
     // 3. หน้า Detail ของ Restaurant
     [HttpGet("restaurants/{restaurantId}/details")]
-    public RestaurantDetailRsp GetRestaurantDetail(int restaurantId)
+    public RestaurantRecommendationRsp GetRestaurantDetail(int restaurantId)
     {
         var domain = new DomainLogic(MyConfig.ConnStr);
         return domain.GetRestaurantDetail(restaurantId);
+    }
+
+    // 4. Search Restaurant (ค้นหาร้านอาหารจากชื่อ หรือ หมวดหมู่)
+    [HttpGet("restaurants/search")]
+    public List<RestaurantRecommendationRsp> GetRestaurantBySearchText([FromQuery, Required] string searchText)
+    {
+        var domain = new DomainLogic(MyConfig.ConnStr);
+        return domain.GetRestaurantBySearchText(searchText);
     }
 }
 
