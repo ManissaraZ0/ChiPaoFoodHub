@@ -120,6 +120,10 @@ namespace FoodHubCustomerApp.UserControlPages
                     form.ChangeScreen(this, 5, userData, resPrevious);
                 }
             };
+
+            backBtn.Click += (s, e) => {
+                form.ChangeScreen(this, 4, userData);
+            };
         }
 
         private void SetupPlaceholder()

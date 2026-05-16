@@ -128,7 +128,17 @@ namespace FoodHubCustomerApp
             }
             if (sender is AddPostPage)
             {
-                if (action == 5)
+                // Back Button from AddPostPage to HomePage (Patt เอ้ง)
+                if (action == 4)
+                {
+                    if (userData != null)
+                    {
+                        this.Controls.Clear();
+                        homePage.UserData = userData;
+                        this.Controls.Add(homePage);
+                    }
+                }
+                else if (action == 5)
                 {
                     if (userData != null && data != null)
                     {
