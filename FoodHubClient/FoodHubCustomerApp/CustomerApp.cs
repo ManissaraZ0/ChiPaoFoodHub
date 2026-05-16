@@ -94,7 +94,29 @@ namespace FoodHubCustomerApp
             }
             if (sender is UserReviewPage)
             {
-                //
+                if (action == 4)
+                {
+                    if (userData != null && data != null)
+                    {
+                        this.Controls.Clear();
+                        addPostPage.UserData = userData;
+                        addPostPage.ResPrevious = (RestaurantRecommendationRsp)data;
+                        this.Controls.Add(addPostPage);
+                    }
+                }
+            }
+            if (sender is AddPostPage)
+            {
+                if (action == 5)
+                {
+                    if (userData != null && data != null)
+                    {
+                        this.Controls.Clear();
+                        userReviewPage.UserData = userData;
+                        userReviewPage.ResPrevious = (RestaurantRecommendationRsp)data;
+                        this.Controls.Add(userReviewPage);
+                    }
+                }
             }
         }
     }
