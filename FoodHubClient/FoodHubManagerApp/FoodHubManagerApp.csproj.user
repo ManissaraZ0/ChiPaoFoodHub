@@ -4,7 +4,16 @@
     <Compile Update="ManagerApp.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="UserControlComponents\CircleAddButtonControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="UserControlComponents\NavBarControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="UserControlComponents\PromotionListItemControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="UserControlComponents\SearchBarControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="UserControlComponents\SectionHeaderControl.cs">
