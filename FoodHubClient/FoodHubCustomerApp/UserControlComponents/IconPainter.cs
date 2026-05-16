@@ -160,5 +160,52 @@ namespace FoodHubCustomerApp.UserControlComponents
                 g.DrawLines(penArrow, arrowPoints);
             }
         }
+
+        public static void DrawPenIcon(Graphics g, Rectangle bounds)
+        {
+            g.SmoothingMode = SmoothingMode.AntiAlias;
+            GraphicsState state = g.Save();
+
+            // 1. หาจุดกึ่งกลางของกล่องที่จะวาด
+            float cx = bounds.X + bounds.Width / 2f;
+            float cy = bounds.Y + bounds.Height / 2f;
+
+            // 2. ย้ายจุดอ้างอิงไปตรงกลาง แล้วหมุนแกนวาดไป 45 องศาตามเข็มนาฬิกา
+            // ทริค: พอเราวาดปากกาในแนวตั้งชี้ลงพื้น มันจะเอียงไปชี้ที่มุมซ้ายล่างพอดี!
+            g.TranslateTransform(cx, cy);
+            g.RotateTransform(45);
+
+            // 3. กำหนดสัดส่วนของปากกา (อิงตามขนาดพื้นที่ bounds)
+            float w = bounds.Width * 0.28f;  // ความกว้างของตัวด้าม
+            float halfW = w / 2f;
+            float h = bounds.Height * 0.65f; // ความยาวรวมของปากกา
+            float halfH = h / 2f;
+
+            using (SolidBrush brushWhite = new SolidBrush(Color.White))
+            {
+                // ส่วนที่ 1: หัวด้านบนสุด (ทำขอบบนให้โค้งมนแบบในรูปต้นฉบับ)
+                float capHeight = h * 0.2f;
+                g.FillEllipse(brushWhite, -halfW, -halfH, w, w); // ขอบโค้งมน
+                g.FillRectangle(brushWhite, -halfW, -halfH + (w / 2f), w, capHeight - (w / 2f)); // เติมเนื้อให้เต็ม
+
+                // ส่วนที่ 2: ด้ามปากกาตรงกลาง
+                float gap = h * 0.05f; // เส้นร่องว่างๆ ระหว่างชิ้นส่วน
+                float bodyY = -halfH + capHeight + gap;
+                float bodyHeight = h * 0.45f;
+                g.FillRectangle(brushWhite, -halfW, bodyY, w, bodyHeight);
+
+                // ส่วนที่ 3: ปลายปากกา (รูปสามเหลี่ยม)
+                float tipY = bodyY + bodyHeight + gap;
+                PointF[] tipPoints = new PointF[]
+                {
+                    new PointF(-halfW, tipY), // มุมซ้ายบนของสามเหลี่ยม
+                    new PointF(halfW, tipY),  // มุมขวาบนของสามเหลี่ยม
+                    new PointF(0, halfH)      // ปลายแหลมสุดชี้ลงล่าง
+                };
+                g.FillPolygon(brushWhite, tipPoints);
+            }
+
+            g.Restore(state);
+        }
     }
 }

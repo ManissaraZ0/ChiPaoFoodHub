@@ -76,14 +76,23 @@ namespace FoodHubCustomerApp.UserControlPages
             navBarControl.HeartClicked += (s, e) => form.ChangeScreen(this, 4, userData, resPrevious);
             navBarControl.BellClicked += (s, e) => MessageBox.Show("แสดงการแจ้งเตือน");
             navBarControl.ProfileClicked += (s, e) => form.ChangeScreen(this, 3, userData);
+
+            // เพื่อบอกให้ปุ่มรู้ว่าต้องใช้ฟังก์ชันนี้ตอนวาดตัวเอง
+            btnAddPost.Paint += btnAddPost_Paint;
         }
 
         private void btnAddPost_Paint(object sender, PaintEventArgs e)
         {
-            // ตัดขอบ PictureBox ให้กลายเป็นวงกลม
+            // 1. ตัดขอบ PictureBox ให้กลายเป็นวงกลมเหมือนเดิม
             System.Drawing.Drawing2D.GraphicsPath path = new System.Drawing.Drawing2D.GraphicsPath();
             path.AddEllipse(0, 0, btnAddPost.Width - 1, btnAddPost.Height - 1);
             btnAddPost.Region = new Region(path);
+
+            // 2. สร้างกรอบสี่เหลี่ยมเพื่อบอกระยะให้ IconPainter (เว้นขอบ Padding เข้ามาหน่อย ไอคอนจะได้ไม่ชนขอบปุ่ม)
+            Rectangle iconBounds = new Rectangle(0, 0, btnAddPost.Width, btnAddPost.Height);
+
+            // 3. เรียกใช้ฟังก์ชันวาดปากกาสีขาว ทับลงไปบนพื้นหลังสี DarkRed
+            FoodHubCustomerApp.UserControlComponents.IconPainter.DrawPenIcon(e.Graphics, iconBounds);
         }
     }
 }

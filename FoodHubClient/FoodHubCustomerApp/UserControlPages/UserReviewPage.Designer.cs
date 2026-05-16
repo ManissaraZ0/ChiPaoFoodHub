@@ -89,6 +89,7 @@
             navBarControl.Name = "navBarControl";
             navBarControl.Size = new Size(1280, 70);
             navBarControl.TabIndex = 0;
+            navBarControl.UserData = null;
             // 
             // contentSplitContainer
             // 
@@ -221,9 +222,10 @@
             // 
             btnAddPost.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnAddPost.Cursor = Cursors.Hand;
-            btnAddPost.Location = new Point(263, 36);
+            btnAddPost.Location = new Point(294, 35);
             btnAddPost.Name = "btnAddPost";
-            btnAddPost.Size = new Size(60, 60);
+            btnAddPost.Size = new Size(40, 40);
+            btnAddPost.SizeMode = PictureBoxSizeMode.Zoom;
             btnAddPost.TabIndex = 0;
             btnAddPost.TabStop = false;
             // 
