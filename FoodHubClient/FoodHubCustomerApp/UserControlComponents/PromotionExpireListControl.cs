@@ -17,18 +17,22 @@ namespace FoodHubCustomerApp.UserControlComponents
         {
             _item = item;
 
-            this.Size = new Size(450, 70);
-            this.Margin = new Padding(5);
+            this.Height = 70;
+            this.Margin = new Padding(5, 5, 5, 0); // ปรับกั้นระยะ ซ้าย, บน, ขวา, ล่าง ให้พอดี
             this.Cursor = Cursors.Hand;
             this.DoubleBuffered = true;
 
             this.SetStyle(ControlStyles.SupportsTransparentBackColor, true);
             this.BackColor = Color.Transparent;
+
+            this.Anchor = AnchorStyles.None;
         }
 
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
+            if (_item == null) return;
+
             var g = e.Graphics;
 
             g.SmoothingMode = SmoothingMode.AntiAlias;
@@ -39,9 +43,9 @@ namespace FoodHubCustomerApp.UserControlComponents
             g.Clear(parentColor);
 
             int outerRadius = 10;
-            Rectangle rectOuter = new Rectangle(0, 0, this.Width - 1, this.Height - 1);
+            int borderOffset = 1;
+            Rectangle rectOuter = new Rectangle(borderOffset, borderOffset, this.Width - (borderOffset * 2) - 1, this.Height - (borderOffset * 2) - 1);
 
-            // วาดกรอบนอกและถมสีขาว
             using (GraphicsPath pathOuter = GetRoundedPath(rectOuter, outerRadius))
             {
                 using (SolidBrush brushWhite = new SolidBrush(Color.White))
@@ -52,27 +56,27 @@ namespace FoodHubCustomerApp.UserControlComponents
             }
 
             int padX = 18;
-
-            // Promotion Title
             using (Font fontTitle = new Font("Segoe UI", 12f, FontStyle.Bold))
             using (SolidBrush brushBlack = new SolidBrush(Color.Black))
             {
-                g.DrawString(_item.Title, fontTitle, brushBlack, padX, 12);
+                // ใส่ StringFormat เพื่อให้ Text ตัดคำได้ถ้าชื่อยาวเกินไป และใช้ RectangleF ตามความกว้าง UserControl
+                g.DrawString(_item.Title, fontTitle, brushBlack,
+                    new RectangleF(padX, 12, this.Width - (padX * 2) - 1, 25));
             }
 
-            // Expire Date (วาดคำว่า Expire: นำหน้าให้เลย)
             using (Font fontExpire = new Font("Segoe UI", 9.5f, FontStyle.Regular))
             using (SolidBrush brushGray = new SolidBrush(Color.FromArgb(140, 140, 140)))
             {
-                g.DrawString($"Expire: {_item.ExpireDate}", fontExpire, brushGray, padX, 37);
+                g.DrawString($"Expire: {_item.ExpireDate}", fontExpire, brushGray,
+                    new RectangleF(padX, 37, this.Width - (padX * 2) - 1, 25));
             }
         }
 
-        // Helper: วาดกรอบสี่เหลี่ยมมุมโค้ง
         private GraphicsPath GetRoundedPath(Rectangle bounds, int radius)
         {
             int d = radius * 2;
             GraphicsPath path = new GraphicsPath();
+            if (bounds.Width <= d) d = bounds.Width; // กันระบบค้างถ้าความกว้างเหลือน้อยกว่ารัศมีมุมโค้ง
             path.AddArc(bounds.X, bounds.Y, d, d, 180, 90);
             path.AddArc(bounds.Right - d, bounds.Y, d, d, 270, 90);
             path.AddArc(bounds.Right - d, bounds.Bottom - d, d, d, 0, 90);

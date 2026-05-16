@@ -44,9 +44,11 @@
             topSplitDescriptionContent = new SplitContainer();
             tableLayoutPanelTopContent = new TableLayoutPanel();
             topDescriptionLabel = new Label();
+            emailDetail = new Label();
             topSecondSplitDescriptionContent = new SplitContainer();
             tableLayoutPanelTopSecondContent = new TableLayoutPanel();
             topSecondDescriptionLabel = new Label();
+            promoCount = new Label();
             contentRightPanel = new Panel();
             subSplitRightContainer = new SplitContainer();
             rightSectionHeaderControl = new SectionHeaderControl();
@@ -126,6 +128,7 @@
             navBarControl.Name = "navBarControl";
             navBarControl.Size = new Size(1280, 70);
             navBarControl.TabIndex = 0;
+            navBarControl.UserData = null;
             // 
             // contentSplitContainer
             // 
@@ -319,16 +322,16 @@
             // tableLayoutPanelTopContent
             // 
             tableLayoutPanelTopContent.ColumnCount = 2;
-            tableLayoutPanelTopContent.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 30F));
-            tableLayoutPanelTopContent.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 70F));
+            tableLayoutPanelTopContent.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
+            tableLayoutPanelTopContent.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 80F));
             tableLayoutPanelTopContent.Controls.Add(topDescriptionLabel, 0, 0);
+            tableLayoutPanelTopContent.Controls.Add(emailDetail, 1, 0);
             tableLayoutPanelTopContent.Dock = DockStyle.Fill;
             tableLayoutPanelTopContent.Location = new Point(0, 0);
             tableLayoutPanelTopContent.Margin = new Padding(0);
             tableLayoutPanelTopContent.Name = "tableLayoutPanelTopContent";
             tableLayoutPanelTopContent.RowCount = 1;
             tableLayoutPanelTopContent.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanelTopContent.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             tableLayoutPanelTopContent.Size = new Size(399, 56);
             tableLayoutPanelTopContent.TabIndex = 0;
             // 
@@ -339,10 +342,22 @@
             topDescriptionLabel.Location = new Point(0, 0);
             topDescriptionLabel.Margin = new Padding(0);
             topDescriptionLabel.Name = "topDescriptionLabel";
-            topDescriptionLabel.Size = new Size(119, 56);
+            topDescriptionLabel.Size = new Size(79, 56);
             topDescriptionLabel.TabIndex = 0;
             topDescriptionLabel.Text = "Email:";
             topDescriptionLabel.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // emailDetail
+            // 
+            emailDetail.Dock = DockStyle.Fill;
+            emailDetail.Font = new Font("Segoe UI", 16F);
+            emailDetail.Location = new Point(79, 0);
+            emailDetail.Margin = new Padding(0);
+            emailDetail.Name = "emailDetail";
+            emailDetail.Size = new Size(320, 56);
+            emailDetail.TabIndex = 1;
+            emailDetail.Text = "example@gmail.com";
+            emailDetail.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // topSecondSplitDescriptionContent
             // 
@@ -365,9 +380,10 @@
             // tableLayoutPanelTopSecondContent
             // 
             tableLayoutPanelTopSecondContent.ColumnCount = 2;
-            tableLayoutPanelTopSecondContent.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 60F));
-            tableLayoutPanelTopSecondContent.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 40F));
+            tableLayoutPanelTopSecondContent.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 45F));
+            tableLayoutPanelTopSecondContent.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 55F));
             tableLayoutPanelTopSecondContent.Controls.Add(topSecondDescriptionLabel, 0, 0);
+            tableLayoutPanelTopSecondContent.Controls.Add(promoCount, 1, 0);
             tableLayoutPanelTopSecondContent.Dock = DockStyle.Fill;
             tableLayoutPanelTopSecondContent.Location = new Point(0, 0);
             tableLayoutPanelTopSecondContent.Margin = new Padding(0);
@@ -384,10 +400,22 @@
             topSecondDescriptionLabel.Location = new Point(0, 0);
             topSecondDescriptionLabel.Margin = new Padding(0);
             topSecondDescriptionLabel.Name = "topSecondDescriptionLabel";
-            topSecondDescriptionLabel.Size = new Size(239, 56);
+            topSecondDescriptionLabel.Size = new Size(179, 56);
             topSecondDescriptionLabel.TabIndex = 0;
             topSecondDescriptionLabel.Text = "My Promotions:";
             topSecondDescriptionLabel.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // promoCount
+            // 
+            promoCount.Dock = DockStyle.Fill;
+            promoCount.Font = new Font("Segoe UI", 16F);
+            promoCount.Location = new Point(179, 0);
+            promoCount.Margin = new Padding(0);
+            promoCount.Name = "promoCount";
+            promoCount.Size = new Size(220, 56);
+            promoCount.TabIndex = 1;
+            promoCount.Text = "99";
+            promoCount.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // contentRightPanel
             // 
@@ -437,6 +465,7 @@
             // 
             flowLayoutPanel.AutoScroll = true;
             flowLayoutPanel.Dock = DockStyle.Fill;
+            flowLayoutPanel.FlowDirection = FlowDirection.TopDown;
             flowLayoutPanel.Location = new Point(25, 0);
             flowLayoutPanel.Margin = new Padding(0);
             flowLayoutPanel.Name = "flowLayoutPanel";
@@ -518,5 +547,7 @@
         private SplitContainer subSplitRightContainer;
         private SectionHeaderControl rightSectionHeaderControl;
         private FlowLayoutPanel flowLayoutPanel;
+        private Label emailDetail;
+        private Label promoCount;
     }
 }
