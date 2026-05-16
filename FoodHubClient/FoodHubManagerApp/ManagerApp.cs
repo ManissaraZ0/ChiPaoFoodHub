@@ -45,6 +45,11 @@ namespace FoodHubManagerApp
 
         public void ChangeScreen(object sender, int restaurantId, int managerId, int action)
         {
+            if (action == 2002)
+            {
+                this.Controls.Clear();
+                this.Controls.Add(demoLoginPage);
+            }
             if (sender is DemoLoginPage)
             {
                 if (action == 0)
@@ -62,6 +67,11 @@ namespace FoodHubManagerApp
                     promotions.RestaurantId = (int)restaurantId;
                     promotions.ManagerId = (int)managerId;
                     this.Controls.Add(promotions);
+                }
+                else if (action == 1)
+                {
+                    this.Controls.Clear();
+                    this.Controls.Add(demoLoginPage);
                 }
             }
             if (sender is PromotionsPage)

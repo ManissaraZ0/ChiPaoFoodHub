@@ -50,6 +50,8 @@ namespace FoodHubManagerApp.UserControlPages
 
         private void SetupEventHandlers()
         {
+            navBarControl1.LogoClicked += (s, e) => form.ChangeScreen(this, 0, 0, 2002);
+
             // Search Event
             searchBar1.SearchSubmitted += (s, keyword) =>
             {

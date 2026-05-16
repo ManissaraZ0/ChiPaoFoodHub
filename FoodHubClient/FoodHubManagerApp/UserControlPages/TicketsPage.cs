@@ -51,6 +51,8 @@ namespace FoodHubManagerApp.UserControlPages
 
         private void SetupEventHandlers()
         {
+            navBarControl1.LogoClicked += (s, e) => form.ChangeScreen(this, 0, 0, 2002);
+
             // Layout Event
             flowLayoutPanel1.Resize += (s, e) => ResizeCards();
 

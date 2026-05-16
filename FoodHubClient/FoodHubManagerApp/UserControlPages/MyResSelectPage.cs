@@ -22,7 +22,8 @@ namespace FoodHubManagerApp.UserControlPages
         public int ManagerId
         {
             get => managerId;
-            set { 
+            set
+            {
                 managerId = value;
                 var restaurants = Service.GetManagedRestaurants(ManagerId);
                 UpdateUserCards(restaurants);
@@ -126,6 +127,11 @@ namespace FoodHubManagerApp.UserControlPages
             );
 
             flowLayoutPanel1.ResumeLayout();
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            form.ChangeScreen(this, 0, this.ManagerId, 1);
         }
     }
 }

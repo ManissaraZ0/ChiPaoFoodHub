@@ -15,6 +15,9 @@ namespace FoodHubManagerApp.UserControlComponents
 {
     public partial class NavBarControl : UserControl
     {
+        // Event Handler
+        public event EventHandler LogoClicked;
+
         // --- Menu Item Model ---
         public class NavMenuItem
         {
@@ -262,12 +265,18 @@ namespace FoodHubManagerApp.UserControlComponents
                     break;
                 }
             }
+            if (_logoHitbox.Contains(e.Location))
+            {
+                // ถ้าคลิกที่โลโก้ กลับไปหน้าแรก หรือรีเฟรช
+                LogoClicked?.Invoke(this, EventArgs.Empty);
+            }
         }
  
         protected override void OnMouseMove(MouseEventArgs e)
         {
             base.OnMouseMove(e);
             bool onItem = false;
+            if (_logoHitbox.Contains(e.Location)) { onItem = true; }
             foreach (var rect in _menuRects)
             {
                 if (rect.Contains(e.Location)) { onItem = true; break; }
