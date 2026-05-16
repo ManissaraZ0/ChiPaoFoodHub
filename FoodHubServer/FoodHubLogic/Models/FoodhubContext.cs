@@ -38,7 +38,7 @@ public partial class FoodhubContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("promotions_pkey");
 
-            entity.Property(e => e.Id).ValueGeneratedNever();
+            entity.Property(e => e.Id).UseIdentityAlwaysColumn();
             entity.Property(e => e.TotalQuota).HasDefaultValue(0);
 
             entity.HasOne(d => d.Restaurant).WithMany(p => p.Promotions)
@@ -50,7 +50,7 @@ public partial class FoodhubContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("promotion_tickets_pkey");
 
-            entity.Property(e => e.Id).ValueGeneratedNever();
+            entity.Property(e => e.Id).UseIdentityAlwaysColumn();
             entity.Property(e => e.PurchaseDate).HasDefaultValueSql("now()");
             entity.Property(e => e.Status).HasComment("Active, Used, Expired");
 
@@ -67,7 +67,7 @@ public partial class FoodhubContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("restaurants_pkey");
 
-            entity.Property(e => e.Id).ValueGeneratedNever();
+            entity.Property(e => e.Id).UseIdentityAlwaysColumn();
             entity.Property(e => e.CreatedAt).HasDefaultValueSql("now()");
 
             entity.HasOne(d => d.Manager).WithMany(p => p.Restaurants)
@@ -79,7 +79,7 @@ public partial class FoodhubContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("reviews_pkey");
 
-            entity.Property(e => e.Id).ValueGeneratedNever();
+            entity.Property(e => e.Id).UseIdentityAlwaysColumn();
             entity.Property(e => e.CreatedAt).HasDefaultValueSql("now()");
             entity.Property(e => e.Rating).HasComment("1 to 5");
 
@@ -96,7 +96,7 @@ public partial class FoodhubContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("users_pkey");
 
-            entity.Property(e => e.Id).ValueGeneratedNever();
+            entity.Property(e => e.Id).UseIdentityAlwaysColumn();
             entity.Property(e => e.CreatedAt).HasDefaultValueSql("now()");
             entity.Property(e => e.Role).HasComment("client, manager");
         });
