@@ -65,7 +65,34 @@ namespace FoodHubManagerApp.UserControlPages
 
         private void buttonControl2_Load(object sender, EventArgs e)
         {
-            MessageBox.Show("Save Promotion Clicked!");
+            string promotionTitle = labeledTextBoxControl1.Value;
+            string promotionDescription = labeledTextBoxControl2.Value;
+
+            try
+            {
+                int.Parse(labeledTextBoxControl3.Value);
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Promotion quota must be a valid integer.");
+                return;
+            }
+
+            int promotionQuota = int.Parse(labeledTextBoxControl3.Value);
+
+            if (promotionQuota <= 0)
+            {
+                MessageBox.Show("Promotion quota must be a positive integer.");
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(promotionTitle) || string.IsNullOrWhiteSpace(promotionDescription) || string.IsNullOrWhiteSpace(labeledTextBoxControl3.Value))
+            {
+                MessageBox.Show("Please fill in all fields.");
+                return;
+            }
+
+
             form.ChangeScreen(this, data: new DataDetail { RestaurantId = RestaurantId, ManagerId = ManagerId }, 1);
 		}
     }
