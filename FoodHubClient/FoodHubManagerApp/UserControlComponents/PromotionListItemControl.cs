@@ -10,16 +10,19 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using FoodHubManagerApp.Logics;
+using FoodHubManagerApp.Model;
 
 namespace FoodHubManagerApp.UserControlComponents
 {
     public partial class PromotionListItemControl : UserControl
     {
-        private PromotionItem _item;
+        private Promotion _item;
+        public Promotion Data { get; private set; }
 
-        public PromotionListItemControl(PromotionItem item)
+        public PromotionListItemControl(Promotion item)
         {
             _item = item;
+            Data = item;
 
             // ตั้งขนาดเริ่มต้น (ความกว้าง 450, ความสูง 70)
             this.Size = new Size(450, 70);
@@ -73,7 +76,7 @@ namespace FoodHubManagerApp.UserControlComponents
             using (Font fontType = new Font("Segoe UI", 9.5f, FontStyle.Regular))
             using (SolidBrush brushGray = new SolidBrush(Color.FromArgb(140, 140, 140)))
             {
-                g.DrawString(_item.Type, fontType, brushGray, padX, 37);
+                g.DrawString(_item.Conditions, fontType, brushGray, padX, 37);
             }
 
             // --- 4. วาดกล่องตัวเลข (Badge) ฝั่งขวา ---
@@ -103,7 +106,7 @@ namespace FoodHubManagerApp.UserControlComponents
                 sf.Alignment = StringAlignment.Center;     // กึ่งกลางแนวนอน
                 sf.LineAlignment = StringAlignment.Center; // กึ่งกลางแนวตั้ง
 
-                g.DrawString(_item.Value, fontValue, brushBlack, rectBadge, sf);
+                g.DrawString(_item.TotalQuota.ToString(), fontValue, brushBlack, rectBadge, sf);
             }
         }
 
