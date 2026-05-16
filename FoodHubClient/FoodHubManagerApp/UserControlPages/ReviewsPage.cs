@@ -24,6 +24,7 @@ namespace FoodHubManagerApp.UserControlPages
             {
                 restaurantId = value;
                 navBarControl1.SelectedIndex = 2; // เลือก Ticket tab เมื่อเปลี่ยนร้าน
+                RefreshData();
             }
         }
         private int managerId = 1;

@@ -23,6 +23,7 @@ namespace FoodHubManagerApp.UserControlPages
             set { 
                 restaurantId = value; 
                 navBarControl1.SelectedIndex = 1; // เลือก Ticket tab เมื่อเปลี่ยนร้าน
+                RefreshData();
             }
         }
         private int managerId = 1;
@@ -52,7 +53,7 @@ namespace FoodHubManagerApp.UserControlPages
 
         public void RefreshData()
         {
-            var tickets = Service.GetTicketDetails(RestaurantId);
+            var tickets = Service.GetRestaurantTickets(RestaurantId, ManagerId, "Active");
             UpdateUserCards(tickets);
         }
 
@@ -66,7 +67,7 @@ namespace FoodHubManagerApp.UserControlPages
             // Search Event
             searchBar1.SearchSubmitted += (s, keyword) =>
             {
-                var filtered = Service.GetTicketDetails(RestaurantId)
+                var filtered = Service.GetRestaurantTickets(RestaurantId, ManagerId, "Active")
                     .Where(p => p.PromotionTitle.Contains(keyword, StringComparison.OrdinalIgnoreCase))
                     .ToList();
                 UpdateUserCards(filtered);
@@ -119,7 +120,16 @@ namespace FoodHubManagerApp.UserControlPages
                     // เช็คผลลัพธ์เหมือน MessageBox ปกติ
                     if (result == DialogResult.Yes)
                     {
-                        form.ChangeScreen(this, RestaurantId, ManagerId, 0);
+                        var success = Service.ValidateTicket(item.TicketId, ManagerId);
+                        if (success != null)
+                        {
+                            DialogCard.Show($"Ticket #{item.TicketId} accepted successfully!", DialogCardType.Positive);
+                            RefreshData(); // รีเฟรชข้อมูลหลังจากยืนยันตั๋ว
+                        }
+                        else
+                        {
+                            DialogCard.Show($"Failed to accept Ticket #{item.TicketId}. Please try again.", DialogCardType.Negative);
+                        }
                     }
                 };
 

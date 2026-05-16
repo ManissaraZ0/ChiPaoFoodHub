@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace FoodHubLogic;
 
@@ -303,7 +304,11 @@ public class DomainLogic
 
         var restaurant = context.Restaurants.SingleOrDefault(r => r.Id == restaurantId);
         if (restaurant == null || restaurant.ManagerId != managerId)
+        {
+            // Write log ว่าพยายามเข้าถึงข้อมูลที่ไม่ได้รับอนุญาต (ถ้าต้องการ)
+            Debug.WriteLine($"Unauthorized access attempt: User {managerId} tried to access tickets for Restaurant {restaurantId}.");
             throw new Exception("Unauthorized to view these tickets.");
+        }
 
         var query = context.PromotionTickets
             .Include(t => t.Promotion)
