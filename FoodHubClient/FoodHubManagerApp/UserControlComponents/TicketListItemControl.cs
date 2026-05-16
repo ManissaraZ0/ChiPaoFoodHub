@@ -10,12 +10,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using FoodHubManagerApp.Logics;
+using FoodHubManagerApp.Model;
 
 namespace FoodHubManagerApp.UserControlComponents
 {
     public partial class TicketListItemControl : UserControl
     {
-        private TicketItem _item;
+        private ManagerTicketDetailRsp _item;
         // ── Public Properties ──────────────────────────────────────────────
         public string TicketID
         {
@@ -46,14 +47,14 @@ namespace FoodHubManagerApp.UserControlComponents
         }
 
         // ✅ constructor จริงที่ใช้งาน
-        public TicketListItemControl(TicketItem item)
+        public TicketListItemControl(ManagerTicketDetailRsp item)
         {
             _item = item;
             InitializeComponent();
             InitializeComponents();
 
-            TicketID = $"Ticket: {item.Id}";
-            SubInfo = $"User ID: {item.UserId}, {item.Title}";
+            TicketID = $"Ticket: {item.TicketId}";
+            SubInfo = $"User ID: {item.UserId}, {item.PromotionTitle}";
         }
 
         private void InitializeComponents()

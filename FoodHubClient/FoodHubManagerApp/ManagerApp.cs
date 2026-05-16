@@ -38,8 +38,21 @@ namespace FoodHubManagerApp
             myResSelectPage = new MyResSelectPage(this) { Dock = DockStyle.Fill };
         }
 
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (this.Controls.Contains(reviews))
+            {
+                reviews.RefreshData();
+            }
+            else if (this.Controls.Contains(tickets))
+            {
+                tickets.RefreshData();
+            }
+        }
+
         private void ManagerApp_Load(object sender, EventArgs e)
         {
+            timer1.Start();
             this.Controls.Add(demoLoginPage);
         }
 

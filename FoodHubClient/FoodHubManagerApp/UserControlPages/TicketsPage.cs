@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using FoodHubManagerApp.Logics;
+using FoodHubManagerApp.Model;
 using FoodHubManagerApp.UserControlComponents;
 
 namespace FoodHubManagerApp.UserControlPages
@@ -43,10 +44,16 @@ namespace FoodHubManagerApp.UserControlPages
 
             this.Load += (s, e) =>
             {
-                UpdateUserCards(GetMockData());
+                RefreshData();
             };
 
             navBarControl1.SelectedIndexChanged += NavBarControl1_SelectedIndexChanged;
+        }
+
+        public void RefreshData()
+        {
+            var tickets = Service.GetTicketDetails(RestaurantId);
+            UpdateUserCards(tickets);
         }
 
         private void SetupEventHandlers()
@@ -59,8 +66,8 @@ namespace FoodHubManagerApp.UserControlPages
             // Search Event
             searchBar1.SearchSubmitted += (s, keyword) =>
             {
-                var filtered = GetMockData()
-                    .Where(p => p.Title.Contains(keyword, StringComparison.OrdinalIgnoreCase))
+                var filtered = Service.GetTicketDetails(RestaurantId)
+                    .Where(p => p.PromotionTitle.Contains(keyword, StringComparison.OrdinalIgnoreCase))
                     .ToList();
                 UpdateUserCards(filtered);
             };
@@ -73,23 +80,23 @@ namespace FoodHubManagerApp.UserControlPages
         }
 
         // ฟังก์ชันสร้างข้อมูลจำลอง (Mock Data) สำหรับ Promotion
-        private List<TicketItem> GetMockData()
-        {
-            var list = new List<TicketItem>();
-            for (int i = 1; i <= 10; i++) // สร้างลิสต์จำลอง 10 บรรทัด
-            {
-                list.Add(new TicketItem
-                {
-                    Title = "Promotion Title " + i, // ใส่ + i เพื่อให้เห็นความแตกต่างของแต่ละบรรทัด
-                    Id = i,
-                    UserId = i * 10
-                });
-            }
-            return list;
-        }
+        //private List<TicketItem> GetMockData()
+        //{
+        //    var list = new List<TicketItem>();
+        //    for (int i = 1; i <= 10; i++) // สร้างลิสต์จำลอง 10 บรรทัด
+        //    {
+        //        list.Add(new TicketItem
+        //        {
+        //            Title = "Promotion Title " + i, // ใส่ + i เพื่อให้เห็นความแตกต่างของแต่ละบรรทัด
+        //            Id = i,
+        //            UserId = i * 10
+        //        });
+        //    }
+        //    return list;
+        //}
 
         // ฟังก์ชันนี้ทำงานอัตโนมัติเมื่อ Service สั่ง Invoke()
-        private void UpdateUserCards(List<TicketItem> items)
+        private void UpdateUserCards(List<ManagerTicketDetailRsp> items)
         {
             // ป้องกัน Thread ชนกัน กรณี Service ไปดึงข้อมูลแบบ Async
             if (this.InvokeRequired)
@@ -107,7 +114,7 @@ namespace FoodHubManagerApp.UserControlPages
 
                 card.AcceptClicked += (s, e) =>
                 {
-                    var result = DialogCard.Show($"Confirm Ticket #{item.Id}", DialogCardType.Positive);
+                    var result = DialogCard.Show($"Confirm Ticket #{item.TicketId}", DialogCardType.Positive);
 
                     // เช็คผลลัพธ์เหมือน MessageBox ปกติ
                     if (result == DialogResult.Yes)

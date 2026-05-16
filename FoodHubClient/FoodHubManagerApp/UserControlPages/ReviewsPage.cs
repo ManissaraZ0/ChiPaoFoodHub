@@ -44,10 +44,15 @@ namespace FoodHubManagerApp.UserControlPages
             SetupEventHandlers();
 
             //var allReviews = GetMockReviewData();
-            var allReviews = Service.GetReviewDetails(RestaurantId);
-            RenderReviews(allReviews);
+            RefreshData();
 
             navBarControl1.SelectedIndexChanged += NavBarControl1_SelectedIndexChanged;
+        }
+
+        public void RefreshData()
+        {
+            var allReviews = Service.GetReviewDetails(RestaurantId);
+            RenderReviews(allReviews);
         }
 
         private void SetupEventHandlers()
