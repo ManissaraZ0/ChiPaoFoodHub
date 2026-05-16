@@ -1,8 +1,50 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-    <ItemGroup>
-        <Compile Update="Form1.cs">
-            <SubType>Form</SubType>
-        </Compile>
-    </ItemGroup>
+  <ItemGroup>
+    <Compile Update="ManagerApp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UserControlComponents\ButtonControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="UserControlComponents\CircleAddButtonControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="UserControlComponents\DialogCard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UserControlComponents\LabeledTextBoxControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="UserControlComponents\NavBarControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="UserControlComponents\PromotionListItemControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="UserControlComponents\ReviewCardControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="UserControlComponents\SearchBarControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="UserControlComponents\SectionHeaderControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="UserControlComponents\TicketListItemControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="UserControlPages\AddPromotionPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="UserControlPages\PromotionsPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="UserControlPages\ReviewsPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="UserControlPages\TicketsPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+  </ItemGroup>
 </Project>

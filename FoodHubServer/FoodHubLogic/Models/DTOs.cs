@@ -55,6 +55,7 @@ namespace FoodHubLogic.Models
         public int UserId { get; set; }
         public string PromotionTitle { get; set; }
         public string Conditions { get; set; }
+        public string Status { get; set; } // เพิ่มฟิลด์สถานะเข้ามา
     }
 
     public class ManagerReviewDetailRsp
@@ -62,5 +63,37 @@ namespace FoodHubLogic.Models
         public string Username { get; set; }
         public string Comment { get; set; }
         public int Rating { get; set; }
+    }
+
+    // ข้อมูลที่ Manager ต้องกรอกเวลาสร้าง Promotion
+    public class AddPromotionReq
+    {
+        public string Title { get; set; }
+        public decimal Price { get; set; }
+        public string Conditions { get; set; }
+        public int TotalQuota { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+    }
+
+    // ข้อมูลที่จะส่งกลับไปให้ Manager ดูหลังจากสร้างเสร็จ (ไม่มี Navigation Properties กวนใจ)
+    public class PromotionBasicRsp
+    {
+        public int Id { get; set; }
+        public int RestaurantId { get; set; }
+        public string Title { get; set; }
+        public decimal Price { get; set; }
+        public string Conditions { get; set; }
+        public int TotalQuota { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+    }
+
+    public class ManagerRestaurantListRsp
+    {
+        public int RestaurantId { get; set; }
+        public string Name { get; set; }
+        public string Category { get; set; }
+        public string Address { get; set; }
     }
 }

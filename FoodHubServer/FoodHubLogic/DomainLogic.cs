@@ -89,6 +89,33 @@ public class DomainLogic
     }
 
     // ==========================================
+    // Manager Logic Admin Extensions
+    // ==========================================
+
+    // ดึงรายชื่อร้านอาหารทั้งหมดที่ Manager คนนี้ดูแลอยู่
+    public List<ManagerRestaurantListRsp> GetRestaurantsByManagerId(int managerId)
+    {
+        using var context = new FoodhubContext(connectionString);
+
+        // ตรวจสอบก่อนว่า User นี้มีอยู่จริง และมี Role เป็น Manager
+        var user = context.Users.SingleOrDefault(u => u.Id == managerId);
+        if (user == null) throw new Exception("User not found.");
+        ValidateRole(user, StatusConstants.RoleManager, "Only managers can access this information.");
+
+        return context.Restaurants
+            .Where(r => r.ManagerId == managerId)
+            .Select(r => new ManagerRestaurantListRsp
+            {
+                RestaurantId = r.Id,
+                Name = r.Name,
+                Category = r.Category,
+                Address = r.Address
+            })
+            .OrderBy(r => r.Name) // เรียงตามชื่อร้านตามตัวอักษร
+            .ToList();
+    }
+
+    // ==========================================
     // 1. Functional Requirement for User/Client
     // ==========================================
 
@@ -124,10 +151,12 @@ public class DomainLogic
         if (promotion.EndDate < DateTime.Now)
             throw new Exception("This promotion has expired.");
 
-        // Check Quota
-        var currentTicketsCount = context.PromotionTickets.Count(t => t.PromotionId == promotionId);
-        if (currentTicketsCount >= promotion.TotalQuota)
+        // เช็คโควต้าจาก Field โดยตรง
+        if (promotion.TotalQuota <= 0)
             throw new Exception("Promotion quota is full.");
+
+        // หักโควต้าใน DB ทันที
+        promotion.TotalQuota -= 1;
 
         // Create Ticket
         var ticket = new PromotionTicket
@@ -140,6 +169,8 @@ public class DomainLogic
         };
 
         context.PromotionTickets.Add(ticket);
+
+        // EF Core จะทำการ Update ค่า TotalQuota ที่ลดลง และ Insert Ticket ไปพร้อมกัน
         context.SaveChanges();
         context.Database.CommitTransaction();
 
@@ -186,7 +217,7 @@ public class DomainLogic
     // ==========================================
 
     // 2.a Add Promotion Ticket
-    public Promotion AddPromotion(int managerId, int restaurantId, Promotion newPromotion)
+    public PromotionBasicRsp AddPromotion(int managerId, int restaurantId, AddPromotionReq req)
     {
         using var context = new FoodhubContext(connectionString);
 
@@ -197,16 +228,36 @@ public class DomainLogic
         if (restaurant == null || restaurant.ManagerId != managerId)
             throw new Exception("You are not authorized to add promotions for this restaurant.");
 
-        if (newPromotion.StartDate >= newPromotion.EndDate)
+        if (req.StartDate >= req.EndDate)
             throw new ArgumentException("Start date must be before end date.");
 
-        // Map and Save
-        newPromotion.RestaurantId = restaurantId;
+        // Map DTO to Entity
+        var newPromotion = new Promotion
+        {
+            RestaurantId = restaurantId,
+            Title = req.Title,
+            Price = req.Price,
+            Conditions = req.Conditions,
+            TotalQuota = req.TotalQuota,
+            StartDate = req.StartDate,
+            EndDate = req.EndDate
+        };
 
         context.Promotions.Add(newPromotion);
         context.SaveChanges();
 
-        return newPromotion;
+        // Return Clean DTO
+        return new PromotionBasicRsp
+        {
+            Id = newPromotion.Id,
+            RestaurantId = newPromotion.RestaurantId,
+            Title = newPromotion.Title,
+            Price = newPromotion.Price,
+            Conditions = newPromotion.Conditions,
+            TotalQuota = newPromotion.TotalQuota,
+            StartDate = newPromotion.StartDate,
+            EndDate = newPromotion.EndDate
+        };
     }
 
     // 2.b Receive Promotion Tickets (Validate & Change Status)
@@ -245,8 +296,8 @@ public class DomainLogic
         return ticket;
     }
 
-    // (Optional) Get tickets for a restaurant to display to the manager
-    public List<PromotionTicket> GetTicketsForRestaurant(int managerId, int restaurantId)
+    // 2.b Receive Promotion Tickets (Get/View Tickets for Restaurant)
+    public List<ManagerTicketDetailRsp> GetTicketsForRestaurant(int managerId, int restaurantId, string status = null)
     {
         using var context = new FoodhubContext(connectionString);
 
@@ -254,11 +305,30 @@ public class DomainLogic
         if (restaurant == null || restaurant.ManagerId != managerId)
             throw new Exception("Unauthorized to view these tickets.");
 
-        return context.PromotionTickets
+        var query = context.PromotionTickets
             .Include(t => t.Promotion)
-            .Include(t => t.User)
-            .Where(t => t.Promotion.RestaurantId == restaurantId)
+            .Where(t => t.Promotion.RestaurantId == restaurantId);
+
+        // ถ้ามีการระบุ status มา (เช่น "Active") ให้กรองข้อมูลตามนั้น
+        if (!string.IsNullOrWhiteSpace(status))
+        {
+            query = query.Where(t => t.Status == status).OrderByDescending(t => t.PurchaseDate);
+        } else
+        {
+            // แสดงทั้งหมด แต่เรียงลำดับตามวันที่ซื้อ (PurchaseDate) จากใหม่ไปเก่า
+             query = query.OrderByDescending(t => t.PurchaseDate);
+        }
+
+        return query
             .OrderByDescending(t => t.PurchaseDate)
+            .Select(t => new ManagerTicketDetailRsp
+            {
+                TicketId = t.Id,
+                UserId = t.UserId,
+                PromotionTitle = t.Promotion.Title,
+                Conditions = t.Promotion.Conditions,
+                Status = t.Status // ส่งสถานะกลับไปด้วย
+            })
             .ToList();
     }
 
@@ -343,8 +413,8 @@ public class DomainLogic
                 Title = p.Title,
                 Price = p.Price,
                 Conditions = p.Conditions,
-                // คำนวณโควต้าที่เหลือ: โควต้าทั้งหมด - จำนวนตั๋วที่ถูกซื้อไปแล้ว
-                RemainingQuota = p.TotalQuota - context.PromotionTickets.Count(t => t.PromotionId == p.Id)
+                // นำค่า TotalQuota มาแสดงเป็น RemainingQuota ได้เลย
+                RemainingQuota = p.TotalQuota
             })
             .ToList();
     }
