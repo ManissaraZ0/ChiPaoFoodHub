@@ -38,13 +38,6 @@ namespace FoodHubLogic.Models
         public DateTime EndDate { get; set; }
     }
 
-    public class RestaurantDetailRsp
-    {
-        public string Name { get; set; }
-        public string Category { get; set; }
-        public double OverallRating { get; set; }
-    }
-
     // ==========================================
     // Manager DTOs
     // ==========================================

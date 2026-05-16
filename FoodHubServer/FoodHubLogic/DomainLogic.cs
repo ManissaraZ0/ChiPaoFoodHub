@@ -278,7 +278,7 @@ public class DomainLogic
         };
     }
 
-    public RestaurantDetailRsp GetRestaurantDetail(int restaurantId)
+    public RestaurantRecommendationRsp GetRestaurantDetail(int restaurantId)
     {
         using var context = new FoodhubContext(connectionString);
         var res = context.Restaurants
@@ -287,10 +287,13 @@ public class DomainLogic
 
         if (res == null) throw new Exception("Restaurant not found.");
 
-        return new RestaurantDetailRsp
+        return new RestaurantRecommendationRsp
         {
+            RestaurantId = res.Id,
             Name = res.Name,
             Category = res.Category,
+            Address = res.Address,
+            // หาค่าเฉลี่ยเรตติ้ง ถ้ายัังไม่มีรีวิวให้เป็น 0
             OverallRating = res.Reviews.Any() ? res.Reviews.Average(rev => rev.Rating) : 0
         };
     }
