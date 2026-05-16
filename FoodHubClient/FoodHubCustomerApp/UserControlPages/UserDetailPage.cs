@@ -25,7 +25,7 @@ namespace FoodHubCustomerApp.UserControlPages
     {
         CustomerApp form;
         private UserRsp userData;
-        private bool useMockData = false;
+        private bool useMockData = true;
 
         public UserRsp UserData
         {
@@ -109,17 +109,22 @@ namespace FoodHubCustomerApp.UserControlPages
         private void ResizePromotions()
         {
             if (flowLayoutPanel.Controls.Count == 0) return;
-
+            flowLayoutPanel.AutoScroll = false;
             flowLayoutPanel.SuspendLayout();
-            bool hasVerticalScroll = flowLayoutPanel.VerticalScroll.Visible;
-            int safetyDeduction = hasVerticalScroll ? 4 : 2;
-            int availableWidth = flowLayoutPanel.ClientSize.Width;
+
+            int panelWidth = flowLayoutPanel.Width;
+            int scrollBarWidth = SystemInformation.VerticalScrollBarWidth;
+
+            bool needVerticalScroll = (flowLayoutPanel.Controls.Count * 80) > flowLayoutPanel.Height;
+            int verticalPadding = needVerticalScroll ? scrollBarWidth : 0;
 
             foreach (Control ctrl in flowLayoutPanel.Controls)
             {
                 if (ctrl is PromotionExpireListControl card)
                 {
-                    int targetWidth = availableWidth - (card.Margin.Left + card.Margin.Right) - safetyDeduction;
+                    int targetWidth = panelWidth - (card.Margin.Left + card.Margin.Right) - verticalPadding - 4;
+                    if (targetWidth < 0) targetWidth = 0;
+
                     if (card.Width != targetWidth)
                     {
                         card.Width = targetWidth;
@@ -127,8 +132,13 @@ namespace FoodHubCustomerApp.UserControlPages
                 }
             }
 
-            flowLayoutPanel.HorizontalScroll.Maximum = 0;
             flowLayoutPanel.ResumeLayout(true);
+            flowLayoutPanel.AutoScroll = true;
+
+            flowLayoutPanel.HorizontalScroll.Maximum = 0;
+            flowLayoutPanel.HorizontalScroll.Visible = false;
+
+            flowLayoutPanel.PerformLayout();
             flowLayoutPanel.Invalidate();
         }
 
