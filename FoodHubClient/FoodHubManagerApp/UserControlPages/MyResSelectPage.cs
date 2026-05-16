@@ -72,10 +72,10 @@ namespace FoodHubManagerApp.UserControlPages
 
                 card.Click += (s, e) =>
                 {
-                    MessageBox.Show(
-                        $"คุณ {ManagerId} เลือก: {item.RestaurantId}",
-                        "แจ้งเตือน"
-                    );
+                    //MessageBox.Show(
+                    //    $"คุณ {ManagerId} เลือก: {item.RestaurantId}",
+                    //    "แจ้งเตือน"
+                    //);
                     form.ChangeScreen(this, data: new DataDetail { RestaurantId = item.RestaurantId, ManagerId = ManagerId }, 0);
                 };
 
