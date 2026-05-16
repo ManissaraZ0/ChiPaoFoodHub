@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using FoodHubLogic;
 using FoodHubLogic.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -66,5 +67,14 @@ public class ManagerController : ControllerBase
     {
         var domain = new DomainLogic(MyConfig.ConnStr);
         return domain.GetManagerReviewDetails(restaurantId);
+    }
+
+    // 4. Manager's Restaurants List (สำหรับหน้าแรกหลังจาก Manager Login)
+    // การใช้งาน: GET /Manager/v1/restaurants?managerId=5
+    [HttpGet("restaurants")]
+    public List<ManagerRestaurantListRsp> GetMyRestaurants([FromQuery, Required] int managerId)
+    {
+        var domain = new DomainLogic(MyConfig.ConnStr);
+        return domain.GetRestaurantsByManagerId(managerId);
     }
 }
