@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using FoodHubManagerApp.Logics;
 using FoodHubManagerApp.Model;
 using FoodHubManagerApp.UserControlComponents;
 using FoodHubManagerApp.UserControlPages;
@@ -56,7 +57,7 @@ namespace FoodHubManagerApp
             this.Controls.Add(demoLoginPage);
         }
 
-        public void ChangeScreen(object sender, int restaurantId, int managerId, int action)
+        public void ChangeScreen(object sender, object data, int action)
         {
             if (action == 2002)
             {
@@ -68,7 +69,7 @@ namespace FoodHubManagerApp
                 if (action == 0)
                 {
                     this.Controls.Clear();
-                    myResSelectPage.ManagerId = (int)managerId;
+                    myResSelectPage.ManagerId = ((DataDetail)data).ManagerId;
                     this.Controls.Add(myResSelectPage);
                 }
             }
@@ -77,8 +78,8 @@ namespace FoodHubManagerApp
                 if (action == 0)
                 {
                     this.Controls.Clear();
-                    promotions.RestaurantId = (int)restaurantId;
-                    promotions.ManagerId = (int)managerId;
+                    promotions.RestaurantId = ((DataDetail)data).RestaurantId;
+                    promotions.ManagerId = ((DataDetail)data).ManagerId;
                     this.Controls.Add(promotions);
                 }
                 else if (action == 1)
@@ -97,22 +98,21 @@ namespace FoodHubManagerApp
                 else if (action == 1)
                 {
                     this.Controls.Clear();
-                    addPromotion.RestaurantId = (int)restaurantId;
-                    addPromotion.ManagerId = (int)managerId;
+                    addPromotion.RestaurantId = ((DataDetail)data).RestaurantId;
+                    addPromotion.ManagerId = ((DataDetail)data).ManagerId;
                     this.Controls.Add(addPromotion);
                 }
                 else if (action == 2)
                 {
                     this.Controls.Clear();
-                    tickets.RestaurantId = (int)restaurantId;
-                    tickets.ManagerId = (int)managerId;
+                    tickets.Data = (DataDetail)data;
                     this.Controls.Add(tickets);
                 }
                 else if (action == 3)
                 {
                     this.Controls.Clear();
-                    reviews.RestaurantId = (int)restaurantId;
-                    reviews.ManagerId = (int)managerId;
+                    reviews.RestaurantId = ((DataDetail)data).RestaurantId;
+                    reviews.ManagerId = ((DataDetail)data).ManagerId;
                     this.Controls.Add(reviews);
                 }
             }
@@ -121,22 +121,21 @@ namespace FoodHubManagerApp
                 if (action == 1)
                 {
                     this.Controls.Clear();
-                    promotions.RestaurantId = (int)restaurantId;
-                    promotions.ManagerId = (int)managerId;
+                    promotions.RestaurantId = ((DataDetail)data).RestaurantId;
+                    promotions.ManagerId = ((DataDetail)data).ManagerId;
                     this.Controls.Add(promotions);
                 }
                 else if (action == 2)
                 {
                     this.Controls.Clear();
-                    tickets.RestaurantId = (int)restaurantId;
-                    tickets.ManagerId = (int)managerId;
+                    tickets.Data = (DataDetail)data;
                     this.Controls.Add(tickets);
                 }
                 else if (action == 3)
                 {
                     this.Controls.Clear();
-                    reviews.RestaurantId = (int)restaurantId;
-                    reviews.ManagerId = (int)managerId;
+                    reviews.RestaurantId = ((DataDetail)data).RestaurantId;
+                    reviews.ManagerId = ((DataDetail)data).ManagerId;
                     this.Controls.Add(reviews);
                 }
             }
@@ -150,15 +149,15 @@ namespace FoodHubManagerApp
                 else if (action == 1)
                 {
                     this.Controls.Clear();
-                    promotions.RestaurantId = (int)restaurantId;
-                    promotions.ManagerId = (int)managerId;
+                    promotions.RestaurantId = ((DataDetail)data).RestaurantId;
+                    promotions.ManagerId = ((DataDetail)data).ManagerId;
                     this.Controls.Add(promotions);
                 }
                 else if (action == 2)
                 {
                     this.Controls.Clear();
-                    reviews.RestaurantId = (int)restaurantId;
-                    reviews.ManagerId = (int)managerId;
+                    reviews.RestaurantId = ((DataDetail)data).RestaurantId;
+                    reviews.ManagerId = ((DataDetail)data).ManagerId;
                     this.Controls.Add(reviews);
                 }
             }
@@ -172,15 +171,14 @@ namespace FoodHubManagerApp
                 else if (action == 1)
                 {
                     this.Controls.Clear();
-                    tickets.RestaurantId = (int)restaurantId;
-                    tickets.ManagerId = (int)managerId;
+                    tickets.Data = (DataDetail)data;
                     this.Controls.Add(tickets);
                 }
                 else if (action == 2)
                 {
                     this.Controls.Clear();
-                    promotions.RestaurantId = (int)restaurantId;
-                    promotions.ManagerId = (int)managerId;
+                    promotions.RestaurantId = ((DataDetail)data).RestaurantId;
+                    promotions.ManagerId = ((DataDetail)data).ManagerId;
                     this.Controls.Add(promotions);
                 }
             }
@@ -189,8 +187,7 @@ namespace FoodHubManagerApp
                 if (action == 0)
                 {
                     this.Controls.Clear();
-                    tickets.RestaurantId = (int)restaurantId;
-                    tickets.ManagerId = (int)managerId;
+                    tickets.Data = (DataDetail)data;
                     this.Controls.Add(tickets);
                 }
             }

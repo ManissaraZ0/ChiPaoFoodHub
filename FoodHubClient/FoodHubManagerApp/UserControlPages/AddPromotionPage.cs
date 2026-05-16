@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using FoodHubManagerApp.Logics;
 using FoodHubManagerApp.UserControlComponents;
 
 namespace FoodHubManagerApp.UserControlPages
@@ -46,26 +47,26 @@ namespace FoodHubManagerApp.UserControlPages
             switch (navBarControl1.SelectedIndex)
             {
                 case 0: // Promotion
-                    form.ChangeScreen(this, RestaurantId, ManagerId, 1);
+                    form.ChangeScreen(this, data: new DataDetail { RestaurantId = RestaurantId, ManagerId = ManagerId }, 1);
                     break;
                 case 1: // Ticket
-                    form.ChangeScreen(this, RestaurantId, ManagerId, 2);
+                    form.ChangeScreen(this, data: new DataDetail { RestaurantId = RestaurantId, ManagerId = ManagerId }, 2);
                     break;
                 case 2: // Review
-                    form.ChangeScreen(this, RestaurantId, ManagerId, 3);
+                    form.ChangeScreen(this, data: new DataDetail { RestaurantId = RestaurantId, ManagerId = ManagerId }, 3);
                     break;
             }
         }
 
         private void buttonControl1_Load(object sender, EventArgs e)
         {
-            form.ChangeScreen(this, RestaurantId, ManagerId, 1);
+            form.ChangeScreen(this, data: new DataDetail { RestaurantId = RestaurantId, ManagerId = ManagerId }, 1);
         }
 
         private void buttonControl2_Load(object sender, EventArgs e)
         {
             MessageBox.Show("Save Promotion Clicked!");
-            form.ChangeScreen(this, RestaurantId, ManagerId, 1);
+            form.ChangeScreen(this, data: new DataDetail { RestaurantId = RestaurantId, ManagerId = ManagerId }, 1);
 		}
     }
 }

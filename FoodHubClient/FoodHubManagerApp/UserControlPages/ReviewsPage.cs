@@ -16,18 +16,19 @@ namespace FoodHubManagerApp.UserControlPages
     public partial class ReviewsPage : UserControl
     {
         ManagerApp form;
-        private int restaurantId = 1;
+        private int restaurantId;
         public int RestaurantId
         {
             get => restaurantId;
             set
             {
                 restaurantId = value;
-                navBarControl1.SelectedIndex = 2; // เลือก Ticket tab เมื่อเปลี่ยนร้าน
-                RefreshData();
+                navBarControl1.SelectedIndex = 2; // เลือก Review tab เมื่อเปลี่ยนร้าน
+                var allReviews = Service.GetReviewDetails(RestaurantId);
+                RenderReviews(allReviews);
             }
         }
-        private int managerId = 1;
+        private int managerId;
         public int ManagerId
         {
             get => managerId;
@@ -58,7 +59,7 @@ namespace FoodHubManagerApp.UserControlPages
 
         private void SetupEventHandlers()
         {
-            navBarControl1.LogoClicked += (s, e) => form.ChangeScreen(this, 0, 0, 2002);
+            navBarControl1.LogoClicked += (s, e) => form.ChangeScreen(this, 0, 2002);
 
             // Search Event
             searchBar1.SearchSubmitted += (s, keyword) =>
@@ -151,13 +152,13 @@ namespace FoodHubManagerApp.UserControlPages
             switch (navBarControl1.SelectedIndex)
             {
                 case 0: // Promotion
-                    form.ChangeScreen(this, RestaurantId, ManagerId, 2);
+                    form.ChangeScreen(this, data: new DataDetail { RestaurantId = RestaurantId, ManagerId = ManagerId }, 2);
                     break;
                 case 1: // Ticket
-                    form.ChangeScreen(this, RestaurantId, ManagerId, 1);
+                    form.ChangeScreen(this, data: new DataDetail { RestaurantId = RestaurantId, ManagerId = ManagerId }, 1);
                     break;
                 case 2: // Review
-                    form.ChangeScreen(this, RestaurantId, ManagerId, 0);
+                    form.ChangeScreen(this, data: new DataDetail { RestaurantId = RestaurantId, ManagerId = ManagerId }, 0);
                     break;
             }
         }

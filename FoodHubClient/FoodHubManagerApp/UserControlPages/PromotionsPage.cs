@@ -25,6 +25,7 @@ namespace FoodHubManagerApp.UserControlPages
             set { 
                 restaurantId = value;
                 navBarControl1.SelectedIndex = 0;
+                RefreshData();
             }
         }
         private int managerId;
@@ -51,7 +52,7 @@ namespace FoodHubManagerApp.UserControlPages
 
         private void SetupEventHandlers()
         {
-            navBarControl1.LogoClicked += (s, e) => form.ChangeScreen(this, 0, 0, 2002);
+            navBarControl1.LogoClicked += (s, e) => form.ChangeScreen(this, 0, 2002);
 
             // Layout Event
             flowLayoutPanel1.Resize += (s, e) => ResizeCards();
@@ -230,20 +231,20 @@ namespace FoodHubManagerApp.UserControlPages
             switch (navBarControl1.SelectedIndex)
             {
                 case 0: // Promotion
-                    form.ChangeScreen(this, RestaurantId, ManagerId, 0);
+                    form.ChangeScreen(this, data: new DataDetail { RestaurantId = RestaurantId, ManagerId = ManagerId }, 0);
                     break;
                 case 1: // Ticket
-                    form.ChangeScreen(this, RestaurantId, ManagerId, 2);
+                    form.ChangeScreen(this, data: new DataDetail { RestaurantId = RestaurantId, ManagerId = ManagerId }, 2);
                     break;
                 case 2: // Review
-                    form.ChangeScreen(this, RestaurantId, ManagerId, 3);
+                    form.ChangeScreen(this, data: new DataDetail { RestaurantId = RestaurantId, ManagerId = ManagerId }, 3);
                     break;
             }
         }
 
         private void circleAddButtonControl1_Load(object sender, EventArgs e)
         {
-            form.ChangeScreen(this, RestaurantId, ManagerId, 1);
+            form.ChangeScreen(this, data: new DataDetail { RestaurantId = RestaurantId, ManagerId = ManagerId }, 1);
         }
     }
 }

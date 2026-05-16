@@ -10,29 +10,22 @@ using System.Windows.Forms;
 using FoodHubManagerApp.Logics;
 using FoodHubManagerApp.Model;
 using FoodHubManagerApp.UserControlComponents;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace FoodHubManagerApp.UserControlPages
 {
     public partial class TicketsPage : UserControl
     {
         ManagerApp form;
-        private int restaurantId = 1;
-        public int RestaurantId
+        private DataDetail data;
+        public DataDetail Data
         {
-            get => restaurantId;
-            set { 
-                restaurantId = value; 
-                navBarControl1.SelectedIndex = 1; // เลือก Ticket tab เมื่อเปลี่ยนร้าน
-                RefreshData();
-            }
-        }
-        private int managerId = 1;
-        public int ManagerId
-        {
-            get => managerId;
+            get => data;
             set
             {
-                managerId = value;
+                data = value;
+                navBarControl1.SelectedIndex = 1;
+                RefreshData();
             }
         }
 
@@ -53,13 +46,13 @@ namespace FoodHubManagerApp.UserControlPages
 
         public void RefreshData()
         {
-            var tickets = Service.GetRestaurantTickets(RestaurantId, ManagerId, "Active");
+            var tickets = Service.GetRestaurantTickets(Data.RestaurantId, Data.ManagerId, "Active");
             UpdateUserCards(tickets);
         }
 
         private void SetupEventHandlers()
         {
-            navBarControl1.LogoClicked += (s, e) => form.ChangeScreen(this, 0, 0, 2002);
+            navBarControl1.LogoClicked += (s, e) => form.ChangeScreen(this, 0, 2002);
 
             // Layout Event
             flowLayoutPanel1.Resize += (s, e) => ResizeCards();
@@ -67,7 +60,7 @@ namespace FoodHubManagerApp.UserControlPages
             // Search Event
             searchBar1.SearchSubmitted += (s, keyword) =>
             {
-                var filtered = Service.GetRestaurantTickets(RestaurantId, ManagerId, "Active")
+                var filtered = Service.GetRestaurantTickets(Data.RestaurantId, Data.ManagerId, "Active")
                     .Where(p => p.PromotionTitle.Contains(keyword, StringComparison.OrdinalIgnoreCase))
                     .ToList();
                 UpdateUserCards(filtered);
@@ -120,7 +113,7 @@ namespace FoodHubManagerApp.UserControlPages
                     // เช็คผลลัพธ์เหมือน MessageBox ปกติ
                     if (result == DialogResult.Yes)
                     {
-                        var success = Service.ValidateTicket(item.TicketId, ManagerId);
+                        var success = Service.ValidateTicket(item.TicketId, Data.ManagerId);
                         if (success != null)
                         {
                             DialogCard.Show($"Ticket #{item.TicketId} accepted successfully!", DialogCardType.Positive);
@@ -194,13 +187,13 @@ namespace FoodHubManagerApp.UserControlPages
             switch (navBarControl1.SelectedIndex)
             {
                 case 0: // Promotion
-                    form.ChangeScreen(this, RestaurantId, ManagerId, 1);
+                    form.ChangeScreen(this, data: new DataDetail { RestaurantId = Data.RestaurantId, ManagerId = Data.ManagerId }, 1);
                     break;
                 case 1: // Ticket
-                    form.ChangeScreen(this, RestaurantId, ManagerId, 0);
+                    form.ChangeScreen(this, data: new DataDetail { RestaurantId = Data.RestaurantId, ManagerId = Data.ManagerId }, 0);
                     break;
                 case 2: // Review
-                    form.ChangeScreen(this, RestaurantId, ManagerId, 2);
+                    form.ChangeScreen(this, data: new DataDetail { RestaurantId = Data.RestaurantId, ManagerId = Data.ManagerId }, 2);
                     break;
             }
         }

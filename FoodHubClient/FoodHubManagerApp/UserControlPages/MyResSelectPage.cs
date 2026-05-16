@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using FoodHubManagerApp.Logics;
 using FoodHubManagerApp.Model;
 using FoodHubManagerApp.UserControlComponents;
 
@@ -71,11 +72,11 @@ namespace FoodHubManagerApp.UserControlPages
 
                 card.Click += (s, e) =>
                 {
-                    //MessageBox.Show(
-                    //    $"คุณเลือก: {item.Username}",
-                    //    "แจ้งเตือน"
-                    //);
-                    form.ChangeScreen(this, item.RestaurantId, this.ManagerId, 0);
+                    MessageBox.Show(
+                        $"คุณ {ManagerId} เลือก: {item.RestaurantId}",
+                        "แจ้งเตือน"
+                    );
+                    form.ChangeScreen(this, data: new DataDetail { RestaurantId = item.RestaurantId, ManagerId = ManagerId }, 0);
                 };
 
                 flowLayoutPanel1.Controls.Add(card);
@@ -131,7 +132,7 @@ namespace FoodHubManagerApp.UserControlPages
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
-            form.ChangeScreen(this, 0, this.ManagerId, 1);
+            form.ChangeScreen(this, data: new DataDetail { ManagerId = ManagerId }, action: 1);
         }
     }
 }
