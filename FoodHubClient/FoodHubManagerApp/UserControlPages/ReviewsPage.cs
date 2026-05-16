@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using FoodHubManagerApp.Logics;
+using FoodHubManagerApp.Model;
 using FoodHubManagerApp.UserControlComponents;
 
 namespace FoodHubManagerApp.UserControlPages
@@ -42,7 +43,8 @@ namespace FoodHubManagerApp.UserControlPages
 
             SetupEventHandlers();
 
-            var allReviews = GetMockReviewData();
+            //var allReviews = GetMockReviewData();
+            var allReviews = Service.GetReviewDetails(RestaurantId);
             RenderReviews(allReviews);
 
             navBarControl1.SelectedIndexChanged += NavBarControl1_SelectedIndexChanged;
@@ -55,14 +57,15 @@ namespace FoodHubManagerApp.UserControlPages
             // Search Event
             searchBar1.SearchSubmitted += (s, keyword) =>
             {
-                var filtered = GetMockReviewData()
-                    .Where(p => p.ReviewText.Contains(keyword, StringComparison.OrdinalIgnoreCase))
+                //var filtered = GetMockReviewData()
+                var filtered = Service.GetReviewDetails(RestaurantId)
+                    .Where(p => p.Comment.Contains(keyword, StringComparison.OrdinalIgnoreCase))
                     .ToList();
                 RenderReviews(filtered);
             };
         }
 
-        private void RenderReviews(List<ReviewItem> items)
+        private void RenderReviews(List<ManagerReviewDetailRsp> items)
         {
             if (InvokeRequired)
             {
@@ -86,24 +89,24 @@ namespace FoodHubManagerApp.UserControlPages
         }
 
         // ฟังก์ชันสร้าง Mock Data สำหรับรีวิว
-        private List<ReviewItem> GetMockReviewData()
-        {
-            var list = new List<ReviewItem>();
+        //private List<ReviewItem> GetMockReviewData()
+        //{
+        //    var list = new List<ReviewItem>();
 
-            // จำลองข้อความรีวิวแบบในรูปเป๊ะๆ
-            string mockText = "อาหารหลากหลาย\n" +
-                              "แต่มีเพียงบางอย่างเท่านั้นที่อร่อย\n" +
-                              "แต่ด้านบริการยอดเยี่ยมมากๆ ครับ\n" +
-                              "พนักงานทุกคนกระตือรือร้น ยิ้มแย้ม สุภาพ\n" +
-                              "บรรยากาศภายในร้านพลุกพล่าน";
+        //    // จำลองข้อความรีวิวแบบในรูปเป๊ะๆ
+        //    string mockText = "อาหารหลากหลาย\n" +
+        //                      "แต่มีเพียงบางอย่างเท่านั้นที่อร่อย\n" +
+        //                      "แต่ด้านบริการยอดเยี่ยมมากๆ ครับ\n" +
+        //                      "พนักงานทุกคนกระตือรือร้น ยิ้มแย้ม สุภาพ\n" +
+        //                      "บรรยากาศภายในร้านพลุกพล่าน";
 
-            list.Add(new ReviewItem { Username = "User 1", Rating = 4.00, ReviewText = mockText });
-            list.Add(new ReviewItem { Username = "User 2", Rating = 5.00, ReviewText = mockText });
-            list.Add(new ReviewItem { Username = "User 3", Rating = 5.00, ReviewText = mockText });
-            list.Add(new ReviewItem { Username = "User 3", Rating = 5.00, ReviewText = mockText+"หมีเนย" });
+        //    list.Add(new ReviewItem { Username = "User 1", Rating = 4.00, ReviewText = mockText });
+        //    list.Add(new ReviewItem { Username = "User 2", Rating = 5.00, ReviewText = mockText });
+        //    list.Add(new ReviewItem { Username = "User 3", Rating = 5.00, ReviewText = mockText });
+        //    list.Add(new ReviewItem { Username = "User 3", Rating = 5.00, ReviewText = mockText+"หมีเนย" });
 
-            return list;
-        }
+        //    return list;
+        //}
 
         //// โหลดเข้า FlowLayoutPanel
         //private void LoadReviews()
