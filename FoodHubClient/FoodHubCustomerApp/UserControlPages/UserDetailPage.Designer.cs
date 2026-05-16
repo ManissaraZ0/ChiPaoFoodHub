@@ -150,7 +150,7 @@
             // 
             contentSplitContainer.Panel2.Controls.Add(contentRightPanel);
             contentSplitContainer.Size = new Size(1280, 649);
-            contentSplitContainer.SplitterDistance = 449;
+            contentSplitContainer.SplitterDistance = 400;
             contentSplitContainer.SplitterWidth = 1;
             contentSplitContainer.TabIndex = 0;
             // 
@@ -163,7 +163,7 @@
             contentLeftPanel.Margin = new Padding(0);
             contentLeftPanel.Name = "contentLeftPanel";
             contentLeftPanel.Padding = new Padding(25, 0, 25, 10);
-            contentLeftPanel.Size = new Size(449, 649);
+            contentLeftPanel.Size = new Size(400, 649);
             contentLeftPanel.TabIndex = 1;
             // 
             // subSplitLeftContainer
@@ -183,7 +183,7 @@
             // subSplitLeftContainer.Panel2
             // 
             subSplitLeftContainer.Panel2.Controls.Add(subSubSplitLeftContainer);
-            subSplitLeftContainer.Size = new Size(399, 639);
+            subSplitLeftContainer.Size = new Size(350, 639);
             subSplitLeftContainer.SplitterWidth = 1;
             subSplitLeftContainer.TabIndex = 0;
             // 
@@ -201,7 +201,7 @@
             headLeftTableLayout.Name = "headLeftTableLayout";
             headLeftTableLayout.RowCount = 1;
             headLeftTableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            headLeftTableLayout.Size = new Size(399, 50);
+            headLeftTableLayout.Size = new Size(350, 50);
             headLeftTableLayout.TabIndex = 0;
             // 
             // backBtn
@@ -212,7 +212,7 @@
             backBtn.Margin = new Padding(5);
             backBtn.Name = "backBtn";
             backBtn.OutlineColor = Color.Black;
-            backBtn.Size = new Size(49, 40);
+            backBtn.Size = new Size(42, 40);
             backBtn.StrokeWidth = 2.5F;
             backBtn.TabIndex = 0;
             // 
@@ -221,10 +221,10 @@
             leftHeadTitle.BackColor = Color.Transparent;
             leftHeadTitle.Dock = DockStyle.Fill;
             leftHeadTitle.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            leftHeadTitle.Location = new Point(59, 0);
+            leftHeadTitle.Location = new Point(52, 0);
             leftHeadTitle.Margin = new Padding(0);
             leftHeadTitle.Name = "leftHeadTitle";
-            leftHeadTitle.Size = new Size(279, 50);
+            leftHeadTitle.Size = new Size(245, 50);
             leftHeadTitle.TabIndex = 1;
             leftHeadTitle.Text = "My Information";
             leftHeadTitle.TextAlign = ContentAlignment.MiddleCenter;
@@ -247,7 +247,7 @@
             // subSubSplitLeftContainer.Panel2
             // 
             subSubSplitLeftContainer.Panel2.Controls.Add(subSubSubSplitLeftContainer);
-            subSubSplitLeftContainer.Size = new Size(399, 588);
+            subSubSplitLeftContainer.Size = new Size(350, 588);
             subSubSplitLeftContainer.SplitterDistance = 249;
             subSubSplitLeftContainer.SplitterWidth = 1;
             subSubSplitLeftContainer.TabIndex = 0;
@@ -259,7 +259,7 @@
             imageScreenControlNew.Dock = DockStyle.Fill;
             imageScreenControlNew.Location = new Point(0, 0);
             imageScreenControlNew.Name = "imageScreenControlNew";
-            imageScreenControlNew.Size = new Size(399, 249);
+            imageScreenControlNew.Size = new Size(350, 249);
             imageScreenControlNew.TabIndex = 0;
             // 
             // subSubSubSplitLeftContainer
@@ -279,7 +279,7 @@
             // subSubSubSplitLeftContainer.Panel2
             // 
             subSubSubSplitLeftContainer.Panel2.Controls.Add(subSubSubSubSplitLeftContainer);
-            subSubSubSplitLeftContainer.Size = new Size(399, 338);
+            subSubSubSplitLeftContainer.Size = new Size(350, 338);
             subSubSubSplitLeftContainer.SplitterWidth = 1;
             subSubSubSplitLeftContainer.TabIndex = 0;
             // 
@@ -290,7 +290,7 @@
             usernameTitle.Location = new Point(0, 0);
             usernameTitle.Margin = new Padding(0);
             usernameTitle.Name = "usernameTitle";
-            usernameTitle.Size = new Size(399, 50);
+            usernameTitle.Size = new Size(350, 50);
             usernameTitle.TabIndex = 0;
             usernameTitle.Text = "Test User";
             usernameTitle.TextAlign = ContentAlignment.MiddleCenter;
@@ -312,7 +312,7 @@
             // subSubSubSubSplitLeftContainer.Panel2
             // 
             subSubSubSubSplitLeftContainer.Panel2.Controls.Add(topSplitDescriptionContent);
-            subSubSubSubSplitLeftContainer.Size = new Size(399, 287);
+            subSubSubSubSplitLeftContainer.Size = new Size(350, 287);
             subSubSubSubSplitLeftContainer.SplitterDistance = 25;
             subSubSubSubSplitLeftContainer.SplitterWidth = 1;
             subSubSubSubSplitLeftContainer.TabIndex = 0;
@@ -325,7 +325,7 @@
             lineSplitBetweenTitleContent.Margin = new Padding(0);
             lineSplitBetweenTitleContent.MaximumSize = new Size(0, 2);
             lineSplitBetweenTitleContent.Name = "lineSplitBetweenTitleContent";
-            lineSplitBetweenTitleContent.Size = new Size(648, 2);
+            lineSplitBetweenTitleContent.Size = new Size(599, 2);
             lineSplitBetweenTitleContent.TabIndex = 0;
             lineSplitBetweenTitleContent.TextAlign = ContentAlignment.MiddleCenter;
             // 
@@ -346,7 +346,7 @@
             // topSplitDescriptionContent.Panel2
             // 
             topSplitDescriptionContent.Panel2.Controls.Add(topSecondSplitDescriptionContent);
-            topSplitDescriptionContent.Size = new Size(399, 261);
+            topSplitDescriptionContent.Size = new Size(350, 261);
             topSplitDescriptionContent.SplitterDistance = 56;
             topSplitDescriptionContent.SplitterWidth = 1;
             topSplitDescriptionContent.TabIndex = 0;
@@ -354,8 +354,8 @@
             // tableLayoutPanelTopContent
             // 
             tableLayoutPanelTopContent.ColumnCount = 2;
-            tableLayoutPanelTopContent.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
-            tableLayoutPanelTopContent.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 80F));
+            tableLayoutPanelTopContent.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            tableLayoutPanelTopContent.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 75F));
             tableLayoutPanelTopContent.Controls.Add(topDescriptionLabel, 0, 0);
             tableLayoutPanelTopContent.Controls.Add(emailDetail, 1, 0);
             tableLayoutPanelTopContent.Dock = DockStyle.Fill;
@@ -364,7 +364,7 @@
             tableLayoutPanelTopContent.Name = "tableLayoutPanelTopContent";
             tableLayoutPanelTopContent.RowCount = 1;
             tableLayoutPanelTopContent.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanelTopContent.Size = new Size(399, 56);
+            tableLayoutPanelTopContent.Size = new Size(350, 56);
             tableLayoutPanelTopContent.TabIndex = 0;
             // 
             // topDescriptionLabel
@@ -374,7 +374,7 @@
             topDescriptionLabel.Location = new Point(0, 0);
             topDescriptionLabel.Margin = new Padding(0);
             topDescriptionLabel.Name = "topDescriptionLabel";
-            topDescriptionLabel.Size = new Size(79, 56);
+            topDescriptionLabel.Size = new Size(87, 56);
             topDescriptionLabel.TabIndex = 0;
             topDescriptionLabel.Text = "Email:";
             topDescriptionLabel.TextAlign = ContentAlignment.MiddleLeft;
@@ -383,10 +383,10 @@
             // 
             emailDetail.Dock = DockStyle.Fill;
             emailDetail.Font = new Font("Segoe UI", 16F);
-            emailDetail.Location = new Point(79, 0);
+            emailDetail.Location = new Point(87, 0);
             emailDetail.Margin = new Padding(0);
             emailDetail.Name = "emailDetail";
-            emailDetail.Size = new Size(320, 56);
+            emailDetail.Size = new Size(263, 56);
             emailDetail.TabIndex = 1;
             emailDetail.Text = "example@gmail.com";
             emailDetail.TextAlign = ContentAlignment.MiddleLeft;
@@ -404,7 +404,7 @@
             // topSecondSplitDescriptionContent.Panel1
             // 
             topSecondSplitDescriptionContent.Panel1.Controls.Add(tableLayoutPanelTopSecondContent);
-            topSecondSplitDescriptionContent.Size = new Size(399, 204);
+            topSecondSplitDescriptionContent.Size = new Size(350, 204);
             topSecondSplitDescriptionContent.SplitterDistance = 56;
             topSecondSplitDescriptionContent.SplitterWidth = 1;
             topSecondSplitDescriptionContent.TabIndex = 0;
@@ -412,8 +412,8 @@
             // tableLayoutPanelTopSecondContent
             // 
             tableLayoutPanelTopSecondContent.ColumnCount = 2;
-            tableLayoutPanelTopSecondContent.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 45F));
             tableLayoutPanelTopSecondContent.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 55F));
+            tableLayoutPanelTopSecondContent.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 45F));
             tableLayoutPanelTopSecondContent.Controls.Add(topSecondDescriptionLabel, 0, 0);
             tableLayoutPanelTopSecondContent.Controls.Add(promoCount, 1, 0);
             tableLayoutPanelTopSecondContent.Dock = DockStyle.Fill;
@@ -422,7 +422,7 @@
             tableLayoutPanelTopSecondContent.Name = "tableLayoutPanelTopSecondContent";
             tableLayoutPanelTopSecondContent.RowCount = 1;
             tableLayoutPanelTopSecondContent.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanelTopSecondContent.Size = new Size(399, 56);
+            tableLayoutPanelTopSecondContent.Size = new Size(350, 56);
             tableLayoutPanelTopSecondContent.TabIndex = 0;
             // 
             // topSecondDescriptionLabel
@@ -432,7 +432,7 @@
             topSecondDescriptionLabel.Location = new Point(0, 0);
             topSecondDescriptionLabel.Margin = new Padding(0);
             topSecondDescriptionLabel.Name = "topSecondDescriptionLabel";
-            topSecondDescriptionLabel.Size = new Size(179, 56);
+            topSecondDescriptionLabel.Size = new Size(192, 56);
             topSecondDescriptionLabel.TabIndex = 0;
             topSecondDescriptionLabel.Text = "My Promotions:";
             topSecondDescriptionLabel.TextAlign = ContentAlignment.MiddleLeft;
@@ -441,10 +441,10 @@
             // 
             promoCount.Dock = DockStyle.Fill;
             promoCount.Font = new Font("Segoe UI", 16F);
-            promoCount.Location = new Point(179, 0);
+            promoCount.Location = new Point(192, 0);
             promoCount.Margin = new Padding(0);
             promoCount.Name = "promoCount";
-            promoCount.Size = new Size(220, 56);
+            promoCount.Size = new Size(158, 56);
             promoCount.TabIndex = 1;
             promoCount.Text = "99";
             promoCount.TextAlign = ContentAlignment.MiddleLeft;
@@ -456,7 +456,7 @@
             contentRightPanel.Location = new Point(0, 0);
             contentRightPanel.Margin = new Padding(0);
             contentRightPanel.Name = "contentRightPanel";
-            contentRightPanel.Size = new Size(830, 649);
+            contentRightPanel.Size = new Size(879, 649);
             contentRightPanel.TabIndex = 0;
             // 
             // subSplitRightContainer
@@ -478,7 +478,7 @@
             // 
             subSplitRightContainer.Panel2.Controls.Add(flowLayoutPanel);
             subSplitRightContainer.Panel2.Padding = new Padding(25, 0, 25, 10);
-            subSplitRightContainer.Size = new Size(830, 649);
+            subSplitRightContainer.Size = new Size(879, 649);
             subSplitRightContainer.SplitterWidth = 1;
             subSplitRightContainer.TabIndex = 0;
             // 
@@ -490,7 +490,7 @@
             rightSectionHeaderControl.Location = new Point(0, 0);
             rightSectionHeaderControl.Margin = new Padding(0);
             rightSectionHeaderControl.Name = "rightSectionHeaderControl";
-            rightSectionHeaderControl.Size = new Size(805, 50);
+            rightSectionHeaderControl.Size = new Size(854, 50);
             rightSectionHeaderControl.TabIndex = 0;
             // 
             // flowLayoutPanel
@@ -501,7 +501,7 @@
             flowLayoutPanel.Location = new Point(25, 0);
             flowLayoutPanel.Margin = new Padding(0);
             flowLayoutPanel.Name = "flowLayoutPanel";
-            flowLayoutPanel.Size = new Size(780, 588);
+            flowLayoutPanel.Size = new Size(829, 588);
             flowLayoutPanel.TabIndex = 0;
             // 
             // UserDetailPage
