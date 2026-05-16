@@ -100,9 +100,18 @@ namespace FoodHubCustomerApp
                     }
                 }
             }
+            // Back Button from UserDetailPage to HomePage (Patt เอ้ง)
             if (sender is UserDetailPage)
             {
-                //
+                if (action == 4)
+                {
+                    if (userData != null)
+                    {
+                        this.Controls.Clear();
+                        homePage.UserData = userData;
+                        this.Controls.Add(homePage);
+                    }
+                }
             }
             if (sender is UserReviewPage)
             {

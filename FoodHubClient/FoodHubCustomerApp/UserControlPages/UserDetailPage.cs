@@ -67,6 +67,10 @@ namespace FoodHubCustomerApp.UserControlPages
             navBarControl.ProfileClicked += (s, e) => form.ChangeScreen(this, 3, userData);
 
             flowLayoutPanel.Resize += (s, e) => ResizePromotions();
+
+            backBtn.Click += (s, e) => {
+                form.ChangeScreen(this, 4, userData);
+            };
         }
 
         private void LoadExpirePromotions()
