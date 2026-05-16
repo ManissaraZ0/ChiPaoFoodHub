@@ -37,6 +37,37 @@ public class DomainLogic
     }
 
     // ==========================================
+    // Customer Logic Extensions
+    // ==========================================
+
+    public List<RestaurantRecommendationRsp> GetRestaurantBySearchText(string searchText)
+    {
+        using var context = new FoodhubContext(connectionString);
+
+        var query = context.Restaurants.AsQueryable();
+
+        // ตรวจสอบว่ามีการพิมพ์คำค้นหามาหรือไม่
+        if (!string.IsNullOrWhiteSpace(searchText))
+        {
+            // ค้นหาแบบ Contains (EF Core จะแปลงเป็นคำสั่ง LIKE %searchText% ให้)
+            query = query.Where(r => r.Name.Contains(searchText) || r.Category.Contains(searchText) || r.Address.Contains(searchText));
+        }
+
+        return query
+            .Select(r => new RestaurantRecommendationRsp
+            {
+                RestaurantId = r.Id,
+                Name = r.Name,
+                Category = r.Category,
+                Address = r.Address,
+                // หาค่าเฉลี่ยเรตติ้ง ถ้ายัังไม่มีรีวิวให้เป็น 0
+                OverallRating = r.Reviews.Any() ? r.Reviews.Average(rev => rev.Rating) : 0
+            })
+            .OrderByDescending(r => r.OverallRating)
+            .ToList();
+    }
+
+    // ==========================================
     // Admin / General User Logic
     // ==========================================
 

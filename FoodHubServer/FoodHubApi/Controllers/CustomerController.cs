@@ -97,6 +97,14 @@ public class CustomerController : ControllerBase
         var domain = new DomainLogic(MyConfig.ConnStr);
         return domain.GetRestaurantDetail(restaurantId);
     }
+
+    // 4. Search Restaurant (ค้นหาร้านอาหารจากชื่อ หรือ หมวดหมู่)
+    [HttpGet("restaurants/search")]
+    public List<RestaurantRecommendationRsp> GetRestaurantBySearchText([FromQuery, Required] string searchText)
+    {
+        var domain = new DomainLogic(MyConfig.ConnStr);
+        return domain.GetRestaurantBySearchText(searchText);
+    }
 }
 
 // Request Models สำหรับ Customer
