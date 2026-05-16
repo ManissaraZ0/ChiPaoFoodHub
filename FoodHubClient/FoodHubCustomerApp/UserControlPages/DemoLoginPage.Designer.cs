@@ -71,7 +71,6 @@
             splitContainer1.Panel1.BackColor = Color.FromArgb(192, 7, 7);
             splitContainer1.Panel1.Controls.Add(pictureBox2);
             splitContainer1.Panel1.Controls.Add(pictureBox1);
-            splitContainer1.Panel1.Dock = DockStyle.Left;
             // 
             // splitContainer1.Panel2
             // 
@@ -88,7 +87,7 @@
             pictureBox2.Location = new Point(0, 89);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(542, 254);
-            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox2.TabIndex = 1;
             pictureBox2.TabStop = false;
             // 
