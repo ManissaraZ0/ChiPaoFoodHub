@@ -49,6 +49,19 @@ namespace FoodHubCustomerApp
                     homePage.SearchText = data.ToString();
                     this.Controls.Add(homePage);
                 }
+            } else if (action == 0)
+            {
+                this.Controls.Clear();
+                this.Controls.Add(demoLoginPage);
+            }
+            else if (action == 3)
+            {
+                if (userData != null)
+                {
+                    this.Controls.Clear();
+                    userDetailPage.UserData = userData;
+                    this.Controls.Add(userDetailPage);
+                }
             }
             if (sender is DemoLoginPage)
             {
@@ -64,21 +77,7 @@ namespace FoodHubCustomerApp
             }
             if (sender is HomePage)
             {
-                if (action == 0)
-                {
-                    this.Controls.Clear();
-                    this.Controls.Add(demoLoginPage);
-                }
-                else if (action == 3)
-                {
-                    if (userData != null)
-                    {
-                        this.Controls.Clear();
-                        userDetailPage.UserData = userData;
-                        this.Controls.Add(userDetailPage);
-                    }
-                }
-                else if (action == 4)
+                if (action == 4)
                 {
                     if (userData != null && data != null)
                     {
@@ -91,37 +90,11 @@ namespace FoodHubCustomerApp
             }
             if (sender is UserDetailPage)
             {
-                if (action == 0)
-                {
-                    this.Controls.Clear();
-                    this.Controls.Add(demoLoginPage);
-                }
-                else if (action == 3)
-                {
-                    if (userData != null)
-                    {
-                        this.Controls.Clear();
-                        userDetailPage.UserData = userData;
-                        this.Controls.Add(userDetailPage);
-                    }
-                }
+                //
             }
             if (sender is UserReviewPage)
             {
-                if (action == 0)
-                {
-                    this.Controls.Clear();
-                    this.Controls.Add(demoLoginPage);
-                }
-                else if (action == 3)
-                {
-                    if (userData != null)
-                    {
-                        this.Controls.Clear();
-                        userDetailPage.UserData = userData;
-                        this.Controls.Add(userDetailPage);
-                    }
-                }
+                //
             }
         }
     }

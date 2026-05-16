@@ -1,5 +1,4 @@
-﻿using FoodHubCustomerApp.Logics;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,12 +7,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using FoodHubCustomerApp.Logics;
+using FoodHubCustomerApp.Model;
 
 namespace FoodHubCustomerApp.UserControlPages
 {
     public partial class AddPostPage : UserControl
     {
         CustomerApp form;
+
+        private UserRsp userData;
+
+        public UserRsp UserData
+        {
+            get => userData;
+            set
+            {
+                userData = value;
+                UserSession.Username = userData.Username;
+                navBarControl.RefreshUserProfile();
+                navBarControl.UserData = userData;
+            }
+        }
 
         private string placeholderText = "Your opinion";
         private Color placeholderColor = Color.Gray;
