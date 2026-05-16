@@ -124,10 +124,12 @@ public class DomainLogic
         if (promotion.EndDate < DateTime.Now)
             throw new Exception("This promotion has expired.");
 
-        // Check Quota
-        var currentTicketsCount = context.PromotionTickets.Count(t => t.PromotionId == promotionId);
-        if (currentTicketsCount >= promotion.TotalQuota)
+        // เช็คโควต้าจาก Field โดยตรง
+        if (promotion.TotalQuota <= 0)
             throw new Exception("Promotion quota is full.");
+
+        // หักโควต้าใน DB ทันที
+        promotion.TotalQuota -= 1;
 
         // Create Ticket
         var ticket = new PromotionTicket
@@ -140,6 +142,8 @@ public class DomainLogic
         };
 
         context.PromotionTickets.Add(ticket);
+
+        // EF Core จะทำการ Update ค่า TotalQuota ที่ลดลง และ Insert Ticket ไปพร้อมกัน
         context.SaveChanges();
         context.Database.CommitTransaction();
 
@@ -343,8 +347,8 @@ public class DomainLogic
                 Title = p.Title,
                 Price = p.Price,
                 Conditions = p.Conditions,
-                // คำนวณโควต้าที่เหลือ: โควต้าทั้งหมด - จำนวนตั๋วที่ถูกซื้อไปแล้ว
-                RemainingQuota = p.TotalQuota - context.PromotionTickets.Count(t => t.PromotionId == p.Id)
+                // นำค่า TotalQuota มาแสดงเป็น RemainingQuota ได้เลย
+                RemainingQuota = p.TotalQuota
             })
             .ToList();
     }
