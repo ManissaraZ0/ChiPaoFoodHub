@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -54,6 +54,9 @@ namespace FoodHubCustomerApp.UserControlPages
             this.form = form;
             SetupUI();
             SetupEventHandlers();
+
+            // กำหนดสีพื้นหลังให้ปุ่ม Add Post โดยดึงสีมาจาก StylePalette
+            btnAddPost.BackColor = StylePalette.DarkRed;
         }
         public void RefreshData()
         {
@@ -73,6 +76,14 @@ namespace FoodHubCustomerApp.UserControlPages
             navBarControl.HeartClicked += (s, e) => form.ChangeScreen(this, 4, userData, resPrevious);
             navBarControl.BellClicked += (s, e) => MessageBox.Show("แสดงการแจ้งเตือน");
             navBarControl.ProfileClicked += (s, e) => form.ChangeScreen(this, 3, userData);
+        }
+
+        private void btnAddPost_Paint(object sender, PaintEventArgs e)
+        {
+            // ตัดขอบ PictureBox ให้กลายเป็นวงกลม
+            System.Drawing.Drawing2D.GraphicsPath path = new System.Drawing.Drawing2D.GraphicsPath();
+            path.AddEllipse(0, 0, btnAddPost.Width - 1, btnAddPost.Height - 1);
+            btnAddPost.Region = new Region(path);
         }
     }
 }
