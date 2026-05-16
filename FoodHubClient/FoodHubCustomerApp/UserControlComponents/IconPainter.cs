@@ -207,5 +207,43 @@ namespace FoodHubCustomerApp.UserControlComponents
 
             g.Restore(state);
         }
+
+        public static void DrawSmileIcon(Graphics g, int x, int y)
+        {
+            using (Pen pen = new Pen(Color.White, 4f))
+            using (SolidBrush brush = new SolidBrush(Color.White))
+            {
+                // วงกลมหน้า
+                g.DrawEllipse(pen, x, y, 50, 50);
+
+                // ตาซ้าย
+                g.FillEllipse(brush, x + 12, y + 15, 6, 6);
+
+                // ตาขวา
+                g.FillEllipse(brush, x + 32, y + 15, 6, 6);
+
+                // ปากยิ้ม
+                g.DrawArc(pen, x + 12, y + 18, 26, 20, 20, 140);
+            }
+        }
+
+        public static void DrawSadIcon(Graphics g, int x, int y)
+        {
+            using (Pen pen = new Pen(Color.White, 4f))
+            using (SolidBrush brush = new SolidBrush(Color.White))
+            {
+                // วงกลมหน้า
+                g.DrawEllipse(pen, x, y, 50, 50);
+
+                // ตาซ้าย
+                g.FillEllipse(brush, x + 12, y + 15, 6, 6);
+
+                // ตาขวา
+                g.FillEllipse(brush, x + 32, y + 15, 6, 6);
+
+                // ปากเศร้า (คว่ำลง)
+                g.DrawArc(pen, x + 12, y + 26, 26, 20, 200, 140);
+            }
+        }
     }
 }

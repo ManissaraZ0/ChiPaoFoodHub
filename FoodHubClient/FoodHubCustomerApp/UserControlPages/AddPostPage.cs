@@ -1,4 +1,7 @@
-﻿using System;
+﻿using FoodHubCustomerApp.Logics;
+using FoodHubCustomerApp.Model;
+using FoodHubCustomerApp.UserControlComponents;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,8 +10,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using FoodHubCustomerApp.Logics;
-using FoodHubCustomerApp.Model;
 
 namespace FoodHubCustomerApp.UserControlPages
 {
@@ -112,11 +113,11 @@ namespace FoodHubCustomerApp.UserControlPages
 
             // เมื่อกดปุ่ม Cancel
             secondaryBtn.Click += (s, e) => {
-                var result = MessageBox.Show("คุณแน่ใจหรือไม่ว่าต้องการยกเลิกการเขียนรีวิว?",
-                                             "ยืนยัน", MessageBoxButtons.YesNo);
+                var result = DialogCard.Show("คุณแน่ใจหรือไม่ว่าต้องการยกเลิกการเขียนรีวิว?", DialogCardType.Negative);
+
+                // เช็คผลลัพธ์เหมือน MessageBox ปกติ
                 if (result == DialogResult.Yes)
                 {
-                    // คำสั่งกลับหน้าหลัก (ขึ้นอยู่กับการจัดการ Navigation ของคุณ)
                     form.ChangeScreen(this, 5, userData, resPrevious);
                 }
             };
