@@ -4,6 +4,9 @@
     <Compile Update="ManagerApp.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="UserControlComponents\AcceptCard.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="UserControlComponents\ButtonControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

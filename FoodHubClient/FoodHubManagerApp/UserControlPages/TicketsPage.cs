@@ -96,7 +96,38 @@ namespace FoodHubManagerApp.UserControlPages
 
                 card.AcceptClicked += (s, e) =>
                 {
-                    MessageBox.Show($"คุณเลือก: {item.Title}", "แจ้งเตือน");
+                    Form formBackground = new Form();
+                    try
+                    {
+                        formBackground.StartPosition = FormStartPosition.Manual;
+                        formBackground.FormBorderStyle = FormBorderStyle.None;
+                        formBackground.Opacity = .70d;
+                        formBackground.BackColor = Color.Black;
+                        formBackground.WindowState = FormWindowState.Maximized;
+                        formBackground.ShowInTaskbar = false;
+
+                        formBackground.Show();
+
+                        AcceptCard uu = new AcceptCard(item.Id);
+
+                        uu.StartPosition = FormStartPosition.CenterScreen;
+
+                        // ปิด background ตอน popup ปิด
+                        uu.FormClosed += (s, args) =>
+                        {
+                            formBackground.Dispose();
+                        };
+
+                        uu.Show();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("An error occurred: " + ex.Message);
+                    }
+                    finally
+                    {
+                        formBackground.Dispose();
+                    }
                 };
 
                 flowLayoutPanel1.Controls.Add(card);

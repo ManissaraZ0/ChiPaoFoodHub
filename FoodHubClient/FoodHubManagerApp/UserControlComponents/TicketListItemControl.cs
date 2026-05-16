@@ -163,8 +163,13 @@ namespace FoodHubManagerApp.UserControlComponents
         {
             FlatStyle = FlatStyle.Flat;
             FlatAppearance.BorderSize = 0;
-            SetStyle(ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint
-                   | ControlStyles.DoubleBuffer, true);
+            SetStyle(
+                ControlStyles.UserPaint |
+                ControlStyles.AllPaintingInWmPaint |
+                ControlStyles.OptimizedDoubleBuffer |
+                ControlStyles.ResizeRedraw,
+                true
+            );
         }
 
         protected override void OnMouseEnter(EventArgs e)
@@ -200,8 +205,15 @@ namespace FoodHubManagerApp.UserControlComponents
             Graphics g = e.Graphics;
             g.SmoothingMode = SmoothingMode.AntiAlias;
 
+            // ✅ เคลียร์พื้นหลัง parent ก่อน
+            using (SolidBrush parentBrush = new SolidBrush(Parent.BackColor))
+            {
+                g.FillRectangle(parentBrush, ClientRectangle);
+            }
+
             // Choose shade based on state
             Color bg = BackColor;
+
             if (_isPressed)
                 bg = ControlPaint.Dark(BackColor, 0.15f);
             else if (_isHovered)
@@ -216,8 +228,15 @@ namespace FoodHubManagerApp.UserControlComponents
             }
 
             // Draw text
-            TextRenderer.DrawText(g, Text, Font, rect, ForeColor,
-                TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter);
+            TextRenderer.DrawText(
+                g,
+                Text,
+                Font,
+                rect,
+                ForeColor,
+                TextFormatFlags.HorizontalCenter |
+                TextFormatFlags.VerticalCenter
+            );
         }
 
         private static GraphicsPath RoundedRect(Rectangle bounds, int radius)
