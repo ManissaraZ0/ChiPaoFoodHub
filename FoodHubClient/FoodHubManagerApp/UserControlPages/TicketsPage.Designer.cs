@@ -138,6 +138,7 @@ namespace FoodHubManagerApp.UserControlPages
             searchBar1.Location = new Point(468, 15);
             searchBar1.Margin = new Padding(0, 5, 10, 5);
             searchBar1.Name = "searchBar1";
+            searchBar1.Placeholder = "Ticket ID...";
             searchBar1.Size = new Size(518, 51);
             searchBar1.TabIndex = 1;
             // 

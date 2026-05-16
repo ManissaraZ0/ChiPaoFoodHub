@@ -38,10 +38,49 @@ namespace FoodHubManagerApp.UserControlPages
         public ReviewsPage(ManagerApp form)
         {
             InitializeComponent();
-            LoadReviews();
             this.form = form;
 
+            SetupEventHandlers();
+
+            var allReviews = GetMockReviewData();
+            RenderReviews(allReviews);
+
             navBarControl1.SelectedIndexChanged += NavBarControl1_SelectedIndexChanged;
+        }
+
+        private void SetupEventHandlers()
+        {
+            // Search Event
+            searchBar1.SearchSubmitted += (s, keyword) =>
+            {
+                var filtered = GetMockReviewData()
+                    .Where(p => p.ReviewText.Contains(keyword, StringComparison.OrdinalIgnoreCase))
+                    .ToList();
+                RenderReviews(filtered);
+            };
+        }
+
+        private void RenderReviews(List<ReviewItem> items)
+        {
+            if (InvokeRequired)
+            {
+                Invoke(() => RenderReviews(items));
+                return;
+            }
+
+            flowLayoutPanel1.SuspendLayout();
+            flowLayoutPanel1.Controls.Clear();
+
+            foreach (var item in items)
+            {
+                var reviewCard = new ReviewCardControl(item);
+                reviewCard.Margin = new Padding(0, 5, 0, 5); // ไม่มี margin ซ้าย-ขวา
+                flowLayoutPanel1.Controls.Add(reviewCard);
+            }
+
+            flowLayoutPanel1.ResumeLayout(true);
+
+            ResizeCards();
         }
 
         // ฟังก์ชันสร้าง Mock Data สำหรับรีวิว
@@ -59,26 +98,27 @@ namespace FoodHubManagerApp.UserControlPages
             list.Add(new ReviewItem { Username = "User 1", Rating = 4.00, ReviewText = mockText });
             list.Add(new ReviewItem { Username = "User 2", Rating = 5.00, ReviewText = mockText });
             list.Add(new ReviewItem { Username = "User 3", Rating = 5.00, ReviewText = mockText });
+            list.Add(new ReviewItem { Username = "User 3", Rating = 5.00, ReviewText = mockText+"หมีเนย" });
 
             return list;
         }
 
-        // โหลดเข้า FlowLayoutPanel
-        private void LoadReviews()
-        {
-            flowLayoutPanel1.Controls.Clear();
-            var items = GetMockReviewData();
+        //// โหลดเข้า FlowLayoutPanel
+        //private void LoadReviews()
+        //{
+        //    flowLayoutPanel1.Controls.Clear();
+        //    var items = GetMockReviewData();
 
-            foreach (var item in items)
-            {
-                var reviewCard = new ReviewCardControl(item);
-                reviewCard.Margin = new Padding(0, 5, 0, 5); // ไม่มี margin ซ้าย-ขวา
-                flowLayoutPanel1.Controls.Add(reviewCard);
-            }
+        //    foreach (var item in items)
+        //    {
+        //        var reviewCard = new ReviewCardControl(item);
+        //        reviewCard.Margin = new Padding(0, 5, 0, 5); // ไม่มี margin ซ้าย-ขวา
+        //        flowLayoutPanel1.Controls.Add(reviewCard);
+        //    }
 
-            // ต้อง resize หลัง Add เสร็จแล้ว
-            ResizeCards();
-        }
+        //    // ต้อง resize หลัง Add เสร็จแล้ว
+        //    ResizeCards();
+        //}
 
         private void ResizeCards()
         {

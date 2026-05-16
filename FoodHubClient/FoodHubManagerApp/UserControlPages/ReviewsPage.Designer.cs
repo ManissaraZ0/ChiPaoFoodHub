@@ -135,6 +135,7 @@ namespace FoodHubManagerApp.UserControlPages
             searchBar1.Location = new Point(468, 15);
             searchBar1.Margin = new Padding(0, 5, 10, 5);
             searchBar1.Name = "searchBar1";
+            searchBar1.Placeholder = "Review...";
             searchBar1.Size = new Size(518, 51);
             searchBar1.TabIndex = 1;
             // 
@@ -146,7 +147,6 @@ namespace FoodHubManagerApp.UserControlPages
             flowLayoutPanel1.Location = new Point(20, 5);
             flowLayoutPanel1.Margin = new Padding(0);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Padding = new Padding(0);
             flowLayoutPanel1.Size = new Size(966, 635);
             flowLayoutPanel1.TabIndex = 0;
             flowLayoutPanel1.WrapContents = false;

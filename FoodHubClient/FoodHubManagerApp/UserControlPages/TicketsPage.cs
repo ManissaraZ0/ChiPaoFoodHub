@@ -54,6 +54,15 @@ namespace FoodHubManagerApp.UserControlPages
             // Layout Event
             flowLayoutPanel1.Resize += (s, e) => ResizeCards();
 
+            // Search Event
+            searchBar1.SearchSubmitted += (s, keyword) =>
+            {
+                var filtered = GetMockData()
+                    .Where(p => p.Title.Contains(keyword, StringComparison.OrdinalIgnoreCase))
+                    .ToList();
+                UpdateUserCards(filtered);
+            };
+
             // *** Observer: รอรับข้อมูลจาก Service เมื่อโหลดเสร็จ ***
             //_service.OnUsersLoaded += UpdateUserCards;
             //var users = Service.GetAllUsers();
