@@ -22,6 +22,7 @@ namespace FoodHubManagerApp
         AddPromotionPage addPromotion;
         TicketsPage tickets;
         ReviewsPage reviews;
+        DemoLoginPage demoLoginPage;
 
         public ManagerApp()
         {
@@ -32,15 +33,26 @@ namespace FoodHubManagerApp
             addPromotion = new AddPromotionPage(this) { Dock = DockStyle.Fill };
             tickets = new TicketsPage(this) { Dock = DockStyle.Fill };
             reviews = new ReviewsPage(this) { Dock = DockStyle.Fill };
+            demoLoginPage = new DemoLoginPage(this) { Dock = DockStyle.Fill };
         }
 
         private void ManagerApp_Load(object sender, EventArgs e)
         {
-            this.Controls.Add(promotions);
+            this.Controls.Add(demoLoginPage);
         }
 
         public void ChangeScreen(object sender, int restaurantId, int managerId, int action)
         {
+            if (sender is DemoLoginPage)
+            {
+                if (action == 0)
+                {
+                    this.Controls.Clear();
+                    promotions.RestaurantId = (int)restaurantId;
+                    promotions.ManagerId = (int)managerId;
+                    this.Controls.Add(promotions);
+                }
+            }
             if (sender is PromotionsPage)
             {
                 if (action == 0)
@@ -51,22 +63,22 @@ namespace FoodHubManagerApp
                 else if (action == 1)
                 {
                     this.Controls.Clear();
-                    addPromotion.RestaurantId = restaurantId;
-                    addPromotion.ManagerId = managerId;
+                    addPromotion.RestaurantId = (int)restaurantId;
+                    addPromotion.ManagerId = (int)managerId;
                     this.Controls.Add(addPromotion);
                 }
                 else if (action == 2)
                 {
                     this.Controls.Clear();
-                    tickets.RestaurantId = restaurantId;
-                    tickets.ManagerId = managerId;
+                    tickets.RestaurantId = (int)restaurantId;
+                    tickets.ManagerId = (int)managerId;
                     this.Controls.Add(tickets);
                 }
                 else if (action == 3)
                 {
                     this.Controls.Clear();
-                    reviews.RestaurantId = restaurantId;
-                    reviews.ManagerId = managerId;
+                    reviews.RestaurantId = (int)restaurantId;
+                    reviews.ManagerId = (int)managerId;
                     this.Controls.Add(reviews);
                 }
             }
@@ -75,22 +87,22 @@ namespace FoodHubManagerApp
                 if (action == 1)
                 {
                     this.Controls.Clear();
-                    promotions.RestaurantId = restaurantId;
-                    promotions.ManagerId = managerId;
+                    promotions.RestaurantId = (int)restaurantId;
+                    promotions.ManagerId = (int)managerId;
                     this.Controls.Add(promotions);
                 }
                 else if (action == 2)
                 {
                     this.Controls.Clear();
-                    tickets.RestaurantId = restaurantId;
-                    tickets.ManagerId = managerId;
+                    tickets.RestaurantId = (int)restaurantId;
+                    tickets.ManagerId = (int)managerId;
                     this.Controls.Add(tickets);
                 }
                 else if (action == 3)
                 {
                     this.Controls.Clear();
-                    reviews.RestaurantId = restaurantId;
-                    reviews.ManagerId = managerId;
+                    reviews.RestaurantId = (int)restaurantId;
+                    reviews.ManagerId = (int)managerId;
                     this.Controls.Add(reviews);
                 }
             }
@@ -104,15 +116,15 @@ namespace FoodHubManagerApp
                 else if (action == 1)
                 {
                     this.Controls.Clear();
-                    promotions.RestaurantId = restaurantId;
-                    promotions.ManagerId = managerId;
+                    promotions.RestaurantId = (int)restaurantId;
+                    promotions.ManagerId = (int)managerId;
                     this.Controls.Add(promotions);
                 }
                 else if (action == 2)
                 {
                     this.Controls.Clear();
-                    reviews.RestaurantId = restaurantId;
-                    reviews.ManagerId = managerId;
+                    reviews.RestaurantId = (int)restaurantId;
+                    reviews.ManagerId = (int)managerId;
                     this.Controls.Add(reviews);
                 }
             }
@@ -126,15 +138,15 @@ namespace FoodHubManagerApp
                 else if (action == 1)
                 {
                     this.Controls.Clear();
-                    tickets.RestaurantId = restaurantId;
-                    tickets.ManagerId = managerId;
+                    tickets.RestaurantId = (int)restaurantId;
+                    tickets.ManagerId = (int)managerId;
                     this.Controls.Add(tickets);
                 }
                 else if (action == 2)
                 {
                     this.Controls.Clear();
-                    promotions.RestaurantId = restaurantId;
-                    promotions.ManagerId = managerId;
+                    promotions.RestaurantId = (int)restaurantId;
+                    promotions.ManagerId = (int)managerId;
                     this.Controls.Add(promotions);
                 }
             }
@@ -143,8 +155,8 @@ namespace FoodHubManagerApp
                 if (action == 0)
                 {
                     this.Controls.Clear();
-                    tickets.RestaurantId = restaurantId;
-                    tickets.ManagerId = managerId;
+                    tickets.RestaurantId = (int)restaurantId;
+                    tickets.ManagerId = (int)managerId;
                     this.Controls.Add(tickets);
                 }
             }

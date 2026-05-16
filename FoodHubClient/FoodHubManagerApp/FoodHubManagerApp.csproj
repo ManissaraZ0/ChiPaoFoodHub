@@ -10,8 +10,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <OpenApiReference Include="OpenAPIs\swagger.json" Namespace="FoodHubManagerApp.Model">
-      <SourceUri>https://localhost:7225/swagger/v1/swagger.json</SourceUri>
+    <OpenApiReference Include="OpenAPIs\swagger1.json" Namespace="FoodHubManagerApp.Model">
+      <SourceUri>http://localhost:5125/swagger/v1/swagger.json</SourceUri>
     </OpenApiReference>
   </ItemGroup>
 
@@ -34,6 +34,12 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="UserControlComponents\UserListControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="UserControlPages\DemoLoginPage.cs">
+      <SubType>UserControl</SubType>
     </Compile>
   </ItemGroup>
 

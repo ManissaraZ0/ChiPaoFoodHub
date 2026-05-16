@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using FoodHubCustomerApp;
+using FoodHubManagerApp;
 using FoodHubManagerApp.Logics;
 using FoodHubManagerApp.Model;
 using FoodHubManagerApp.UserControlComponents;
@@ -18,7 +18,7 @@ namespace FoodHubManagerApp.UserControlPages
     public partial class PromotionsPage : UserControl
     {
         ManagerApp form;
-        private int restaurantId = 1;
+        private int restaurantId;
         public int RestaurantId
         {
             get => restaurantId;
@@ -27,7 +27,7 @@ namespace FoodHubManagerApp.UserControlPages
                 navBarControl1.SelectedIndex = 0;
             }
         }
-        private int managerId = 1;
+        private int managerId;
         public int ManagerId
         {
             get => managerId;
