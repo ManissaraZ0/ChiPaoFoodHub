@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FoodHubCustomerApp.UserControlComponents
+namespace FoodHubCustomerApp.Logics
 {
     public class PromotionExpireItem
     {
