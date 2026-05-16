@@ -22,6 +22,9 @@
     <Compile Update="UserControlComponents\PromotionListItemControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="UserControlComponents\RestaurantListControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="UserControlComponents\ReviewCardControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -35,6 +38,9 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="UserControlPages\AddPromotionPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="UserControlPages\MyResSelectPage.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="UserControlPages\PromotionsPage.cs">

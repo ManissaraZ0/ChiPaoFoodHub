@@ -67,6 +67,11 @@ namespace FoodHubManagerApp
         // ฝั่ง Manager (เรียกใช้ ManagerController)
         // ==========================================
 
+        public static List<ManagerRestaurantListRsp> GetManagedRestaurants(int managerId)
+        {
+            return RestUtil.Get<List<ManagerRestaurantListRsp>>(MyConfig.BaseUri, $"Manager/v1/restaurants?managerId={managerId}");
+        }
+
         public static PromotionBasicRsp AddPromotion(int restaurantId, int managerId, AddPromotionReq req)
         {
             // ปรับ Type ของ Request เป็น AddPromotionReq และ Response เป็น PromotionBasicRsp

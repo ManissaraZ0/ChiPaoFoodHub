@@ -23,6 +23,7 @@ namespace FoodHubManagerApp
         TicketsPage tickets;
         ReviewsPage reviews;
         DemoLoginPage demoLoginPage;
+        MyResSelectPage myResSelectPage;
 
         public ManagerApp()
         {
@@ -34,6 +35,7 @@ namespace FoodHubManagerApp
             tickets = new TicketsPage(this) { Dock = DockStyle.Fill };
             reviews = new ReviewsPage(this) { Dock = DockStyle.Fill };
             demoLoginPage = new DemoLoginPage(this) { Dock = DockStyle.Fill };
+            myResSelectPage = new MyResSelectPage(this) { Dock = DockStyle.Fill };
         }
 
         private void ManagerApp_Load(object sender, EventArgs e)
@@ -44,6 +46,15 @@ namespace FoodHubManagerApp
         public void ChangeScreen(object sender, int restaurantId, int managerId, int action)
         {
             if (sender is DemoLoginPage)
+            {
+                if (action == 0)
+                {
+                    this.Controls.Clear();
+                    myResSelectPage.ManagerId = (int)managerId;
+                    this.Controls.Add(myResSelectPage);
+                }
+            }
+            if (sender is MyResSelectPage)
             {
                 if (action == 0)
                 {

@@ -10,7 +10,7 @@
 
   <ItemGroup>
     <OpenApiReference Include="OpenAPIs\swagger.json" Namespace="FoodHubCustomerApp.Model">
-      <SourceUri>https://localhost:7225/swagger/v1/swagger.json</SourceUri>
+      <SourceUri>http://localhost:5125/swagger/v1/swagger.json</SourceUri>
     </OpenApiReference>
   </ItemGroup>
 
