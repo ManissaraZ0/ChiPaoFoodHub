@@ -25,7 +25,7 @@ namespace FoodHubCustomerApp.UserControlPages
     {
         CustomerApp form;
         private UserRsp userData;
-        private bool useMockData = false;
+        private bool useMockData = true;
 
         public UserRsp UserData
         {
@@ -112,24 +112,24 @@ namespace FoodHubCustomerApp.UserControlPages
 
             flowLayoutPanel.SuspendLayout();
             bool hasVerticalScroll = flowLayoutPanel.VerticalScroll.Visible;
-
             int safetyDeduction = hasVerticalScroll ? 4 : 2;
+            int availableWidth = flowLayoutPanel.ClientSize.Width;
 
             foreach (Control ctrl in flowLayoutPanel.Controls)
             {
                 if (ctrl is PromotionExpireListControl card)
                 {
-                    int targetWidth = flowLayoutPanel.ClientSize.Width - (card.Margin.Left + card.Margin.Right) - safetyDeduction;
-                    card.Width = targetWidth;
+                    int targetWidth = availableWidth - (card.Margin.Left + card.Margin.Right) - safetyDeduction;
+                    if (card.Width != targetWidth)
+                    {
+                        card.Width = targetWidth;
+                    }
                 }
             }
 
-            flowLayoutPanel.ResumeLayout(true);
-
-            flowLayoutPanel.AutoScroll = false;
-            flowLayoutPanel.AutoScroll = true;
-
             flowLayoutPanel.HorizontalScroll.Maximum = 0;
+            flowLayoutPanel.ResumeLayout(true);
+            flowLayoutPanel.Invalidate();
         }
 
         private List<PromotionExpireItem> GetMockExpireData()
