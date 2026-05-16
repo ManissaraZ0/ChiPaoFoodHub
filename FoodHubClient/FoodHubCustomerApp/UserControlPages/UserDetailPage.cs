@@ -54,7 +54,7 @@ namespace FoodHubCustomerApp.UserControlPages
             navBarControl.RefreshUserProfile();
 
             SectionHeaderControl headRec = new SectionHeaderControl();
-            headRec.HeaderText = "My Promotions";
+            headRec.HeaderText = "List of Promotions";
             headRec.Dock = DockStyle.Top;
             rightSectionHeaderControl.Controls.Add(headRec);
         }

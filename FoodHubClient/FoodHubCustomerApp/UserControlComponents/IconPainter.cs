@@ -108,5 +108,57 @@ namespace FoodHubCustomerApp.UserControlComponents
                 g.DrawPolygon(pen, points);
             }
         }
+
+        public static void DrawBackIcon(Graphics g, Rectangle bounds, Color outlineColor, float strokeWidth, bool isHovered)
+        {
+            g.SmoothingMode = SmoothingMode.AntiAlias;
+            float offset = strokeWidth / 2f;
+            RectangleF rectOuter = new RectangleF(
+                bounds.X + offset,
+                bounds.Y + offset,
+                bounds.Width - (offset * 2) - 1,
+                bounds.Height - (offset * 2) - 1
+            );
+
+            Color circleColor = outlineColor;
+            Color arrowColor = isHovered ? Color.White : outlineColor;
+
+            if (isHovered)
+            {
+                using (SolidBrush brushFill = new SolidBrush(circleColor))
+                {
+                    g.FillEllipse(brushFill, rectOuter);
+                }
+            }
+            else
+            {
+                using (Pen penCircle = new Pen(circleColor, strokeWidth))
+                {
+                    g.DrawEllipse(penCircle, rectOuter);
+                }
+            }
+
+            float cx = rectOuter.X + rectOuter.Width / 2f;
+            float cy = rectOuter.Y + rectOuter.Height / 2f;
+
+            float hSpan = rectOuter.Width * 0.08f;  
+            float vSpan = rectOuter.Height * 0.18f; 
+
+            PointF[] arrowPoints = new PointF[]
+            {
+            new PointF(cx + hSpan, cy - vSpan), 
+            new PointF(cx - hSpan, cy),       
+            new PointF(cx + hSpan, cy + vSpan)  
+            };
+
+            using (Pen penArrow = new Pen(arrowColor, strokeWidth))
+            {
+                penArrow.LineJoin = LineJoin.Round;
+                penArrow.StartCap = LineCap.Round;
+                penArrow.EndCap = LineCap.Round;
+
+                g.DrawLines(penArrow, arrowPoints);
+            }
+        }
     }
 }
