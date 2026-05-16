@@ -31,16 +31,18 @@ namespace FoodHubManagerApp.UserControlPages
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PromotionsPage));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TicketsPage));
             splitContainer1 = new SplitContainer();
             navBarControl1 = new NavBarControl();
             splitContainer2 = new SplitContainer();
             tableLayoutPanel1 = new TableLayoutPanel();
             sectionHeaderControl1 = new SectionHeaderControl();
             searchBar1 = new SearchBarControl();
-            splitContainer3 = new SplitContainer();
             flowLayoutPanel1 = new FlowLayoutPanel();
+            flowLayoutPanel2 = new FlowLayoutPanel();
+            splitContainer3 = new SplitContainer();
             circleAddButtonControl1 = new CircleAddButtonControl();
+            ticketListItemControl2 = new TicketListItemControl();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
@@ -50,9 +52,8 @@ namespace FoodHubManagerApp.UserControlPages
             splitContainer2.Panel2.SuspendLayout();
             splitContainer2.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
+            flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer3).BeginInit();
-            splitContainer3.Panel1.SuspendLayout();
-            splitContainer3.Panel2.SuspendLayout();
             splitContainer3.SuspendLayout();
             SuspendLayout();
             // 
@@ -83,7 +84,7 @@ namespace FoodHubManagerApp.UserControlPages
             navBarControl1.Location = new Point(0, 0);
             navBarControl1.LogoImage = (Image)resources.GetObject("navBarControl1.LogoImage");
             navBarControl1.Name = "navBarControl1";
-            //navBarControl1.SelectedIndex = 1;
+            navBarControl1.SelectedIndex = 0;
             navBarControl1.Size = new Size(270, 720);
             navBarControl1.TabIndex = 0;
             // 
@@ -104,6 +105,7 @@ namespace FoodHubManagerApp.UserControlPages
             // splitContainer2.Panel2
             // 
             splitContainer2.Panel2.Controls.Add(flowLayoutPanel1);
+            splitContainer2.Panel2.Padding = new Padding(20, 0, 20, 0);
             splitContainer2.Size = new Size(1006, 720);
             splitContainer2.SplitterDistance = 71;
             splitContainer2.TabIndex = 0;
@@ -147,22 +149,60 @@ namespace FoodHubManagerApp.UserControlPages
             // flowLayoutPanel1
             // 
             flowLayoutPanel1.AutoScroll = true;
+            flowLayoutPanel1.Controls.Add(flowLayoutPanel2);
+            flowLayoutPanel1.Controls.Add(ticketListItemControl2);
             flowLayoutPanel1.Dock = DockStyle.Fill;
             flowLayoutPanel1.FlowDirection = FlowDirection.TopDown;
-            flowLayoutPanel1.Location = new Point(20, 5);
+            flowLayoutPanel1.Location = new Point(20, 0);
             flowLayoutPanel1.Margin = new Padding(0);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
             flowLayoutPanel1.Padding = new Padding(0, 0, 0, 20);
-            flowLayoutPanel1.Size = new Size(966, 514);
+            flowLayoutPanel1.Size = new Size(966, 645);
             flowLayoutPanel1.TabIndex = 0;
             flowLayoutPanel1.WrapContents = false;
             // 
-            // PromotionsPage
+            // flowLayoutPanel2
+            // 
+            flowLayoutPanel2.Dock = DockStyle.Fill;
+            flowLayoutPanel2.Location = new Point(3, 3);
+            flowLayoutPanel2.Name = "flowLayoutPanel2";
+            flowLayoutPanel2.Size = new Size(954, 100);
+            flowLayoutPanel2.TabIndex = 0;
+            // 
+            // splitContainer3
+            // 
+            splitContainer3.Location = new Point(0, 0);
+            splitContainer3.Name = "splitContainer3";
+            splitContainer3.Size = new Size(150, 100);
+            splitContainer3.TabIndex = 0;
+            // 
+            // circleAddButtonControl1
+            // 
+            circleAddButtonControl1.BackColor = Color.Transparent;
+            circleAddButtonControl1.ButtonColor = Color.FromArgb(192, 7, 7);
+            circleAddButtonControl1.Location = new Point(0, 0);
+            circleAddButtonControl1.Name = "circleAddButtonControl1";
+            circleAddButtonControl1.PlusColor = Color.White;
+            circleAddButtonControl1.Size = new Size(120, 120);
+            circleAddButtonControl1.TabIndex = 0;
+            // 
+            // ticketListItemControl2
+            // 
+            ticketListItemControl2.BackColor = Color.White;
+            ticketListItemControl2.Location = new Point(0, 112);
+            ticketListItemControl2.Margin = new Padding(0, 6, 0, 6);
+            ticketListItemControl2.Name = "ticketListItemControl2";
+            ticketListItemControl2.Size = new Size(960, 90);
+            ticketListItemControl2.SubInfo = "User ID: XXXX, Promotion Title, Type A";
+            ticketListItemControl2.TabIndex = 1;
+            ticketListItemControl2.TicketID = "Ticket ID";
+            // 
+            // TicketsPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(splitContainer1);
-            Name = "PromotionsPage";
+            Name = "TicketsPage";
             Size = new Size(1280, 720);
             splitContainer1.Panel1.ResumeLayout(false);
             splitContainer1.Panel2.ResumeLayout(false);
@@ -173,8 +213,7 @@ namespace FoodHubManagerApp.UserControlPages
             ((System.ComponentModel.ISupportInitialize)splitContainer2).EndInit();
             splitContainer2.ResumeLayout(false);
             tableLayoutPanel1.ResumeLayout(false);
-            splitContainer3.Panel1.ResumeLayout(false);
-            splitContainer3.Panel2.ResumeLayout(false);
+            flowLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)splitContainer3).EndInit();
             splitContainer3.ResumeLayout(false);
             ResumeLayout(false);
@@ -191,5 +230,8 @@ namespace FoodHubManagerApp.UserControlPages
         private SplitContainer splitContainer3;
         private FlowLayoutPanel flowLayoutPanel1;
         private CircleAddButtonControl circleAddButtonControl1;
+        private FlowLayoutPanel flowLayoutPanel2;
+        private TicketListItemControl ticketListItemControl1;
+        private TicketListItemControl ticketListItemControl2;
     }
 }

@@ -25,6 +25,9 @@
     <Compile Update="UserControlComponents\SectionHeaderControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="UserControlComponents\TicketListItemControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="UserControlPages\AddPromotionPage.cs">
       <SubType>UserControl</SubType>
     </Compile>

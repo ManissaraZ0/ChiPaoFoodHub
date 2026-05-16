@@ -40,7 +40,6 @@ namespace FoodHubManagerApp
 
         public void ChangeScreen(object sender, int restaurantId, int managerId, int action)
         {
-            Debug.WriteLine($"ChangeScreen called with sender: {sender.GetType().Name}, restaurantId: {restaurantId}, managerId: {managerId}, action: {action}");
             if (sender is PromotionsPage)
             {
                 if (action == 0)
