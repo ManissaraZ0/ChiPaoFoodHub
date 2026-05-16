@@ -34,7 +34,9 @@
             contentSplitContainer = new SplitContainer();
             contentLeftPanel = new Panel();
             subSplitLeftContainer = new SplitContainer();
-            headLeftLabel = new Label();
+            headLeftTableLayout = new TableLayoutPanel();
+            backBtn = new FoodHubCustomerApp.UserControlComponents.BackButtonControl();
+            leftHeadTitle = new Label();
             subSubSplitLeftContainer = new SplitContainer();
             imageScreenControlNew = new FoodHubCustomerApp.UserControlComponents.ImageScreenControlNew();
             subSubSubSplitLeftContainer = new SplitContainer();
@@ -73,6 +75,7 @@
             subSplitLeftContainer.Panel1.SuspendLayout();
             subSplitLeftContainer.Panel2.SuspendLayout();
             subSplitLeftContainer.SuspendLayout();
+            headLeftTableLayout.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)subSubSplitLeftContainer).BeginInit();
             subSubSplitLeftContainer.Panel1.SuspendLayout();
             subSubSplitLeftContainer.Panel2.SuspendLayout();
@@ -145,6 +148,7 @@
             navBarControl.Name = "navBarControl";
             navBarControl.Size = new Size(1280, 70);
             navBarControl.TabIndex = 0;
+            navBarControl.UserData = null;
             // 
             // contentSplitContainer
             // 
@@ -191,7 +195,7 @@
             // 
             // subSplitLeftContainer.Panel1
             // 
-            subSplitLeftContainer.Panel1.Controls.Add(headLeftLabel);
+            subSplitLeftContainer.Panel1.Controls.Add(headLeftTableLayout);
             // 
             // subSplitLeftContainer.Panel2
             // 
@@ -200,18 +204,48 @@
             subSplitLeftContainer.SplitterWidth = 1;
             subSplitLeftContainer.TabIndex = 0;
             // 
-            // headLeftLabel
+            // headLeftTableLayout
             // 
-            headLeftLabel.BackColor = Color.Transparent;
-            headLeftLabel.Dock = DockStyle.Fill;
-            headLeftLabel.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
-            headLeftLabel.Location = new Point(0, 0);
-            headLeftLabel.Margin = new Padding(0);
-            headLeftLabel.Name = "headLeftLabel";
-            headLeftLabel.Size = new Size(399, 50);
-            headLeftLabel.TabIndex = 0;
-            headLeftLabel.Text = "Detail";
-            headLeftLabel.TextAlign = ContentAlignment.MiddleCenter;
+            headLeftTableLayout.ColumnCount = 3;
+            headLeftTableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 15F));
+            headLeftTableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 70F));
+            headLeftTableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 15F));
+            headLeftTableLayout.Controls.Add(backBtn, 0, 0);
+            headLeftTableLayout.Controls.Add(leftHeadTitle, 1, 0);
+            headLeftTableLayout.Dock = DockStyle.Fill;
+            headLeftTableLayout.Location = new Point(0, 0);
+            headLeftTableLayout.Margin = new Padding(0);
+            headLeftTableLayout.Name = "headLeftTableLayout";
+            headLeftTableLayout.RowCount = 1;
+            headLeftTableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            headLeftTableLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            headLeftTableLayout.Size = new Size(399, 50);
+            headLeftTableLayout.TabIndex = 0;
+            // 
+            // backBtn
+            // 
+            backBtn.BackColor = Color.Transparent;
+            backBtn.Dock = DockStyle.Fill;
+            backBtn.Location = new Point(5, 5);
+            backBtn.Margin = new Padding(5);
+            backBtn.Name = "backBtn";
+            backBtn.OutlineColor = Color.Black;
+            backBtn.Size = new Size(49, 40);
+            backBtn.StrokeWidth = 2.5F;
+            backBtn.TabIndex = 0;
+            // 
+            // leftHeadTitle
+            // 
+            leftHeadTitle.BackColor = Color.Transparent;
+            leftHeadTitle.Dock = DockStyle.Fill;
+            leftHeadTitle.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+            leftHeadTitle.Location = new Point(59, 0);
+            leftHeadTitle.Margin = new Padding(0);
+            leftHeadTitle.Name = "leftHeadTitle";
+            leftHeadTitle.Size = new Size(279, 50);
+            leftHeadTitle.TabIndex = 1;
+            leftHeadTitle.Text = "Detail";
+            leftHeadTitle.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // subSubSplitLeftContainer
             // 
@@ -630,6 +664,7 @@
             subSplitLeftContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)subSplitLeftContainer).EndInit();
             subSplitLeftContainer.ResumeLayout(false);
+            headLeftTableLayout.ResumeLayout(false);
             subSubSplitLeftContainer.Panel1.ResumeLayout(false);
             subSubSplitLeftContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)subSubSplitLeftContainer).EndInit();
@@ -680,7 +715,6 @@
         private SplitContainer subSplitLeftContainer;
         private SplitContainer subSplitRightContainer;
         private SectionHeaderControl rightSectionHeaderControl;
-        private Label headLeftLabel;
         private SplitContainer subSubSplitLeftContainer;
         private UserControlComponents.ImageScreenControlNew imageScreenControlNew;
         private SplitContainer subSubSubSplitLeftContainer;
@@ -703,5 +737,8 @@
         private Label topDescriptionLabel;
         private TableLayoutPanel tableLayoutPanelTopSecondContent;
         private Label topSecondDescriptionLabel;
+        private TableLayoutPanel headLeftTableLayout;
+        private UserControlComponents.BackButtonControl backBtn;
+        private Label leftHeadTitle;
     }
 }
