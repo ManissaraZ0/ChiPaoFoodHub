@@ -245,5 +245,35 @@ namespace FoodHubCustomerApp.UserControlComponents
                 g.DrawArc(pen, x + 12, y + 26, 26, 20, 200, 140);
             }
         }
+
+        public static void DrawBubbleTeaIcon(Graphics g, int x, int y, Color color)
+        {
+            // ใช้โหมดลบรอยหยักเพื่อให้เส้นโค้งสวยงาม
+            g.SmoothingMode = SmoothingMode.AntiAlias;
+
+            using (Pen pen = new Pen(color, 2f))
+            using (SolidBrush brush = new SolidBrush(color))
+            {
+                // หลอดดูดน้ำ
+                // อิงจากจุดกึ่งกลาง (x, y) แล้ววาดเส้นขึ้นไป
+                g.DrawLine(pen, x, y - 5, x, y);
+
+                // ฝาแก้ว
+                g.DrawLine(pen, x - 12, y, x + 12, y);
+
+                // ตัวแก้ว (ทรงกระบอกสอบลง)
+                g.DrawLines(pen, new Point[] {
+                    new Point(x - 10, y),
+                    new Point(x - 6, y + 20),
+                    new Point(x + 6, y + 20),
+                    new Point(x + 10, y)
+                });
+
+                // จุดไข่มุก 3 จุดด้านล่างของแก้ว
+                g.FillEllipse(brush, x - 5, y + 13, 2.5f, 2.5f);
+                g.FillEllipse(brush, x + 2, y + 13, 2.5f, 2.5f);
+                g.FillEllipse(brush, x - 1.5f, y + 8, 2.5f, 2.5f);
+            }
+        }
     }
 }

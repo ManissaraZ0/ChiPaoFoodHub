@@ -25,7 +25,7 @@ namespace FoodHubCustomerApp.UserControlComponents
 
             // ขนาดการ์ดให้สัดส่วนใกล้เคียงรูปภาพ (กว้าง 170, สูง 110)
             this.Size = new Size(170, 110);
-            this.Margin = new Padding(10);
+            this.Margin = new Padding(0);
             this.Cursor = Cursors.Hand;
             this.DoubleBuffered = true;
 
@@ -47,7 +47,7 @@ namespace FoodHubCustomerApp.UserControlComponents
             g.Clear(parentColor);
 
             // สีแดงเข้มตามต้นฉบับ
-            Color cardRedColor = Color.FromArgb(190, 15, 20);
+            Color cardRedColor = StylePalette.DarkRed;
             int radius = 15;
             Rectangle rectCard = new Rectangle(0, 0, this.Width - 1, this.Height - 1);
 
@@ -58,27 +58,10 @@ namespace FoodHubCustomerApp.UserControlComponents
                 g.FillPath(brushRed, pathCard);
             }
 
-            // --- 2. วาดไอคอนแก้วน้ำ (ตรงกลางด้านบน) ---
+            // --- 2. วาดไอคอนแก้วน้ำ (เรียกใช้จาก IconPainter) ---
             int cX = this.Width / 2;
-            using (Pen whitePen = new Pen(Color.White, 2f))
-            using (SolidBrush whiteBrush = new SolidBrush(Color.White))
-            {
-                // หลอดดูดน้ำ
-                g.DrawLine(whitePen, cX, 10, cX, 15);
-                // ฝาแก้ว
-                g.DrawLine(whitePen, cX - 12, 15, cX + 12, 15);
-                // ตัวแก้ว
-                g.DrawLines(whitePen, new Point[] {
-                    new Point(cX - 10, 15),
-                    new Point(cX - 6, 35),
-                    new Point(cX + 6, 35),
-                    new Point(cX + 10, 15)
-                });
-                // จุดไข่มุก 3 จุด
-                g.FillEllipse(whiteBrush, cX - 5, 28, 2.5f, 2.5f);
-                g.FillEllipse(whiteBrush, cX + 2, 28, 2.5f, 2.5f);
-                g.FillEllipse(whiteBrush, cX - 1.5f, 23, 2.5f, 2.5f);
-            }
+            int cY = 15; // กำหนดจุดแกน Y ให้ตรงกับฝาแก้วเหมือนต้นฉบับ
+            IconPainter.DrawBubbleTeaIcon(g, cX, cY, Color.White);
 
             // StringFormat สำหรับจัดข้อความให้อยู่กึ่งกลาง
             StringFormat sfCenter = new StringFormat();

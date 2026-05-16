@@ -1,3 +1,6 @@
+using FoodHubCustomerApp.Logics;
+using FoodHubCustomerApp.Model;
+using FoodHubCustomerApp.UserControlComponents;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -7,8 +10,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using FoodHubCustomerApp.Logics;
-using FoodHubCustomerApp.Model;
 
 namespace FoodHubCustomerApp.UserControlPages
 {
@@ -82,6 +83,8 @@ namespace FoodHubCustomerApp.UserControlPages
             this.form = form;
             SetupUI();
             SetupEventHandlers();
+            LoadTickets();
+            LoadReviews();
 
             // กำหนดสีพื้นหลังให้ปุ่ม Add Post โดยดึงสีมาจาก StylePalette
             //btnAddPost.BackColor = StylePalette.DarkRed;
@@ -127,5 +130,69 @@ namespace FoodHubCustomerApp.UserControlPages
         //    // 3. เรียกใช้ฟังก์ชันวาดปากกาสีขาว ทับลงไปบนพื้นหลังสี DarkRed
         //    FoodHubCustomerApp.UserControlComponents.IconPainter.DrawPenIcon(e.Graphics, iconBounds);
         //}
+
+        private List<TicketItem> GetMockTickets()
+        {
+            var list = new List<TicketItem>();
+            for (int i = 0; i < 9; i++) 
+            {
+                list.Add(new TicketItem
+                {
+                    Title = "Drink Promotion",
+                    Subtitle = "Film's Restaurant",
+                    SaveText = "SAVE",
+                    DiscountValue = "99%"
+                });
+            }
+            return list;
+        }
+
+        private void LoadTickets()
+        {
+            flowTicketLayoutPanel.Controls.Clear();
+            var items = GetMockTickets();
+
+            foreach (var item in items)
+            {
+                var ticketCard = new TicketCardControl(item);
+                flowTicketLayoutPanel.Controls.Add(ticketCard);
+            }
+        }
+
+        private List<ReviewItem> GetMockReviewData()
+        {
+            var list = new List<ReviewItem>();
+
+            // จำลองข้อความรีวิวแบบในรูปเป๊ะๆ
+            string mockText = "อาหารหลากหลาย\n" +
+                              "แต่มีเพียงบางอย่างเท่านั้นที่อร่อย\n" +
+                              "แต่ด้านบริการยอดเยี่ยมมากๆ ครับ\n" +
+                              "พนักงานทุกคนกระตือรือร้น ยิ้มแย้ม สุภาพ\n" +
+                              "บรรยากาศภายในร้านพลุกพล่าน";
+
+            list.Add(new ReviewItem { Username = "User 1", Rating = 4.00, ReviewText = mockText });
+            list.Add(new ReviewItem { Username = "User 2", Rating = 5.00, ReviewText = mockText });
+            list.Add(new ReviewItem { Username = "User 3", Rating = 5.00, ReviewText = mockText });
+
+            return list;
+        }
+
+        // โหลดเข้า FlowLayoutPanel
+        private void LoadReviews()
+        {
+            commentFlowLayoutPanel.Controls.Clear();
+
+            var items = GetMockReviewData();
+
+            foreach (var item in items)
+            {
+                var reviewCard = new ReviewCardControl(item);
+
+                // ขยายให้กว้างเต็มคอนเทนเนอร์
+                reviewCard.Width = commentFlowLayoutPanel.ClientSize.Width - 20;
+
+                commentFlowLayoutPanel.Controls.Add(reviewCard);
+            }
+        }
     }
 }
