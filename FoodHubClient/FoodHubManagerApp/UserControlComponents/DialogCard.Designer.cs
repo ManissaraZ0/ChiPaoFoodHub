@@ -1,6 +1,6 @@
 ﻿namespace FoodHubManagerApp.UserControlComponents
 {
-    partial class AcceptCard
+    partial class DialogCard
     {
         /// <summary>
         /// Required designer variable.
@@ -30,10 +30,10 @@
         {
             tableLayoutPanel1 = new TableLayoutPanel();
             tableLayoutPanel2 = new TableLayoutPanel();
-            buttonControl2 = new ButtonControl();
-            buttonControl1 = new ButtonControl();
+            primaryBtn = new ButtonControl();
+            secondaryBtn = new ButtonControl();
             tableLayoutPanel3 = new TableLayoutPanel();
-            label1 = new Label();
+            nofifyLabel = new Label();
             tableLayoutPanel4 = new TableLayoutPanel();
             tableLayoutPanel1.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
@@ -63,8 +63,8 @@
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 30F));
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel2.Controls.Add(buttonControl2, 0, 0);
-            tableLayoutPanel2.Controls.Add(buttonControl1, 2, 0);
+            tableLayoutPanel2.Controls.Add(primaryBtn, 0, 0);
+            tableLayoutPanel2.Controls.Add(secondaryBtn, 2, 0);
             tableLayoutPanel2.Dock = DockStyle.Fill;
             tableLayoutPanel2.Location = new Point(3, 175);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -74,41 +74,41 @@
             tableLayoutPanel2.Size = new Size(493, 114);
             tableLayoutPanel2.TabIndex = 0;
             // 
-            // buttonControl2
+            // primaryBtn
             // 
-            buttonControl2.BackColor = Color.Transparent;
-            buttonControl2.ButtonColor = Color.White;
-            buttonControl2.ButtonText = "OK";
-            buttonControl2.Dock = DockStyle.Right;
-            buttonControl2.FillMode = ButtonControl.ButtonStyle.Fill;
-            buttonControl2.Font = new Font("Segoe UI Semibold", 15F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            buttonControl2.FontColor = Color.FromArgb(111, 150, 12);
-            buttonControl2.Location = new Point(91, 30);
-            buttonControl2.Margin = new Padding(0);
-            buttonControl2.MaximumSize = new Size(0, 50);
-            buttonControl2.MinimumSize = new Size(140, 50);
-            buttonControl2.Name = "buttonControl2";
-            buttonControl2.Size = new Size(140, 50);
-            buttonControl2.TabIndex = 1;
-            buttonControl2.Click += btnOk_Click;
+            primaryBtn.BackColor = Color.Transparent;
+            primaryBtn.ButtonColor = Color.White;
+            primaryBtn.ButtonText = "OK";
+            primaryBtn.Dock = DockStyle.Right;
+            primaryBtn.FillMode = ButtonControl.ButtonStyle.Fill;
+            primaryBtn.Font = new Font("Segoe UI Semibold", 15F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            primaryBtn.FontColor = Color.FromArgb(111, 150, 12);
+            primaryBtn.Location = new Point(91, 30);
+            primaryBtn.Margin = new Padding(0);
+            primaryBtn.MaximumSize = new Size(0, 50);
+            primaryBtn.MinimumSize = new Size(140, 50);
+            primaryBtn.Name = "primaryBtn";
+            primaryBtn.Size = new Size(140, 50);
+            primaryBtn.TabIndex = 1;
+            primaryBtn.Click += btnOk_Click;
             // 
-            // buttonControl1
+            // secondaryBtn
             // 
-            buttonControl1.BackColor = Color.Transparent;
-            buttonControl1.ButtonColor = Color.White;
-            buttonControl1.ButtonText = "Cancel";
-            buttonControl1.Dock = DockStyle.Left;
-            buttonControl1.FillMode = ButtonControl.ButtonStyle.Outline;
-            buttonControl1.Font = new Font("Segoe UI Semibold", 15F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            buttonControl1.FontColor = Color.FromArgb(111, 150, 12);
-            buttonControl1.Location = new Point(261, 30);
-            buttonControl1.Margin = new Padding(0);
-            buttonControl1.MaximumSize = new Size(0, 50);
-            buttonControl1.MinimumSize = new Size(140, 50);
-            buttonControl1.Name = "buttonControl1";
-            buttonControl1.Size = new Size(140, 50);
-            buttonControl1.TabIndex = 2;
-            buttonControl1.Click += btnCancel_Click;
+            secondaryBtn.BackColor = Color.Transparent;
+            secondaryBtn.ButtonColor = Color.White;
+            secondaryBtn.ButtonText = "Cancel";
+            secondaryBtn.Dock = DockStyle.Left;
+            secondaryBtn.FillMode = ButtonControl.ButtonStyle.Outline;
+            secondaryBtn.Font = new Font("Segoe UI Semibold", 15F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            secondaryBtn.FontColor = Color.FromArgb(111, 150, 12);
+            secondaryBtn.Location = new Point(261, 30);
+            secondaryBtn.Margin = new Padding(0);
+            secondaryBtn.MaximumSize = new Size(0, 50);
+            secondaryBtn.MinimumSize = new Size(140, 50);
+            secondaryBtn.Name = "secondaryBtn";
+            secondaryBtn.Size = new Size(140, 50);
+            secondaryBtn.TabIndex = 2;
+            secondaryBtn.Click += btnCancel_Click;
             // 
             // tableLayoutPanel3
             // 
@@ -116,7 +116,7 @@
             tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10F));
             tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 80F));
             tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10F));
-            tableLayoutPanel3.Controls.Add(label1, 1, 0);
+            tableLayoutPanel3.Controls.Add(nofifyLabel, 1, 0);
             tableLayoutPanel3.Dock = DockStyle.Fill;
             tableLayoutPanel3.Location = new Point(3, 126);
             tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -125,18 +125,18 @@
             tableLayoutPanel3.Size = new Size(493, 43);
             tableLayoutPanel3.TabIndex = 1;
             // 
-            // label1
+            // nofifyLabel
             // 
-            label1.AutoSize = true;
-            label1.Dock = DockStyle.Fill;
-            label1.Font = new Font("Segoe UI Semibold", 25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.White;
-            label1.Location = new Point(49, 0);
-            label1.Margin = new Padding(0);
-            label1.Name = "label1";
-            label1.Size = new Size(394, 43);
-            label1.TabIndex = 0;
-            label1.TextAlign = ContentAlignment.MiddleCenter;
+            nofifyLabel.AutoSize = true;
+            nofifyLabel.Dock = DockStyle.Fill;
+            nofifyLabel.Font = new Font("Segoe UI Semibold", 25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            nofifyLabel.ForeColor = Color.White;
+            nofifyLabel.Location = new Point(49, 0);
+            nofifyLabel.Margin = new Padding(0);
+            nofifyLabel.Name = "nofifyLabel";
+            nofifyLabel.Size = new Size(394, 43);
+            nofifyLabel.TabIndex = 0;
+            nofifyLabel.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // tableLayoutPanel4
             // 
@@ -153,7 +153,7 @@
             tableLayoutPanel4.Size = new Size(493, 117);
             tableLayoutPanel4.TabIndex = 2;
             // 
-            // AcceptCard
+            // DialogCard
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -161,7 +161,7 @@
             ClientSize = new Size(499, 292);
             Controls.Add(tableLayoutPanel1);
             FormBorderStyle = FormBorderStyle.None;
-            Name = "AcceptCard";
+            Name = "DialogCard";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "AcceptCard";
             tableLayoutPanel1.ResumeLayout(false);
@@ -175,10 +175,10 @@
 
         private TableLayoutPanel tableLayoutPanel1;
         private TableLayoutPanel tableLayoutPanel2;
-        private ButtonControl buttonControl2;
-        private ButtonControl buttonControl1;
+        private ButtonControl primaryBtn;
+        private ButtonControl secondaryBtn;
         private TableLayoutPanel tableLayoutPanel3;
-        private Label label1;
+        private Label nofifyLabel;
         private TableLayoutPanel tableLayoutPanel4;
     }
 }

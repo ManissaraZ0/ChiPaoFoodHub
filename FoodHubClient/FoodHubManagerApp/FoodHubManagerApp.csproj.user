@@ -4,14 +4,14 @@
     <Compile Update="ManagerApp.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="UserControlComponents\AcceptCard.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Update="UserControlComponents\ButtonControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="UserControlComponents\CircleAddButtonControl.cs">
       <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="UserControlComponents\DialogCard.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Update="UserControlComponents\LabeledTextBoxControl.cs">
       <SubType>UserControl</SubType>

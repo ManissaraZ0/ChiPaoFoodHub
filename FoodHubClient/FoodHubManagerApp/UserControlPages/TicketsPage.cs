@@ -96,37 +96,12 @@ namespace FoodHubManagerApp.UserControlPages
 
                 card.AcceptClicked += (s, e) =>
                 {
-                    Form formBackground = new Form();
-                    try
+                    var result = DialogCard.Show($"Confirm Ticket #{item.Id}", DialogCardType.Positive);
+
+                    // เช็คผลลัพธ์เหมือน MessageBox ปกติ
+                    if (result == DialogResult.Yes)
                     {
-                        formBackground.StartPosition = FormStartPosition.Manual;
-                        formBackground.FormBorderStyle = FormBorderStyle.None;
-                        formBackground.Opacity = .70d;
-                        formBackground.BackColor = Color.Black;
-                        formBackground.WindowState = FormWindowState.Maximized;
-                        formBackground.ShowInTaskbar = false;
-
-                        formBackground.Show();
-
-                        AcceptCard uu = new AcceptCard(item.Id);
-
-                        uu.StartPosition = FormStartPosition.CenterScreen;
-
-                        // ปิด background ตอน popup ปิด
-                        uu.FormClosed += (s, args) =>
-                        {
-                            formBackground.Dispose();
-                        };
-
-                        uu.Show();
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("An error occurred: " + ex.Message);
-                    }
-                    finally
-                    {
-                        formBackground.Dispose();
+                        form.ChangeScreen(this, RestaurantId, ManagerId, 0);
                     }
                 };
 

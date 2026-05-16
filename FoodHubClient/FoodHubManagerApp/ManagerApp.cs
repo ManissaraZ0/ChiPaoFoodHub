@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using FoodHubManagerApp.Model;
+using FoodHubManagerApp.UserControlComponents;
 using FoodHubManagerApp.UserControlPages;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrackBar;
@@ -135,6 +136,16 @@ namespace FoodHubManagerApp
                     promotions.RestaurantId = restaurantId;
                     promotions.ManagerId = managerId;
                     this.Controls.Add(promotions);
+                }
+            }
+            if (sender is DialogCard)
+            {
+                if (action == 0)
+                {
+                    this.Controls.Clear();
+                    tickets.RestaurantId = restaurantId;
+                    tickets.ManagerId = managerId;
+                    this.Controls.Add(tickets);
                 }
             }
         }
