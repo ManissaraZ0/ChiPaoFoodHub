@@ -17,7 +17,7 @@ namespace FoodHubManagerApp
     public partial class ManagerApp : Form
     {
         PromotionsPage promotions;
-        //AddPromotionPage addPromotion;
+        AddPromotionPage addPromotion;
         //TicketsPage tickets;
         //ReviewsPage reviews;
 
@@ -26,7 +26,7 @@ namespace FoodHubManagerApp
             InitializeComponent();
 
             promotions = new PromotionsPage(this) { Dock = DockStyle.Fill };
-            //addPromotion = new AddPromotionPage(this) { Dock = DockStyle.Fill };
+            addPromotion = new AddPromotionPage(this) { Dock = DockStyle.Fill };
             //tickets = new TicketsPage(this) { Dock = DockStyle.Fill };
             //reviews = new ReviewsPage(this) { Dock = DockStyle.Fill };
         }
@@ -38,64 +38,59 @@ namespace FoodHubManagerApp
 
         public void ChangeScreen(object sender, int restaurantId, int managerId, int action)
         {
-            //if (sender is PromotionsPage)
-            //{
-            //    if (action == 0)
-            //    {
-            //        this.Controls.Clear();
-            //        this.Controls.Add(promotions);
-            //    }
-            //    else if (action == 1)
-            //    {
-            //        this.Controls.Clear();
-            //        addPromotion.RestaurantId = restaurantId;
-            //        addPromotion.ManagerId = managerId;
-            //        this.Controls.Add(addPromotion);
-            //    }
-            //    else if (action == 2)
-            //    {
-            //        this.Controls.Clear();
-            //        tickets.RestaurantId = restaurantId;
-            //        tickets.ManagerId = managerId;
-            //        this.Controls.Add(tickets);
-            //    }
-            //    else if (action == 3)
-            //    {
-            //        this.Controls.Clear();
-            //        reviews.RestaurantId = restaurantId;
-            //        reviews.ManagerId = managerId;
-            //        this.Controls.Add(reviews);
-            //    }
-            //}
-            //if (sender is AddPromotionPage)
-            //{
-            //    if (action == 0)
-            //    {
-            //        this.Controls.Clear();
-            //        this.Controls.Add(addPromotion);
-            //    }
-            //    else if (action == 1)
-            //    {
-            //        this.Controls.Clear();
-            //        promotions.RestaurantId = restaurantId;
-            //        promotions.ManagerId = managerId;
-            //        this.Controls.Add(promotions);
-            //    }
-            //    else if (action == 2)
-            //    {
-            //        this.Controls.Clear();
-            //        tickets.RestaurantId = restaurantId;
-            //        tickets.ManagerId = managerId;
-            //        this.Controls.Add(tickets);
-            //    }
-            //    else if (action == 3)
-            //    {
-            //        this.Controls.Clear();
-            //        reviews.RestaurantId = restaurantId;
-            //        reviews.ManagerId = managerId;
-            //        this.Controls.Add(reviews);
-            //    }
-            //}
+            if (sender is PromotionsPage)
+            {
+                if (action == 0)
+                {
+                    this.Controls.Clear();
+                    this.Controls.Add(promotions);
+                }
+                else if (action == 1)
+                {
+                    this.Controls.Clear();
+                    addPromotion.RestaurantId = restaurantId;
+                    addPromotion.ManagerId = managerId;
+                    this.Controls.Add(addPromotion);
+                }
+                //    else if (action == 2)
+                //    {
+                //        this.Controls.Clear();
+                //        tickets.RestaurantId = restaurantId;
+                //        tickets.ManagerId = managerId;
+                //        this.Controls.Add(tickets);
+                //    }
+                //    else if (action == 3)
+                //    {
+                //        this.Controls.Clear();
+                //        reviews.RestaurantId = restaurantId;
+                //        reviews.ManagerId = managerId;
+                //        this.Controls.Add(reviews);
+                //    }
+            }
+            if (sender is AddPromotionPage)
+            {
+                if (action == 1)
+                {
+                    this.Controls.Clear();
+                    promotions.RestaurantId = restaurantId;
+                    promotions.ManagerId = managerId;
+                    this.Controls.Add(promotions);
+                }
+                //    else if (action == 2)
+                //    {
+                //        this.Controls.Clear();
+                //        tickets.RestaurantId = restaurantId;
+                //        tickets.ManagerId = managerId;
+                //        this.Controls.Add(tickets);
+                //    }
+                //    else if (action == 3)
+                //    {
+                //        this.Controls.Clear();
+                //        reviews.RestaurantId = restaurantId;
+                //        reviews.ManagerId = managerId;
+                //        this.Controls.Add(reviews);
+                //    }
+            }
             //if (sender is TicketsPage)
             //{
             //    if (action == 0)

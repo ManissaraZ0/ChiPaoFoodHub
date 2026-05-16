@@ -20,17 +20,17 @@ namespace FoodHubManagerApp.UserControlComponents
 
         public CircleAddButtonControl()
         {
+            InitializeComponent();
+
+            this.Click += (s, e) =>
+            {
+                ButtonClick?.Invoke(this, e);
+            };
+
             this.Size = new Size(120, 120);
             this.DoubleBuffered = true;
             this.Cursor = Cursors.Hand;
             this.BackColor = Color.Transparent;
-
-            this.Click += CircleAddButton_Click;
-        }
-
-        private void CircleAddButton_Click(object sender, EventArgs e)
-        {
-            ButtonClick?.Invoke(this, EventArgs.Empty);
         }
 
         protected override void OnPaint(PaintEventArgs e)

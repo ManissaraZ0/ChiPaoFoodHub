@@ -15,9 +15,26 @@ namespace FoodHubManagerApp.UserControlPages
 {
     public partial class PromotionsPage : UserControl
     {
+        ManagerApp form;
+        private int restaurantId = 1;
+        public int RestaurantId
+        {
+            get => restaurantId;
+            //set { restaurantId = value; txtRestaurantId.Text = value.ToString();
+            internal set;
+        }
+        private int managerId = 1;
+        public int ManagerId
+        {
+            get => managerId;
+            //set { restaurantId = value; txtManagerId.Text = value.ToString(); }
+            internal set;
+        }
+
         public PromotionsPage(ManagerApp form)
         {
             InitializeComponent();
+            this.form = form;
 
             SetupEventHandlers(); // <-- เพิ่มตรงนี้
 
@@ -26,7 +43,8 @@ namespace FoodHubManagerApp.UserControlPages
                 UpdateUserCards(GetMockData());
             };
 
-            navBarControl1.SelectedIndexChanged += (s, e) => {
+            navBarControl1.SelectedIndexChanged += (s, e) =>
+            {
                 // switch หน้า ตาม navBarControl1.SelectedIndex
             };
         }
@@ -138,6 +156,32 @@ namespace FoodHubManagerApp.UserControlPages
             );
 
             flowLayoutPanel1.ResumeLayout();
+        }
+
+        private void navBarControl1_Load(object sender, EventArgs e)
+        {
+            navBarControl1.SelectedIndexChanged += NavBarControl1_SelectedIndexChanged;
+        }
+
+        private void NavBarControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (navBarControl1.SelectedIndex)
+            {
+                case 0: // Promotion
+                    form.ChangeScreen(this, RestaurantId, ManagerId, 0);
+                    break;
+                case 1: // Ticket
+                    form.ChangeScreen(this, RestaurantId, ManagerId, 2);
+                    break;
+                case 2: // Review
+                    form.ChangeScreen(this, RestaurantId, ManagerId, 3);
+                    break;
+            }
+        }
+
+        private void circleAddButtonControl1_Load(object sender, EventArgs e)
+        {
+            form.ChangeScreen(this, RestaurantId, ManagerId, 1);
         }
     }
 }

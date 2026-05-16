@@ -72,7 +72,7 @@ namespace FoodHubManagerApp.UserControlPages
             // 
             splitContainer1.Panel2.BackColor = Color.White;
             splitContainer1.Panel2.Controls.Add(splitContainer2);
-            splitContainer1.Size = new Size(1264, 681);
+            splitContainer1.Size = new Size(1280, 720);
             splitContainer1.SplitterDistance = 270;
             splitContainer1.TabIndex = 0;
             // 
@@ -82,8 +82,10 @@ namespace FoodHubManagerApp.UserControlPages
             navBarControl1.Location = new Point(0, 0);
             navBarControl1.LogoImage = (Image)resources.GetObject("navBarControl1.LogoImage");
             navBarControl1.Name = "navBarControl1";
-            navBarControl1.Size = new Size(270, 681);
+            navBarControl1.SelectedIndex = 0;
+            navBarControl1.Size = new Size(270, 720);
             navBarControl1.TabIndex = 0;
+            navBarControl1.Load += navBarControl1_Load;
             // 
             // splitContainer2
             // 
@@ -102,7 +104,7 @@ namespace FoodHubManagerApp.UserControlPages
             // splitContainer2.Panel2
             // 
             splitContainer2.Panel2.Controls.Add(splitContainer3);
-            splitContainer2.Size = new Size(990, 681);
+            splitContainer2.Size = new Size(1006, 720);
             splitContainer2.SplitterDistance = 71;
             splitContainer2.TabIndex = 0;
             // 
@@ -120,7 +122,7 @@ namespace FoodHubManagerApp.UserControlPages
             tableLayoutPanel1.Padding = new Padding(0, 10, 10, 0);
             tableLayoutPanel1.RowCount = 1;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.Size = new Size(990, 71);
+            tableLayoutPanel1.Size = new Size(1006, 71);
             tableLayoutPanel1.TabIndex = 0;
             // 
             // sectionHeaderControl1
@@ -136,7 +138,7 @@ namespace FoodHubManagerApp.UserControlPages
             // searchBar1
             // 
             searchBar1.Dock = DockStyle.Right;
-            searchBar1.Location = new Point(452, 15);
+            searchBar1.Location = new Point(468, 15);
             searchBar1.Margin = new Padding(0, 5, 10, 5);
             searchBar1.Name = "searchBar1";
             searchBar1.Size = new Size(518, 51);
@@ -157,33 +159,34 @@ namespace FoodHubManagerApp.UserControlPages
             // splitContainer3.Panel2
             // 
             splitContainer3.Panel2.Controls.Add(circleAddButtonControl1);
-            splitContainer3.Size = new Size(990, 606);
-            splitContainer3.SplitterDistance = 493;
+            splitContainer3.Size = new Size(1006, 645);
+            splitContainer3.SplitterDistance = 524;
             splitContainer3.TabIndex = 0;
             // 
             // flowLayoutPanel1
             // 
             flowLayoutPanel1.AutoScroll = true;
             flowLayoutPanel1.Dock = DockStyle.Fill;
+            flowLayoutPanel1.FlowDirection = FlowDirection.TopDown;
             flowLayoutPanel1.Location = new Point(20, 5);
             flowLayoutPanel1.Margin = new Padding(0);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
             flowLayoutPanel1.Padding = new Padding(0, 0, 0, 20);
-            flowLayoutPanel1.Size = new Size(950, 483);
+            flowLayoutPanel1.Size = new Size(966, 514);
             flowLayoutPanel1.TabIndex = 0;
             flowLayoutPanel1.WrapContents = false;
-            flowLayoutPanel1.FlowDirection = FlowDirection.TopDown;
             // 
             // circleAddButtonControl1
             // 
             circleAddButtonControl1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             circleAddButtonControl1.BackColor = Color.Transparent;
             circleAddButtonControl1.ButtonColor = Color.FromArgb(192, 7, 7);
-            circleAddButtonControl1.Location = new Point(878, 3);
+            circleAddButtonControl1.Location = new Point(894, 11);
             circleAddButtonControl1.Name = "circleAddButtonControl1";
             circleAddButtonControl1.PlusColor = Color.White;
             circleAddButtonControl1.Size = new Size(75, 75);
             circleAddButtonControl1.TabIndex = 0;
+            circleAddButtonControl1.ButtonClick += circleAddButtonControl1_Load;
             // 
             // PromotionsPage
             // 
@@ -191,7 +194,7 @@ namespace FoodHubManagerApp.UserControlPages
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(splitContainer1);
             Name = "PromotionsPage";
-            Size = new Size(1264, 681);
+            Size = new Size(1280, 720);
             splitContainer1.Panel1.ResumeLayout(false);
             splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
