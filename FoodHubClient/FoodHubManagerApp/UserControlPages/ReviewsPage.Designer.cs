@@ -2,14 +2,14 @@
 
 namespace FoodHubManagerApp.UserControlPages
 {
-    partial class PromotionsPage
+    partial class ReviewsPage
     {
-        /// <summary>
+        /// <summary> 
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
+        /// <summary> 
         /// Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
@@ -22,24 +22,22 @@ namespace FoodHubManagerApp.UserControlPages
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
+        #region Component Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
+        /// <summary> 
+        /// Required method for Designer support - do not modify 
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PromotionsPage));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReviewsPage));
             splitContainer1 = new SplitContainer();
             navBarControl1 = new NavBarControl();
             splitContainer2 = new SplitContainer();
             tableLayoutPanel1 = new TableLayoutPanel();
             sectionHeaderControl1 = new SectionHeaderControl();
             searchBar1 = new SearchBarControl();
-            splitContainer3 = new SplitContainer();
             flowLayoutPanel1 = new FlowLayoutPanel();
-            circleAddButtonControl1 = new CircleAddButtonControl();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
@@ -49,10 +47,6 @@ namespace FoodHubManagerApp.UserControlPages
             splitContainer2.Panel2.SuspendLayout();
             splitContainer2.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)splitContainer3).BeginInit();
-            splitContainer3.Panel1.SuspendLayout();
-            splitContainer3.Panel2.SuspendLayout();
-            splitContainer3.SuspendLayout();
             SuspendLayout();
             // 
             // splitContainer1
@@ -102,7 +96,8 @@ namespace FoodHubManagerApp.UserControlPages
             // 
             // splitContainer2.Panel2
             // 
-            splitContainer2.Panel2.Controls.Add(splitContainer3);
+            splitContainer2.Panel2.Controls.Add(flowLayoutPanel1);
+            splitContainer2.Panel2.Padding = new Padding(20, 5, 20, 5);
             splitContainer2.Size = new Size(1006, 720);
             splitContainer2.SplitterDistance = 71;
             splitContainer2.TabIndex = 0;
@@ -128,7 +123,7 @@ namespace FoodHubManagerApp.UserControlPages
             // 
             sectionHeaderControl1.BackColor = Color.Transparent;
             sectionHeaderControl1.Dock = DockStyle.Fill;
-            sectionHeaderControl1.HeaderText = "List of Promotions";
+            sectionHeaderControl1.HeaderText = "Reviews";
             sectionHeaderControl1.Location = new Point(3, 13);
             sectionHeaderControl1.Name = "sectionHeaderControl1";
             sectionHeaderControl1.Size = new Size(344, 55);
@@ -143,25 +138,6 @@ namespace FoodHubManagerApp.UserControlPages
             searchBar1.Size = new Size(518, 51);
             searchBar1.TabIndex = 1;
             // 
-            // splitContainer3
-            // 
-            splitContainer3.Dock = DockStyle.Fill;
-            splitContainer3.Location = new Point(0, 0);
-            splitContainer3.Name = "splitContainer3";
-            splitContainer3.Orientation = Orientation.Horizontal;
-            // 
-            // splitContainer3.Panel1
-            // 
-            splitContainer3.Panel1.Controls.Add(flowLayoutPanel1);
-            splitContainer3.Panel1.Padding = new Padding(20, 5, 20, 5);
-            // 
-            // splitContainer3.Panel2
-            // 
-            splitContainer3.Panel2.Controls.Add(circleAddButtonControl1);
-            splitContainer3.Size = new Size(1006, 645);
-            splitContainer3.SplitterDistance = 524;
-            splitContainer3.TabIndex = 0;
-            // 
             // flowLayoutPanel1
             // 
             flowLayoutPanel1.AutoScroll = true;
@@ -170,30 +146,18 @@ namespace FoodHubManagerApp.UserControlPages
             flowLayoutPanel1.Location = new Point(20, 5);
             flowLayoutPanel1.Margin = new Padding(0);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Padding = new Padding(0, 0, 0, 20);
-            flowLayoutPanel1.Size = new Size(966, 514);
+            flowLayoutPanel1.Padding = new Padding(0);
+            flowLayoutPanel1.Size = new Size(966, 635);
             flowLayoutPanel1.TabIndex = 0;
             flowLayoutPanel1.WrapContents = false;
             // 
-            // circleAddButtonControl1
-            // 
-            circleAddButtonControl1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            circleAddButtonControl1.BackColor = Color.Transparent;
-            circleAddButtonControl1.ButtonColor = Color.FromArgb(192, 7, 7);
-            circleAddButtonControl1.Location = new Point(894, 11);
-            circleAddButtonControl1.Name = "circleAddButtonControl1";
-            circleAddButtonControl1.PlusColor = Color.White;
-            circleAddButtonControl1.Size = new Size(75, 75);
-            circleAddButtonControl1.TabIndex = 0;
-            circleAddButtonControl1.ButtonClick += circleAddButtonControl1_Load;
-            // 
-            // PromotionsPage
+            // ReviewsPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(splitContainer1);
             Margin = new Padding(0);
-            Name = "PromotionsPage";
+            Name = "ReviewsPage";
             Size = new Size(1280, 720);
             splitContainer1.Panel1.ResumeLayout(false);
             splitContainer1.Panel2.ResumeLayout(false);
@@ -204,10 +168,6 @@ namespace FoodHubManagerApp.UserControlPages
             ((System.ComponentModel.ISupportInitialize)splitContainer2).EndInit();
             splitContainer2.ResumeLayout(false);
             tableLayoutPanel1.ResumeLayout(false);
-            splitContainer3.Panel1.ResumeLayout(false);
-            splitContainer3.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)splitContainer3).EndInit();
-            splitContainer3.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -219,8 +179,6 @@ namespace FoodHubManagerApp.UserControlPages
         private TableLayoutPanel tableLayoutPanel1;
         private SectionHeaderControl sectionHeaderControl1;
         private SearchBarControl searchBar1;
-        private SplitContainer splitContainer3;
         private FlowLayoutPanel flowLayoutPanel1;
-        private CircleAddButtonControl circleAddButtonControl1;
     }
 }

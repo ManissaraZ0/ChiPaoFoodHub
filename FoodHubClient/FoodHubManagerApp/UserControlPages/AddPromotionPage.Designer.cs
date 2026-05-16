@@ -270,6 +270,7 @@ namespace FoodHubManagerApp.UserControlPages
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(splitContainer1);
+            Margin = new Padding(0);
             Name = "AddPromotionPage";
             Size = new Size(1280, 720);
             splitContainer1.Panel1.ResumeLayout(false);
