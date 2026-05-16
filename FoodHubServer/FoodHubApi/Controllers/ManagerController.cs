@@ -11,39 +11,18 @@ public class ManagerController : ControllerBase
 {
     // 2.a Add Promotion Ticket
     [HttpPost("restaurants/{restaurantId}/promotions")]
-    public Promotion AddPromotion(int restaurantId, [FromQuery] int managerId, [FromBody] Promotion newPromotion)
+    public PromotionBasicRsp AddPromotion(int restaurantId, [FromQuery] int managerId, [FromBody] AddPromotionReq req)
     {
         var domain = new DomainLogic(MyConfig.ConnStr);
-        var promotion = domain.AddPromotion(managerId, restaurantId, newPromotion);
-
-        // Disable back-link
-        if (promotion.Restaurant != null)
-        {
-            promotion.Restaurant.Promotions = null;
-        }
-
-        return promotion;
+        return domain.AddPromotion(managerId, restaurantId, req);
     }
 
     // 2.b Receive Promotion Tickets (Get/View Tickets for Restaurant)
     [HttpGet("restaurants/{restaurantId}/tickets")]
-    public List<PromotionTicket> GetRestaurantTickets(int restaurantId, [FromQuery] int managerId)
+    public List<ManagerTicketDetailRsp> GetRestaurantTickets(int restaurantId, [FromQuery] int managerId, [FromQuery] string status = null)
     {
         var domain = new DomainLogic(MyConfig.ConnStr);
-        var tickets = domain.GetTicketsForRestaurant(managerId, restaurantId);
-
-        // Disable back-link
-        foreach (var t in tickets)
-        {
-            if (t.Promotion != null)
-            {
-                t.Promotion.PromotionTickets = null;
-                if (t.Promotion.Restaurant != null) t.Promotion.Restaurant.Promotions = null;
-            }
-            if (t.User != null) t.User.PromotionTickets = null;
-        }
-
-        return tickets;
+        return domain.GetTicketsForRestaurant(managerId, restaurantId, status);
     }
 
     // 2.b Receive Promotion Tickets (Validate & Change Status)
