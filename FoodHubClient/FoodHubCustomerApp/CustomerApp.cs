@@ -40,6 +40,16 @@ namespace FoodHubCustomerApp
 
         public void ChangeScreen(object sender, int action, UserRsp userData, object data = null)
         {
+            if (action == 2002)
+            {
+                if (data != null)
+                {
+                    this.Controls.Clear();
+                    homePage.UserData = userData;
+                    homePage.SearchText = data.ToString();
+                    this.Controls.Add(homePage);
+                }
+            }
             if (sender is DemoLoginPage)
             {
                 if (action == 0)

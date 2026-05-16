@@ -44,6 +44,7 @@ namespace FoodHubCustomerApp.UserControlPages
             {
                 userData = value;
                 UserSession.Username = userData.Username;
+                navBarControl.UserData = userData;
                 //navBarControl.RefreshUserProfile();
             }
         }

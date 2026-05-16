@@ -1,4 +1,5 @@
 ﻿using FoodHubCustomerApp.Logics;
+using FoodHubCustomerApp.Model;
 using FoodHubCustomerApp.UserControlComponents;
 using System;
 using System.Collections.Generic;
@@ -36,6 +37,8 @@ namespace FoodHubCustomerApp
 
         private TextBox _txtSearch;
 
+        public UserRsp UserData { get; set; }
+
         private readonly Font _userFont = new Font("Segoe UI", 11.5f, FontStyle.Bold);
 
         // --- Constructor ---
@@ -69,6 +72,7 @@ namespace FoodHubCustomerApp
 
             _txtSearch.Enter += TxtSearch_Enter;
             _txtSearch.Leave += TxtSearch_Leave;
+            _txtSearch.KeyDown += TxtSearch_KeyDown;
 
             this.Controls.Add(_txtSearch);
             this.Resize += NavBarControl_Resize;
@@ -253,6 +257,23 @@ namespace FoodHubCustomerApp
             {
                 _txtSearch.Text = "Restaurant";
                 _txtSearch.ForeColor = Color.Gray;
+            }
+        }
+
+        private void TxtSearch_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                string searchText = _txtSearch.Text == "Restaurant" ? "" : _txtSearch.Text;
+
+                // ค้นหาฟอร์มหลัก (เปลี่ยน CustomerApp เป็นชื่อฟอร์มหลักของคุณ)
+                var form = this.FindForm() as CustomerApp;
+                if (form != null)
+                {
+                    // ใช้ this.UserData ที่ถูกส่งมาเก็บไว้ และใช้ searchText เป็น item
+                    form.ChangeScreen(this, 2002, this.UserData, searchText);
+                }
             }
         }
 

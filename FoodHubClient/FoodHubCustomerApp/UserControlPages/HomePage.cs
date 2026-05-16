@@ -20,12 +20,23 @@ namespace FoodHubCustomerApp.UserControlPages
 
         private UserRsp userData;
 
+        private string searchText;
+
+        public string SearchText
+        {
+            get => searchText;
+            set {
+                value.Trim();
+            }
+        }
+
         public UserRsp UserData {
             get => userData;
             set { 
                 userData = value;
                 UserSession.Username = userData.Username;
                 navBarControl.RefreshUserProfile();
+                navBarControl.UserData = userData;
             }
         }
 
@@ -68,8 +79,15 @@ namespace FoodHubCustomerApp.UserControlPages
 
             // *** Observer: รอรับข้อมูลจาก Service เมื่อโหลดเสร็จ ***
             //_service.OnRestaurantsLoaded += UpdateRestaurantCards;
-            var restaurants = Service.GetRecommendedRestaurants();
-            UpdateRestaurantCards(restaurants);
+            if (searchText != null)
+            {
+                var restaurants = Service.GetRecommendedRestaurants();
+                UpdateRestaurantCards(restaurants);
+            } else
+            {
+                var restaurants = Service.GetRecommendedRestaurants();
+                UpdateRestaurantCards(restaurants); 
+            }
         }
 
         // ฟังก์ชันนี้ทำงานอัตโนมัติเมื่อ Service สั่ง Invoke()

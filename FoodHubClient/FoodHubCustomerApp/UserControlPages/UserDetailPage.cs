@@ -29,6 +29,7 @@ namespace FoodHubCustomerApp.UserControlPages
                 navBarControl.RefreshUserProfile();
                 usernameTitle.Text = userData.Username;
                 LoadExpirePromotions();
+                navBarControl.UserData = userData;
             }
         }
 
