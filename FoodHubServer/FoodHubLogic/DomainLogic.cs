@@ -378,6 +378,7 @@ public class DomainLogic
                 .Where(t => t.Status == StatusConstants.TicketActive && t.Promotion.EndDate >= DateTime.Now)
                 .Select(t => new CustomerActivePromotionRsp
                 {
+                    TicketId = t.Id,
                     Title = t.Promotion.Title,
                     EndDate = t.Promotion.EndDate
                 }).ToList()

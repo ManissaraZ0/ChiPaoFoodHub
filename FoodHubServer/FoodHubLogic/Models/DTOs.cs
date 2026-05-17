@@ -34,6 +34,7 @@ namespace FoodHubLogic.Models
 
     public class CustomerActivePromotionRsp
     {
+        public int TicketId { get; set; }
         public string Title { get; set; }
         public DateTime EndDate { get; set; }
     }
