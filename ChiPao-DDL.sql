@@ -1,5 +1,5 @@
 CREATE TABLE "users" (
-  "id" integer PRIMARY KEY,
+  "id" integer GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   "username" varchar(100) NOT NULL,
   "email" varchar(150) UNIQUE NOT NULL,
   "password_hash" varchar NOT NULL,
@@ -8,7 +8,7 @@ CREATE TABLE "users" (
 );
 
 CREATE TABLE "restaurants" (
-  "id" integer PRIMARY KEY,
+  "id" integer GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   "name" varchar NOT NULL,
   "manager_id" integer NOT NULL,
   "address" text NOT NULL,
@@ -17,7 +17,7 @@ CREATE TABLE "restaurants" (
 );
 
 CREATE TABLE "promotions" (
-  "id" integer PRIMARY KEY,
+  "id" integer GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   "restaurant_id" integer NOT NULL,
   "title" varchar NOT NULL,
   "price" decimal(10,2) NOT NULL,
@@ -28,7 +28,7 @@ CREATE TABLE "promotions" (
 );
 
 CREATE TABLE "promotion_tickets" (
-  "id" integer PRIMARY KEY,
+  "id" integer GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   "user_id" integer NOT NULL,
   "promotion_id" integer NOT NULL,
   "status" varchar NOT NULL,
@@ -37,7 +37,7 @@ CREATE TABLE "promotion_tickets" (
 );
 
 CREATE TABLE "reviews" (
-  "id" integer PRIMARY KEY,
+  "id" integer GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   "user_id" integer NOT NULL,
   "restaurant_id" integer NOT NULL,
   "rating" integer NOT NULL,
