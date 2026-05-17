@@ -42,8 +42,8 @@ namespace FoodHubCustomerApp.UserControlPages
                 if (resPrevious != null)
                 {
                     restaurantTitle.Text = resPrevious.Name;
-                    //restaurantCategory.Text = resPrevious.Category;
-                    //restaurantRatingScore.Text = resPrevious.OverallRating.ToString("0.00") + "/5.00";
+                    categoryContent.Text = resPrevious.Category;
+                    ratingContent.Text = resPrevious.OverallRating.ToString("0.00") + "/5.00";
                     //restaurantDescription.Text = resPrevious.Address;
                 }
             }
