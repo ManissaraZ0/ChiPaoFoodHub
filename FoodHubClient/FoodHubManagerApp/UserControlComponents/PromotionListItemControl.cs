@@ -76,7 +76,7 @@ namespace FoodHubManagerApp.UserControlComponents
             using (Font fontType = new Font("Segoe UI", 9.5f, FontStyle.Regular))
             using (SolidBrush brushGray = new SolidBrush(Color.FromArgb(140, 140, 140)))
             {
-                g.DrawString(_item.Conditions, fontType, brushGray, padX, 37);
+                g.DrawString(_item.Conditions + " • " + _item.StartDate.ToString("yyyy-MM-dd HH:mm") + " - " + _item.EndDate.ToString("yyyy-MM-dd HH:mm"), fontType, brushGray, padX, 37);
             }
 
             // --- 4. วาดกล่องตัวเลข (Badge) ฝั่งขวา ---
