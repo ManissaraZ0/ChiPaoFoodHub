@@ -64,6 +64,11 @@ namespace FoodHubManagerApp.UserControlPages
             };
         }
 
+        public void RefreshPromotions()
+        {
+            RefreshData();
+        }
+
         private void RefreshData(string keyword = "")
         {
             // กัน cross-thread

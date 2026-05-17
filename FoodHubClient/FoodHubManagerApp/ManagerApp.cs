@@ -50,6 +50,10 @@ namespace FoodHubManagerApp
             {
                 tickets.RefreshData();
             }
+            else if (this.Controls.Contains(promotions))
+            {
+                promotions.RefreshPromotions();
+            }
         }
 
         private void ManagerApp_Load(object sender, EventArgs e)
