@@ -37,7 +37,6 @@ namespace FoodHubManagerApp.UserControlPages
             splitContainer2 = new SplitContainer();
             tableLayoutPanel1 = new TableLayoutPanel();
             sectionHeaderControl1 = new SectionHeaderControl();
-            searchBar1 = new SearchBarControl();
             tableLayoutPanel2 = new TableLayoutPanel();
             labeledTextBoxControl4 = new LabeledTextBoxControl();
             labeledTextBoxControl1 = new LabeledTextBoxControl();
@@ -118,7 +117,6 @@ namespace FoodHubManagerApp.UserControlPages
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 350F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutPanel1.Controls.Add(sectionHeaderControl1, 0, 0);
-            tableLayoutPanel1.Controls.Add(searchBar1, 1, 0);
             tableLayoutPanel1.Dock = DockStyle.Fill;
             tableLayoutPanel1.Location = new Point(0, 0);
             tableLayoutPanel1.Margin = new Padding(0);
@@ -138,16 +136,6 @@ namespace FoodHubManagerApp.UserControlPages
             sectionHeaderControl1.Name = "sectionHeaderControl1";
             sectionHeaderControl1.Size = new Size(344, 55);
             sectionHeaderControl1.TabIndex = 0;
-            // 
-            // searchBar1
-            // 
-            searchBar1.Dock = DockStyle.Right;
-            searchBar1.Location = new Point(468, 15);
-            searchBar1.Margin = new Padding(0, 5, 10, 5);
-            searchBar1.Name = "searchBar1";
-            searchBar1.Placeholder = "Search...";
-            searchBar1.Size = new Size(518, 51);
-            searchBar1.TabIndex = 1;
             // 
             // tableLayoutPanel2
             // 
@@ -198,7 +186,7 @@ namespace FoodHubManagerApp.UserControlPages
             // labeledTextBoxControl2
             // 
             labeledTextBoxControl2.Dock = DockStyle.Fill;
-            labeledTextBoxControl2.LabelText = "Promotion Type";
+            labeledTextBoxControl2.LabelText = "Promotion Conditions";
             labeledTextBoxControl2.Location = new Point(23, 129);
             labeledTextBoxControl2.Name = "labeledTextBoxControl2";
             labeledTextBoxControl2.PlaceholderText = "";
@@ -209,7 +197,7 @@ namespace FoodHubManagerApp.UserControlPages
             // labeledTextBoxControl3
             // 
             labeledTextBoxControl3.Dock = DockStyle.Fill;
-            labeledTextBoxControl3.LabelText = "Count";
+            labeledTextBoxControl3.LabelText = "Quota";
             labeledTextBoxControl3.Location = new Point(23, 225);
             labeledTextBoxControl3.Name = "labeledTextBoxControl3";
             labeledTextBoxControl3.PlaceholderText = "";
@@ -308,7 +296,6 @@ namespace FoodHubManagerApp.UserControlPages
         private SplitContainer splitContainer2;
         private TableLayoutPanel tableLayoutPanel1;
         private SectionHeaderControl sectionHeaderControl1;
-        private SearchBarControl searchBar1;
         private TableLayoutPanel tableLayoutPanel2;
         private LabeledTextBoxControl labeledTextBoxControl1;
         private LabeledTextBoxControl labeledTextBoxControl2;
