@@ -1,4 +1,6 @@
-﻿using System;
+﻿using FoodHubManagerApp;
+using FoodHubManagerApp.UserControlComponents;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,7 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FoodHubManagerApp.UserControlComponents
+namespace FoodHubCustomerApp.UserControlComponents
 {
     public enum DialogCardType
     {
@@ -20,7 +22,7 @@ namespace FoodHubManagerApp.UserControlComponents
 
     public partial class DialogCard : Form
     {
-        public DialogCard(string message, DialogCardType cardType)
+        public DialogCard(string message, DialogCardType cardType, bool showCancelButton = true, bool showIcon = true)
         {
             InitializeComponent();
 
@@ -34,8 +36,22 @@ namespace FoodHubManagerApp.UserControlComponents
             Opacity = 0;
             ShowInTaskbar = false;
 
+            // --- เพิ่มการตั้งค่า Font และการขึ้นบรรทัดใหม่ตรงนี้ ---
+            nofifyLabel.Font = new Font("Segoe UI Semibold", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
+
+            // ปิด AutoSize เพื่อบังคับให้ Label อยู่ในกรอบและปัดข้อความลงมาบรรทัดใหม่
+            nofifyLabel.AutoSize = false;
+            nofifyLabel.Dock = DockStyle.Fill;
+            nofifyLabel.TextAlign = ContentAlignment.MiddleCenter;
+
+            primaryBtn.Font = new Font("Segoe UI Semibold", 15F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            secondaryBtn.Font = new Font("Segoe UI Semibold", 15F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            // ----------------------------------------
+
             nofifyLabel.Text = message;
-            SetupTheme(cardType);
+
+            SetupTheme(cardType, showIcon);
+            SetupButtons(showCancelButton);
 
             this.MouseDown += DragForm;
             this.DoubleBuffered = true;
@@ -47,25 +63,51 @@ namespace FoodHubManagerApp.UserControlComponents
             nofifyLabel.MouseDown += DragForm;
         }
 
-        protected override CreateParams CreateParams
+        private void SetupTheme(DialogCardType cardType, bool showIcon)
         {
-            get
-            {
-                CreateParams cp = base.CreateParams;
-                cp.ExStyle |= 0x02000000; // WS_EX_COMPOSITED
-                return cp;
-            }
-        }
+            bool isPositive = (cardType == DialogCardType.Positive);
 
-        private void SetupTheme(DialogCardType cardType)
-        {
-            if (cardType == DialogCardType.Positive)
+            if (isPositive)
             {
-                CreateIcon(true);
+                this.BackColor = StylePalette.PrimaryGreen;
+
+                primaryBtn.FontColor = StylePalette.PrimaryGreen;
+                secondaryBtn.FontColor = StylePalette.PrimaryGreen;
             }
             else
             {
-                CreateIcon(false);
+                this.BackColor = StylePalette.DarkRed;
+
+                primaryBtn.FontColor = StylePalette.DarkRed;
+                secondaryBtn.FontColor = StylePalette.DarkRed;
+            }
+
+            // แสดง Icon เฉพาะเมื่อ showIcon เป็น true เท่านั้น
+            if (showIcon)
+            {
+                CreateIcon(isPositive);
+            }
+        }
+
+        private void SetupButtons(bool showCancelButton)
+        {
+            if (!showCancelButton)
+            {
+                // กรณีมีปุ่มเดียว (แจ้งเตือน) ให้ซ่อนปุ่ม Cancel
+                secondaryBtn.Visible = false;
+
+                // ปรับแต่ง Layout ของ TableLayoutPanel2 ให้มีแค่ 1 คอลัมน์ และกว้าง 100%
+                tableLayoutPanel2.ColumnStyles.Clear();
+                tableLayoutPanel2.ColumnCount = 1;
+                tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+
+                // ย้ายปุ่ม OK มาไว้ที่คอลัมน์แรกสุด
+                tableLayoutPanel2.Controls.Remove(primaryBtn);
+                tableLayoutPanel2.Controls.Add(primaryBtn, 0, 0);
+
+                // ยกเลิก Dock และใช้ Anchor None เพื่อให้ปุ่มลอยอยู่กึ่งกลาง Cell
+                primaryBtn.Dock = DockStyle.None;
+                primaryBtn.Anchor = AnchorStyles.None;
             }
         }
 
@@ -100,16 +142,15 @@ namespace FoodHubManagerApp.UserControlComponents
             tableLayoutPanel4.Controls.Add(iconPanel, 1, 0);
         }
 
-        // 3. กำหนดให้ปุ่มส่งค่า DialogResult กลับไป
         private void btnOk_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.Yes; // ส่งค่า Yes
+            this.DialogResult = DialogResult.Yes;
             Close();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.No;  // ส่งค่า No
+            this.DialogResult = DialogResult.No;
             Close();
         }
 
@@ -123,12 +164,12 @@ namespace FoodHubManagerApp.UserControlComponents
             }));
         }
 
-        // 4. สร้าง Static Method เพื่อให้เรียกใช้ได้ง่ายๆ เหมือน MessageBox
-        public static DialogResult Show(string message, DialogCardType cardType)
+        // เพิ่มพารามิเตอร์มารับค่าทาง Static Method
+        public static DialogResult Show(string message, DialogCardType cardType, bool showCancelButton = true, bool showIcon = true)
         {
-            using (var dialog = new DialogCard(message, cardType))
+            using (var dialog = new DialogCard(message, cardType, showCancelButton, showIcon))
             {
-                return dialog.ShowDialog(); // ใช้ ShowDialog() เพื่อหยุดโค้ดรอจนกว่าผู้ใช้จะกดปุ่ม
+                return dialog.ShowDialog();
             }
         }
 

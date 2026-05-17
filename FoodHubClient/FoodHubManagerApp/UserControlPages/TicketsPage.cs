@@ -1,4 +1,8 @@
-﻿using System;
+﻿using FoodHubCustomerApp.UserControlComponents;
+using FoodHubManagerApp.Logics;
+using FoodHubManagerApp.Model;
+using FoodHubManagerApp.UserControlComponents;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,9 +11,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using FoodHubManagerApp.Logics;
-using FoodHubManagerApp.Model;
-using FoodHubManagerApp.UserControlComponents;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace FoodHubManagerApp.UserControlPages
@@ -108,7 +109,7 @@ namespace FoodHubManagerApp.UserControlPages
 
                 card.AcceptClicked += (s, e) =>
                 {
-                    var result = DialogCard.Show($"Confirm Ticket #{item.TicketId}", DialogCardType.Positive);
+                    var result = DialogCard.Show($"Confirm Ticket #{item.TicketId}", DialogCardType.Positive, true, true);
 
                     // เช็คผลลัพธ์เหมือน MessageBox ปกติ
                     if (result == DialogResult.Yes)
@@ -116,12 +117,13 @@ namespace FoodHubManagerApp.UserControlPages
                         var success = Service.ValidateTicket(item.TicketId, Data.ManagerId);
                         if (success != null)
                         {
-                            DialogCard.Show($"Ticket #{item.TicketId} accepted successfully!", DialogCardType.Positive);
+                            DialogCard.Show($"Ticket #{item.TicketId} accepted successfully!", DialogCardType.Positive, false, true);
                             RefreshData(); // รีเฟรชข้อมูลหลังจากยืนยันตั๋ว
                         }
                         else
                         {
-                            DialogCard.Show($"Failed to accept Ticket #{item.TicketId}. Please try again.", DialogCardType.Negative);
+                            DialogCard.Show($"Failed to accept Ticket #{item.TicketId}. Please try again.", DialogCardType.Negative, false, true);
+                            RefreshData(); // รีเฟรชข้อมูลหลังจากยืนยันตั๋ว;
                         }
                     }
                 };
