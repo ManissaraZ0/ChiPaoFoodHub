@@ -67,8 +67,15 @@ namespace FoodHubCustomerApp.UserControlPages
         }
         public void RefreshData()
         {
-            var restaurants = Service.GetRecommendedRestaurants();
-            UpdateRestaurantCards(restaurants);
+            if (!string.IsNullOrEmpty(SearchText))
+            {
+                var restaurants = Service.GetRestaurantBySearchText(SearchText);
+                UpdateRestaurantCards(restaurants);
+            }else
+            {
+                var restaurants = Service.GetRecommendedRestaurants();
+                UpdateRestaurantCards(restaurants);
+            }
         }
 
         private void SetupUI()
