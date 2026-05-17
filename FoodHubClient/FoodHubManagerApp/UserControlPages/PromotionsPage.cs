@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using FoodHubCustomerApp.UserControlComponents;
 using FoodHubManagerApp;
 using FoodHubManagerApp.Logics;
 using FoodHubManagerApp.Model;
@@ -146,10 +147,25 @@ namespace FoodHubManagerApp.UserControlPages
         {
             if (sender is PromotionListItemControl card && card.Data is ManagerPromotionSummaryRsp item)
             {
-                MessageBox.Show(
-                    $"คุณเลือก: {item.Title}",
-                    "แจ้งเตือน"
-                );
+                //MessageBox.Show(
+                //    $"คุณเลือก: {item.Title}",
+                //    "แจ้งเตือน"
+                //);
+                var confirmResult = DialogCard.Show("Are you sure to remove promotion?", DialogCardType.Negative, true, false);
+
+                if (confirmResult == DialogResult.Yes)
+                {
+                    var success = Service.DeletePromotion(RestaurantId, ManagerId, item.PromotionId);
+
+                    if (!success)
+                    {
+                        DialogCard.Show($"Failed to remove promotion. Please try again.", DialogCardType.Negative, false, true);
+                        return;
+                    }
+
+                    DialogCard.Show($"Promotion removed successfully!", DialogCardType.Positive, false, true);
+                    RefreshPromotions();
+                }
             }
         }
 

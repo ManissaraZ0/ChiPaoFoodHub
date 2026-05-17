@@ -118,5 +118,20 @@ namespace FoodHubManagerApp
             return RestUtil.Get<List<ManagerReviewDetailRsp>>(
                 MyConfig.BaseUri, $"Manager/v1/restaurants/{restaurantId}/reviews-details");
         }
+
+        public static bool DeletePromotion(int restaurantId, int managerId, int promotionId)
+        {
+            try
+            {
+                RestUtil.Delete(MyConfig.BaseUri, $"Manager/v1/restaurants/{restaurantId}/promotions/{promotionId}?managerId={managerId}");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                // Log the exception if needed
+                Console.WriteLine($"Error deleting promotion: {ex.Message}");
+                return false;
+            }
+        }
     }
 }

@@ -44,6 +44,7 @@ namespace FoodHubLogic.Models
     // ==========================================
     public class ManagerPromotionSummaryRsp
     {
+        public int PromotionId { get; set; }
         public string Title { get; set; }
         public decimal Price { get; set; }
         public DateTime StartDate {  get; set; }

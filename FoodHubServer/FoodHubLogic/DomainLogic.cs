@@ -416,6 +416,7 @@ public class DomainLogic
             .Where(p => p.RestaurantId == restaurantId)
             .Select(p => new ManagerPromotionSummaryRsp
             {
+                PromotionId = p.Id,
                 Title = p.Title,
                 Price = p.Price,
                 Conditions = p.Conditions,
@@ -457,5 +458,39 @@ public class DomainLogic
             })
             .OrderByDescending(r => r.Rating) // เรียงจากคะแนนมากไปน้อย (หรือเรียงตาม CreatedAt ก็ได้)
             .ToList();
+    }
+
+    // 2.c Delete Promotion
+    public void DeletePromotion(int managerId, int restaurantId, int promotionId)
+    {
+        using var context = new FoodhubContext(connectionString);
+
+        // 1. ตรวจสอบสิทธิ์ผู้ใช้
+        var user = context.Users.SingleOrDefault(u => u.Id == managerId);
+        if (user == null) throw new Exception("User not found.");
+        ValidateRole(user, StatusConstants.RoleManager, "Only managers can delete promotions.");
+
+        // 2. ค้นหาโปรโมชันที่ต้องการลบ
+        var promotion = context.Promotions
+            .Include(p => p.Restaurant) // โยงข้อมูลร้านมาเพื่อเช็คเจ้าของ
+            .SingleOrDefault(p => p.Id == promotionId && p.RestaurantId == restaurantId);
+
+        if (promotion == null)
+            throw new Exception("Promotion not found in this restaurant.");
+
+        // 3. ตรวจสอบว่าเป็น Manager ของร้านนี้จริงหรือไม่
+        if (promotion.Restaurant.ManagerId != managerId)
+            throw new Exception("Unauthorized: You do not manage this restaurant.");
+
+        // 4. (Business Rule สำคัญ) ตรวจสอบว่าโปรโมชันนี้ถูกลูกค้าซื้อไปแล้วหรือยัง
+        bool hasTickets = context.PromotionTickets.Any(t => t.PromotionId == promotionId);
+        if (hasTickets)
+        {
+            throw new Exception("Cannot delete this promotion because tickets have already been sold. (Consider changing the end date or total quota instead).");
+        }
+
+        // 5. ทำการลบข้อมูล (Hard Delete)
+        context.Promotions.Remove(promotion);
+        context.SaveChanges();
     }
 }

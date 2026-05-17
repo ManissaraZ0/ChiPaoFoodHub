@@ -77,4 +77,19 @@ public class ManagerController : ControllerBase
         var domain = new DomainLogic(MyConfig.ConnStr);
         return domain.GetRestaurantsByManagerId(managerId);
     }
+
+    // 5. Delete Promotion
+    // การใช้งาน: DELETE /Manager/v1/restaurants/1/promotions/99?managerId=5
+    [HttpDelete("restaurants/{restaurantId}/promotions/{promotionId}")]
+    public IActionResult DeletePromotion(int restaurantId, int promotionId, [FromQuery, Required] int managerId)
+    {
+        var domain = new DomainLogic(MyConfig.ConnStr);
+
+        // เราสามารถใช้ try-catch ในระดับ Controller หรือ Middleware จัดการ Exception ได้
+        // ในที่นี้สมมติว่าถ้า Error จะถูกโยนกลับไปตามปกติ 
+        domain.DeletePromotion(managerId, restaurantId, promotionId);
+
+        // การ Delete สำเร็จ ปกติจะ Return เป็น 200 OK พร้อมข้อความ หรือ 204 No Content
+        return Ok(new { message = "Promotion deleted successfully." });
+    }
 }
