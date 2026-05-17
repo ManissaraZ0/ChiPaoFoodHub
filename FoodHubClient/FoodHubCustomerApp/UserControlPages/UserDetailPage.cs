@@ -46,6 +46,14 @@ namespace FoodHubCustomerApp.UserControlPages
             SetupEventHandlers();
         }
 
+        public void RefreshData()
+        {
+            if (userData != null)
+            {
+                FillUI(userData);
+            }
+        }
+
         private void FillUI(UserRsp userData)
         {
             navBarControl.RefreshUserProfile();

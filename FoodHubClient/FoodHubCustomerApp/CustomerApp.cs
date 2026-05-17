@@ -48,6 +48,10 @@ namespace FoodHubCustomerApp
             {
                 userReviewPage.RefreshData();
             }
+            else if (this.Controls.Contains(userDetailPage))
+            {
+                userDetailPage.RefreshData();
+            }
         }
 
         public void ChangeScreen(object sender, int action, UserRsp userData, object data = null)
