@@ -94,7 +94,7 @@ namespace FoodHubCustomerApp.UserControlPages
                 if (reviewText == placeholderText) reviewText = "";
 
                 // ตัวอย่างการตรวจสอบข้อมูลเบื้องต้น (Validation)
-                if (string.IsNullOrWhiteSpace(reviewText) && rating == 0)
+                if (string.IsNullOrWhiteSpace(reviewText) || rating == 0)
                 {
                     var result = DialogCard.Show("Please rate or review before submit.", DialogCardType.Negative, false, true);
                     return;
@@ -107,6 +107,7 @@ namespace FoodHubCustomerApp.UserControlPages
                 {
                     DialogCard.Show($"Review saved successfully!", DialogCardType.Positive, false, true);
                     ClearForm();
+                    form.ChangeScreen(this, 5, userData, resPrevious);
                 }
             };
 
