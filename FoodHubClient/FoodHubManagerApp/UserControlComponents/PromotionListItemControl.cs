@@ -16,10 +16,10 @@ namespace FoodHubManagerApp.UserControlComponents
 {
     public partial class PromotionListItemControl : UserControl
     {
-        private Promotion _item;
-        public Promotion Data { get; private set; }
+        private ManagerPromotionSummaryRsp _item;
+        public ManagerPromotionSummaryRsp Data { get; private set; }
 
-        public PromotionListItemControl(Promotion item)
+        public PromotionListItemControl(ManagerPromotionSummaryRsp item)
         {
             _item = item;
             Data = item;
@@ -106,7 +106,7 @@ namespace FoodHubManagerApp.UserControlComponents
                 sf.Alignment = StringAlignment.Center;     // กึ่งกลางแนวนอน
                 sf.LineAlignment = StringAlignment.Center; // กึ่งกลางแนวตั้ง
 
-                g.DrawString(_item.TotalQuota.ToString(), fontValue, brushBlack, rectBadge, sf);
+                g.DrawString(_item.RemainingQuota.ToString(), fontValue, brushBlack, rectBadge, sf);
             }
         }
 

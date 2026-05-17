@@ -105,7 +105,7 @@ namespace FoodHubManagerApp.UserControlPages
                 flowLayoutPanel1.Controls.Clear();
 
                 // Load all promotions
-                List<Promotion> items = Service.BrowsePromotions(RestaurantId);
+                List<ManagerPromotionSummaryRsp> items = Service.GetPromotionSummaries(RestaurantId);
                 Debug.WriteLine($"[PromotionsPage] Loaded {items.Count} promotions from service.");
                 // Filter
                 if (!string.IsNullOrWhiteSpace(keyword))
@@ -144,7 +144,7 @@ namespace FoodHubManagerApp.UserControlPages
 
         private void Card_Click(object sender, EventArgs e)
         {
-            if (sender is PromotionListItemControl card && card.Data is Promotion item)
+            if (sender is PromotionListItemControl card && card.Data is ManagerPromotionSummaryRsp item)
             {
                 MessageBox.Show(
                     $"คุณเลือก: {item.Title}",

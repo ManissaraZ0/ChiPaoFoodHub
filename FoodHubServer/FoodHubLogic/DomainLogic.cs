@@ -419,6 +419,8 @@ public class DomainLogic
                 Title = p.Title,
                 Price = p.Price,
                 Conditions = p.Conditions,
+                StartDate = p.StartDate,
+                EndDate = p.EndDate,
                 // นำค่า TotalQuota มาแสดงเป็น RemainingQuota ได้เลย
                 RemainingQuota = p.TotalQuota
             })
