@@ -16,6 +16,18 @@ namespace FoodHubManagerApp.UserControlPages
     public partial class ReviewsPage : UserControl
     {
         ManagerApp form;
+
+        private string searchKeyword = "";
+
+        public string SearchKeyword
+        {
+            get => searchKeyword;
+            set
+            {
+                searchKeyword = value;
+            }
+        }
+
         private int restaurantId;
         public int RestaurantId
         {
@@ -53,8 +65,14 @@ namespace FoodHubManagerApp.UserControlPages
 
         public void RefreshData()
         {
-            var allReviews = Service.GetReviewDetails(RestaurantId);
-            RenderReviews(allReviews);
+            if (searchKeyword != "")
+            {
+                SearchReviews(searchKeyword);
+            } else
+            {
+                var allReviews = Service.GetReviewDetails(RestaurantId);
+                RenderReviews(allReviews);
+            }
         }
 
         private void SetupEventHandlers()
@@ -65,11 +83,17 @@ namespace FoodHubManagerApp.UserControlPages
             searchBar1.SearchSubmitted += (s, keyword) =>
             {
                 //var filtered = GetMockReviewData()
-                var filtered = Service.GetReviewDetails(RestaurantId)
+                searchKeyword = keyword;
+                SearchReviews(searchKeyword);
+            };
+        }
+
+        private void SearchReviews(string keyword)
+        {
+            var filtered = Service.GetReviewDetails(RestaurantId)
                     .Where(p => p.Comment.Contains(keyword, StringComparison.OrdinalIgnoreCase))
                     .ToList();
-                RenderReviews(filtered);
-            };
+            RenderReviews(filtered);
         }
 
         private void RenderReviews(List<ManagerReviewDetailRsp> items)
