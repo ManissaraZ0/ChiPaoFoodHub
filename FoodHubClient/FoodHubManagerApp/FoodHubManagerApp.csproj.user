@@ -10,8 +10,14 @@
     <Compile Update="UserControlComponents\CircleAddButtonControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="UserControlComponents\DatePopupControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="UserControlComponents\DialogCard.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UserControlComponents\LabeledDateTimePicker.cs">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="UserControlComponents\LabeledTextBoxControl.cs">
       <SubType>UserControl</SubType>

@@ -39,13 +39,14 @@ namespace FoodHubManagerApp.UserControlPages
             sectionHeaderControl1 = new SectionHeaderControl();
             searchBar1 = new SearchBarControl();
             tableLayoutPanel2 = new TableLayoutPanel();
+            labeledTextBoxControl4 = new LabeledTextBoxControl();
             labeledTextBoxControl1 = new LabeledTextBoxControl();
             labeledTextBoxControl2 = new LabeledTextBoxControl();
             labeledTextBoxControl3 = new LabeledTextBoxControl();
-            labeledTextBoxControl4 = new LabeledTextBoxControl();
             tableLayoutPanel3 = new TableLayoutPanel();
             buttonControl1 = new ButtonControl();
             buttonControl2 = new ButtonControl();
+            labeledDateTimePicker1 = new LabeledDateTimePicker();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
@@ -152,11 +153,12 @@ namespace FoodHubManagerApp.UserControlPages
             // 
             tableLayoutPanel2.ColumnCount = 1;
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel2.Controls.Add(labeledTextBoxControl4, 0, 4);
             tableLayoutPanel2.Controls.Add(labeledTextBoxControl1, 0, 0);
             tableLayoutPanel2.Controls.Add(labeledTextBoxControl2, 0, 1);
             tableLayoutPanel2.Controls.Add(labeledTextBoxControl3, 0, 2);
-            tableLayoutPanel2.Controls.Add(labeledTextBoxControl4, 0, 3);
             tableLayoutPanel2.Controls.Add(tableLayoutPanel3, 0, 5);
+            tableLayoutPanel2.Controls.Add(labeledDateTimePicker1, 0, 3);
             tableLayoutPanel2.Dock = DockStyle.Fill;
             tableLayoutPanel2.Location = new Point(0, 0);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -170,6 +172,17 @@ namespace FoodHubManagerApp.UserControlPages
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 60F));
             tableLayoutPanel2.Size = new Size(1006, 645);
             tableLayoutPanel2.TabIndex = 0;
+            // 
+            // labeledTextBoxControl4
+            // 
+            labeledTextBoxControl4.Dock = DockStyle.Fill;
+            labeledTextBoxControl4.LabelText = "Price";
+            labeledTextBoxControl4.Location = new Point(23, 417);
+            labeledTextBoxControl4.Name = "labeledTextBoxControl4";
+            labeledTextBoxControl4.PlaceholderText = "";
+            labeledTextBoxControl4.Size = new Size(960, 164);
+            labeledTextBoxControl4.TabIndex = 6;
+            labeledTextBoxControl4.Value = "";
             // 
             // labeledTextBoxControl1
             // 
@@ -203,17 +216,6 @@ namespace FoodHubManagerApp.UserControlPages
             labeledTextBoxControl3.Size = new Size(960, 90);
             labeledTextBoxControl3.TabIndex = 2;
             labeledTextBoxControl3.Value = "";
-            // 
-            // labeledTextBoxControl4
-            // 
-            labeledTextBoxControl4.Dock = DockStyle.Fill;
-            labeledTextBoxControl4.LabelText = "Expire Date";
-            labeledTextBoxControl4.Location = new Point(23, 321);
-            labeledTextBoxControl4.Name = "labeledTextBoxControl4";
-            labeledTextBoxControl4.PlaceholderText = "";
-            labeledTextBoxControl4.Size = new Size(960, 90);
-            labeledTextBoxControl4.TabIndex = 3;
-            labeledTextBoxControl4.Value = "";
             // 
             // tableLayoutPanel3
             // 
@@ -266,6 +268,17 @@ namespace FoodHubManagerApp.UserControlPages
             buttonControl2.TabIndex = 1;
             buttonControl2.Click += buttonControl2_Load;
             // 
+            // labeledDateTimePicker1
+            // 
+            labeledDateTimePicker1.BackColor = Color.Transparent;
+            labeledDateTimePicker1.LabelText = "Expire Date";
+            labeledDateTimePicker1.Location = new Point(23, 321);
+            labeledDateTimePicker1.Name = "labeledDateTimePicker1";
+            labeledDateTimePicker1.Size = new Size(960, 90);
+            labeledDateTimePicker1.TabIndex = 5;
+            labeledDateTimePicker1.Value = DateTime.Now;
+            labeledDateTimePicker1.Dock = DockStyle.Fill;
+            // 
             // AddPromotionPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -300,9 +313,10 @@ namespace FoodHubManagerApp.UserControlPages
         private LabeledTextBoxControl labeledTextBoxControl1;
         private LabeledTextBoxControl labeledTextBoxControl2;
         private LabeledTextBoxControl labeledTextBoxControl3;
-        private LabeledTextBoxControl labeledTextBoxControl4;
         private TableLayoutPanel tableLayoutPanel3;
         private ButtonControl buttonControl1;
         private ButtonControl buttonControl2;
+        private LabeledDateTimePicker labeledDateTimePicker1;
+        private LabeledTextBoxControl labeledTextBoxControl4;
     }
 }

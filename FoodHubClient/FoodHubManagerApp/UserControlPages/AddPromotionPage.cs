@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using FoodHubManagerApp.Logics;
+using FoodHubManagerApp.Model;
 using FoodHubManagerApp.UserControlComponents;
 
 namespace FoodHubManagerApp.UserControlPages
@@ -17,19 +18,18 @@ namespace FoodHubManagerApp.UserControlPages
     public partial class AddPromotionPage : UserControl
     {
         ManagerApp form;
-        private int restaurantId = 1;
+
+        private int restaurantId;
         public int RestaurantId
         {
             get => restaurantId;
-            //set { restaurantId = value; txtRestaurantId.Text = value.ToString();
-            internal set;
+            set { restaurantId = value; }
         }
-        private int managerId = 1;
+        private int managerId;
         public int ManagerId
         {
             get => managerId;
-            //set { restaurantId = value; txtManagerId.Text = value.ToString(); }
-            internal set;
+            set { managerId = value; }
         }
 
         public AddPromotionPage(ManagerApp form)
@@ -74,7 +74,7 @@ namespace FoodHubManagerApp.UserControlPages
             }
             catch (FormatException)
             {
-                MessageBox.Show("Promotion quota must be a valid integer.");
+                DialogCard.Show($"Promotion quota must be a valid integer.", DialogCardType.Negative);
                 return;
             }
 
@@ -82,18 +82,67 @@ namespace FoodHubManagerApp.UserControlPages
 
             if (promotionQuota <= 0)
             {
-                MessageBox.Show("Promotion quota must be a positive integer.");
+                DialogCard.Show($"Promotion quota must be a positive integer.", DialogCardType.Negative);
                 return;
             }
 
-            if (string.IsNullOrWhiteSpace(promotionTitle) || string.IsNullOrWhiteSpace(promotionDescription) || string.IsNullOrWhiteSpace(labeledTextBoxControl3.Value))
+            DateTime endDate = labeledDateTimePicker1.Value;
+
+            if (endDate <= DateTime.Now)
             {
-                MessageBox.Show("Please fill in all fields.");
+                DialogCard.Show($"Promotion end date must be in the future.", DialogCardType.Negative);
                 return;
             }
 
+            try
+            {
+                double.Parse(labeledTextBoxControl4.Value);
+            }
+            catch (FormatException)
+            {
+                DialogCard.Show($"Promotion price must be a valid number.", DialogCardType.Negative);
+                return;
+            }
 
-            form.ChangeScreen(this, data: new DataDetail { RestaurantId = RestaurantId, ManagerId = ManagerId }, 1);
+            double promotionPrice = double.Parse(labeledTextBoxControl4.Value);
+
+            if (promotionPrice <= 0)
+            {
+                DialogCard.Show($"Promotion price must be a positive number.", DialogCardType.Negative);
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(promotionTitle) || string.IsNullOrWhiteSpace(promotionDescription) || string.IsNullOrWhiteSpace(labeledTextBoxControl3.Value) || string.IsNullOrWhiteSpace(labeledTextBoxControl4.Value))
+            {
+                DialogCard.Show($"Please fill in all the fields.", DialogCardType.Negative);
+                return;
+            }
+
+            // Show All Input
+            //MessageBox.Show($"Promotion Title: {promotionTitle}\nPromotion Description: {promotionDescription}\nPromotion Quota: {promotionQuota}\nPromotion End Date: {endDate}");
+
+            // Show Current RestaurantId and ManagerId
+            //MessageBox.Show($"Current RestaurantId: {RestaurantId}\nCurrent ManagerId: {ManagerId}");
+
+            var success = Service.AddPromotion(RestaurantId, ManagerId, new AddPromotionReq
+            {
+                Title = promotionTitle,
+                Price = promotionPrice,
+                Conditions = promotionDescription,
+                TotalQuota = promotionQuota,
+                StartDate = DateTime.Now,
+                EndDate = endDate
+            });
+
+            if (success == null)
+            {
+                DialogCard.Show($"Failed to add promotion. Please try again.", DialogCardType.Negative);
+                return;
+            } else
+            {
+                DialogCard.Show($"Promotion added successfully!", DialogCardType.Positive);
+                form.ChangeScreen(this, data: new DataDetail { RestaurantId = RestaurantId, ManagerId = ManagerId }, 1);
+            }
 		}
     }
 }
