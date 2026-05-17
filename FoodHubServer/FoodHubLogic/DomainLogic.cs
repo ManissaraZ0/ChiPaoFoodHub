@@ -127,7 +127,8 @@ public class DomainLogic
 
         var query = context.Promotions
             .Include(p => p.Restaurant)
-            .Where(p => p.StartDate <= DateTime.Now && p.EndDate >= DateTime.Now);
+            .Where(p => p.EndDate >= DateTime.Now);
+            //.Where(p => p.StartDate <= DateTime.Now && p.EndDate >= DateTime.Now);
 
         if (restaurantId.HasValue)
         {
