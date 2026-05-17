@@ -46,7 +46,7 @@ namespace FoodHubCustomerApp
             }
             else if (this.Controls.Contains(userReviewPage))
             {
-                userReviewPage.RefreshData();
+                userReviewPage.Refresh();
             }
         }
 
@@ -59,6 +59,14 @@ namespace FoodHubCustomerApp
                     this.Controls.Clear();
                     homePage.UserData = userData;
                     homePage.SearchText = data.ToString();
+                    this.Controls.Add(homePage);
+                }
+            } else if (action == 1001)
+            {
+                if (userData != null)
+                {
+                    this.Controls.Clear();
+                    homePage.UserData = userData;
                     this.Controls.Add(homePage);
                 }
             } else if (action == 0)

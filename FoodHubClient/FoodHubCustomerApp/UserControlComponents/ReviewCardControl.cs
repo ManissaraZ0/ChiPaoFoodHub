@@ -10,15 +10,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using FoodHubCustomerApp.Logics;
+using FoodHubCustomerApp.Model;
 
 //namespace ReviewCard
 namespace FoodHubCustomerApp.UserControlComponents
 {
     public partial class ReviewCardControl : UserControl
     {
-        private ReviewItem _item;
+        private ManagerReviewDetailRsp _item;
 
-        public ReviewCardControl(ReviewItem item)
+        public ReviewCardControl(ManagerReviewDetailRsp item)
         {
             _item = item;
 
@@ -117,7 +118,7 @@ namespace FoodHubCustomerApp.UserControlComponents
             using (SolidBrush brushBlack = new SolidBrush(Color.Black))
             {
                 // ใส่ RectangleF เข้าไปใน DrawString เพื่อให้มันตัดบรรทัดอัตโนมัติเมื่อข้อความยาวเกิน
-                g.DrawString(_item.ReviewText, fontReview, brushBlack, reviewRect);
+                g.DrawString(_item.Comment, fontReview, brushBlack, reviewRect);
             }
         }
 

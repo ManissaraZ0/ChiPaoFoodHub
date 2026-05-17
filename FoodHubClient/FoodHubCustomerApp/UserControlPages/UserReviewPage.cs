@@ -30,10 +30,13 @@ namespace FoodHubCustomerApp.UserControlPages
                 if (resPrevious != null)
                 {
                     //// 1. นำข้อมูลมาใส่ (แอบเติมคำว่า "Category: " เข้าไปให้เหมือนหน้า Design)
-                    //lblRestaurantName.Text = resPrevious.Name;
-                    //lblCategory.Text = "Category: " + resPrevious.Category;
-                    //lblRatingScore.Text = resPrevious.OverallRating.ToString("0.00") + "/5.00";
-                    //lblRestaurantDescription.Text = resPrevious.Address;
+                    resTitle.Text = resPrevious.Name;
+                    categoryValue.Text = "Category: " + resPrevious.Category;
+                    ratingLabel.Text = resPrevious.OverallRating.ToString("0.00") + "/5.00";
+                    addrContent.Text = resPrevious.Address;
+
+                    LoadTickets(resPrevious.RestaurantId);
+                    LoadReviews(resPrevious.RestaurantId);
 
                     //// --- 2. การจัดการ Layout แบบไดนามิก (Dynamic Positioning) ---
 
@@ -83,15 +86,9 @@ namespace FoodHubCustomerApp.UserControlPages
             this.form = form;
             SetupUI();
             SetupEventHandlers();
-            LoadTickets();
-            LoadReviews();
 
             // กำหนดสีพื้นหลังให้ปุ่ม Add Post โดยดึงสีมาจาก StylePalette
             //btnAddPost.BackColor = StylePalette.DarkRed;
-        }
-        public void RefreshData()
-        {
-            //
         }
 
         private void SetupUI()
@@ -109,9 +106,11 @@ namespace FoodHubCustomerApp.UserControlPages
         {
             // UI Events (ใช้ Lambda ย่อโค้ดให้สั้นลง ไม่ต้องสร้าง Method แยกให้รก)
             navBarControl.LogoClicked += (s, e) => form.ChangeScreen(this, 0, userData);
-            navBarControl.HeartClicked += (s, e) => form.ChangeScreen(this, 4, userData, resPrevious);
+            navBarControl.HeartClicked += (s, e) => MessageBox.Show("การกดถูกใจ");
             navBarControl.BellClicked += (s, e) => MessageBox.Show("แสดงการแจ้งเตือน");
             navBarControl.ProfileClicked += (s, e) => form.ChangeScreen(this, 3, userData);
+            addPostBtn.Click += (s, e) => form.ChangeScreen(this, 4, userData, resPrevious);
+            backBtn.Click += (s, e) => form.ChangeScreen(this, 1001, userData);
 
             // เพื่อบอกให้ปุ่มรู้ว่าต้องใช้ฟังก์ชันนี้ตอนวาดตัวเอง
             //btnAddPost.Paint += btnAddPost_Paint;
@@ -131,58 +130,91 @@ namespace FoodHubCustomerApp.UserControlPages
         //    FoodHubCustomerApp.UserControlComponents.IconPainter.DrawPenIcon(e.Graphics, iconBounds);
         //}
 
-        private List<TicketItem> GetMockTickets()
-        {
-            var list = new List<TicketItem>();
-            for (int i = 0; i < 9; i++) 
-            {
-                list.Add(new TicketItem
-                {
-                    Title = "Drink Promotion",
-                    Subtitle = "Film's Restaurant",
-                    SaveText = "SAVE",
-                    DiscountValue = "99%"
-                });
-            }
-            return list;
-        }
+        //private List<TicketItem> GetMockTickets()
+        //{
+        //    var list = new List<TicketItem>();
+        //    for (int i = 0; i < 9; i++) 
+        //    {
+        //        list.Add(new TicketItem
+        //        {
+        //            Title = "Drink Promotion",
+        //            Subtitle = "Film's Restaurant",
+        //            SaveText = "SAVE",
+        //            DiscountValue = "99%"
+        //        });
+        //    }
+        //    return list;
+        //}
 
-        private void LoadTickets()
+        private void LoadTickets(int restaurantId)
         {
             flowTicketLayoutPanel.Controls.Clear();
-            var items = GetMockTickets();
+            //var items = GetMockTickets();
+            var items = Service.BrowsePromotions(restaurantId);
 
-            foreach (var item in items)
+            // Adapter pattern: แปลงข้อมูล Promotion ที่ได้จาก Service ให้กลายเป็น TicketItem ที่ TicketCardControl ต้องการ
+            var adaptedItems = items.Select(p => new TicketItem
+            {
+                PromotionId = p.Id,
+                Title = p.Title,
+                Subtitle = p.Conditions,
+                SaveText = "Quota",
+                //DiscountValue = ((1 - (p.Price / 100)) * 100).ToString("0") + "%"
+                DiscountValue = p.TotalQuota.ToString()
+            }).ToList();
+
+            foreach (var item in adaptedItems)
             {
                 var ticketCard = new TicketCardControl(item);
+                ticketCard.Click += (s, e) =>
+                {
+                    var result = DialogCard.Show("Are you sure you want to buy?", DialogCardType.Negative);
+
+                    // เช็คผลลัพธ์เหมือน MessageBox ปกติ
+                    if (result == DialogResult.Yes)
+                    {
+                        var success = Service.BuyPromotionTicket(item.PromotionId, userData.Id);
+
+                        if (success != null)
+                        {
+                            DialogCard.Show("Ticket retrieved successfully!", DialogCardType.Positive, showCancelButton: false);
+                        }
+                        else
+                        {
+                            DialogCard.Show("Failed to retrieve ticket. Please try again.", DialogCardType.Negative, showCancelButton: false);
+                        }
+
+                        LoadTickets(resPrevious.RestaurantId);
+                    }
+                };
                 flowTicketLayoutPanel.Controls.Add(ticketCard);
             }
         }
 
-        private List<ReviewItem> GetMockReviewData()
-        {
-            var list = new List<ReviewItem>();
+        //private List<ReviewItem> GetMockReviewData()
+        //{
+        //    var list = new List<ReviewItem>();
 
-            // จำลองข้อความรีวิวแบบในรูปเป๊ะๆ
-            string mockText = "อาหารหลากหลาย\n" +
-                              "แต่มีเพียงบางอย่างเท่านั้นที่อร่อย\n" +
-                              "แต่ด้านบริการยอดเยี่ยมมากๆ ครับ\n" +
-                              "พนักงานทุกคนกระตือรือร้น ยิ้มแย้ม สุภาพ\n" +
-                              "บรรยากาศภายในร้านพลุกพล่าน";
+        //    // จำลองข้อความรีวิวแบบในรูปเป๊ะๆ
+        //    string mockText = "อาหารหลากหลาย\n" +
+        //                      "แต่มีเพียงบางอย่างเท่านั้นที่อร่อย\n" +
+        //                      "แต่ด้านบริการยอดเยี่ยมมากๆ ครับ\n" +
+        //                      "พนักงานทุกคนกระตือรือร้น ยิ้มแย้ม สุภาพ\n" +
+        //                      "บรรยากาศภายในร้านพลุกพล่าน";
 
-            list.Add(new ReviewItem { Username = "User 1", Rating = 4.00, ReviewText = mockText });
-            list.Add(new ReviewItem { Username = "User 2", Rating = 5.00, ReviewText = mockText });
-            list.Add(new ReviewItem { Username = "User 3", Rating = 5.00, ReviewText = mockText });
+        //    list.Add(new ReviewItem { Username = "User 1", Rating = 4.00, ReviewText = mockText });
+        //    list.Add(new ReviewItem { Username = "User 2", Rating = 5.00, ReviewText = mockText });
+        //    list.Add(new ReviewItem { Username = "User 3", Rating = 5.00, ReviewText = mockText });
 
-            return list;
-        }
+        //    return list;
+        //}
 
         // โหลดเข้า FlowLayoutPanel
-        private void LoadReviews()
+        private void LoadReviews(int restaurantId)
         {
             commentFlowLayoutPanel.Controls.Clear();
 
-            var items = GetMockReviewData();
+            var items = Service.GetReviewDetails(restaurantId);
 
             foreach (var item in items)
             {

@@ -9,6 +9,7 @@ namespace FoodHubCustomerApp.Logics
 {
     public class TicketItem
     {
+        public int PromotionId { get; set; }
         public string Title { get; set; }
         public string Subtitle { get; set; }
         public string SaveText { get; set; } // เช่น "SAVE"

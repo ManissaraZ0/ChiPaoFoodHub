@@ -148,7 +148,7 @@
             contentSplitContainer.Panel2.Controls.Add(rightSplitContainer);
             contentSplitContainer.Panel2.Padding = new Padding(12, 10, 25, 10);
             contentSplitContainer.Size = new Size(1280, 649);
-            contentSplitContainer.SplitterDistance = 958;
+            contentSplitContainer.SplitterDistance = 988;
             contentSplitContainer.SplitterWidth = 1;
             contentSplitContainer.TabIndex = 0;
             // 
@@ -168,7 +168,7 @@
             // subLeftContainer.Panel2
             // 
             subLeftContainer.Panel2.Controls.Add(subSubLeftContainer);
-            subLeftContainer.Size = new Size(921, 639);
+            subLeftContainer.Size = new Size(951, 639);
             subLeftContainer.SplitterWidth = 1;
             subLeftContainer.TabIndex = 0;
             // 
@@ -186,14 +186,14 @@
             tableHeadLeftPanel.Name = "tableHeadLeftPanel";
             tableHeadLeftPanel.RowCount = 1;
             tableHeadLeftPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableHeadLeftPanel.Size = new Size(921, 50);
+            tableHeadLeftPanel.Size = new Size(951, 50);
             tableHeadLeftPanel.TabIndex = 0;
             // 
             // backBtn
             // 
             backBtn.Anchor = AnchorStyles.None;
             backBtn.BackColor = Color.Transparent;
-            backBtn.Location = new Point(7, 5);
+            backBtn.Location = new Point(8, 5);
             backBtn.Margin = new Padding(5);
             backBtn.Name = "backBtn";
             backBtn.OutlineColor = Color.Black;
@@ -206,10 +206,10 @@
             sectionLeftHeaderControl.BackColor = Color.Transparent;
             sectionLeftHeaderControl.Dock = DockStyle.Top;
             sectionLeftHeaderControl.HeaderText = "";
-            sectionLeftHeaderControl.Location = new Point(55, 0);
+            sectionLeftHeaderControl.Location = new Point(57, 0);
             sectionLeftHeaderControl.Margin = new Padding(0);
             sectionLeftHeaderControl.Name = "sectionLeftHeaderControl";
-            sectionLeftHeaderControl.Size = new Size(809, 50);
+            sectionLeftHeaderControl.Size = new Size(836, 50);
             sectionLeftHeaderControl.TabIndex = 1;
             // 
             // subSubLeftContainer
@@ -230,7 +230,7 @@
             // subSubLeftContainer.Panel2
             // 
             subSubLeftContainer.Panel2.Controls.Add(subSubSubLeftContainer);
-            subSubLeftContainer.Size = new Size(921, 588);
+            subSubLeftContainer.Size = new Size(951, 588);
             subSubLeftContainer.SplitterDistance = 278;
             subSubLeftContainer.SplitterWidth = 1;
             subSubLeftContainer.TabIndex = 0;
@@ -243,7 +243,7 @@
             resImageScreen.Location = new Point(0, 10);
             resImageScreen.Margin = new Padding(0);
             resImageScreen.Name = "resImageScreen";
-            resImageScreen.Size = new Size(921, 258);
+            resImageScreen.Size = new Size(951, 258);
             resImageScreen.TabIndex = 0;
             // 
             // subSubSubLeftContainer
@@ -263,7 +263,7 @@
             // subSubSubLeftContainer.Panel2
             // 
             subSubSubLeftContainer.Panel2.Controls.Add(subSubSubSubLeftContainer);
-            subSubSubLeftContainer.Size = new Size(921, 309);
+            subSubSubLeftContainer.Size = new Size(951, 309);
             subSubSubLeftContainer.SplitterWidth = 1;
             subSubSubLeftContainer.TabIndex = 0;
             // 
@@ -282,7 +282,7 @@
             titleTableLayoutPanel.Name = "titleTableLayoutPanel";
             titleTableLayoutPanel.RowCount = 1;
             titleTableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            titleTableLayoutPanel.Size = new Size(921, 50);
+            titleTableLayoutPanel.Size = new Size(951, 50);
             titleTableLayoutPanel.TabIndex = 0;
             // 
             // resTitle
@@ -293,7 +293,7 @@
             resTitle.Location = new Point(0, 0);
             resTitle.Margin = new Padding(0);
             resTitle.Name = "resTitle";
-            resTitle.Size = new Size(276, 50);
+            resTitle.Size = new Size(285, 50);
             resTitle.TabIndex = 0;
             resTitle.Text = "Film's Restaurant";
             resTitle.TextAlign = ContentAlignment.MiddleLeft;
@@ -303,10 +303,10 @@
             categoryTitle.Dock = DockStyle.Fill;
             categoryTitle.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             categoryTitle.ForeColor = Color.Gray;
-            categoryTitle.Location = new Point(276, 0);
+            categoryTitle.Location = new Point(285, 0);
             categoryTitle.Margin = new Padding(0);
             categoryTitle.Name = "categoryTitle";
-            categoryTitle.Size = new Size(110, 50);
+            categoryTitle.Size = new Size(114, 50);
             categoryTitle.TabIndex = 1;
             categoryTitle.Text = "Category:";
             categoryTitle.TextAlign = ContentAlignment.MiddleLeft;
@@ -316,10 +316,10 @@
             categoryValue.Dock = DockStyle.Fill;
             categoryValue.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             categoryValue.ForeColor = Color.Gray;
-            categoryValue.Location = new Point(386, 0);
+            categoryValue.Location = new Point(399, 0);
             categoryValue.Margin = new Padding(0);
             categoryValue.Name = "categoryValue";
-            categoryValue.Size = new Size(535, 50);
+            categoryValue.Size = new Size(552, 50);
             categoryValue.TabIndex = 2;
             categoryValue.Text = "Japan, Eiei";
             categoryValue.TextAlign = ContentAlignment.MiddleLeft;
@@ -341,7 +341,7 @@
             // subSubSubSubLeftContainer.Panel2
             // 
             subSubSubSubLeftContainer.Panel2.Controls.Add(subSubSubSubSubLeftContainer);
-            subSubSubSubLeftContainer.Size = new Size(921, 258);
+            subSubSubSubLeftContainer.Size = new Size(951, 258);
             subSubSubSubLeftContainer.SplitterWidth = 1;
             subSubSubSubLeftContainer.TabIndex = 0;
             // 
@@ -361,7 +361,7 @@
             subTitleTableLayoutPanel.Name = "subTitleTableLayoutPanel";
             subTitleTableLayoutPanel.RowCount = 1;
             subTitleTableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            subTitleTableLayoutPanel.Size = new Size(921, 50);
+            subTitleTableLayoutPanel.Size = new Size(951, 50);
             subTitleTableLayoutPanel.TabIndex = 0;
             // 
             // starLabel
@@ -373,7 +373,7 @@
             starLabel.Location = new Point(0, 0);
             starLabel.Margin = new Padding(0);
             starLabel.Name = "starLabel";
-            starLabel.Size = new Size(55, 50);
+            starLabel.Size = new Size(57, 50);
             starLabel.TabIndex = 0;
             starLabel.Text = "★";
             starLabel.TextAlign = ContentAlignment.TopCenter;
@@ -383,10 +383,10 @@
             ratingLabel.Dock = DockStyle.Fill;
             ratingLabel.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             ratingLabel.ForeColor = Color.Gray;
-            ratingLabel.Location = new Point(55, 0);
+            ratingLabel.Location = new Point(57, 0);
             ratingLabel.Margin = new Padding(0);
             ratingLabel.Name = "ratingLabel";
-            ratingLabel.Size = new Size(128, 50);
+            ratingLabel.Size = new Size(133, 50);
             ratingLabel.TabIndex = 1;
             ratingLabel.Text = "4.99/5.00";
             ratingLabel.TextAlign = ContentAlignment.MiddleLeft;
@@ -397,10 +397,10 @@
             addrTitle.Dock = DockStyle.Fill;
             addrTitle.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             addrTitle.ForeColor = Color.Gray;
-            addrTitle.Location = new Point(183, 0);
+            addrTitle.Location = new Point(190, 0);
             addrTitle.Margin = new Padding(0);
             addrTitle.Name = "addrTitle";
-            addrTitle.Size = new Size(101, 50);
+            addrTitle.Size = new Size(104, 50);
             addrTitle.TabIndex = 2;
             addrTitle.Text = "Address:";
             addrTitle.TextAlign = ContentAlignment.MiddleLeft;
@@ -411,10 +411,10 @@
             addrContent.Dock = DockStyle.Fill;
             addrContent.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             addrContent.ForeColor = Color.Gray;
-            addrContent.Location = new Point(284, 0);
+            addrContent.Location = new Point(294, 0);
             addrContent.Margin = new Padding(0);
             addrContent.Name = "addrContent";
-            addrContent.Size = new Size(637, 50);
+            addrContent.Size = new Size(657, 50);
             addrContent.TabIndex = 3;
             addrContent.Text = "Thailand, 12900";
             addrContent.TextAlign = ContentAlignment.MiddleLeft;
@@ -436,7 +436,7 @@
             // subSubSubSubSubLeftContainer.Panel2
             // 
             subSubSubSubSubLeftContainer.Panel2.Controls.Add(flowTicketLayoutPanel);
-            subSubSubSubSubLeftContainer.Size = new Size(921, 207);
+            subSubSubSubSubLeftContainer.Size = new Size(951, 207);
             subSubSubSubSubLeftContainer.SplitterWidth = 1;
             subSubSubSubSubLeftContainer.TabIndex = 0;
             // 
@@ -447,7 +447,7 @@
             promoTitle.Location = new Point(0, 0);
             promoTitle.Margin = new Padding(0);
             promoTitle.Name = "promoTitle";
-            promoTitle.Size = new Size(921, 50);
+            promoTitle.Size = new Size(951, 50);
             promoTitle.TabIndex = 0;
             promoTitle.Text = "Restaurant's Promotions";
             promoTitle.TextAlign = ContentAlignment.MiddleLeft;
@@ -459,7 +459,7 @@
             flowTicketLayoutPanel.Location = new Point(0, 0);
             flowTicketLayoutPanel.Margin = new Padding(0);
             flowTicketLayoutPanel.Name = "flowTicketLayoutPanel";
-            flowTicketLayoutPanel.Size = new Size(921, 156);
+            flowTicketLayoutPanel.Size = new Size(951, 156);
             flowTicketLayoutPanel.TabIndex = 0;
             // 
             // rightSplitContainer
@@ -478,7 +478,7 @@
             // 
             rightSplitContainer.Panel2.Controls.Add(addPostBtn);
             rightSplitContainer.Panel2.Padding = new Padding(0, 5, 0, 0);
-            rightSplitContainer.Size = new Size(284, 629);
+            rightSplitContainer.Size = new Size(254, 629);
             rightSplitContainer.SplitterDistance = 579;
             rightSplitContainer.SplitterWidth = 1;
             rightSplitContainer.TabIndex = 0;
@@ -490,7 +490,7 @@
             commentFlowLayoutPanel.Location = new Point(0, 0);
             commentFlowLayoutPanel.Margin = new Padding(0);
             commentFlowLayoutPanel.Name = "commentFlowLayoutPanel";
-            commentFlowLayoutPanel.Size = new Size(284, 579);
+            commentFlowLayoutPanel.Size = new Size(254, 579);
             commentFlowLayoutPanel.TabIndex = 0;
             // 
             // addPostBtn
@@ -506,7 +506,7 @@
             addPostBtn.MaximumSize = new Size(0, 40);
             addPostBtn.MinimumSize = new Size(140, 40);
             addPostBtn.Name = "addPostBtn";
-            addPostBtn.Size = new Size(284, 40);
+            addPostBtn.Size = new Size(254, 40);
             addPostBtn.TabIndex = 0;
             // 
             // UserReviewPage

@@ -34,10 +34,7 @@ namespace FoodHubCustomerApp.UserControlPages
             {
                 userData = value;
                 UserSession.Username = userData.Username;
-                navBarControl.RefreshUserProfile();
-                usernameTitle.Text = userData.Username;
-                LoadExpirePromotions(); 
-                navBarControl.UserData = userData;
+                FillUI(userData);
             }
         }
 
@@ -47,6 +44,17 @@ namespace FoodHubCustomerApp.UserControlPages
             this.form = form;
             SetupUI();
             SetupEventHandlers();
+        }
+
+        private void FillUI(UserRsp userData)
+        {
+            navBarControl.RefreshUserProfile();
+            var userDetail = Service.GetCustomerProfile(userData.Id);
+            usernameTitle.Text = userDetail.Username;
+            emailDetail.Text = userDetail.Email;
+            promoCount.Text = userDetail.ActivePromotions.Count.ToString();
+            LoadExpirePromotions(userData.Id);
+            navBarControl.UserData = userData;
         }
 
         private void SetupUI()
@@ -73,7 +81,7 @@ namespace FoodHubCustomerApp.UserControlPages
             };
         }
 
-        private void LoadExpirePromotions()
+        private void LoadExpirePromotions(int userId)
         {
             List<PromotionExpireItem> items;
 
@@ -83,7 +91,7 @@ namespace FoodHubCustomerApp.UserControlPages
             }
             else
             {
-                items = Service.GetCustomerProfile(userData.Id).ActivePromotions.Select(p => new PromotionExpireItem
+                items = Service.GetCustomerProfile(userId).ActivePromotions.Select(p => new PromotionExpireItem
                 {
                     Title = p.Title,
                     ExpireDate = p.EndDate.ToString("dd/MM/yyyy")
