@@ -18,6 +18,18 @@ namespace FoodHubManagerApp.UserControlPages
     public partial class TicketsPage : UserControl
     {
         ManagerApp form;
+
+        private string searchKeyword = "";
+
+        public string SearchKeyword
+        {
+            get => searchKeyword;
+            set
+            {
+                searchKeyword = value;
+            }
+        }
+
         private DataDetail data;
         public DataDetail Data
         {
@@ -47,8 +59,23 @@ namespace FoodHubManagerApp.UserControlPages
 
         public void RefreshData()
         {
-            var tickets = Service.GetRestaurantTickets(Data.RestaurantId, Data.ManagerId, "Active");
-            UpdateUserCards(tickets);
+            if (searchKeyword != "")
+            {
+                SearchTickets(searchKeyword);
+            } else
+            {
+                var tickets = Service.GetRestaurantTickets(Data.RestaurantId, Data.ManagerId, "Active");
+                UpdateUserCards(tickets);
+            }
+                
+        }
+
+        private void SearchTickets(string keyword)
+        {
+            var filtered = Service.GetRestaurantTickets(Data.RestaurantId, Data.ManagerId, "Active")
+                    .Where(p => p.PromotionTitle.Contains(keyword, StringComparison.OrdinalIgnoreCase))
+                    .ToList();
+            UpdateUserCards(filtered);
         }
 
         private void SetupEventHandlers()
@@ -61,10 +88,8 @@ namespace FoodHubManagerApp.UserControlPages
             // Search Event
             searchBar1.SearchSubmitted += (s, keyword) =>
             {
-                var filtered = Service.GetRestaurantTickets(Data.RestaurantId, Data.ManagerId, "Active")
-                    .Where(p => p.PromotionTitle.Contains(keyword, StringComparison.OrdinalIgnoreCase))
-                    .ToList();
-                UpdateUserCards(filtered);
+                searchKeyword = keyword;
+                SearchTickets(searchKeyword);
             };
 
             // *** Observer: รอรับข้อมูลจาก Service เมื่อโหลดเสร็จ ***

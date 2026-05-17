@@ -18,6 +18,18 @@ namespace FoodHubManagerApp.UserControlPages
     public partial class PromotionsPage : UserControl
     {
         ManagerApp form;
+
+        private string searchKeyword = "";
+
+        public string SearchKeyword
+        {
+            get => searchKeyword;
+            set
+            {
+                searchKeyword = value;
+            }
+        }
+
         private int restaurantId;
         public int RestaurantId
         {
@@ -60,13 +72,20 @@ namespace FoodHubManagerApp.UserControlPages
             // Search Event
             searchBar1.SearchSubmitted += (s, keyword) =>
             {
+                searchKeyword = keyword;
                 RefreshData(keyword);
             };
         }
 
         public void RefreshPromotions()
         {
-            RefreshData();
+            if (searchKeyword != "")
+            {
+                RefreshData(searchKeyword);
+            } else
+            {
+                RefreshData();
+            }
         }
 
         private void RefreshData(string keyword = "")
