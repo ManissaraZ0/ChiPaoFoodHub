@@ -53,7 +53,7 @@ namespace FoodHubManagerApp.UserControlComponents
             InitializeComponent();
             InitializeComponents();
 
-            TicketID = $"Ticket: {item.TicketId}";
+            TicketID = $"Ticket ID: {item.TicketId}";
             SubInfo = $"User ID: {item.UserId}, {item.PromotionTitle}";
         }
 

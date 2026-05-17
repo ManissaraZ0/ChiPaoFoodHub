@@ -73,7 +73,7 @@ namespace FoodHubManagerApp.UserControlPages
         private void SearchTickets(string keyword)
         {
             var filtered = Service.GetRestaurantTickets(Data.RestaurantId, Data.ManagerId, "Active")
-                    .Where(p => p.PromotionTitle.Contains(keyword, StringComparison.OrdinalIgnoreCase))
+                    .Where(p => $"ID: {p.TicketId} - {p.TicketId}".Contains(keyword, StringComparison.OrdinalIgnoreCase))
                     .ToList();
             UpdateUserCards(filtered);
         }
