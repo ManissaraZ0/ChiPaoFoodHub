@@ -87,9 +87,17 @@ namespace FoodHubManagerApp.UserControlPages
                 return;
             }
 
+            DateTime startDate = labeledDateTimePicker2.Value;
+
             DateTime endDate = labeledDateTimePicker1.Value;
 
-            if (endDate <= DateTime.Now)
+            if (startDate < DateTime.Now)
+            {
+                DialogCard.Show($"Promotion start date must be in the future.", DialogCardType.Negative, false, true);
+                return;
+            }
+
+            if (endDate <= startDate)
             {
                 DialogCard.Show($"Promotion end date must be in the future.", DialogCardType.Negative, false, true);
                 return;
@@ -135,7 +143,7 @@ namespace FoodHubManagerApp.UserControlPages
                     Price = promotionPrice,
                     Conditions = promotionDescription,
                     TotalQuota = promotionQuota,
-                    StartDate = DateTime.Now,
+                    StartDate = startDate,
                     EndDate = endDate
                 });
 
