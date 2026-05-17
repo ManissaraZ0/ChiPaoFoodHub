@@ -46,7 +46,7 @@ namespace FoodHubCustomerApp
             }
             else if (this.Controls.Contains(userReviewPage))
             {
-                userReviewPage.Refresh();
+                userReviewPage.RefreshData();
             }
         }
 

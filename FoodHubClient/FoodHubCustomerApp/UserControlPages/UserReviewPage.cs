@@ -91,6 +91,15 @@ namespace FoodHubCustomerApp.UserControlPages
             //btnAddPost.BackColor = StylePalette.DarkRed;
         }
 
+        public void RefreshData()
+        {
+            if (resPrevious != null)
+            {
+                LoadTickets(resPrevious.RestaurantId);
+                LoadReviews(resPrevious.RestaurantId);
+            }
+        }
+
         private void SetupUI()
         {
             // ตั้งค่าบัญชีผู้ใช้
