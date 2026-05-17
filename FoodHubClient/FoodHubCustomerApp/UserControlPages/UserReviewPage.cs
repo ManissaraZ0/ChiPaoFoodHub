@@ -162,7 +162,8 @@ namespace FoodHubCustomerApp.UserControlPages
             flowTicketLayoutPanel.Controls.Clear();
             var items = Service.BrowsePromotions(restaurantId);
 
-            var adaptedItems = items.Select(p => new TicketItem
+            // Exclude 0 quota promotions
+            var adaptedItems = items.Where(p => p.TotalQuota > 0).Select(p => new TicketItem
             {
                 PromotionId = p.Id,
                 Title = p.Title,
