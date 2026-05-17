@@ -271,13 +271,13 @@ namespace FoodHubManagerApp.UserControlPages
             // labeledDateTimePicker1
             // 
             labeledDateTimePicker1.BackColor = Color.Transparent;
+            labeledDateTimePicker1.Dock = DockStyle.Fill;
             labeledDateTimePicker1.LabelText = "Expire Date";
             labeledDateTimePicker1.Location = new Point(23, 321);
             labeledDateTimePicker1.Name = "labeledDateTimePicker1";
             labeledDateTimePicker1.Size = new Size(960, 90);
             labeledDateTimePicker1.TabIndex = 5;
-            labeledDateTimePicker1.Value = DateTime.Now;
-            labeledDateTimePicker1.Dock = DockStyle.Fill;
+            labeledDateTimePicker1.Value = new DateTime(2026, 5, 17, 7, 49, 20, 222);
             // 
             // AddPromotionPage
             // 
