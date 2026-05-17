@@ -123,6 +123,7 @@ namespace FoodHubCustomerApp.UserControlPages
 
             // เพื่อบอกให้ปุ่มรู้ว่าต้องใช้ฟังก์ชันนี้ตอนวาดตัวเอง
             //btnAddPost.Paint += btnAddPost_Paint;
+            commentFlowLayoutPanel.SizeChanged += CommentFlowLayoutPanel_SizeChanged;
         }
 
         //private void btnAddPost_Paint(object sender, PaintEventArgs e)
@@ -218,22 +219,45 @@ namespace FoodHubCustomerApp.UserControlPages
         //    return list;
         //}
 
-        // โหลดเข้า FlowLayoutPanel
         private void LoadReviews(int restaurantId)
         {
             commentFlowLayoutPanel.Controls.Clear();
 
             var items = Service.GetReviewDetails(restaurantId);
+            int targetWidth = commentFlowLayoutPanel.ClientSize.Width - 25;
 
             foreach (var item in items)
             {
                 var reviewCard = new ReviewCardControl(item);
-
-                // ขยายให้กว้างเต็มคอนเทนเนอร์
-                reviewCard.Width = commentFlowLayoutPanel.ClientSize.Width - 20;
+                reviewCard.Width = targetWidth;
 
                 commentFlowLayoutPanel.Controls.Add(reviewCard);
             }
+
+            ResizeReviewCards();
+        }
+
+        private void CommentFlowLayoutPanel_SizeChanged(object sender, EventArgs e)
+        {
+            ResizeReviewCards();
+        }
+
+        private void ResizeReviewCards()
+        {
+            int targetWidth = commentFlowLayoutPanel.ClientSize.Width - 25;
+            commentFlowLayoutPanel.SuspendLayout();
+
+            foreach (Control control in commentFlowLayoutPanel.Controls)
+            {
+                if (control is ReviewCardControl reviewCard)
+                {
+                    reviewCard.Width = targetWidth;
+                }
+            }
+
+            commentFlowLayoutPanel.HorizontalScroll.Maximum = 0;
+            commentFlowLayoutPanel.ResumeLayout(true);
+            commentFlowLayoutPanel.PerformLayout();
         }
     }
 }
