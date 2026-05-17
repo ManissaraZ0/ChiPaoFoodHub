@@ -168,6 +168,7 @@ namespace FoodHubCustomerApp.UserControlPages
                 Title = p.Title,
                 Subtitle = p.Conditions,
                 SaveText = "Quota",
+                //DiscountValue = ((1 - (p.Price / 100)) * 100).ToString("0") + "%"
                 DiscountValue = p.TotalQuota.ToString()
             }).ToList();
 
@@ -176,8 +177,23 @@ namespace FoodHubCustomerApp.UserControlPages
                 var ticketCard = new TicketCardControl(item);
                 ticketCard.Click += (s, e) =>
                 {
-                    var result = DialogCard.Show("Are you sure you want to buy?", DialogCardType.Negative);
-                    if (result == DialogResult.Yes) { /* ... */ }
+                    var result = DialogCard.Show("Are you sure you want to buy?", DialogCardType.Positive);
+                    // เช็คผลลัพธ์เหมือน MessageBox ปกติ
+                    if (result == DialogResult.Yes)
+                    {
+                        var success = Service.BuyPromotionTicket(item.PromotionId, userData.Id);
+
+                        if (success != null)
+                        {
+                            DialogCard.Show("Ticket retrieved successfully!", DialogCardType.Positive, showCancelButton: false);
+                        }
+                        else
+                        {
+                            DialogCard.Show("Failed to retrieve ticket. Please try again.", DialogCardType.Negative, showCancelButton: false);
+                        }
+
+                        LoadTickets(resPrevious.RestaurantId);
+                    }
                 };
 
                 flowTicketLayoutPanel.Controls.Add(ticketCard);
