@@ -31,7 +31,7 @@ namespace FoodHubCustomerApp.UserControlPages
                 {
                     //// 1. นำข้อมูลมาใส่ (แอบเติมคำว่า "Category: " เข้าไปให้เหมือนหน้า Design)
                     resTitle.Text = resPrevious.Name;
-                    categoryValue.Text = "Category: " + resPrevious.Category;
+                    categoryValue.Text = resPrevious.Category;
                     ratingLabel.Text = resPrevious.OverallRating.ToString("0.00") + "/5.00";
                     addrContent.Text = resPrevious.Address;
 
