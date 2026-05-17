@@ -60,7 +60,7 @@ namespace FoodHubCustomerApp.UserControlComponents
             using (SolidBrush brushBlack = new SolidBrush(Color.Black))
             {
                 // ใส่ StringFormat เพื่อให้ Text ตัดคำได้ถ้าชื่อยาวเกินไป และใช้ RectangleF ตามความกว้าง UserControl
-                g.DrawString(_item.Title, fontTitle, brushBlack,
+                g.DrawString($"ID: {_item.TicketId} - {_item.Title}", fontTitle, brushBlack,
                     new RectangleF(padX, 12, this.Width - (padX * 2) - 1, 25));
             }
 

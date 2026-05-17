@@ -8,6 +8,7 @@ namespace FoodHubCustomerApp.Logics
 {
     public class PromotionExpireItem
     {
+        public int TicketId { get; set; }
         public string Title { get; set; }
         public string ExpireDate { get; set; }
     }

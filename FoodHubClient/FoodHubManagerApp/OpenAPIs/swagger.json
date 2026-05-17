@@ -822,6 +822,10 @@
       "CustomerActivePromotionRsp": {
         "type": "object",
         "properties": {
+          "ticketId": {
+            "type": "integer",
+            "format": "int32"
+          },
           "title": {
             "type": "string",
             "nullable": true

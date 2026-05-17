@@ -101,6 +101,7 @@ namespace FoodHubCustomerApp.UserControlPages
             {
                 items = Service.GetCustomerProfile(userId).ActivePromotions.Select(p => new PromotionExpireItem
                 {
+                    TicketId = p.TicketId,
                     Title = p.Title,
                     ExpireDate = p.EndDate.ToString("dd/MM/yyyy")
                 }).ToList();
